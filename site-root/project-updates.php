@@ -1,0 +1,3 @@
+<?php
+
+Laddr\ProjectUpdatesRequestHandler::handleRequest();

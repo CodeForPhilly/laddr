@@ -1,0 +1,20 @@
+body {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #939699;
+	font-size: 10pt;
+}
+
+h1 {
+	display: inline-block;
+	margin-bottom: 0.75em;
+}
+
+h2, h2 a {
+	font-size: 18pt;
+	color: #399fd3 !important;
+}
+
+h3, h3 a {
+	font-size: 11pt;
+	color: #cf1b41 !important;
+}

@@ -1,0 +1,17 @@
+.members-list {
+    text-align: center;
+}
+
+.members-list .member-name {
+    display: table;
+    font-size: small;
+    height: 2em;
+    line-height: 1;
+    margin-top: .5em;
+    width: 100%;
+}
+
+.member-name .center-helper {
+    display: table-cell;
+    vertical-align: middle;
+}

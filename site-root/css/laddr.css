@@ -1,0 +1,62 @@
+/**
+* Common site design elements
+*/
+
+body {
+    padding-top: 40px; /* Padding at top of screen for fixed navbar as recommended in bootstrap docs */
+}
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 0;
+    }
+
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+}
+
+/* 3-column layout from http://stackoverflow.com/questions/9269312/three-column-fluid-layout-with-twitter-bootstrap-clearfixes-messing-things-up */
+.container-fluid > .sidebar {
+    position: relative;
+    top: 0;
+    left:auto;
+    width: 220px;
+}
+
+@media (min-width: 979px) {
+    .fixed-fixed {
+        margin: 0 300px 0 270px;
+    }
+
+    .sidebar.left {
+        float: left;
+    }
+
+    .sidebar.right {
+        float: right;
+        width: 250px;
+    }
+}
+
+.avatar {
+    background-position: center;
+    background-size: cover;
+    border-radius: .25em;
+    display: inline-block;
+    margin-right: .25em;
+    vertical-align: middle;
+}
+
+.avatar.flexible {
+    height: auto;
+    padding-top: 100%;
+    width: 100%;
+}
+
+footer.site {
+    text-align: center;
+    margin-top: 20px;
+    padding: 1em;
+    border-top: 1px dashed #aaa;
+}
