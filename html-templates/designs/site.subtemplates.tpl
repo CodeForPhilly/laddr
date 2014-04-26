@@ -4,3 +4,4 @@
 {load_templates subtemplates/tags.tpl}
 {load_templates subtemplates/projects.tpl}
 {load_templates subtemplates/meetups.tpl}
+{load_templates subtemplates/updates.tpl}
