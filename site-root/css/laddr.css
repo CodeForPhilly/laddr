@@ -27,6 +27,7 @@ body {
 @media (min-width: 979px) {
     .fixed-fixed {
         margin: 0 300px 0 270px;
+        overflow: hidden;
     }
 
     .sidebar.left {
