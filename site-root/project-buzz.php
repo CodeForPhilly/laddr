@@ -1,0 +1,3 @@
+<?php
+
+Laddr\ProjectBuzzRequestHandler::handleRequest();
