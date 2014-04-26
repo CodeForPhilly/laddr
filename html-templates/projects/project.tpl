@@ -194,5 +194,9 @@
         </div>
     {/if}
 
-    {jsmin epiceditor.js+pages/project.js}
+{/block}
+
+{block js-bottom}
+    {jsmin "epiceditor.js"}
+    {jsmin "pages/project.js"}
 {/block}

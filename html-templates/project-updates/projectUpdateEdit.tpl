@@ -28,5 +28,6 @@
 
 {block js-bottom}
     {$dwoo.parent}
-    {jsmin "epiceditor.js+pages/update-edit.js"}
+    {jsmin "epiceditor.js"}
+    {jsmin "pages/update-edit.js"}
 {/block}
