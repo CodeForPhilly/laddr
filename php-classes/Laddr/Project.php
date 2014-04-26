@@ -161,4 +161,25 @@ class Project extends \VersionedRecord
 
         return false;
     }
+
+    public function getActivity($limit = null)
+    {
+        return array_map(
+            function($result) {
+                return $result['Class']::getByID($result['ID']);
+            }
+            ,\DB::allRecords(
+                 'SELECT ID, Class, Created AS Timestamp FROM `%1$s` WHERE ProjectID = %3$u'
+                .' UNION'
+                .' SELECT ID, Class, Published AS Timestamp FROM `%2$s` WHERE ProjectID = %3$u'
+                .' ORDER BY Timestamp DESC %4$s'
+                ,array(
+                    ProjectUpdate::$tableName
+                    ,ProjectBuzz::$tableName
+                    ,$this->ID
+                    ,is_numeric($limit) ? "LIMIT $limit" : ''
+                )
+            )
+        );
+    }
 }

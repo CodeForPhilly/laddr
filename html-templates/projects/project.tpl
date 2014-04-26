@@ -66,20 +66,21 @@
             {/if}
 *}
 
-            {if ($.User && $Project->hasMember($.User)) || count($Project->Updates)}
-                <h3>
-                    Project Updates
+            <h3>
+                Project Activity
+                <div class="btn-group">
                     {if $.User && $Project->hasMember($.User)}
                         <a href="#post-update" class="btn btn-mini" data-toggle="modal">Post Update</a>
                     {/if}
-                </h3>
-            {/if}
+                    <a href="/project-buzz/create?ProjectID={$Project->ID}" class="btn btn-mini">Log Buzz</a>
+                </div>
+            </h3>
 
-            {if count($Project->Updates)}
-                {foreach item=Update from=$Project->Updates}
-                    {projectUpdate $Update}
-                {/foreach}
-            {/if}
+            {foreach item=Article from=$Project->getActivity()}
+                {projectActivity $Article headingLevel=h4 showProject=no}
+            {foreachelse}
+                <em>This project doesn't have any activity yet, post an update or log some buzz!</em>
+            {/foreach}
         </article>
 
         <aside class="twitterstream span4">
