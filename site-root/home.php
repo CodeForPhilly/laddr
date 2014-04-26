@@ -77,11 +77,30 @@ $pageData = array();
     ));
 
 
-// project updates stream
-    $pageData['updates'] = Laddr\ProjectUpdate::getAll(array(
-        'limit' => 10
-        ,'order' => array('ID' => 'DESC')
-    ));
+// build activity stream
+    try {
+        $pageData['activity'] = array_map(
+            function($result) {
+                return $result['Class']::getByID($result['ID']);
+            }
+            ,DB::allRecords(
+                 'SELECT ID, Class, Created AS Timestamp FROM `%s`'
+                .' UNION'
+                .' SELECT ID, Class, Published AS Timestamp FROM `%s`'
+                .' ORDER BY Timestamp DESC LIMIT 10'
+                ,array(
+                    Laddr\ProjectUpdate::$tableName
+                    ,Laddr\ProjectBuzz::$tableName
+                )
+            )
+        );
+    } catch (TableNotFoundException $e) {
+        $pageData['activity'] = Laddr\ProjectUpdate::getAll(array('order' => array('Created' => 'DESC'), 'limit' => 10));
+        
+        if (!count($pageData['activity'])) {
+            $pageData['activity'] = Laddr\ProjectBuzz::getAll(array('order' => array('Published' => 'DESC'), 'limit' => 10));
+        }
+    }
 
 
 // render data against home template

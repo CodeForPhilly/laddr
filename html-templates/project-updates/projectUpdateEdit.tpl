@@ -22,11 +22,11 @@
                 <input type="submit" class="btn-small btn" value="{tif $Update->isPhantom ? 'Post Update' : 'Save Changes'}"/>
             </div>
         </div>
-        </div>
     </form>
 {/block}
 
 {block js-bottom}
     {$dwoo.parent}
-    {jsmin "epiceditor.js+pages/update-edit.js"}
+    {jsmin "epiceditor.js"}
+    {jsmin "pages/update-edit.js"}
 {/block}

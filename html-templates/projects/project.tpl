@@ -9,16 +9,19 @@
         {$Project->Title|escape}
         <div class="btn-group pull-right">
             <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">Edit Project</a>
-            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#add-member" data-toggle="modal">Add Member</a></li>
-                {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
-                    <li><a href="#post-update" data-toggle="modal">Post Update</a></li>
-                {/if}
-                {if $.Session->hasAccountLevel('Staff')}
-                    <li><a href="#manage-members" data-toggle="modal">Manage Members</a></li>
-                {/if}
-            </ul>
+            {if $.User}
+                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#add-member" data-toggle="modal">Add Member</a></li>
+                    <li><a href="/project-buzz/create?ProjectID={$Project->ID}">Log Buzz</a></li>
+                    {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
+                        <li><a href="#post-update" data-toggle="modal">Post Update</a></li>
+                    {/if}
+                    {if $.Session->hasAccountLevel('Staff')}
+                        <li><a href="#manage-members" data-toggle="modal">Manage Members</a></li>
+                    {/if}
+                </ul>
+            {/if}
         </div>
     </h2>
 
@@ -66,20 +69,21 @@
             {/if}
 *}
 
-            {if ($.User && $Project->hasMember($.User)) || count($Project->Updates)}
-                <h3>
-                    Project Updates
+            <h3>
+                Project Activity
+                <div class="btn-group">
                     {if $.User && $Project->hasMember($.User)}
                         <a href="#post-update" class="btn btn-mini" data-toggle="modal">Post Update</a>
                     {/if}
-                </h3>
-            {/if}
+                    <a href="/project-buzz/create?ProjectID={$Project->ID}" class="btn btn-mini">Log Buzz</a>
+                </div>
+            </h3>
 
-            {if count($Project->Updates)}
-                {foreach item=Update from=$Project->Updates}
-                    {projectUpdate $Update}
-                {/foreach}
-            {/if}
+            {foreach item=Article from=$Project->getActivity()}
+                {projectActivity $Article headingLevel=h4 showProject=no}
+            {foreachelse}
+                <em>This project doesn't have any activity yet, post an update or log some buzz!</em>
+            {/foreach}
         </article>
 
         <aside class="twitterstream span4">
@@ -190,5 +194,9 @@
         </div>
     {/if}
 
-    {jsmin epiceditor.js+pages/project.js}
+{/block}
+
+{block js-bottom}
+    {jsmin "epiceditor.js"}
+    {jsmin "pages/project.js"}
 {/block}

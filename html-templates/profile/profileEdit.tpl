@@ -7,7 +7,8 @@
     <script>
         var tagTitles = {Tag::getAllTitles()|json_encode};
     </script>
-    {jsmin "epiceditor.js+pages/profile-edit.js"}
+    {jsmin "epiceditor.js"}
+    {jsmin "pages/profile-edit.js"}
 {/block}
 
 {block "content"}

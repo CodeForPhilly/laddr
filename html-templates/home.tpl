@@ -158,11 +158,11 @@
 
     <section class="content fixed-fixed">
         <section>
-            <h2>Latest Project Updates</h3>
+            <h2>Latest Project Activity</h3>
             <div class="row-fluid">
 
-                {foreach item=Update from=$updates}
-                    {projectUpdate $Update headingLevel=h3 showProject=true}
+                {foreach item=Article from=$activity}
+                    {projectActivity $Article headingLevel=h3 showProject=true}
                 {foreachelse}
                     <em>No project updates have been posted on this site yet</em>
                 {/foreach}

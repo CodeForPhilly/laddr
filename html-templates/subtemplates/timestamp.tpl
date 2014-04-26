@@ -1,0 +1,1 @@
+{template timestamp time}<time datetime="{date($.const.DATE_W3C, $time)}">{$time|date_format:"%c"}</time>{/template}

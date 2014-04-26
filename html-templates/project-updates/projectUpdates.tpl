@@ -5,7 +5,7 @@
     <h2>
         Project Updates
         {if $Project}
-            in <a href="/projects/{$Project->Handle}">{$Project->Title|escape}</a>
+            in <a href="{$Project->getURL()}">{$Project->Title|escape}</a>
         {/if}
     </h2>
 
