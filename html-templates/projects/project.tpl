@@ -9,16 +9,19 @@
         {$Project->Title|escape}
         <div class="btn-group pull-right">
             <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">Edit Project</a>
-            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-            <ul class="dropdown-menu">
-                <li><a href="#add-member" data-toggle="modal">Add Member</a></li>
-                {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
-                    <li><a href="#post-update" data-toggle="modal">Post Update</a></li>
-                {/if}
-                {if $.Session->hasAccountLevel('Staff')}
-                    <li><a href="#manage-members" data-toggle="modal">Manage Members</a></li>
-                {/if}
-            </ul>
+            {if $.User}
+                <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#add-member" data-toggle="modal">Add Member</a></li>
+                    <li><a href="/project-buzz/create?ProjectID={$Project->ID}">Log Buzz</a></li>
+                    {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
+                        <li><a href="#post-update" data-toggle="modal">Post Update</a></li>
+                    {/if}
+                    {if $.Session->hasAccountLevel('Staff')}
+                        <li><a href="#manage-members" data-toggle="modal">Manage Members</a></li>
+                    {/if}
+                </ul>
+            {/if}
         </div>
     </h2>
 

@@ -50,6 +50,8 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleAddMemberRequest(Project $Project)
     {
+        $GLOBALS['Session']->requireAuthentication();
+
         if (empty($_POST['username'])) {
             return static::throwError('Parameter "username" required');
         }
@@ -84,6 +86,8 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleRemoveMemberRequest(Project $Project)
     {
+        $GLOBALS['Session']->requireAuthentication();
+
         if (empty($_REQUEST['username'])) {
             return static::throwError('Parameter "username" required');
         }
@@ -120,6 +124,8 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleChangeMaintainerRequest(Project $Project)
     {
+        $GLOBALS['Session']->requireAuthentication();
+
         if (empty($_REQUEST['username'])) {
             return static::throwError('Parameter "username" required');
         }
@@ -163,6 +169,8 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $GLOBALS['Session']->requireAuthentication();
+
             if (empty($_POST['Body'])) {
                 return static::throwError('Update body cannot be blank');
             }
