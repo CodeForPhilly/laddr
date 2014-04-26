@@ -18,7 +18,7 @@
         {if $Project->isPhantom}
             Create new project
         {else}
-            Edit project <strong>{$Project->Title|escape}
+            Edit project <strong>{$Project->Title|escape}</strong>
         {/if}
     </h2>
 
@@ -68,7 +68,6 @@
                 <br/><br/>
                 <input type="submit" class="btn-small btn" value="{tif $Project->isPhantom ? 'Create Project' : 'Save Changes'}"/>
             </div>
-        </div>
         </div>
     </form>
 {/block}

@@ -22,7 +22,6 @@
                 <input type="submit" class="btn-small btn" value="{tif $Update->isPhantom ? 'Post Update' : 'Save Changes'}"/>
             </div>
         </div>
-        </div>
     </form>
 {/block}
 
