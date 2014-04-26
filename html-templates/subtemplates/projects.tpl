@@ -1,5 +1,5 @@
 {template projectLink Project}
-    <a href="/projects/{$Project->Handle}">{$Project->Title|escape}</a>
+    <a href="{$Project->getURL()}">{$Project->Title|escape}</a>
 {/template}
 
 {template projectMemberTitle Membership}{strip}
