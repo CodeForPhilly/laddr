@@ -157,6 +157,8 @@
     </aside>
 
     <section class="content fixed-fixed">
+        {include includes/home.announcements.tpl}
+
         <section>
             <h2>Latest Project Activity</h3>
             <div class="row-fluid">
