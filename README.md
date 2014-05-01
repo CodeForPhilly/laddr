@@ -1,6 +1,6 @@
 # laddr
 
-Laddr -- pronounced "ladder" and named after the essential tool for fire brigades -- is a web application designed to create an online home-base for [Code for America brigades](brigade.codeforamerica.org).
+Laddr -- pronounced "ladder" and named after the essential tool for fire brigades -- is a web application designed to create an online home-base for [Code for America brigades](http://brigade.codeforamerica.org).
 
 It provides a directory for members and projects, and activity feeds for posting updates and logging buzz for projects.
 
