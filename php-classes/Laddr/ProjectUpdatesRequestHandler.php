@@ -32,4 +32,14 @@ class ProjectUpdatesRequestHandler extends \RecordsRequestHandler
 
         return true;
     }
+
+    static public function respond($responseID, $responseData = array(), $responseMode = false)
+    {
+        if ($responseID == 'projectUpdates' && $_GET['format'] == 'rss') {
+            header('Content-Type: application/rss+xml');
+            return \Emergence\Dwoo\Engine::respond('projectUpdates.rss', $responseData);
+        }
+
+        return parent::respond($responseID, $responseData, $responseMode);
+    }
 }
