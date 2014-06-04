@@ -121,12 +121,14 @@
                 </form>
                 <aside class="checkins">
                     <h4>Checked-in Members</h4>
-                    {$lastProjectID = null}
+                    {$lastProjectID = false}
                     <h5 class="muted">No Current Project</h5>
                     <ul class="nav nav-pills nav-stacked">
                     {foreach item=Checkin from=$currentMeetup.checkins}
-                        {if $Checkin->ProjectID != $lastProjectID}
-                            </ul>
+                        {if $Checkin->ProjectID != $lastProjectID || $lastProjectID === false}
+                            {if $lastProjectID}
+                                </ul>
+                            {/if}
                             <h5>{if $Checkin->Project}{projectLink $Checkin->Project}{/if}</h5>
                             {$lastProjectID = $Checkin->ProjectID}
                             <ul class="nav nav-pills nav-stacked">
