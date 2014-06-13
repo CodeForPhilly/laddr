@@ -10,7 +10,7 @@
 
     <div class="hero-unit">
         <div class="caption">
-            <img src="/img/logo.png" class="logo" alt="{Laddr::$siteName|escape}">
+            <img src="{versioned_url img/logo.png}" class="logo" alt="{Laddr::$siteName|escape}">
             <p>{Laddr::$siteSlogan|escape}</p>
             <p>
                 <a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-primary">Start Hacking</a>
