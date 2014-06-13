@@ -26,8 +26,8 @@
                             </ul>
                         </li>
                     {else}
-                        <li><a href="/login?return={$.server.REQUEST_URI|escape:url}">Login</a></li>
-                        <li><a href="/register?return={$.server.REQUEST_URI|escape:url}">Sign up!</a></li>
+                        <li><a href="/login?return={$.server.REQUEST_URI|escape:url}">{_ "Login"}</a></li>
+                        <li><a href="/register?return={$.server.REQUEST_URI|escape:url}">{_ "Sign up"}</a></li>
                     {/if}
                 </ul>
             </div>

@@ -85,7 +85,7 @@ class ProjectBuzz extends \ActiveRecord
             }
 
             if ($this::getByWhere($duplicateConditions)) {
-                $this->_validator->addError('URL', 'This URL has already been logged as buzz for this project');
+                $this->_validator->addError('URL', _('This URL has already been logged as buzz for this project'));
             }
         }
 
