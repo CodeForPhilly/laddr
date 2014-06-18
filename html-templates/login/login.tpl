@@ -4,7 +4,7 @@
 
 
 {block "content"}
-    <center><h2>Login to {Laddr::$siteName|escape}</h2></center>
+    <center><h2>{_("Login to %s")|sprintf:Laddr::$siteName|escape}</h2></center>
     <br/>
     <div class="container">
     <div class="span9 offset3">
@@ -25,37 +25,37 @@
 
     {if $authException}
         <p class="error">
-            Login Failed: {$authException->getMessage()}
+            {_("Login Failed: %s")|sprintf:$authException->getMessage()}
         </p>
     {elseif $error}
         <p class="error">
-            Login Failed: {$error}
+            {_("Login Failed: %s")|sprintf:$error}
         </p>
     {/if}
 
     {strip}
         <div class="control-group">
-            <label for="_LOGIN[username]" class="control-label">Username</label>
+            <label for="_LOGIN[username]" class="control-label">{_ "Username"}</label>
             <div class="controls">
-                <input type="text" placeholder="Username or email address" name="_LOGIN[username]" value="{refill field=_LOGIN.username}"
+                <input type="text" placeholder="{_ 'Username or email address'}" name="_LOGIN[username]" value="{refill field=_LOGIN.username}"
                     autocorrect="off" autocapitalize="off">
             </div>
         </div>
 
         <div class="control-group">
-            <label for="_LOGIN[password]" class="control-label">Password</label>
+            <label for="_LOGIN[password]" class="control-label">{_ "Password"}</label>
             <div class="controls">
-                <input type="password" name="_LOGIN[password]" placeholder="Password"/>
+                <input type="password" name="_LOGIN[password]" placeholder="{_ 'Password'}"/>
                 <br/>
                 <br/>
                 <label class="checkbox" for="_LOGIN[remember]">
-                    <input type="checkbox" name="_LOGIN[remember]"/> Remember me
+                    <input type="checkbox" name="_LOGIN[remember]"/> {_ "Remember me"}
                 </label>
                 <br/>
                 <input type="submit" class="btn btn-small" value="Login"/>
                 <br/>
                 <br/>
-                <p>You can <a href="/register/recover">recover your password</a>,<br/>or <a href="/register">create an account</a> now.</p>
+                <p>{_ 'You can <a href="/register/recover">recover your password</a>,<br/>or <a href="/register">create an account</a> now.'}</p>
             </div>
         </div>
     {/strip}
