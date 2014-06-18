@@ -10,5 +10,6 @@ Git::$repositories['laddr'] = array(
 		,'php-classes'
 		,'php-config'
 		,'site-root'
+        ,'locales'
 	)
 );

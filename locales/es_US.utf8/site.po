@@ -1,0 +1,249 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es_419\n"
+
+#: html-templates/home.tpl:29 html-templates/projects/project.tpl:3
+#: html-templates/projects/projectEdit.tpl:3
+#: html-templates/projects/projects.tpl:3
+msgid "Projects"
+msgstr "Proyectos"
+
+#: html-templates/home.tpl:57 html-templates/projects/memberAdded.tpl:3
+#: html-templates/projects/projects.tpl:40
+msgid "Members"
+msgstr "Miembros"
+
+#: html-templates/register/register.tpl:11
+msgid "Register with %s"
+msgstr "Registrar con %s"
+
+#: html-templates/register/register.tpl:27
+msgid "Jenny"
+msgstr "Jenny"
+
+#: html-templates/register/register.tpl:35
+msgid "Appleseed"
+msgstr "Appleseed"
+
+#: html-templates/register/register.tpl:43
+msgid "civic.hacker@example.com"
+msgstr "civic.hacker@ejemplo.com"
+
+#: html-templates/register/register.tpl:52
+#: html-templates/projects/project.tpl:134 html-templates/login/login.tpl:38
+msgid "Username"
+msgstr "Usario"
+
+#: html-templates/register/register.tpl:55
+msgid "CivicHacker"
+msgstr "CivicHacker"
+
+#: html-templates/register/register.tpl:60 html-templates/login/login.tpl:46
+#: html-templates/login/login.tpl:48
+msgid "Password"
+msgstr "Contraseña"
+
+#: html-templates/includes/site.header.tpl:29
+msgid "Login"
+msgstr "Iniciar Sesión "
+
+#: html-templates/includes/site.nav-sitelinks.tpl:1
+msgid "Mission"
+msgstr "Objetivo"
+
+#: html-templates/includes/site.nav-sitelinks.tpl:3
+msgid "Resources"
+msgstr "Recursos"
+
+#: html-templates/includes/site.nav-userlinks.tpl:3
+msgid "Logout"
+msgstr "Cerrar Sesión "
+
+#: html-templates/subtemplates/projects.tpl:14
+msgid "Maintainer"
+msgstr ""
+
+#: html-templates/subtemplates/projects.tpl:16
+msgid "Member"
+msgstr "Miembro"
+
+#: html-templates/projects/memberAdded.tpl:9
+msgid "%s has been added to %s"
+msgstr "%s ha sido añadido a %s"
+
+#: html-templates/projects/project.tpl:43
+msgid "README"
+msgstr "Antes De Empezar "
+
+#: html-templates/projects/project.tpl:110
+msgid "Add"
+msgstr ""
+
+#: html-templates/projects/project.tpl:140
+msgid "Role"
+msgstr ""
+
+#: html-templates/projects/project.tpl:142
+msgid "optional"
+msgstr ""
+
+#: html-templates/projects/project.tpl:147
+#: html-templates/projects/project.tpl:163
+msgid "Close"
+msgstr ""
+
+#: html-templates/projects/project.tpl:186
+msgid "Remove"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:3
+msgid "Edit %s"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:21
+msgid "Edit project %s"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:3
+msgid "Create"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:39
+msgid "Title"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:48
+msgid "http://mypublicapp.org"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:59
+msgid "Tags"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:65
+msgid "README(.md)"
+msgstr ""
+
+#: html-templates/projects/projectSaved.tpl:11
+msgid "Your project has been created: %s"
+msgstr ""
+
+#: html-templates/projects/projectSaved.tpl:13
+msgid "Your changes to %s have been saved."
+msgstr ""
+
+#: html-templates/projects/projectUpdateCreated.tpl:6
+msgid "Update #%u"
+msgstr ""
+
+#: html-templates/login/login.tpl:7
+msgid "Login to %s"
+msgstr ""
+
+#: html-templates/login/login.tpl:28 html-templates/login/login.tpl:32
+msgid "Login Failed: %s"
+msgstr ""
+
+#: php-classes/Content.class.php:41 php-classes/HandleBehavior.class.php:24
+msgid "Handle can only contain letters, numbers, hyphens, and underscores"
+msgstr ""
+
+#: php-classes/Person.class.php:284
+msgid "First name is required."
+msgstr ""
+
+#: php-classes/Person.class.php:291
+msgid "Last name is required."
+msgstr ""
+
+#: php-classes/RecordValidator.class.php:139
+msgid "%s is missing."
+msgstr ""
+
+#: php-classes/RecordValidator.class.php:139
+msgid "%s is invalid."
+msgstr ""
+
+#: php-classes/User.class.php:80
+msgid "Username must be at least two characters long."
+msgstr ""
+
+#: php-classes/User.class.php:87
+msgid "Username can only contain letters, numbers, hyphens, and underscores."
+msgstr ""
+
+#: php-classes/Laddr/Project.php:134
+msgid "Project title is required"
+msgstr ""
+
+#: php-classes/Laddr/Project.php:141
+msgid "Users"
+msgstr ""
+
+#: php-classes/Laddr/Project.php:148
+msgid "Developers"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:88
+msgid "This URL has already been logged as buzz for this project"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:55
+msgid "Please select a project"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:58
+msgid "Please enter a headline for the buzz"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:62
+msgid "Please enter the URL for the buzz"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:66
+msgid "Please enter the date/time that the buzz was originally published"
+msgstr ""
+
+#: php-classes/Laddr/ProjectUpdate.php:41
+msgid "Update body is required"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:56
+#: php-classes/Laddr/ProjectsRequestHandler.php:92
+msgid "Parameter \"username\" required"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:60
+#: php-classes/Laddr/ProjectsRequestHandler.php:96
+msgid "User not found"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:69
+msgid "This member is already in this project"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:102
+msgid "Are you sure you want to remove %s from %s?"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:140
+msgid "Are you sure you want to make %s the maintainer of %s?"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:163
+msgid "Update not found"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:175
+msgid "Update body cannot be blank"
+msgstr ""
