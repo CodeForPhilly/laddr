@@ -1,6 +1,6 @@
 {extends designs/site.tpl}
 
-{block title}{$data->Title|escape} &mdash; Projects &mdash; {$dwoo.parent}{/block}
+{block title}{$data->Title|escape} &mdash; {_ 'Projects'} &mdash; {$dwoo.parent}{/block}
 
 {block content}
     {$Project = $data}
@@ -8,17 +8,17 @@
     <h2>
         {$Project->Title|escape}
         <div class="btn-group pull-right">
-            <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">Edit Project</a>
+            <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">{_ "Edit Project"}</a>
             {if $.User}
                 <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li><a href="#add-member" data-toggle="modal">Add Member</a></li>
-                    <li><a href="/project-buzz/create?ProjectID={$Project->ID}">Log Buzz</a></li>
+                    <li><a href="#add-member" data-toggle="modal">{_ "Add Member"}</a></li>
+                    <li><a href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a></li>
                     {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
-                        <li><a href="#post-update" data-toggle="modal">Post Update</a></li>
+                        <li><a href="#post-update" data-toggle="modal">{_ "Post Update"}</a></li>
                     {/if}
                     {if $.Session->hasAccountLevel('Staff')}
-                        <li><a href="#manage-members" data-toggle="modal">Manage Members</a></li>
+                        <li><a href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a></li>
                     {/if}
                 </ul>
             {/if}
@@ -27,20 +27,20 @@
 
     <div class="row-fluid">
         <article class="project span8">
-            <h3>Project Info</h3>
+            <h3>{_ "Project Info"}</h3>
             <dl class="dl-horizontal">
                 {if $Project->UsersUrl}
-                    <dt>Users' URL</dt>
+                    <dt>{_ "Users' URL"}</dt>
                     <dd><a href="{$Project->UsersUrl|escape}">{$Project->UsersUrl|escape}</a></dd>
                 {/if}
 
                 {if $Project->DevelopersUrl}
-                    <dt>Developers' URL</dt>
+                    <dt>{_ "Developers' URL"}</dt>
                     <dd><a href="{$Project->DevelopersUrl|escape}">{$Project->DevelopersUrl|escape}</a></dd>
                 {/if}
 
                 {if $Project->README}
-                    <dt>README</dt>
+                    <dt>{_ "README"}</dt>
                     <dd class="markdown readme well">{$Project->README|escape|markdown}</dd>
                 {/if}
 
@@ -70,19 +70,19 @@
 *}
 
             <h3>
-                Project Activity
+                {_ "Project Activity"}
                 <div class="btn-group">
                     {if $.User && $Project->hasMember($.User)}
-                        <a href="#post-update" class="btn btn-mini" data-toggle="modal">Post Update</a>
+                        <a href="#post-update" class="btn btn-mini" data-toggle="modal">{_ "Post Update"}</a>
                     {/if}
-                    <a href="/project-buzz/create?ProjectID={$Project->ID}" class="btn btn-mini">Log Buzz</a>
+                    <a href="/project-buzz/create?ProjectID={$Project->ID}" class="btn btn-mini">{_ "Log Buzz"}</a>
                 </div>
             </h3>
 
             {foreach item=Article from=$Project->getActivity()}
                 {projectActivity $Article headingLevel=h4 showProject=no}
             {foreachelse}
-                <em>This project doesn't have any activity yet, post an update or log some buzz!</em>
+                <em>{_ "This project doesn't have any activity yet, post an update or log some buzz!"}</em>
             {/foreach}
         </article>
 
@@ -99,22 +99,22 @@
                             class="thumbnail member-thumbnail"
                             data-toggle="tooltip"
                             data-placement="bottom"
-                            title="{$Member->FullName|escape}{if $Membership->Role}&mdash;{$Membership->Role}{/if}{if $Project->MaintainerID == $Member->ID}{tif $Membership->Role ? ' and ' : '&mdash;'}Maintainer{/if}"
+                            title="{$Member->FullName|escape} &mdash; {projectMemberTitle $Membership}"
                         >
                             {avatar $Member size=60}
                         </a>
                     </li>
                 {foreachelse}
-                    <li class="muted">None registered</li>
+                    <li class="muted">{_ "None registered"}</li>
                 {/foreach}
-                    <li><a class="btn btn-success add-person" href="#add-member" data-toggle="modal">+ Add</a></li>
+                    <li><a class="btn btn-success add-person" href="#add-member" data-toggle="modal">+ {_ "Add"}</a></li>
                 </ul>
             {/if}
 
             <hr>
 
             <div>
-                <a class="btn btn-mini" href="{RemoteSystems\Twitter::getTweetIntentURL('Check out $Project->Title!', array(url = 'http://$.server.HTTP_HOST/projects/$Project->Handle'))}">Spread the word on Twitter!</a>
+                <a class="btn btn-mini" href="{RemoteSystems\Twitter::getTweetIntentURL('Check out $Project->Title!', array(url = 'http://$.server.HTTP_HOST/projects/$Project->Handle'))}">{_ "Spread the word on Twitter!"}</a>
             </div>
         </aside>
     </div>
@@ -127,25 +127,25 @@
     <form id="add-member" class="modal fade hide form-horizontal" action="/projects/{$Project->Handle}/add-member" method="POST">
         <header class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Add project member</h3>
+            <h3>{_ "Add project member"}</h3>
         </header>
         <section class="modal-body">
             <div class="control-group">
-                <label class="control-label" for="inputUsername">Username</label>
+                <label class="control-label" for="inputUsername">{_ "Username"}</label>
                 <div class="controls">
                     <input type="text" id="inputUsername" name="username" required>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="inputRole">Role</label>
+                <label class="control-label" for="inputRole">{_ "Role"}</label>
                 <div class="controls">
-                    <input type="text" id="inputRole" name="role" placeholder="optional">
+                    <input type="text" id="inputRole" name="role" placeholder="{_ 'optional'}">
                 </div>
             </div>
         </section>
         <footer class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-primary">Add member</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">{_ "Close"}</button>
+            <button class="btn btn-primary">{_ "Add member"}</button>
         </footer>
     </form>
 
@@ -153,15 +153,15 @@
         <form id="post-update" class="modal fade hide" action="/projects/{$Project->Handle}/updates" method="POST">
             <header class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3>Post project update</h3>
+                <h3>{_ "Post project update"}</h3>
             </header>
             <section class="modal-body">
                 <textarea class="input-block-level" name="Body" rows="10" required></textarea>
-                <span class="help-block">Markdown is supported</span>
+                <span class="help-block">{_ "Markdown is supported"}</span>
             </section>
             <footer class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <button class="btn btn-primary">Post Update</button>
+                <button class="btn" data-dismiss="modal" aria-hidden="true">{_ "Close"}</button>
+                <button class="btn btn-primary">{_ "Post Update"}</button>
             </footer>
         </form>
     {/if}
@@ -170,7 +170,7 @@
         <div id="manage-members" class="modal fade hide">
             <header class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3>Manage project members</h3>
+                <h3>{_ "Manage project members"}</h3>
             </header>
             <section class="modal-body">
                 <ul class="thumbnails">
@@ -181,13 +181,13 @@
 
                         <div class="btn-group">
                             {if $Membership->MemberID != $Project->MaintainerID}
-                                <a href="/projects/{$Project->Handle}/change-maintainer?username={$Membership->Member->Username|escape:url}" class="btn btn-mini">Make Maintainer</a>
+                                <a href="/projects/{$Project->Handle}/change-maintainer?username={$Membership->Member->Username|escape:url}" class="btn btn-mini">{_ "Make Maintainer"}</a>
                             {/if}
-                            <a href="/projects/{$Project->Handle}/remove-member?username={$Membership->Member->Username|escape:url}" class="btn btn-mini btn-danger">Remove</a>
+                            <a href="/projects/{$Project->Handle}/remove-member?username={$Membership->Member->Username|escape:url}" class="btn btn-mini btn-danger">{_ "Remove"}</a>
                         </div>
                     </li>
                 {foreachelse}
-                    <li class="muted">None registered</li>
+                    <li class="muted">{_ "None registered"}</li>
                 {/foreach}
                 </ul>
             </section>

@@ -1,16 +1,16 @@
 {extends designs/site.tpl}
 
-{block title}Projects &mdash; {$dwoo.parent}{/block}
+{block title}{_ "Projects"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
     <div class="page-header">
-        <h2>Civic Projects Directory</h2>
+        <h2>{_ "Civic Projects Directory"}</h2>
         {if $.User}
             <form action="/projects/create">
-                <button class="btn btn-success" type="submit">Add Project&hellip;</button>
+                <button class="btn btn-success" type="submit">{_ "Add Project"}&hellip;</button>
             </form>
         {else}
-            <a href="/register" class="btn btn-danger">Register with the Brigade!</a>
+            <a href="/register" class="btn btn-danger">{_ "Register with the Brigade!"}</a>
         {/if}
     </div>
 
@@ -37,7 +37,7 @@
 
             {if $Project->Memberships}
             <div class="span4">
-                <h3><small>Members</small></h3>
+                <h3><small>{_ "Members"}</small></h3>
 
                 <ul class="inline people-list">
                 {foreach item=Membership from=$Project->Memberships}
@@ -48,13 +48,13 @@
                             class="thumbnail member-thumbnail"
                             data-toggle="tooltip"
                             data-placement="bottom"
-                            title="{$Member->FullName|escape}{if $Membership->Role}&mdash;{$Membership->Role}{/if}{if $Project->MaintainerID == $Member->ID}{tif $Membership->Role ? ' and ' : '&mdash;'}Maintainer{/if}"
+                            title="{$Member->FullName|escape} &mdash; {projectMemberTitle $Membership}"
                         >
                             {avatar $Member size=60}
                         </a>
                     </li>
                 {foreachelse}
-                    <li class="muted">None registered</li>
+                    <li class="muted">{_ "None registered"}</li>
                 {/foreach}
                 </ul>
             </div>
