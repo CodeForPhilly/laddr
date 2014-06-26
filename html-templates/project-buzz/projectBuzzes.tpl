@@ -5,7 +5,7 @@
 {block content}
     <h2>
         <div class="btn-group pull-right">
-            <a href="{Laddr\ProjectBuzz::$collectionRoute}/create" class="btn btn-mini btn-primary">Add Buzz</a>
+            <a href="{Laddr\ProjectBuzz::$collectionRoute}/create" class="btn btn-mini btn-primary">{_"Add Buzz"}</a>
         </div>
 
         Latest Buzz

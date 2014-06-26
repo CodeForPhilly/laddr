@@ -60,12 +60,12 @@
         </section>
 
         <section class="span4">
-            <h2>Check in at <strong>{$.server.HTTP_HOST}</strong></h2>
+            <h2>{_("Check in at %s")|sprintf:$.server.HTTP_HOST}</strong></h2>
             <img src="{versioned_url 'img/screenshot-checkin.png'}" class="screenshot">
         </section>
 
         <section class="span4 checkins">
-            <h2>Latest Checkins</h2>
+            <h2>{_ "Latest Checkins"}</h2>
             {if count($checkins)}
                 <p class="lead">{$checkins|count} checkin{tif count($checkins) > 1 ? 's'} so far for this event:</p>
                 <ul>
