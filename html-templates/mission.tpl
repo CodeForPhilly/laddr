@@ -1,9 +1,9 @@
 {extends designs/site.tpl}
 
-{block title}Mission &mdash; {$dwoo.parent}{/block}
+{block title}{_ "Mission"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <h2>Mission</h2>
+    <h2>{_ "Mission"}</h2>
     <p><a href="http://www.codeforamerica.org/">Code for America</a> is a 501(c)3 non-profit that envisions a government by the people, for the people, that works in the 21st century.</p>
 
     <p>Our programs change how we participate in government by:</p>

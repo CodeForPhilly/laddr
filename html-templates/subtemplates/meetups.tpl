@@ -10,7 +10,7 @@
         {/strip}</p>
 
         {if $showRsvp}
-            <p><a href="{$event.event_url}">RSVP @ meetup.com</a> {if $event.yes_rsvp_count}({$event.yes_rsvp_count} so far){/if}</p>
+            <p><a href="{$event.event_url}">{sprintf(_("RSVP @ %s"), parse_url($event.event_url, $.const.PHP_URL_HOST))}</a> {if $event.yes_rsvp_count}({_("%s so far")|sprintf:$event.yes_rsvp_count}){/if}</p>
         {/if}
     </article>
 {/template}
