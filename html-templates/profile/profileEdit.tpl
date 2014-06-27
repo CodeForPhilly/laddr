@@ -61,9 +61,8 @@
     </form>
 
     <form method="POST" id="profileForm" class="generic">
-    <h2 class="legend">{_ "Profile Details"}</h2>
     <fieldset class="section">
-        <legend>Profile details</legend>
+        <legend>{_ "Profile Details"}</legend>
         <div class="field">
             <label for="Location">{_ Location}</label>
             <input type="text" class="text" id="Location" name="Location" value="{refill field=Location default=$.User->Location}">
@@ -72,7 +71,7 @@
         <div class="field expand">
             <label for="about">{_ About}</label>
             <textarea id="about" name="About">{refill field=About default=$.User->About}</textarea>
-            <p class="hint">{_ "Use <a href="http://daringfireball.net/projects/markdown">Markdown</a> to give your text some style"}</p>
+            <p class="hint">{_("Use [Markdown](http://daringfireball.net/projects/markdown) to give your text some style")|markdown}</p>
         </div>
 
         <div class="field expand">
@@ -87,9 +86,8 @@
     </fieldset>
 
 
-    <h2 class="legend">{_ "Contact Information"}</h2>
     <fieldset class="section">
-        <legend>{_ "Contact information"}</legend>
+        <legend>{_ "Contact Information"}</legend>
         <div class="field">
             <label for="Email">{_ Email}</label>
             <input type="email" class="text" id="Email" name="Email" value="{refill field=Email default=$.User->Email}">
@@ -115,7 +113,6 @@
 
 
     <form action="/profile/password" method="POST" id="passwordForm" class="generic">
-    <h2 class="legend">{_ "Change Password"}</h2>
     <fieldset class="section">
         <legend>{_ "Change password"}</legend>
         <div class="field">
