@@ -9,6 +9,10 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
   - [Projects list available via dynamic CSV] for linking to [CfAPI](https://github.com/codeforamerica/cfapi)
 - [Members Directory]
   - Members can upload photos, write a bio in markdown, and tag themselves with topic and tech tags
+- Meetup.com integration
+  - Upcoming events pulled from meetup.com API for homepage sidebar
+  - Current and next event highlighted
+  - Members can checkin to current event and optionally pick what project they're working on
 - Project Updates
   - Any project member can post markdown-formatted "updates" to a project
   - Updates show up on the [project's page], the [home page], the [global updates feed]
@@ -17,6 +21,10 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
   - Any site member can log a media article about a project
   - Attach photo and an exerpt
   - Buzz shows up on the [project's page], the [home page], and the [global buzz feed]
+- [Big Screen]
+  - A live status page for display during events
+  - Latest member checkins to event
+  - Markdown box for announcements
 
 ## Brigades using Laddr
 - [Code for Philly](http://codeforphilly.org)
@@ -47,3 +55,4 @@ sites, clones, or child sites. The guides for Ubuntu and Gentoo are most up-to-d
 [RSS feeds for global]: http://codeforphilly.org/project-updates?format=rss
 [per-project updates]: http://codeforphilly.org/project-updates?format=rss&ProjectID=40
 [global buzz feed]: http://codeforphilly.org/project-buzz
+[Big Screen]: http://codeforphilly.org/bigscreen
