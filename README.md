@@ -39,7 +39,7 @@ it will configure services on the machine as-needed to host an instance of the a
 sites, clones, or child sites. The guides for Ubuntu and Gentoo are most up-to-date: http://emr.ge/docs/setup
 
 ## Installation via Emergence (linked child)
--  Create an emergence site that extends http://MaPG1YxorgU6ew64@laddr.poplar.phl.io
+-  Create an emergence site that extends http://MaPG1YxorgU6ew64@laddr.io
 
 ## Installation from Git
 -  Create an emergence site that extends http://8U6kydil36bl3vlJ@skeleton.emr.ge
