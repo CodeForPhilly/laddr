@@ -12,7 +12,7 @@
 
             {if $User->validationErrors}
                 <h3>{_ "There were problems with your submission:"}</h3>
-                <ul class="well errors">
+                <ul class="well text-error">
                 {foreach item=error key=field from=$User->validationErrors}
                     <li>{$field}: {$error|escape}</li>
                 {/foreach}
