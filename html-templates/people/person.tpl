@@ -47,13 +47,13 @@
                     <dd><a href="tel:{$Person->Phone}" target="_blank">{$Person->Phone|phone}</a></dd>
                 {/if}
             </dl>
+        {/if}
 
-            {if $Person->ProjectMemberships}
-                <dt> {_ "My projects"} </dt>
-                {foreach item=Membership from=$Person->ProjectMemberships}
-                    <li><a href="{$Membership->Project->getURL()}">{$Membership->Project->Title|escape}</a> &mdash; {projectMemberTitle $Membership}</li>
-                {/foreach}
-            {/if}
+        {if $Person->ProjectMemberships}
+            <h3> {_ "My projects"} </h3>
+            {foreach item=Membership from=$Person->ProjectMemberships}
+                <li><a href="{$Membership->Project->getURL()}">{$Membership->Project->Title|escape}</a> &mdash; {projectMemberTitle $Membership}</li>
+            {/foreach}
         {/if}
     </article>
 
