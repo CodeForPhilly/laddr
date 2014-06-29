@@ -52,7 +52,7 @@
         {if $Person->ProjectMemberships}
             <h3> {_ "My projects"} </h3>
             {foreach item=Membership from=$Person->ProjectMemberships}
-                <li><a href="{$Membership->Project->getURL()}">{$Membership->Project->Title|escape}</a> &mdash; {projectMemberTitle $Membership}</li>
+                <li>{projectLink $Membership->Project} &mdash; {projectMemberTitle $Membership}</li>
             {/foreach}
         {/if}
     </article>
