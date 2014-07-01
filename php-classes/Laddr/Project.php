@@ -164,22 +164,55 @@ class Project extends \VersionedRecord
 
     public function getActivity($limit = null)
     {
+        $limitSql = is_numeric($limit) ? "LIMIT $limit" : '';
+
+        // retrieve updates and buzz metadata from database
+        try {
+            $updates = \DB::allRecords(
+                'SELECT ID, Class, UNIX_TIMESTAMP(Created) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s'
+                ,array(
+                    ProjectUpdate::$tableName
+                    ,$this->ID
+                    ,$limitSql
+                )
+            );
+        } catch (\TableNotFoundException $e) {
+            $updates = array();
+        }
+
+        try {
+            $buzz = \DB::allRecords(
+                'SELECT ID, Class, UNIX_TIMESTAMP(Published) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s'
+                ,array(
+                    ProjectBuzz::$tableName
+                    ,$this->ID
+                    ,$limitSql
+                )
+            );
+        } catch (\TableNotFoundException $e) {
+            $buzz = array();
+        }
+
+        // merge, sort, and limit
+        $activity = array_merge($updates, $buzz);
+
+        usort($activity, function($a, $b) {
+            if ($a['Timestamp'] == $b['Timestamp']) {
+                return 0;
+            }
+            return ($a['Timestamp'] > $b['Timestamp']) ? -1 : 1;
+        });
+        
+        if ($limit) {
+            $activity = array_slice($activity, 0, $limit);
+        }
+
+        // convert to instances
         return array_map(
             function($result) {
                 return $result['Class']::getByID($result['ID']);
             }
-            ,\DB::allRecords(
-                 'SELECT ID, Class, Created AS Timestamp FROM `%1$s` WHERE ProjectID = %3$u'
-                .' UNION'
-                .' SELECT ID, Class, Published AS Timestamp FROM `%2$s` WHERE ProjectID = %3$u'
-                .' ORDER BY Timestamp DESC %4$s'
-                ,array(
-                    ProjectUpdate::$tableName
-                    ,ProjectBuzz::$tableName
-                    ,$this->ID
-                    ,is_numeric($limit) ? "LIMIT $limit" : ''
-                )
-            )
+            ,$activity
         );
     }
 }
