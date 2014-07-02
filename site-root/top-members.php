@@ -1,0 +1,3 @@
+<?php
+
+Laddr\TopMembersRequestHandler::handleRequest();
