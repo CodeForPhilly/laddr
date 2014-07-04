@@ -25,6 +25,10 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
   - A live status page for display during events
   - Latest member checkins to event
   - Markdown box for announcements
+- Localizable
+  - Language selector in the footer for visitors and configurable site-wide default language
+  - English and Spanish translations available
+  - Croatian and Korean translations in progress
 
 ## Brigades using Laddr
 - [Code for Philly](http://codeforphilly.org)
