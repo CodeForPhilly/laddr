@@ -5,7 +5,15 @@
 {block content}
     <h2>{_ "Our Mission"}</h2>
 
-    {_("Brigade_mission_body_markdown")|markdown}
+    {_("[Code for America](http://www.codeforamerica.org/) is a 501(c)3
+non-profit that envisions a government by the people, for the people,
+that works in the 21st century.
+
+Our programs change how we participate in government by:
+
+- Connecting citizens and governments to design better services,
+- Encouraging low-risk settings for innovation; and,
+- Supporting a competitive civic tech marketplace.")|markdown}
 
     <iframe width="560" height="315" src="//www.youtube.com/embed/kDFhzNfd-bg?rel=0" frameborder="0" allowfullscreen></iframe>
 {/block}

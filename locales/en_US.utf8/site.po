@@ -10,22 +10,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en\n"
-
-#: html-templates/confirm.tpl:4
-msgid "Please confirm"
-msgstr ""
-
-#: html-templates/error.tpl:6
-msgid "An error has occurred"
-msgstr ""
+"Language: en_US\n"
 
 #: html-templates/home.tpl:16
 msgid "Start Hacking"
-msgstr ""
-
-#: html-templates/home.tpl:17 html-templates/how-to-help.tpl:7
-msgid "or"
 msgstr ""
 
 #: html-templates/home.tpl:17
@@ -91,146 +79,6 @@ msgstr ""
 msgid "Browse all project updates"
 msgstr ""
 
-#: html-templates/how-to-help.tpl:3 html-templates/how-to-help.tpl:6
-#: html-templates/includes/site.nav-sitelinks.tpl:2
-msgid "How to Help"
-msgstr ""
-
-#: html-templates/how-to-help.tpl:7
-msgid "Create a project"
-msgstr ""
-
-#: html-templates/how-to-help.tpl:7
-msgid "find an existing"
-msgstr ""
-
-#: html-templates/how-to-help.tpl:7
-msgid "one to get involved with in our projects directory."
-msgstr ""
-
-#: html-templates/mission.tpl:8
-msgid "Brigade_mission_body_markdown"
-msgstr ""
-"[Code for America](http://www.codeforamerica.org/) is a 501(c)3 non-profit "
-"that envisions a government by the people, for the people, that works in the "
-"21st century.\n"
-"\n"
-"Our programs change how we participate in government by:\n"
-"\n"
-"- Connecting citizens and governments to design better services,\n"
-"- Encouraging low-risk settings for innovation; and,\n"
-"- Supporting a competitive civic tech marketplace."
-
-#: html-templates/mission.tpl:3
-#: html-templates/includes/site.nav-sitelinks.tpl:1
-msgid "Mission"
-msgstr ""
-
-#: html-templates/mission.tpl:6
-msgid "Our mission"
-msgstr ""
-
-#: html-templates/resources.tpl:3 html-templates/resources.tpl:6
-#: html-templates/includes/site.nav-sitelinks.tpl:3
-msgid "Resources"
-msgstr ""
-
-#: html-templates/subtemplates/buzz.tpl:28
-msgid "Read the full article on %s"
-msgstr ""
-
-#: html-templates/subtemplates/buzz.tpl:33
-msgid "Published on %s, shared by %s on %s"
-msgstr ""
-
-#: html-templates/subtemplates/buzz.tpl:10
-#: html-templates/subtemplates/updates.tpl:10
-msgid "Edit"
-msgstr ""
-
-#: html-templates/subtemplates/buzz.tpl:11
-#: html-templates/subtemplates/updates.tpl:11
-msgid "Delete"
-msgstr ""
-
-#: html-templates/subtemplates/meetups.tpl:13
-msgid "RSVP @ %s"
-msgstr ""
-
-#: html-templates/subtemplates/meetups.tpl:13
-msgid "%s so far"
-msgstr ""
-
-#: html-templates/subtemplates/projects.tpl:10
-msgid "and Maintainer"
-msgstr ""
-
-#: html-templates/subtemplates/projects.tpl:14
-msgid "Maintainer"
-msgstr ""
-
-#: html-templates/subtemplates/projects.tpl:16
-msgid "Member"
-msgstr ""
-
-#: html-templates/subtemplates/updates.tpl:16
-#: html-templates/subtemplates/updates.tpl:18
-msgid "Update #%s"
-msgstr ""
-
-#: html-templates/subtemplates/updates.tpl:26
-msgid "Posted on %s by %s"
-msgstr ""
-
-#: html-templates/includes/home.resources.tpl:2
-msgid "Civic Hacking Resources"
-msgstr ""
-
-#: html-templates/includes/site.footer.tpl:5
-msgid "Powered by %s &mdash; a %s project."
-msgstr ""
-
-#: html-templates/includes/site.header.tpl:29
-#: html-templates/login/login.tpl:56
-msgid "Login"
-msgstr ""
-
-#: html-templates/includes/site.header.tpl:30
-msgid "Sign up"
-msgstr ""
-
-#: html-templates/includes/site.nav-sitelinks.tpl:4
-msgid "Chat"
-msgstr ""
-
-#: html-templates/includes/site.nav-userlinks.tpl:1
-msgid "View My Profile"
-msgstr ""
-
-#: html-templates/includes/site.nav-userlinks.tpl:2
-msgid "Edit My Profile"
-msgstr ""
-
-#: html-templates/includes/site.nav-userlinks.tpl:3
-msgid "Logout"
-msgstr ""
-
-#: html-templates/includes/site.resourcelinks.tpl:1
-msgid "Otvoreni setovi podataka"
-msgstr ""
-
-#: html-templates/includes/site.resourcelinks.tpl:2
-msgid "CfA Commons"
-msgstr ""
-
-#: html-templates/includes/site.resourcelinks.tpl:3
-msgid "Open Data Stack Exchange"
-msgstr ""
-
-#: html-templates/includes/site.resourcelinks.tpl:4
-msgid "ChallengePost"
-msgstr ""
-
 #: html-templates/register/register.tpl:11
 msgid "Register with %s"
 msgstr ""
@@ -268,8 +116,8 @@ msgid ""
 "Email address <strong>will</strong> be visible to other signed-in members."
 msgstr ""
 
-#: html-templates/register/register.tpl:52 html-templates/login/login.tpl:37
-#: html-templates/projects/project.tpl:134
+#: html-templates/register/register.tpl:52
+#: html-templates/projects/project.tpl:134 html-templates/login/login.tpl:37
 msgid "Username"
 msgstr ""
 
@@ -298,66 +146,38 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-#: html-templates/login/login.tpl:9
-msgid "Login to %s"
-msgstr ""
-
-#: html-templates/login/login.tpl:27 html-templates/login/login.tpl:31
-msgid "Login Failed: %s"
-msgstr ""
-
-#: html-templates/login/login.tpl:64
-msgid "You can %s,<br/>or %s now."
-msgstr ""
-
-#: html-templates/login/login.tpl:39
-msgid "Username or email address"
-msgstr ""
-
-#: html-templates/login/login.tpl:54
-msgid "Remember me"
-msgstr ""
-
-#: html-templates/login/login.tpl:62
-msgid "recover your password"
-msgstr ""
-
-#: html-templates/login/login.tpl:63
-msgid "create an account"
-msgstr ""
-
 #: html-templates/people/person.tpl:11
 msgid "edit your profile"
 msgstr ""
 
-#: html-templates/people/person.tpl:18
+#: html-templates/people/person.tpl:17
 msgid "Last event checkin"
 msgstr ""
 
-#: html-templates/people/person.tpl:22
+#: html-templates/people/person.tpl:21
 msgid "Never"
 msgstr ""
 
-#: html-templates/people/person.tpl:27
+#: html-templates/people/person.tpl:25
 msgid "About Me"
 msgstr ""
 
-#: html-templates/people/person.tpl:35
+#: html-templates/people/person.tpl:33
 #: html-templates/profile/profileEdit.tpl:90
 msgid "Contact Information"
 msgstr ""
 
-#: html-templates/people/person.tpl:38
+#: html-templates/people/person.tpl:36
 #: html-templates/profile/profileEdit.tpl:92
 msgid "Email"
 msgstr ""
 
-#: html-templates/people/person.tpl:48
+#: html-templates/people/person.tpl:46
 #: html-templates/profile/profileEdit.tpl:97
 msgid "Phone"
 msgstr ""
 
-#: html-templates/people/person.tpl:55
+#: html-templates/people/person.tpl:53
 msgid "My projects"
 msgstr ""
 
@@ -426,6 +246,157 @@ msgstr ""
 #: html-templates/profile/profileEdit.tpl:126
 msgid ""
 "Please type your new password in both boxes above to make sure it is correct."
+msgstr ""
+
+#: html-templates/bigscreen.tpl:63
+msgid "Check in at %s"
+msgstr ""
+
+#: html-templates/bigscreen.tpl:68
+msgid "Latest Checkins"
+msgstr ""
+
+#: html-templates/checked-in.tpl:8
+msgid "Success!"
+msgstr ""
+
+#: html-templates/checked-in.tpl:10
+msgid "Things to do next:"
+msgstr ""
+
+#: html-templates/checked-in.tpl:13
+msgid "Post an update to your project"
+msgstr ""
+
+#: html-templates/checked-in.tpl:15
+msgid "Find or start a project"
+msgstr ""
+
+#: html-templates/checked-in.tpl:18
+msgid "Return to the home page"
+msgstr ""
+
+#: html-templates/checked-in.tpl:21
+msgid "Add stuff to this list"
+msgstr ""
+
+#: html-templates/how-to-help.tpl:3 html-templates/how-to-help.tpl:6
+#: html-templates/includes/site.nav-sitelinks.tpl:2
+msgid "How to Help"
+msgstr ""
+
+#: html-templates/mission.tpl:8
+msgid ""
+"[Code for America](http://www.codeforamerica.org/) is a 501(c)3\n"
+"non-profit that envisions a government by the people, for the people,\n"
+"that works in the 21st century.\n"
+"\n"
+"Our programs change how we participate in government by:\n"
+"\n"
+"- Connecting citizens and governments to design better services,\n"
+"- Encouraging low-risk settings for innovation; and,\n"
+"- Supporting a competitive civic tech marketplace."
+msgstr ""
+
+#: html-templates/mission.tpl:3 html-templates/mission.tpl:6
+msgid "Our Mission"
+msgstr ""
+
+#: html-templates/resources.tpl:3 html-templates/resources.tpl:6
+#: html-templates/includes/site.nav-sitelinks.tpl:3
+msgid "Resources"
+msgstr ""
+
+#: html-templates/topMembers.tpl:3 html-templates/topMembers.tpl:6
+msgid "Top Members"
+msgstr ""
+
+#: html-templates/includes/home.resources.tpl:2
+msgid "Civic Hacking Resources"
+msgstr ""
+
+#: html-templates/includes/site.footer.tpl:5
+msgid "Powered by %s &mdash; a %s project."
+msgstr ""
+
+#: html-templates/includes/site.header.tpl:29
+#: html-templates/login/login.tpl:56
+msgid "Login"
+msgstr ""
+
+#: html-templates/includes/site.header.tpl:30
+msgid "Sign up"
+msgstr ""
+
+#: html-templates/includes/site.nav-sitelinks.tpl:1
+msgid "Mission"
+msgstr ""
+
+#: html-templates/includes/site.nav-userlinks.tpl:1
+msgid "View My Profile"
+msgstr ""
+
+#: html-templates/includes/site.nav-userlinks.tpl:2
+msgid "Edit My Profile"
+msgstr ""
+
+#: html-templates/includes/site.nav-userlinks.tpl:3
+msgid "Logout"
+msgstr ""
+
+#: html-templates/includes/site.resourcelinks.tpl:1
+msgid "CfA Commons"
+msgstr ""
+
+#: html-templates/includes/site.resourcelinks.tpl:2
+msgid "Open Data Stack Exchange"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:28
+msgid "Read the full article on %s"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:33
+msgid "Published on %s, shared by %s on %s"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:10
+#: html-templates/subtemplates/updates.tpl:10
+msgid "Edit"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:11
+#: html-templates/subtemplates/updates.tpl:11
+msgid "Delete"
+msgstr ""
+
+#: html-templates/subtemplates/meetups.tpl:13
+msgid "RSVP @ %s"
+msgstr ""
+
+#: html-templates/subtemplates/meetups.tpl:13
+msgid "%s so far"
+msgstr ""
+
+#: html-templates/subtemplates/projects.tpl:10
+msgid "and Maintainer"
+msgstr ""
+
+#: html-templates/subtemplates/projects.tpl:14
+msgid "Maintainer"
+msgstr ""
+
+#: html-templates/subtemplates/projects.tpl:16
+msgid "Member"
+msgstr ""
+
+#: html-templates/subtemplates/updates.tpl:16
+#: html-templates/subtemplates/updates.tpl:18
+msgid "Update #%s"
+msgstr ""
+
+#: html-templates/subtemplates/updates.tpl:26
+msgid "Posted on %s by %s"
 msgstr ""
 
 #: html-templates/projects/memberAdded.tpl:9
@@ -621,6 +592,34 @@ msgstr ""
 msgid "Register with the Brigade!"
 msgstr ""
 
+#: html-templates/login/login.tpl:9
+msgid "Login to %s"
+msgstr ""
+
+#: html-templates/login/login.tpl:27 html-templates/login/login.tpl:31
+msgid "Login Failed: %s"
+msgstr ""
+
+#: html-templates/login/login.tpl:64
+msgid "You can %s,<br/>or %s now."
+msgstr ""
+
+#: html-templates/login/login.tpl:39
+msgid "Username or email address"
+msgstr ""
+
+#: html-templates/login/login.tpl:54
+msgid "Remember me"
+msgstr ""
+
+#: html-templates/login/login.tpl:62
+msgid "recover your password"
+msgstr ""
+
+#: html-templates/login/login.tpl:63
+msgid "create an account"
+msgstr ""
+
 #: html-templates/project-buzz/projectBuzzes.tpl:13
 msgid "Latest Buzz in %s"
 msgstr ""
@@ -637,7 +636,7 @@ msgstr ""
 msgid "Latest Buzz"
 msgstr ""
 
-#: php-classes/HandleBehavior.class.php:24
+#: php-classes/Content.class.php:41 php-classes/HandleBehavior.class.php:24
 msgid "Handle can only contain letters, numbers, hyphens, and underscores"
 msgstr ""
 
