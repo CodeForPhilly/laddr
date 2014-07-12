@@ -9,4 +9,5 @@
     ,'bootstrap-tagsinput.css'
     ,'laddr.css'
     ,'pages/*'
+    ,'branding/*'
 )}
