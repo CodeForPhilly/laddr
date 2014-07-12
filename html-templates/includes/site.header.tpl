@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </a>
 
-            <a class="brand" href="/">{Laddr::$siteName|escape}</a>
+            {include includes/site.brand.tpl}
 
             <div class="nav-collapse collapse">
                 <ul class="nav">

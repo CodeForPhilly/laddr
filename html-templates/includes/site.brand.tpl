@@ -1,0 +1,1 @@
+<a class="brand" href="/">{Laddr::$siteName|escape}</a>
