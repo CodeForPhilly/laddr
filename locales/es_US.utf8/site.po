@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: laddr$\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: laddr\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: es_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es_US\n"
 "X-Generator: Poedit 1.6.5\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: html-templates/home.tpl:16
 msgid "Start Hacking"
@@ -119,7 +119,7 @@ msgstr ""
 "visible."
 
 #: html-templates/register/register.tpl:52
-#: html-templates/projects/project.tpl:134 html-templates/login/login.tpl:38
+#: html-templates/projects/project.tpl:134 html-templates/login/login.tpl:37
 msgid "Username"
 msgstr "Nombre de Usuario"
 
@@ -127,8 +127,8 @@ msgstr "Nombre de Usuario"
 msgid "CivicHacker"
 msgstr "HackerCívico"
 
-#: html-templates/register/register.tpl:60 html-templates/login/login.tpl:46
-#: html-templates/login/login.tpl:48
+#: html-templates/register/register.tpl:60 html-templates/login/login.tpl:45
+#: html-templates/login/login.tpl:47
 msgid "Password"
 msgstr "Contraseña"
 
@@ -170,18 +170,27 @@ msgid "Contact Information"
 msgstr "Información de Contacto"
 
 #: html-templates/people/person.tpl:36
-#: html-templates/profile/profileEdit.tpl:94
+#: html-templates/profile/profileEdit.tpl:92
 msgid "Email"
 msgstr "Correo Electrónico"
 
 #: html-templates/people/person.tpl:46
-#: html-templates/profile/profileEdit.tpl:99
+#: html-templates/profile/profileEdit.tpl:97
 msgid "Phone"
 msgstr "Teléfono"
 
-#: html-templates/people/person.tpl:52
+#: html-templates/people/person.tpl:53
 msgid "My projects"
 msgstr "Mis proyectos"
+
+#: html-templates/profile/profileEdit.tpl:74
+#, fuzzy
+msgid ""
+"Use [Markdown](http://daringfireball.net/projects/markdown) to give your "
+"text some style"
+msgstr ""
+"Utilizar [Markdown](http://daringfireball.net/projects/markdown) "
+"para arreglar el texto"
 
 #: html-templates/profile/profileEdit.tpl:15
 msgid "Manage Your Profile"
@@ -211,51 +220,35 @@ msgstr "Perfil grabado."
 msgid "Photos"
 msgstr "Fotos"
 
-#: html-templates/profile/profileEdit.tpl:64
+#: html-templates/profile/profileEdit.tpl:65
 msgid "Profile Details"
 msgstr "Detalles de Perfil"
 
-#: html-templates/profile/profileEdit.tpl:68
+#: html-templates/profile/profileEdit.tpl:67
 msgid "Location"
 msgstr "Lugar"
 
-#: html-templates/profile/profileEdit.tpl:73
+#: html-templates/profile/profileEdit.tpl:72
 msgid "About"
 msgstr "Información"
 
-#: html-templates/profile/profileEdit.tpl:75
-msgid ""
-"Use <a href=\"http://daringfireball.net/projects/markdown\">Markdown</a> to "
-"give your text some style"
-msgstr ""
-"Utilizar <a href=\"http://daringfireball.net/projects/markdown\">Markdown</"
-"a> para arreglar el texto"
-
-#: html-templates/profile/profileEdit.tpl:79
+#: html-templates/profile/profileEdit.tpl:78
 msgid "Personal Tags"
 msgstr "Tags Personales"
 
-#: html-templates/profile/profileEdit.tpl:92
-msgid "Contact information"
-msgstr "Información de Contacto"
-
-#: html-templates/profile/profileEdit.tpl:118
-msgid "Change Password"
-msgstr "Cambiar Contraseña"
-
-#: html-templates/profile/profileEdit.tpl:120
+#: html-templates/profile/profileEdit.tpl:117
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: html-templates/profile/profileEdit.tpl:122
+#: html-templates/profile/profileEdit.tpl:119
 msgid "Old Password"
 msgstr "Contraseña Anterior"
 
-#: html-templates/profile/profileEdit.tpl:126
+#: html-templates/profile/profileEdit.tpl:123
 msgid "New Password"
 msgstr "Nueva Contraseña"
 
-#: html-templates/profile/profileEdit.tpl:129
+#: html-templates/profile/profileEdit.tpl:126
 msgid ""
 "Please type your new password in both boxes above to make sure it is correct."
 msgstr ""
@@ -299,27 +292,66 @@ msgstr "Agregar a esta lista"
 msgid "How to Help"
 msgstr "Cómo Ayudar"
 
+#: html-templates/mission.tpl:8
+msgid ""
+"[Code for America](http://www.codeforamerica.org/) is a 501(c)3\n"
+"non-profit that envisions a government by the people, for the people,\n"
+"that works in the 21st century.\n"
+"\n"
+"Our programs change how we participate in government by:\n"
+"\n"
+"- Connecting citizens and governments to design better services,\n"
+"- Encouraging low-risk settings for innovation; and,\n"
+"- Supporting a competitive civic tech marketplace."
+msgstr ""
+"[Code for America](http://www.codeforamerica.org/) es una 501(c)3\n"
+" organizaciÛn sin lucra que concibe un gobierno por la gente, para la "
+"gente \n"
+" que funciona en el sigo 21.\n"
+"\n"
+"Nuestros programas cambian cÛmo participamos en el gobierno por:\n"
+"\n"
+"-conectando ciudadanos y gobiernos para diseÒar mejores servicios, \n"
+"-fomentamos lugares de bajo riesgo para innovaciÛn; y, \n"
+",-apoyando un mercado de tecnologÌa cÌvica competitivo. "
+
 #: html-templates/mission.tpl:3 html-templates/mission.tpl:6
-#: html-templates/includes/site.nav-sitelinks.tpl:1
-msgid "Mission"
-msgstr "Misión"
+#, fuzzy
+msgid "Our Mission"
+msgstr "Objetivo"
 
 #: html-templates/resources.tpl:3 html-templates/resources.tpl:6
 #: html-templates/includes/site.nav-sitelinks.tpl:3
 msgid "Resources"
 msgstr "Recursos"
 
+#: html-templates/topMembers.tpl:3 html-templates/topMembers.tpl:6
+#, fuzzy
+msgid "Top Members"
+msgstr "Miembros"
+
 #: html-templates/includes/home.resources.tpl:2
 msgid "Civic Hacking Resources"
 msgstr "Recursos de Hacking Cívico"
 
+#: html-templates/includes/site.footer.tpl:5
+msgid "Powered by %s &mdash; a %s project."
+msgstr ""
+
 #: html-templates/includes/site.header.tpl:29
+#: html-templates/login/login.tpl:56
+#, fuzzy
 msgid "Login"
 msgstr "Iniciar Sesión"
 
 #: html-templates/includes/site.header.tpl:30
 msgid "Sign up"
 msgstr "Registrarse"
+
+#: html-templates/includes/site.nav-sitelinks.tpl:1
+#, fuzzy
+msgid "Mission"
+msgstr "Objetivo"
 
 #: html-templates/includes/site.nav-userlinks.tpl:1
 msgid "View My Profile"
@@ -352,7 +384,7 @@ msgstr "Publicado en %s, compartido por %s en %s"
 #: html-templates/subtemplates/buzz.tpl:10
 #: html-templates/subtemplates/updates.tpl:10
 msgid "Edit"
-msgstr "Editar %s "
+msgstr "Editar"
 
 #: html-templates/subtemplates/buzz.tpl:11
 #: html-templates/subtemplates/updates.tpl:11
@@ -365,7 +397,7 @@ msgstr "Confirmar Asistencia @%s"
 
 #: html-templates/subtemplates/meetups.tpl:13
 msgid "%s so far"
-msgstr "% hasta ahora"
+msgstr "%s hasta ahora"
 
 #: html-templates/subtemplates/projects.tpl:10
 msgid "and Maintainer"
@@ -583,35 +615,64 @@ msgstr "Agregar Proyecto"
 msgid "Register with the Brigade!"
 msgstr "¡Registrate con el Brigade!"
 
-#: html-templates/login/login.tpl:7
+#: html-templates/login/login.tpl:9
 msgid "Login to %s"
 msgstr "Iniciar Sesión al %s"
 
-#: html-templates/login/login.tpl:28 html-templates/login/login.tpl:32
+#: html-templates/login/login.tpl:27 html-templates/login/login.tpl:31
 msgid "Login Failed: %s"
 msgstr "Los datos introducidos no son correctos: %s"
 
-#: html-templates/login/login.tpl:40
+#: html-templates/login/login.tpl:64
+msgid "You can %s,<br/>or %s now."
+msgstr "Ahora puedes %s,<br/>o %s."
+
+#: html-templates/login/login.tpl:39
 msgid "Username or email address"
 msgstr "Usuario o correo electrónico"
 
-#: html-templates/login/login.tpl:52
+#: html-templates/login/login.tpl:54
 msgid "Remember me"
 msgstr "Recuérdame"
 
-#: html-templates/login/login.tpl:58
-msgid ""
-"You can <a href=\"/register/recover\">recover your password</a>,<br/>or <a "
-"href=\"/register\">create an account</a> now."
-msgstr ""
-"Puedes <a href=\"/register/recover\">recuperar la contraseña</a>,<br/>o <a "
-"href=\"/register\">crear una cuenta</a> ahora."
+#: html-templates/login/login.tpl:62
+#, fuzzy
+msgid "recover your password"
+msgstr "recuperar la contraseña"
+
+#: html-templates/login/login.tpl:63
+#, fuzzy
+msgid "create an account"
+msgstr "Crear Cuenta"
+
+#: html-templates/project-buzz/projectBuzzes.tpl:13
+#, fuzzy
+msgid "Latest Buzz in %s"
+msgstr "Lo ⁄ltimo en Check-Ins"
+
+#: html-templates/project-buzz/projectBuzzes.tpl:3
+msgid "Project Buzz"
+msgstr "Buzz del Proyecto"
+
+#: html-templates/project-buzz/projectBuzzes.tpl:8
+#, fuzzy
+msgid "Add Buzz"
+msgstr "Agregar"
+
+#: html-templates/project-buzz/projectBuzzes.tpl:15
+#, fuzzy
+msgid "Latest Buzz"
+msgstr "Lo ⁄ltimo en Check-Ins"
 
 #: php-classes/Content.class.php:41 php-classes/HandleBehavior.class.php:24
 msgid "Handle can only contain letters, numbers, hyphens, and underscores"
 msgstr ""
 "El pseudónimo solo puede contener letras, números, guiones medios, y guiones "
 "bajos"
+
+#: php-classes/PasswordAuthenticator.class.php:63
+msgid "The username or password you entered was incorrect."
+msgstr "El nombre de usuario u la contraseÒa que introdujiste fue incorrecto. "
 
 #: php-classes/Person.class.php:284
 msgid "First name is required."
@@ -638,6 +699,10 @@ msgid "Username can only contain letters, numbers, hyphens, and underscores."
 msgstr ""
 "El nombre de usuario solo debe tener letras, números, guiones medios, y "
 "guiones bajos."
+
+#: php-classes/Laddr/Project.php:121
+msgid "Founder"
+msgstr "Fundador(a)"
 
 #: php-classes/Laddr/Project.php:134
 msgid "Project title is required"
@@ -705,8 +770,3 @@ msgstr "No se encuentra la actualización"
 #: php-classes/Laddr/ProjectsRequestHandler.php:175
 msgid "Update body cannot be blank"
 msgstr "Área de texto no debe estar vacío"
-
-#~ msgid "How to help"
-#~ msgstr "Cómo ayudar"
-
-
