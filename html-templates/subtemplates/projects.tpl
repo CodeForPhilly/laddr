@@ -7,9 +7,9 @@
 
 {template projectMemberTitle Membership}{strip}
     {if $Membership->Role && $Membership->MemberID == $Membership->Project->MaintainerID}
-        {$Membership->Role|escape} {_ "and Maintainer"}
+        {$Membership->Role|_|escape} {_ "and Maintainer"}
     {elseif $Membership->Role}
-        {$Membership->Role|escape}
+        {$Membership->Role|_|escape}
     {elseif $Membership->MemberID == $Membership->Project->MaintainerID}
         {_ "Maintainer"}
     {else}

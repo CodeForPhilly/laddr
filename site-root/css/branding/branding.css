@@ -1,0 +1,8 @@
+/*
+ * All files inside this branding folder are included into the default site CSS block.
+ *
+ * Use this folder to add and organize your brigade-specific styling without making any extraneous overrides.
+ *
+ * All included CSS files are automatically minified and combine into a single request. Add ?cssdebug=1 when
+ * requesting a page to load all CSS files separately and unminified for easier debugging.
+ */

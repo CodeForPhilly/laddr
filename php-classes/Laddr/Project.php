@@ -118,7 +118,7 @@ class Project extends \VersionedRecord
             ProjectMember::create(array(
                 'ProjectID' => $this->ID
                 ,'MemberID' => $this->Maintainer->ID
-                ,'Role' => 'Founder'
+                ,'Role' => 'Founder' // _("Founder") -- placeholder to make this string translatable, actual translation is done during rendering though
             ), true);
         }
     }
