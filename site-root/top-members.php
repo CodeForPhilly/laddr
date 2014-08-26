@@ -1,3 +1,3 @@
 <?php
 
-Laddr\TopMembersRequestHandler::handleRequest();
+Site::redirect('/checkin/*top-members');
