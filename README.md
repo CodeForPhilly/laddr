@@ -32,6 +32,7 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
 
 ## Brigades using Laddr
 - [Code for Philly](http://codeforphilly.org)
+- [Code for Miami](http://projects.codeformiami.org)
 - [Code for Croatia](http://codeforcroatia.org)
 - [Creative Commons Korea](http://labs.cckorea.org/)
 
