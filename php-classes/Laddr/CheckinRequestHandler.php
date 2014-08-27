@@ -18,6 +18,8 @@ class CheckinRequestHandler extends RequestHandler
         switch (static::shiftPath()) {
             case '*top-members':
                 return static::handleTopMembersRequest();
+            case '*latest-events':
+                return static::handleLatestEventsRequest();
             case '':
             case false:
                 return static::handleCheckinRequest();
@@ -58,7 +60,7 @@ class CheckinRequestHandler extends RequestHandler
         // save checkin to database
         $Checkin->save();
 
-        static::respond('checked-in', array(
+        static::respond('checkinComplete', array(
             'data' => $Checkin
             ,'success' => true
         ));
@@ -74,6 +76,13 @@ class CheckinRequestHandler extends RequestHandler
                 }
                 ,DB::allRecords('SELECT MemberID AS Member, COUNT(MeetupID) AS Checkins FROM `member_checkins` GROUP BY MemberID HAVING Checkins > 1 ORDER BY Checkins DESC')
             )
+        ]);
+    }
+    
+    public static function handleLatestEventsRequest()
+    {
+        return static::respond('latestEvents', [
+            'data' => DB::allRecords('SELECT MeetupID, MIN(Created) AS First, MAX(Created) AS Last, COUNT(MeetupID) AS Checkins FROM `member_checkins` GROUP BY MeetupID ORDER BY First DESC')
         ]);
     }
 }
