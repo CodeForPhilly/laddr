@@ -14,8 +14,8 @@
         {foreach item=row from=$data}
             <tr>
                 <td align="left">{$row.MeetupID}</td>
-                <td align="left">{$row.First|date_format:'%B %d, %Y &mdash; %l:%M%P'}</td>
-                <td align="left">{$row.Last|date_format:'%B %d, %Y &mdash; %l:%M%P'}</td>
+                <td align="left">{$row.First|date_format:'%a %b %d, %Y &mdash; %l:%M%P'}</td>
+                <td align="left">{$row.Last|date_format:'%a %b %d, %Y &mdash; %l:%M%P'}</td>
                 <td align="right" width="50">{$row.Checkins|number_format}</td>
             </tr>
         {/foreach}
