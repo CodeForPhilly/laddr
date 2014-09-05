@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </a>
 
-            <a class="brand" href="/">{Laddr::$siteName|escape}</a>
+            {include includes/site.brand.tpl}
 
             <div class="nav-collapse collapse">
                 <ul class="nav">
@@ -26,8 +26,8 @@
                             </ul>
                         </li>
                     {else}
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/register">Sign up!</a></li>
+                        <li><a href="/login?return={$.server.REQUEST_URI|escape:url}">{_ "Login"}</a></li>
+                        <li><a href="/register?return={$.server.REQUEST_URI|escape:url}">{_ "Sign up"}</a></li>
                     {/if}
                 </ul>
             </div>

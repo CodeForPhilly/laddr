@@ -6,8 +6,18 @@ class ProjectUpdatesRequestHandler extends \RecordsRequestHandler
 {
     static public $recordClass = 'Laddr\ProjectUpdate';
     static public $accountLevelBrowse = false;
-    static public $accountLevelWrite = 'User'; // TODO: implement custom write checker that authenticats only project members
+    static public $accountLevelWrite = 'User';
     static public $browseOrder = array('ID' => 'DESC');
+
+    static public function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
+    {
+        if (!empty($_GET['ProjectID']) && ctype_digit($_GET['ProjectID']) && ($Project = Project::getByID($_GET['ProjectID']))) {
+            $conditions['ProjectID'] = $Project->ID;
+            $responseData['Project'] = $Project;
+        }
+        
+        return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
+    }
 
     static public function checkWriteAccess(\ActiveRecord $ProjectUpdate, $suppressLogin = false)
     {
@@ -21,5 +31,15 @@ class ProjectUpdatesRequestHandler extends \RecordsRequestHandler
         }
 
         return true;
+    }
+
+    static public function respond($responseID, $responseData = array(), $responseMode = false)
+    {
+        if ($responseID == 'projectUpdates' && $_GET['format'] == 'rss') {
+            header('Content-Type: application/rss+xml');
+            return \Emergence\Dwoo\Engine::respond('projectUpdates.rss', $responseData);
+        }
+
+        return parent::respond($responseID, $responseData, $responseMode);
     }
 }

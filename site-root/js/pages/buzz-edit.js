@@ -1,0 +1,5 @@
+$(function() {
+
+    $('#field-project').combobox();
+
+});

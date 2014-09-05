@@ -1,0 +1,735 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en_US\n"
+
+#: html-templates/home.tpl:16
+msgid "Start Hacking"
+msgstr ""
+
+#: html-templates/home.tpl:17
+msgid "Learn More"
+msgstr ""
+
+#: html-templates/home.tpl:28
+msgid "Add project"
+msgstr ""
+
+#: html-templates/home.tpl:29 html-templates/projects/project.tpl:3
+#: html-templates/projects/projectEdit.tpl:3
+#: html-templates/projects/projects.tpl:3
+msgid "Projects"
+msgstr ""
+
+#: html-templates/home.tpl:32 html-templates/home.tpl:60
+msgid "by tech"
+msgstr ""
+
+#: html-templates/home.tpl:33 html-templates/home.tpl:61
+msgid "by topic"
+msgstr ""
+
+#: html-templates/home.tpl:34
+msgid "by event"
+msgstr ""
+
+#: html-templates/home.tpl:57 html-templates/projects/memberAdded.tpl:3
+#: html-templates/projects/projects.tpl:40
+msgid "Members"
+msgstr ""
+
+#: html-templates/home.tpl:110
+msgid "Current Meetup"
+msgstr ""
+
+#: html-templates/home.tpl:123
+msgid "Checked-in Members"
+msgstr ""
+
+#: html-templates/home.tpl:125
+msgid "No Current Project"
+msgstr ""
+
+#: html-templates/home.tpl:145
+msgid "Next Meetup"
+msgstr ""
+
+#: html-templates/home.tpl:151
+msgid "Future Meetups"
+msgstr ""
+
+#: html-templates/home.tpl:165
+msgid "Latest Project Activity"
+msgstr ""
+
+#: html-templates/home.tpl:171
+msgid "No project updates have been posted on this site yet."
+msgstr ""
+
+#: html-templates/home.tpl:174
+msgid "Browse all project updates"
+msgstr ""
+
+#: html-templates/register/register.tpl:11
+msgid "Register with %s"
+msgstr ""
+
+#: html-templates/register/register.tpl:14
+msgid "There were problems with your submission:"
+msgstr ""
+
+#: html-templates/register/register.tpl:24
+msgid "First Name"
+msgstr ""
+
+#: html-templates/register/register.tpl:27
+msgid "Jenny"
+msgstr ""
+
+#: html-templates/register/register.tpl:32
+msgid "Last Name"
+msgstr ""
+
+#: html-templates/register/register.tpl:35
+msgid "Appleseed"
+msgstr ""
+
+#: html-templates/register/register.tpl:40
+msgid "Email Address"
+msgstr ""
+
+#: html-templates/register/register.tpl:43
+msgid "civic.hacker@example.com"
+msgstr ""
+
+#: html-templates/register/register.tpl:45
+msgid ""
+"Email address <strong>will</strong> be visible to other signed-in members."
+msgstr ""
+
+#: html-templates/register/register.tpl:52
+#: html-templates/projects/project.tpl:134 html-templates/login/login.tpl:37
+msgid "Username"
+msgstr ""
+
+#: html-templates/register/register.tpl:55
+msgid "CivicHacker"
+msgstr ""
+
+#: html-templates/register/register.tpl:60 html-templates/login/login.tpl:45
+#: html-templates/login/login.tpl:47
+msgid "Password"
+msgstr ""
+
+#: html-templates/register/register.tpl:68
+msgid "Password Confirmation"
+msgstr ""
+
+#: html-templates/register/register.tpl:77
+msgid "Create Account"
+msgstr ""
+
+#: html-templates/register/register.tpl:78
+msgid "Already have an account?"
+msgstr ""
+
+#: html-templates/register/register.tpl:78
+msgid "Log in"
+msgstr ""
+
+#: html-templates/people/person.tpl:11
+msgid "edit your profile"
+msgstr ""
+
+#: html-templates/people/person.tpl:17
+msgid "Last event checkin"
+msgstr ""
+
+#: html-templates/people/person.tpl:21
+msgid "Never"
+msgstr ""
+
+#: html-templates/people/person.tpl:25
+msgid "About Me"
+msgstr ""
+
+#: html-templates/people/person.tpl:33
+#: html-templates/profile/profileEdit.tpl:90
+msgid "Contact Information"
+msgstr ""
+
+#: html-templates/people/person.tpl:36
+#: html-templates/profile/profileEdit.tpl:92
+msgid "Email"
+msgstr ""
+
+#: html-templates/people/person.tpl:46
+#: html-templates/profile/profileEdit.tpl:97
+msgid "Phone"
+msgstr ""
+
+#: html-templates/people/person.tpl:53
+msgid "My projects"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:74
+msgid ""
+"Use [Markdown](http://daringfireball.net/projects/markdown) to give your "
+"text some style"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:15
+msgid "Manage Your Profile"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:19
+msgid "Photo uploaded."
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:21
+msgid "Default photo selected."
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:23
+msgid "Photo deleted."
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:25
+msgid "Password changed."
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:27
+msgid "Profile saved."
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:34
+msgid "Photos"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:65
+msgid "Profile Details"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:67
+msgid "Location"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:72
+msgid "About"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:78
+msgid "Personal Tags"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:117
+msgid "Change password"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:119
+msgid "Old Password"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:123
+msgid "New Password"
+msgstr ""
+
+#: html-templates/profile/profileEdit.tpl:126
+msgid ""
+"Please type your new password in both boxes above to make sure it is correct."
+msgstr ""
+
+#: html-templates/bigscreen.tpl:63
+msgid "Check in at %s"
+msgstr ""
+
+#: html-templates/bigscreen.tpl:68
+msgid "Latest Checkins"
+msgstr ""
+
+#: html-templates/checked-in.tpl:8
+msgid "Success!"
+msgstr ""
+
+#: html-templates/checked-in.tpl:10
+msgid "Things to do next:"
+msgstr ""
+
+#: html-templates/checked-in.tpl:13
+msgid "Post an update to your project"
+msgstr ""
+
+#: html-templates/checked-in.tpl:15
+msgid "Find or start a project"
+msgstr ""
+
+#: html-templates/checked-in.tpl:18
+msgid "Return to the home page"
+msgstr ""
+
+#: html-templates/checked-in.tpl:21
+msgid "Add stuff to this list"
+msgstr ""
+
+#: html-templates/how-to-help.tpl:3 html-templates/how-to-help.tpl:6
+#: html-templates/includes/site.nav-sitelinks.tpl:2
+msgid "How to Help"
+msgstr ""
+
+#: html-templates/mission.tpl:8
+msgid ""
+"[Code for America](http://www.codeforamerica.org/) is a 501(c)3\n"
+"non-profit that envisions a government by the people, for the people,\n"
+"that works in the 21st century.\n"
+"\n"
+"Our programs change how we participate in government by:\n"
+"\n"
+"- Connecting citizens and governments to design better services,\n"
+"- Encouraging low-risk settings for innovation; and,\n"
+"- Supporting a competitive civic tech marketplace."
+msgstr ""
+
+#: html-templates/mission.tpl:3 html-templates/mission.tpl:6
+msgid "Our Mission"
+msgstr ""
+
+#: html-templates/resources.tpl:3 html-templates/resources.tpl:6
+#: html-templates/includes/site.nav-sitelinks.tpl:3
+msgid "Resources"
+msgstr ""
+
+#: html-templates/topMembers.tpl:3 html-templates/topMembers.tpl:6
+msgid "Top Members"
+msgstr ""
+
+#: html-templates/includes/home.resources.tpl:2
+msgid "Civic Hacking Resources"
+msgstr ""
+
+#: html-templates/includes/site.footer.tpl:5
+msgid "Powered by %s &mdash; a %s project."
+msgstr ""
+
+#: html-templates/includes/site.header.tpl:29
+#: html-templates/login/login.tpl:56
+msgid "Login"
+msgstr ""
+
+#: html-templates/includes/site.header.tpl:30
+msgid "Sign up"
+msgstr ""
+
+#: html-templates/includes/site.nav-sitelinks.tpl:1
+msgid "Mission"
+msgstr ""
+
+#: html-templates/includes/site.nav-userlinks.tpl:1
+msgid "View My Profile"
+msgstr ""
+
+#: html-templates/includes/site.nav-userlinks.tpl:2
+msgid "Edit My Profile"
+msgstr ""
+
+#: html-templates/includes/site.nav-userlinks.tpl:3
+msgid "Logout"
+msgstr ""
+
+#: html-templates/includes/site.resourcelinks.tpl:1
+msgid "CfA Commons"
+msgstr ""
+
+#: html-templates/includes/site.resourcelinks.tpl:2
+msgid "Open Data Stack Exchange"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:28
+msgid "Read the full article on %s"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:33
+msgid "Published on %s, shared by %s on %s"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:10
+#: html-templates/subtemplates/updates.tpl:10
+msgid "Edit"
+msgstr ""
+
+#: html-templates/subtemplates/buzz.tpl:11
+#: html-templates/subtemplates/updates.tpl:11
+msgid "Delete"
+msgstr ""
+
+#: html-templates/subtemplates/meetups.tpl:13
+msgid "RSVP @ %s"
+msgstr ""
+
+#: html-templates/subtemplates/meetups.tpl:13
+msgid "%s so far"
+msgstr ""
+
+#: html-templates/subtemplates/projects.tpl:10
+msgid "and Maintainer"
+msgstr ""
+
+#: html-templates/subtemplates/projects.tpl:14
+msgid "Maintainer"
+msgstr ""
+
+#: html-templates/subtemplates/projects.tpl:16
+msgid "Member"
+msgstr ""
+
+#: html-templates/subtemplates/updates.tpl:16
+#: html-templates/subtemplates/updates.tpl:18
+msgid "Update #%s"
+msgstr ""
+
+#: html-templates/subtemplates/updates.tpl:26
+msgid "Posted on %s by %s"
+msgstr ""
+
+#: html-templates/projects/memberAdded.tpl:9
+msgid "%s has been added to %s"
+msgstr ""
+
+#: html-templates/projects/project.tpl:11
+msgid "Edit Project"
+msgstr ""
+
+#: html-templates/projects/project.tpl:15
+msgid "Add Member"
+msgstr ""
+
+#: html-templates/projects/project.tpl:16
+#: html-templates/projects/project.tpl:78
+msgid "Log Buzz"
+msgstr ""
+
+#: html-templates/projects/project.tpl:18
+#: html-templates/projects/project.tpl:76
+#: html-templates/projects/project.tpl:164
+msgid "Post Update"
+msgstr ""
+
+#: html-templates/projects/project.tpl:21
+msgid "Manage Members"
+msgstr ""
+
+#: html-templates/projects/project.tpl:30
+msgid "Project Info"
+msgstr ""
+
+#: html-templates/projects/project.tpl:33
+#: html-templates/projects/projectEdit.tpl:46
+msgid "Users' URL"
+msgstr ""
+
+#: html-templates/projects/project.tpl:38
+#: html-templates/projects/projectEdit.tpl:53
+msgid "Developers' URL"
+msgstr ""
+
+#: html-templates/projects/project.tpl:43
+msgid "README"
+msgstr ""
+
+#: html-templates/projects/project.tpl:73
+msgid "Project Activity"
+msgstr ""
+
+#: html-templates/projects/project.tpl:85
+msgid ""
+"This project doesn't have any activity yet, post an update or log some buzz!"
+msgstr ""
+
+#: html-templates/projects/project.tpl:108
+#: html-templates/projects/project.tpl:190
+#: html-templates/projects/projects.tpl:57
+msgid "None registered"
+msgstr ""
+
+#: html-templates/projects/project.tpl:110
+msgid "Add"
+msgstr ""
+
+#: html-templates/projects/project.tpl:117
+msgid "Spread the word on Twitter!"
+msgstr ""
+
+#: html-templates/projects/project.tpl:130
+msgid "Add project member"
+msgstr ""
+
+#: html-templates/projects/project.tpl:140
+msgid "Role"
+msgstr ""
+
+#: html-templates/projects/project.tpl:142
+msgid "optional"
+msgstr ""
+
+#: html-templates/projects/project.tpl:147
+#: html-templates/projects/project.tpl:163
+msgid "Close"
+msgstr ""
+
+#: html-templates/projects/project.tpl:148
+msgid "Add member"
+msgstr ""
+
+#: html-templates/projects/project.tpl:156
+msgid "Post project update"
+msgstr ""
+
+#: html-templates/projects/project.tpl:160
+msgid "Markdown is supported"
+msgstr ""
+
+#: html-templates/projects/project.tpl:173
+msgid "Manage project members"
+msgstr ""
+
+#: html-templates/projects/project.tpl:184
+msgid "Make Maintainer"
+msgstr ""
+
+#: html-templates/projects/project.tpl:186
+msgid "Remove"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:3
+msgid "Edit %s"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:21
+msgid "Edit project %s"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:3
+msgid "Create"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:19
+msgid "Create new project"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:27
+msgid "There were problems with your entry:"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:39
+msgid "Title"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:41
+msgid "Train Schedule Analyzer"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:48
+msgid "http://mypublicapp.org"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:59
+msgid "Tags"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:61
+msgid "tech.php, topic.outdoors"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:65
+msgid "README(.md)"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:69
+msgid "Create Project"
+msgstr ""
+
+#: html-templates/projects/projectEdit.tpl:69
+msgid "Save Changes"
+msgstr ""
+
+#: html-templates/projects/projectSaved.tpl:11
+msgid "Your project has been created: %s"
+msgstr ""
+
+#: html-templates/projects/projectSaved.tpl:13
+msgid "Your changes to %s have been saved."
+msgstr ""
+
+#: html-templates/projects/projectUpdateCreated.tpl:6
+msgid "Update #%u"
+msgstr ""
+
+#: html-templates/projects/projectUpdateCreated.tpl:3
+msgid "Update Posted"
+msgstr ""
+
+#: html-templates/projects/projectUpdateCreated.tpl:6
+msgid "posted to"
+msgstr ""
+
+#: html-templates/projects/projects.tpl:7
+msgid "Civic Projects Directory"
+msgstr ""
+
+#: html-templates/projects/projects.tpl:10
+msgid "Add Project"
+msgstr ""
+
+#: html-templates/projects/projects.tpl:13
+msgid "Register with the Brigade!"
+msgstr ""
+
+#: html-templates/login/login.tpl:9
+msgid "Login to %s"
+msgstr ""
+
+#: html-templates/login/login.tpl:27 html-templates/login/login.tpl:31
+msgid "Login Failed: %s"
+msgstr ""
+
+#: html-templates/login/login.tpl:64
+msgid "You can %s,<br/>or %s now."
+msgstr ""
+
+#: html-templates/login/login.tpl:39
+msgid "Username or email address"
+msgstr ""
+
+#: html-templates/login/login.tpl:54
+msgid "Remember me"
+msgstr ""
+
+#: html-templates/login/login.tpl:62
+msgid "recover your password"
+msgstr ""
+
+#: html-templates/login/login.tpl:63
+msgid "create an account"
+msgstr ""
+
+#: html-templates/project-buzz/projectBuzzes.tpl:13
+msgid "Latest Buzz in %s"
+msgstr ""
+
+#: html-templates/project-buzz/projectBuzzes.tpl:3
+msgid "Project Buzz"
+msgstr ""
+
+#: html-templates/project-buzz/projectBuzzes.tpl:8
+msgid "Add Buzz"
+msgstr ""
+
+#: html-templates/project-buzz/projectBuzzes.tpl:15
+msgid "Latest Buzz"
+msgstr ""
+
+#: php-classes/Content.class.php:41 php-classes/HandleBehavior.class.php:24
+msgid "Handle can only contain letters, numbers, hyphens, and underscores"
+msgstr ""
+
+#: php-classes/PasswordAuthenticator.class.php:63
+msgid "The username or password you entered was incorrect."
+msgstr ""
+
+#: php-classes/Person.class.php:284
+msgid "First name is required."
+msgstr ""
+
+#: php-classes/Person.class.php:291
+msgid "Last name is required."
+msgstr ""
+
+#: php-classes/RecordValidator.class.php:139
+msgid "%s is missing."
+msgstr ""
+
+#: php-classes/RecordValidator.class.php:139
+msgid "%s is invalid."
+msgstr ""
+
+#: php-classes/User.class.php:80
+msgid "Username must be at least two characters long."
+msgstr ""
+
+#: php-classes/User.class.php:87
+msgid "Username can only contain letters, numbers, hyphens, and underscores."
+msgstr ""
+
+#: php-classes/Laddr/Project.php:134
+msgid "Project title is required"
+msgstr ""
+
+#: php-classes/Laddr/Project.php:141
+msgid "Users"
+msgstr ""
+
+#: php-classes/Laddr/Project.php:148
+msgid "Developers"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:88
+msgid "This URL has already been logged as buzz for this project"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:55
+msgid "Please select a project"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:58
+msgid "Please enter a headline for the buzz"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:62
+msgid "Please enter the URL for the buzz"
+msgstr ""
+
+#: php-classes/Laddr/ProjectBuzz.php:66
+msgid "Please enter the date/time that the buzz was originally published"
+msgstr ""
+
+#: php-classes/Laddr/ProjectUpdate.php:41
+msgid "Update body is required"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:56
+#: php-classes/Laddr/ProjectsRequestHandler.php:92
+msgid "Parameter \"username\" required"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:60
+#: php-classes/Laddr/ProjectsRequestHandler.php:96
+msgid "User not found"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:69
+msgid "This member is already in this project"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:102
+msgid "Are you sure you want to remove %s from %s?"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:140
+msgid "Are you sure you want to make %s the maintainer of %s?"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:163
+msgid "Update not found"
+msgstr ""
+
+#: php-classes/Laddr/ProjectsRequestHandler.php:175
+msgid "Update body cannot be blank"
+msgstr ""

@@ -1,11 +1,16 @@
 {extends designs/site.tpl}
 
+{block meta-info}
+    {$dwoo.parent}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/project-updates?{if $Project}ProjectID={$Project->ID}&amp;{/if}format=rss">
+{/block}
+
 {block title}Project Updates &mdash; {$dwoo.parent}{/block}
 {block content}
     <h2>
         Project Updates
         {if $Project}
-            in <a href="/projects/{$Project->Handle}">{$Project->Title|escape}</a>
+            in <a href="{$Project->getURL()}">{$Project->Title|escape}</a>
         {/if}
     </h2>
 

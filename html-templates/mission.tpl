@@ -1,17 +1,19 @@
 {extends designs/site.tpl}
 
-{block title}Mission &mdash; {$dwoo.parent}{/block}
+{block title}{_ "Our Mission"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <h2>Mission</h2>
-    <p><a href="http://www.codeforamerica.org/">Code for America</a> is a 501(c)3 non-profit that envisions a government by the people, for the people, that works in the 21st century.</p>
+    <h2>{_ "Our Mission"}</h2>
 
-    <p>Our programs change how we participate in government by:</p>
-    <ul>
-        <li>Connecting citizens and governments to design better services,</li>
-        <li>Encouraging low-risk settings for innovation; and,</li>
-        <li>Supporting a competitive civic tech marketplace.</li>
-    </ul>
+    {_("[Code for America](http://www.codeforamerica.org/) is a 501(c)3
+non-profit that envisions a government by the people, for the people,
+that works in the 21st century.
+
+Our programs change how we participate in government by:
+
+- Connecting citizens and governments to design better services,
+- Encouraging low-risk settings for innovation; and,
+- Supporting a competitive civic tech marketplace.")|markdown}
 
     <iframe width="560" height="315" src="//www.youtube.com/embed/kDFhzNfd-bg?rel=0" frameborder="0" allowfullscreen></iframe>
 {/block}

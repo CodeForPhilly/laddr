@@ -10,11 +10,11 @@
 
     <div class="hero-unit">
         <div class="caption">
-            <img src="/img/logo.png" class="logo" alt="{Laddr::$siteName|escape}">
+            <img src="{versioned_url img/logo.png}" class="logo" alt="{Laddr::$siteName|escape}">
             <p>{Laddr::$siteSlogan|escape}</p>
             <p>
-                <a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-primary">Start Hacking</a>
-                <small>or <a href="/mission">Learn More&hellip;</a></small>
+                <a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-primary">{_ "Start Hacking"}</a>
+                <small>or <a href="/mission">{_ "Learn More"}&hellip;</a></small>
             </p>
         </div>
     </div>
@@ -25,13 +25,13 @@
     <nav class="sidebar left">
 
         <section class="tagsSummary projects">
-            <a class="btn btn-success btn-mini pull-right" href="/projects/create">Add project</a>
-            <h4><a href="/projects">Projects <span class="badge badge-info">{$projectsTotal|number_format}</span></a></h4>
+            <a class="btn btn-success btn-mini pull-right" href="/projects/create">{_ "Add project"}</a>
+            <h4><a href="/projects">{_ "Projects"} <span class="badge badge-info">{$projectsTotal|number_format}</span></a></h4>
 
             <header class="btn-group">
-                <a href="#projects-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">by tech</a> |
-                <a href="#projects-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">by topic</a> |
-                <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byEvent">by event</a>
+                <a href="#projects-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
+                <a href="#projects-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">{_ "by topic"}</a> |
+                <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byEvent">{_ "by event"}</a>
             </header>
 
             <ul class="tags nav nav-tabs nav-stacked byTech">
@@ -54,11 +54,11 @@
         </section>
 
         <section class="tagsSummary members">
-            <h4><a href="/people">Members <span class="badge badge-info">{$membersTotal|number_format}</span></a></h4>
+            <h4><a href="/people">{_ "Members"} <span class="badge badge-info">{$membersTotal|number_format}</span></a></h4>
 
             <header class="btn-group">
-                <a href="#members-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">by tech</a> |
-                <a href="#members-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">by topic</a>
+                <a href="#members-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
+                <a href="#members-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">{_ "by topic"}</a>
             </header>
 
             <ul class="tags nav nav-tabs nav-stacked byTech">
@@ -107,7 +107,7 @@
 
         {if $currentMeetup}
             <article class="meetup meetup-current">
-                <h3><strong>Current</strong> Meetup</h3>
+                <h3>{_ "Current Meetup"}</h3>
                 {meetup $currentMeetup showRsvp=false}
                 <form class="checkin" action="/checkin" method="POST">
                     <input type="hidden" name="MeetupID" value="{$currentMeetup.id}">
@@ -120,13 +120,15 @@
                     <input type="submit" value="Check In" class="btn btn-success">
                 </form>
                 <aside class="checkins">
-                    <h4>Checked-in Members</h4>
-                    {$lastProjectID = null}
-                    <h5 class="muted">No Current Project</h5>
+                    <h4>{_ "Checked-in Members"}</h4>
+                    {$lastProjectID = false}
+                    <h5 class="muted">{_ "No Current Project"}</h5>
                     <ul class="nav nav-pills nav-stacked">
                     {foreach item=Checkin from=$currentMeetup.checkins}
-                        {if $Checkin->ProjectID != $lastProjectID}
-                            </ul>
+                        {if $Checkin->ProjectID != $lastProjectID || $lastProjectID === false}
+                            {if $lastProjectID}
+                                </ul>
+                            {/if}
                             <h5>{if $Checkin->Project}{projectLink $Checkin->Project}{/if}</h5>
                             {$lastProjectID = $Checkin->ProjectID}
                             <ul class="nav nav-pills nav-stacked">
@@ -140,13 +142,13 @@
 
         {if $nextMeetup}
             <article class="meetup meetup-next">
-                <h3><strong>Next</strong> Meetup</h3>
+                <h3>{_ "Next Meetup"}</h3>
                 {meetup $nextMeetup}
             </article>
         {/if}
 
         {if count($futureMeetups)}
-            <h3>Future Meetups</h3>
+            <h3>{_ "Future Meetups"}</h3>
             {foreach item=futureMeetup from=$futureMeetups}
                 <article class="meetup meetup-future">
                     {meetup $futureMeetup}
@@ -157,17 +159,19 @@
     </aside>
 
     <section class="content fixed-fixed">
+        {include includes/home.announcements.tpl}
+
         <section>
-            <h2>Latest Project Updates</h3>
+            <h2>{_ "Latest Project Activity"}</h3>
             <div class="row-fluid">
 
-                {foreach item=Update from=$updates}
-                    {projectUpdate $Update headingLevel=h3 showProject=true}
+                {foreach item=Article from=$activity}
+                    {projectActivity $Article headingLevel=h3 showProject=true}
                 {foreachelse}
-                    <em>No project updates have been posted on this site yet</em>
+                    <em>{_ "No project updates have been posted on this site yet."}</em>
                 {/foreach}
 
-                <a href="/project-updates">Browse all project updates&hellip;</a>
+                <a href="/project-updates">{_ "Browse all project updates"}&hellip;</a>
 
             </div> <!-- .row-fluid -->
         </section>

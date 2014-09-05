@@ -3,7 +3,7 @@
     Add ?jsdebug=1 to any URL to load separate uncompressed files
 *}
 {jsmin array(
-    'jquery.js'
+    'jquery.min.js'
     ,'bootstrap/bootstrap-collapse.js'
     ,'bootstrap/bootstrap-typeahead.js'
     ,'bootstrap/bootstrap-dropdown.js'

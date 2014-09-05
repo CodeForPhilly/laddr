@@ -1,7 +1,10 @@
 {extends designs/site.tpl}
 
-{block title}Members &mdash; {$dwoo.parent}{/block}
+{block title}{_ "Members"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <p>{personLink $Member} {if $data->Role}({$data->Role|escape}){/if} has been added to {projectLink $Project}</p>
+    {capture assign=person}{personLink $Member} {if $data->Role}({$data->Role|escape}){/if}{/capture}
+    {capture assign=project}{projectLink $Project}{/capture}
+
+    <p>{sprintf(_("%s has been added to %s"), $person, $project)}</p>
 {/block}

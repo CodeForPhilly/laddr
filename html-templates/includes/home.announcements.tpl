@@ -1,0 +1,5 @@
+{*
+<section class="announcements">
+
+</section>
+*}

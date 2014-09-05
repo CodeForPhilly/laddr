@@ -8,11 +8,11 @@
     {strip}
 
         <div class="form-horizontal span6 offset3">
-            <h2>Register with {Laddr::$siteName|escape}!</h2>
+            <h2>{_("Register with %s")|sprintf:Laddr::$siteName|escape}!</h2>
 
             {if $User->validationErrors}
-                <h3>There were problems with your submission:</h3>
-                <ul class="well errors">
+                <h3>{_ "There were problems with your submission:"}</h3>
+                <ul class="well text-error">
                 {foreach item=error key=field from=$User->validationErrors}
                     <li>{$field}: {$error|escape}</li>
                 {/foreach}
@@ -21,43 +21,43 @@
 
             <div class="control-group">
                 <label class="control-label">
-                    First Name
+                    {_ "First Name"}
                 </label>
                 <div class="controls">
-                    <input type="text" name="FirstName" value="{refill field=FirstName}" placeholder="Jenny">
+                    <input type="text" name="FirstName" value="{refill field=FirstName}" placeholder="{_ 'Jenny'}">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">
-                    Last Name
+                    {_ "Last Name"}
                 </label>
                 <div class="controls">
-                    <input type="text" name="LastName" value="{refill field=LastName}" placeholder="Appleseed">
+                    <input type="text" name="LastName" value="{refill field=LastName}" placeholder="{_ 'Appleseed'}">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">
-                    Email Address
+                    {_ "Email Address"}
                 </label>
                 <div class="controls">
-                    <input type="email" name="Email" value="{refill field=Email}" placeholder="civic.hacker@example.com">
+                    <input type="email" name="Email" value="{refill field=Email}" placeholder="{_ 'civic.hacker@example.com'}">
                     <div class="muted" id="register-privacy">
-                        Email address <strong>will</strong> be visible to other signed-in members.
+                        {_ "Email address <strong>will</strong> be visible to other signed-in members."}
                     </div>
                 </div>
 
             </div>
             <div class="control-group">
                 <label class="control-label">
-                    Username
+                    {_ "Username"}
                 </label>
                 <div class="controls">
-                    <input type="text" name="Username" value="{refill field=Username}" placeholder="CivicHacker">
+                    <input type="text" name="Username" value="{refill field=Username}" placeholder="{_ 'CivicHacker'}">
                 </div>
             </div>
             <div class="control-group">
                 <label class="control-label">
-                    Password
+                    {_ "Password"}
                 </label>
                 <div class="controls">
                     <input type="password" name="Password">
@@ -65,7 +65,7 @@
             </div>
             <div class="control-group">
                 <label class="control-label">
-                    Password Confirmation
+                    {_ "Password Confirmation"}
                 </label>
                 <div class="controls">
                     <input type="password" name="PasswordConfirm">
@@ -74,8 +74,8 @@
             <div class="control-group">
                 <label class="control-label"></label>
                 <div class="controls">
-                    <input type="submit" class="btn btn-primary submit" value="Create Account"><br/><br/>
-                    <p class="form-hint">Already have an account? <a href="/login">Log in</a></p>
+                    <input type="submit" class="btn btn-primary submit" value="{_ 'Create Account'}"><br/><br/>
+                    <p class="form-hint">{_ "Already have an account?"} <a href="/login">{_ "Log in"}</a></p>
                 </div>
             </div>
         </div>

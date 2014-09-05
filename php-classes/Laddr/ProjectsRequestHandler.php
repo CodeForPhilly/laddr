@@ -50,12 +50,14 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleAddMemberRequest(Project $Project)
     {
+        $GLOBALS['Session']->requireAuthentication();
+
         if (empty($_POST['username'])) {
-            return static::throwError('Parameter "username" required');
+            return static::throwError(_('Parameter "username" required'));
         }
 
         if (!$Member = USer::getByUsername($_POST['username'])) {
-            return static::throwError('User not found');
+            return static::throwError(_('User not found'));
         }
 
         $recordData = array(
@@ -64,7 +66,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         );
 
         if (ProjectMember::getByWhere($recordData)) {
-            return static::throwError('This member is already in this project');
+            return static::throwError(_('This member is already in this project'));
         }
 
         $ProjectMember = ProjectMember::create($recordData);
@@ -84,18 +86,20 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleRemoveMemberRequest(Project $Project)
     {
+        $GLOBALS['Session']->requireAuthentication();
+
         if (empty($_REQUEST['username'])) {
-            return static::throwError('Parameter "username" required');
+            return static::throwError(_('Parameter "username" required'));
         }
 
         if (!$Member = User::getByUsername($_REQUEST['username'])) {
-            return static::throwError('User not found');
+            return static::throwError(_('User not found'));
         }
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             return static::respond('confirm', array(
                 'question' => sprintf(
-                    'Are you sure you want to remove %s from %s?'
+                    _('Are you sure you want to remove %s from %s?')
                     ,htmlspecialchars($Member->FullName)
                     ,htmlspecialchars($Project->Title)
                 )
@@ -120,6 +124,8 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleChangeMaintainerRequest(Project $Project)
     {
+        $GLOBALS['Session']->requireAuthentication();
+
         if (empty($_REQUEST['username'])) {
             return static::throwError('Parameter "username" required');
         }
@@ -131,7 +137,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             return static::respond('confirm', array(
                 'question' => sprintf(
-                    'Are you sure you want to make %s the maintainer of %s?'
+                    _('Are you sure you want to make %s the maintainer of %s?')
                     ,htmlspecialchars($Project->Maintainer->FullName)
                     ,htmlspecialchars($Project->Title)
                 )
@@ -154,7 +160,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             ));
 
             if (!$Update) {
-                return static::throwNotFoundError('Update not found');
+                return static::throwNotFoundError(_('Update not found'));
             }
 
             return static::respond('projectUpdate', array(
@@ -163,8 +169,10 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $GLOBALS['Session']->requireAuthentication();
+
             if (empty($_POST['Body'])) {
-                return static::throwError('Update body cannot be blank');
+                return static::throwError(_('Update body cannot be blank'));
             }
 
             $Update = ProjectUpdate::create(array(

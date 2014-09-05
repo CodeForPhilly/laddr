@@ -4,7 +4,7 @@ class Laddr
 {
     static public $siteName;
     static public $siteAbbr;
-    static public $siteSlogan = 'Making our community a better place to live, work, and play through technology.';
+    static public $siteSlogan;
 
     static function __classLoaded()
     {

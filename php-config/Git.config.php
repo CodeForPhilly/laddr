@@ -8,7 +8,9 @@ Git::$repositories['laddr'] = array(
 	,'trees' => array(
 		'html-templates'
 		,'php-classes'
-		,'php-config'
+    	,'php-config'
+    	,'php-migrations'
 		,'site-root'
+        ,'locales'
 	)
 );

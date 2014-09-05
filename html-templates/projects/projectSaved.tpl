@@ -5,9 +5,11 @@
 {block content}
     {$Project = $data}
 
+    {capture assign=projectLink}{projectLink $Project}{/capture}
+
     {if $Project->isNew}
-        <p>Your project has been created: {projectLink $Project}</p>
+        <p>{_("Your project has been created: %s")|sprintf:$projectLink}</p>
     {else}
-        <p>Your changes to {projectLink $Project} have been saved.</p>
+        <p>{_("Your changes to %s have been saved.")|sprintf:$projectLink}</p>
     {/if}
 {/block}

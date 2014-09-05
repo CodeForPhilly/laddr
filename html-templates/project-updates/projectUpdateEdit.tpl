@@ -13,6 +13,17 @@
         {/if}
     </h2>
 
+    {if !$Update->isValid}
+    <div class="error well">
+        <strong>There were problems with your entry:</strong>
+        <ul class="errors">
+        {foreach item=error key=field from=$Update->validationErrors}
+            <li>{$error}</li>
+        {/foreach}
+        </ul>
+    </div>
+    {/if}
+
     <form method="POST" class="form-horizontal">
         <div class="control-group">
             <label for="UpdateBody" class="control-label">Update</label>
@@ -22,11 +33,11 @@
                 <input type="submit" class="btn-small btn" value="{tif $Update->isPhantom ? 'Post Update' : 'Save Changes'}"/>
             </div>
         </div>
-        </div>
     </form>
 {/block}
 
 {block js-bottom}
     {$dwoo.parent}
-    {jsmin "epiceditor.js+pages/update-edit.js"}
+    {jsmin "epiceditor.js"}
+    {jsmin "pages/update-edit.js"}
 {/block}

@@ -7,30 +7,31 @@
     <script>
         var tagTitles = {Tag::getAllTitles()|json_encode};
     </script>
-    {jsmin "epiceditor.js+pages/profile-edit.js"}
+    {jsmin "epiceditor.js"}
+    {jsmin "pages/profile-edit.js"}
 {/block}
 
 {block "content"}
-    <h1>Manage Your Profile</h1>
+    <h1>{_ "Manage Your Profile"}</h1>
     <hr class="clear" />
 
     {if $.get.status == 'photoUploaded'}
-        <p class="status highlight">Photo uploaded.</p>
+        <p class="status highlight">{_ "Photo uploaded."}</p>
     {elseif $.get.status == 'photoPrimaried'}
-        <p class="status highlight">Default photo selected.</p>
+        <p class="status highlight">{_ "Default photo selected."}</p>
     {elseif $.get.status == 'photoDeleted'}
-        <p class="status highlight">Photo deleted.</p>
+        <p class="status highlight">{_ "Photo deleted."}</p>
     {elseif $.get.status == 'passwordChanged'}
-        <p class="status highlight">Password changed.</p>
+        <p class="status highlight">{_ "Password changed."}</p>
     {elseif $.get.status == 'saved'}
-        <p class="status highlight">Profile saved.</p>
+        <p class="status highlight">{_ "Profile saved."}</p>
     {/if}
 
 
     <form id="uploadPhotoForm" class="generic" action="/profile/uploadPhoto" method="POST" enctype="multipart/form-data">
 
         <fieldset class="section">
-            <legend>Photos</legend>
+            <legend>{_ Photos}</legend>
             {strip}
             <div class="photosGallery clearfix">
                 {foreach item=Photo from=$.User->Photos}
@@ -60,22 +61,21 @@
     </form>
 
     <form method="POST" id="profileForm" class="generic">
-    <h2 class="legend">Profile Details</h2>
     <fieldset class="section">
-        <legend>Profile details</legend>
+        <legend>{_ "Profile Details"}</legend>
         <div class="field">
-            <label for="Location">Location</label>
+            <label for="Location">{_ Location}</label>
             <input type="text" class="text" id="Location" name="Location" value="{refill field=Location default=$.User->Location}">
         </div>
 
         <div class="field expand">
-            <label for="about">About</label>
+            <label for="about">{_ About}</label>
             <textarea id="about" name="About">{refill field=About default=$.User->About}</textarea>
-            <p class="hint">Use <a href="http://daringfireball.net/projects/markdown">Markdown</a> to give your text some style</p>
+            <p class="hint">{_("Use [Markdown](http://daringfireball.net/projects/markdown) to give your text some style")|markdown}</p>
         </div>
 
         <div class="field expand">
-            <label for="tagsInput">Personal Tags</label>
+            <label for="tagsInput">{_ "Personal Tags"}</label>
             <input type="text" id="tagsInput" name="tags" placeholder="tech.php, topic.outdoors" value="{refill field=tags default=Tag::getTagsString($.User->Tags)}">
         </div>
 
@@ -86,16 +86,15 @@
     </fieldset>
 
 
-    <h2 class="legend">Contact Information</h2>
     <fieldset class="section">
-        <legend>Contact information</legend>
+        <legend>{_ "Contact Information"}</legend>
         <div class="field">
-            <label for="Email">Email</label>
+            <label for="Email">{_ Email}</label>
             <input type="email" class="text" id="Email" name="Email" value="{refill field=Email default=$.User->Email}">
         </div>
 
         <div class="field">
-            <label for="Phone">Phone</label>
+            <label for="Phone">{_ Phone}</label>
             <input type="tel" class="text" id="Phone" name="Phone" value="{refill field=Phone default=$.User->Phone modifier=phone}">
         </div>
 
@@ -114,18 +113,17 @@
 
 
     <form action="/profile/password" method="POST" id="passwordForm" class="generic">
-    <h2 class="legend">Change Password</h2>
     <fieldset class="section">
-        <legend>Change password</legend>
+        <legend>{_ "Change password"}</legend>
         <div class="field">
-            <label for="oldpassword">Old Password</label>
+            <label for="oldpassword">{_ "Old Password"}</label>
             <input type="password" class="text" id="oldpassword" name="OldPassword">
         </div>
         <div class="field">
-            <label for="password">New Password</label>
+            <label for="password">{_ "New Password"}</label>
             <input type="password" class="text" id="password" name="Password">
             <input type="password" class="text" id="password2" name="PasswordConfirm">
-            <p class="hint">Please type your new password in both boxes above to make sure it is correct.</p>
+            <p class="hint">{_ "Please type your new password in both boxes above to make sure it is correct."}</p>
         </div>
 
         <div class="submit">

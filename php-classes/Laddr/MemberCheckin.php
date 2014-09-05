@@ -19,7 +19,7 @@ class MemberCheckin extends \ActiveRecord
             ,'notnull' => false
         )
         ,'MeetupID' => array(
-            'type' => 'uint'
+            'type' => 'string'
             ,'notnull' => false
         )
     );
