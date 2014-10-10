@@ -162,7 +162,7 @@
         {include includes/home.announcements.tpl}
 
         <section>
-            <h2>{_ "Latest Project Activity"}</h3>
+            <h2>{_ "Latest Project Activity"}</h2>
             <div class="row-fluid">
 
                 {foreach item=Article from=$activity}
