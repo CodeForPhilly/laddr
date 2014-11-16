@@ -38,7 +38,7 @@ User::$relationships['Tags'] = [
     'class' => \Tag::class,
     'linkClass' => \TagItem::class,
     'linkLocal' => 'ContextID',
-    'conditions' => ['Link.ContextClass = "Person"']
+    'conditions' => ['Link.ContextClass = "Emergence\\\\People\\\\Person"']
 ];
 
 User::$relationships['Comments'] = [

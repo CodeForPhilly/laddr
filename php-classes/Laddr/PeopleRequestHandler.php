@@ -18,7 +18,7 @@ class PeopleRequestHandler extends \PeopleRequestHandler
                 return static::throwNotFoundError('Tag not found');
             }
 
-            $conditions[] = 'ID IN (SELECT ContextID FROM tag_items WHERE TagID = '.$Tag->ID.' AND ContextClass = "Person")';
+            $conditions[] = 'ID IN (SELECT ContextID FROM tag_items WHERE TagID = '.$Tag->ID.' AND ContextClass = "'.\DB::escape(\Emergence\People\Person::getStaticRootClass()).'")';
         }
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
