@@ -1,5 +1,7 @@
 <?php
 
+use Emergence\People\User;
+
 User::$fields['Twitter'] = array(
     'notnull' => false
     ,'unique' => true
