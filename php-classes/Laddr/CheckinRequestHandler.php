@@ -41,17 +41,17 @@ class CheckinRequestHandler extends RequestHandler
         }
 
         // check for existing checkin for this Member+Meetup
-        $Checkin = MemberCheckin::getByWhere(array(
+        $Checkin = MemberCheckin::getByWhere([
             'MemberID' => $GLOBALS['Session']->PersonID
             ,'MeetupID' => $_POST['MeetupID']
-        ));
+        ]);
 
         // create new checkin if there wasn't an existing one
         if (!$Checkin) {
-            $Checkin = MemberCheckin::create(array(
+            $Checkin = MemberCheckin::create([
                 'MemberID' => $GLOBALS['Session']->PersonID
                 ,'MeetupID' => $_POST['MeetupID']
-            ));
+            ]);
         }
 
         // apply selected project
@@ -60,10 +60,10 @@ class CheckinRequestHandler extends RequestHandler
         // save checkin to database
         $Checkin->save();
 
-        static::respond('checkinComplete', array(
+        static::respond('checkinComplete', [
             'data' => $Checkin
             ,'success' => true
-        ));
+        ]);
     }
 
     public static function handleTopMembersRequest()

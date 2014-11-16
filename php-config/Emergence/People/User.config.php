@@ -2,62 +2,62 @@
 
 use Emergence\People\User;
 
-User::$fields['Twitter'] = array(
-    'notnull' => false
-    ,'unique' => true
-);
+User::$fields['Twitter'] = [
+    'notnull' => false,
+    'unique' => true
+];
 
-User::$relationships['OpenCheckin'] = array(
-    'type' => 'one-one'
-    ,'class' => 'Laddr\MemberCheckin'
-    ,'local' => 'ID'
-    ,'foreign' => 'MemberID'
-    ,'conditions' => array(
+User::$relationships['OpenCheckin'] = [
+    'type' => 'one-one',
+    'class' => \Laddr\MemberCheckin::class,
+    'local' => 'ID',
+    'foreign' => 'MemberID',
+    'conditions' => array(
         'OutTime IS NULL'
     )
-);
+];
 
-User::$relationships['LastCheckin'] = array(
-    'type' => 'one-one'
-    ,'class' => 'Laddr\MemberCheckin'
-    ,'local' => 'ID'
-    ,'foreign' => 'MemberID'
-    ,'order' => array(
+User::$relationships['LastCheckin'] = [
+    'type' => 'one-one',
+    'class' => \Laddr\MemberCheckin::class,
+    'local' => 'ID',
+    'foreign' => 'MemberID',
+    'order' => [
         'ID' => 'DESC'
-    )
-);
+    ]
+];
 
-User::$relationships['Checkins'] = array(
-    'type' => 'one-many'
-    ,'class' => 'Laddr\MemberCheckin'
-    ,'foreign' => 'MemberID'
-);
+User::$relationships['Checkins'] = [
+    'type' => 'one-many',
+    'class' => \Laddr\MemberCheckin::class,
+    'foreign' => 'MemberID'
+];
 
-User::$relationships['Tags'] = array(
-    'type' => 'many-many'
-    ,'class' => 'Tag'
-    ,'linkClass' => 'TagItem'
-    ,'linkLocal' => 'ContextID'
-    ,'conditions' => array('Link.ContextClass = "Person"')
-);
+User::$relationships['Tags'] = [
+    'type' => 'many-many',
+    'class' => \Tag::class,
+    'linkClass' => \TagItem::class,
+    'linkLocal' => 'ContextID',
+    'conditions' => ['Link.ContextClass = "Person"']
+];
 
-User::$relationships['Comments'] = array(
-    'type' => 'context-children'
-    ,'class' => 'Comment'
-    ,'contextClass' => __CLASS__
-    ,'order' => array('ID' => 'DESC')
-);
+User::$relationships['Comments'] = [
+    'type' => 'context-children',
+    'class' => \Comment::class,
+    'contextClass' => __CLASS__,
+    'order' => ['ID' => 'DESC']
+];
 
-User::$relationships['Projects'] = array(
-    'type' => 'many-many'
-    ,'class' => 'Laddr\Project'
-    ,'linkClass' => 'Laddr\ProjectMember'
-    ,'linkForeign' => 'ProjectID'
-    ,'linkLocal' => 'MemberID'
-);
+User::$relationships['Projects'] = [
+    'type' => 'many-many',
+    'class' => \Laddr\Project::class,
+    'linkClass' => \Laddr\ProjectMember::class,
+    'linkForeign' => 'ProjectID',
+    'linkLocal' => 'MemberID'
+];
 
-User::$relationships['ProjectMemberships'] = array(
-    'type' => 'one-many'
-    ,'class' => 'Laddr\ProjectMember'
-    ,'foreign' => 'MemberID'
-);
+User::$relationships['ProjectMemberships'] = [
+    'type' => 'one-many',
+    'class' => \Laddr\ProjectMember::class,
+    'foreign' => 'MemberID'
+];

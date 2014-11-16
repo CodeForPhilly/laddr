@@ -9,7 +9,7 @@ class PeopleRequestHandler extends \PeopleRequestHandler
     public static $accountLevelBrowse = false;
     public static $browseOrder = array('ID' => 'DESC');
 
-    public static function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
+    public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
         // apply tag filter
         if (!empty($_REQUEST['tag'])) {

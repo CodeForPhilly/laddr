@@ -16,33 +16,27 @@ class ProjectUpdate extends \VersionedRecord
     public static $pluralNoun = 'project updates'; // a plural noun for this model's object
 
     // gets combined with all the extended layers
-    public static $fields = array(
-        'ProjectID' => array(
-            'type' => 'uint'
-            ,'index' => true
-        )
-        ,'Number' => 'uint'
-        ,'Body' => 'clob'
-    );
+    public static $fields = [
+        'ProjectID' => [
+            'type' => 'uint',
+            'index' => true
+        ],
+        'Number' => 'uint',
+        'Body' => 'clob'
+    ];
 
-    public static $relationships = array(
-        'Project' => array(
-            'type' => 'one-one'
-            ,'class' => 'Laddr\Project'
-        )
-    );
-
-    public function validate($deep = true)
-    {
-        parent::validate($deep);
-
-        $this->_validator->validate(array(
-            'field' => 'Body'
-            ,'errorMessage' => 'Update body is required'
-        ));
-
-        return $this->finishValidation();
-    }
+    public static $relationships = [
+        'Project' => [
+            'type' => 'one-one',
+            'class' => Project::class
+        ]
+    ];
+    
+    public static $validators = [
+        'Body' => [
+            'errorMessage' => 'Update body is required'
+        ]
+    ];
 
     public function destroy()
     {

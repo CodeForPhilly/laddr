@@ -12,34 +12,30 @@ class ProjectMember extends \ActiveRecord
     public static $pluralNoun = 'project members'; // a plural noun for this model's object
 
     // gets combined with all the extended layers
-    public static $fields = array(
-        'ProjectID' => 'uint'
-        ,'MemberID' => 'uint'
-        ,'Role' => array(
-            'type' => 'string'
-            ,'notnull' => false
-        )
-    );
+    public static $fields = [
+        'ProjectID' => 'uint',
+        'MemberID' => 'uint',
+        'Role' => [
+            'type' => 'string',
+            'notnull' => false
+        ]
+    ];
 
-    public static $relationships = array(
-        'Project' => array(
-            'type' => 'one-one'
-            ,'class' => 'Laddr\Project'
-        )
-        ,'Member' => array(
-            'type' => 'one-one'
-            ,'class' => 'Person'
-        )
-#        ,'Request' => array(
-#            'type' => 'one-many'
-#            ,'class' => 'Request'
-#        )
-    );
+    public static $relationships = [
+        'Project' => [
+            'type' => 'one-one',
+            'class' => 'Laddr\Project'
+        ],
+        'Member' => [
+            'type' => 'one-one',
+            'class' => 'Person'
+        ]
+    ];
 
-    public static $indexes = array(
-        'ProjectMember' => array(
-            'fields' => array('ProjectID', 'MemberID')
-            ,'unique' => true
-        )
-    );
+    public static $indexes = [
+        'ProjectMember' => [
+            'fields' => ['ProjectID', 'MemberID'],
+            'unique' => true
+        ]
+    ];
 }

@@ -12,38 +12,38 @@ class MemberCheckin extends \ActiveRecord
     public static $pluralNoun = 'checkins'; // a plural noun for this model's object
 
     // gets combined with all the extended layers
-    public static $fields = array(
-        'MemberID' => 'uint'
-        ,'ProjectID' => array(
-            'type' => 'uint'
-            ,'notnull' => false
-        )
-        ,'MeetupID' => array(
-            'type' => 'string'
-            ,'notnull' => false
-        )
+    public static $fields = [
+        'MemberID' => 'uint',
+        'ProjectID' => [
+            'type' => 'uint',
+            'notnull' => false
+        ],
+        'MeetupID' => [
+            'type' => 'string',
+            'notnull' => false
+        ]
+    ];
+
+    public static $relationships = [
+        'Member' => [
+            'type' => 'one-one',
+            'class' => \Emergence\People\Person::class
+        ],
+        'Project' => [
+            'type' => 'one-one',
+            'class' => Project::class
+        ]
     );
 
-    public static $relationships = array(
-        'Member' => array(
-            'type' => 'one-one'
-            ,'class' => 'Person'
-        )
-        ,'Project' => array(
-            'type' => 'one-one'
-            ,'class' => 'Laddr\Project'
-        )
-    );
-
-    public static $indexes = array(
-        'MeetupMember' => array(
-            'fields' => array('MeetupID', 'MemberID')
-            ,'unique' => true
-        )
+    public static $indexes = [
+        'MeetupMember' => [
+            'fields' => ['MeetupID', 'MemberID'],
+            'unique' => true
+        ]
     );
 
     public static function getAllForMeetupByProject($meetupID)
     {
-        return static::getAllByField('MeetupID', $meetupID, array('order' => 'ProjectID IS NOT NULL, ProjectID DESC'));
+        return static::getAllByField('MeetupID', $meetupID, ['order' => 'ProjectID IS NOT NULL, ProjectID DESC']);
     }
 }

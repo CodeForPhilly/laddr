@@ -4,12 +4,12 @@ namespace Laddr;
 
 class ProjectUpdatesRequestHandler extends \RecordsRequestHandler
 {
-    public static $recordClass = 'Laddr\ProjectUpdate';
+    public static $recordClass = ProjectUpdate::class;
     public static $accountLevelBrowse = false;
     public static $accountLevelWrite = 'User';
-    public static $browseOrder = array('ID' => 'DESC');
+    public static $browseOrder = ['ID' => 'DESC'];
 
-    public static function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
+    public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
         if (!empty($_GET['ProjectID']) && ctype_digit($_GET['ProjectID']) && ($Project = Project::getByID($_GET['ProjectID']))) {
             $conditions['ProjectID'] = $Project->ID;
@@ -33,7 +33,7 @@ class ProjectUpdatesRequestHandler extends \RecordsRequestHandler
         return true;
     }
 
-    public static function respond($responseID, $responseData = array(), $responseMode = false)
+    public static function respond($responseID, $responseData = [], $responseMode = false)
     {
         if ($responseID == 'projectUpdates' && $_GET['format'] == 'rss') {
             header('Content-Type: application/rss+xml');
