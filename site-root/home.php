@@ -58,7 +58,7 @@ $pageData = array();
 
 
 // members
-    $pageData['membersTotal'] = Person::getCount();
+    $pageData['membersTotal'] = Emergence\People\Person::getCount();
     $pageData['membersTags']['byTech'] = TagItem::getTagsSummary(array(
         'tagConditions' => array(
             'Handle LIKE "tech.%"'
