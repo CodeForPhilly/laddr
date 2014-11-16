@@ -10,7 +10,7 @@
 {block js-bottom}
     <script type="text/javascript">
         var SiteEnvironment = SiteEnvironment || { };
-        SiteEnvironment.user = {$.User->getData()|json_encode};
+        SiteEnvironment.user = {JSON::translateObjects($.User)|json_encode};
         SiteEnvironment.cmsContent = {tif $data ? JSON::translateObjects($data, false, 'tags,items,Author,Context.recordURL,Context.recordTitle')|json_encode : 'null'};
         SiteEnvironment.cmsComposers = ['markdown', 'multimedia', 'embed'];
         SiteEnvironment.mediaSupportedTypes = {Media::getSupportedTypes()|json_encode};
