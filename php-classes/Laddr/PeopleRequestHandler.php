@@ -6,10 +6,10 @@ use Tag;
 
 class PeopleRequestHandler extends \PeopleRequestHandler
 {
-    static public $accountLevelBrowse = false;
-    static public $browseOrder = array('ID' => 'DESC');
+    public static $accountLevelBrowse = false;
+    public static $browseOrder = array('ID' => 'DESC');
 
-    static public function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
+    public static function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
     {
         // apply tag filter
         if (!empty($_REQUEST['tag'])) {
@@ -24,7 +24,7 @@ class PeopleRequestHandler extends \PeopleRequestHandler
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
 
-    static public function handleRecordRequest(\ActiveRecord $Member, $action = false)
+    public static function handleRecordRequest(\ActiveRecord $Member, $action = false)
     {
         switch ($action ? $action : $action = static::shiftPath()) {
             case 'comment':

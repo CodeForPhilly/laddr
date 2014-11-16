@@ -27,7 +27,7 @@
     {else}
         <script src="{Site::getVersionedRootUrl('js/pages/ContentEditor.js')}"></script>
     {/if}
-    
+
     {jsmin "markdown.js"}
 
     <script>

@@ -202,7 +202,7 @@ class Project extends \VersionedRecord
             }
             return ($a['Timestamp'] > $b['Timestamp']) ? -1 : 1;
         });
-        
+
         if ($limit) {
             $activity = array_slice($activity, 0, $limit);
         }
