@@ -77,31 +77,31 @@
             <div class="controls">
                 <label class="radio">
                     <input type="radio" name="Stage" value="Commenting" {refill field=Stage default=$Project->Stage|default:Commenting checked=Commenting}>
-                    <strong>Commenting</strong>: Initial status for project, it's an idea people are commenting on
+                    <strong>{_ Commenting}</strong>: {Laddr\Project::getStageDescription(Commenting)}
                 </label>
                 <label class="radio">
                     <input type="radio" name="Stage" value="Bootstrapping" {refill field=Stage default=$Project->Stage checked=Bootstrapping}>
-                    <strong>Bootstrapping</strong>: People and resources are being recruited to start
+                    <strong>{_ Bootstrapping}</strong>: {Laddr\Project::getStageDescription(Bootstrapping)}
                 </label>
                 <label class="radio">
                     <input type="radio" name="Stage" value="Prototyping" {refill field=Stage default=$Project->Stage checked=Prototyping}>
-                    <strong>Prototyping</strong>: Something is being built
+                    <strong>{_ Prototyping}</strong>: {Laddr\Project::getStageDescription(Prototyping)}
                 </label>
                 <label class="radio">
                     <input type="radio" name="Stage" value="Testing" {refill field=Stage default=$Project->Stage checked=Testing}>
-                    <strong>Testing</strong>: Something has been built and some people are using it
+                    <strong>{_ Testing}</strong>: {Laddr\Project::getStageDescription(Testing)}
                 </label>
                 <label class="radio">
                     <input type="radio" name="Stage" value="Maintaining" {refill field=Stage default=$Project->Stage checked=Maintaining}>
-                    <strong>Maintaining</strong>: The project is publicly accessible, useable, and responding to ongoing feedback
+                    <strong>{_ Maintaining}</strong>: {Laddr\Project::getStageDescription(Maintaining)}
                 </label>
                 <label class="radio">
                     <input type="radio" name="Stage" value="Drifting" {refill field=Stage default=$Project->Stage checked=Drifting}>
-                    <strong>Drifting</strong>: The project is still usable but not being actively maintained
+                    <strong>{_ Drifting}</strong>: {Laddr\Project::getStageDescription(Drifting)}
                 </label>
                 <label class="radio">
                     <input type="radio" name="Stage" value="Hibernating" {refill field=Stage default=$Project->Stage checked=Hibernating}>
-                    <strong>Hibernating</strong>: The project is not currently usable or maintained
+                    <strong>{_ Hibernating}</strong>: {Laddr\Project::getStageDescription(Hibernating)}
                 </label>
             </div>
         </div>
