@@ -3,7 +3,6 @@
 {load_templates subtemplates/contentBlocks.tpl}
 {load_templates subtemplates/contextLinks.tpl}
 {load_templates subtemplates/forms.tpl}
-{load_templates subtemplates/tags.tpl}
 {load_templates subtemplates/projects.tpl}
 {load_templates subtemplates/meetups.tpl}
 {load_templates subtemplates/buzz.tpl}

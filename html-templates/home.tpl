@@ -22,6 +22,11 @@
 
 {block content-wrapper-open}<div class="container-fluid">{/block}
 {block content}
+
+    {template tagLink tagData rootUrl}
+        <a href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
+    {/template}
+
     <nav class="sidebar left">
 
         <section class="tagsSummary projects">
