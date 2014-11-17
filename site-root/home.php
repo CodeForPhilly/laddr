@@ -36,7 +36,7 @@ $pageData = array();
             'Handle LIKE "tech.%"'
         )
         ,'itemConditions' => array(
-            'ContextClass' => 'Laddr\Project'
+            'ContextClass' => Laddr\Project::getStaticRootClass()
         )
     ));
     $pageData['projectsTags']['byTopic'] = TagItem::getTagsSummary(array(
@@ -44,7 +44,7 @@ $pageData = array();
             'Handle LIKE "topic.%"'
         )
         ,'itemConditions' => array(
-            'ContextClass' => 'Laddr\Project'
+            'ContextClass' => Laddr\Project::getStaticRootClass()
         )
     ));
     $pageData['projectsTags']['byEvent'] = TagItem::getTagsSummary(array(
@@ -52,19 +52,19 @@ $pageData = array();
             'Handle LIKE "event.%"'
         )
         ,'itemConditions' => array(
-            'ContextClass' => 'Laddr\Project'
+            'ContextClass' => Laddr\Project::getStaticRootClass()
         )
     ));
 
 
 // members
-    $pageData['membersTotal'] = Person::getCount();
+    $pageData['membersTotal'] = Emergence\People\Person::getCount();
     $pageData['membersTags']['byTech'] = TagItem::getTagsSummary(array(
         'tagConditions' => array(
             'Handle LIKE "tech.%"'
         )
         ,'itemConditions' => array(
-            'ContextClass' => 'Person'
+            'ContextClass' => Emergence\People\Person::getStaticRootClass()
         )
     ));
     $pageData['membersTags']['byTopic'] = TagItem::getTagsSummary(array(
@@ -72,7 +72,7 @@ $pageData = array();
             'Handle LIKE "topic.%"'
         )
         ,'itemConditions' => array(
-            'ContextClass' => 'Person'
+            'ContextClass' => Emergence\People\Person::getStaticRootClass()
         )
     ));
 

@@ -59,8 +59,8 @@
 
                     <div class="control-group">
                         <div class="controls">
-                            {capture assign=recoverLink}<a href="/register/recover">{_ "recover your password"}</a>{/capture}
-                            {capture assign=registerLink}<a href="/register">{_ "create an account"}</a>{/capture}
+                            {capture assign=recoverLink}<a href="/register/recover{tif $.request.return || $.server.SCRIPT_NAME != '/login' ? cat('?return=', escape(default($.request.return, $.server.REQUEST_URI), url))}">{_ "recover your password"}</a>{/capture}
+                            {capture assign=registerLink}<a href="/register{tif $.request.return || $.server.SCRIPT_NAME != '/login' ? cat('?return=', escape(default($.request.return, $.server.REQUEST_URI), url))}">{_ "create an account"}</a>{/capture}
                             <p>{sprintf(_('You can %s,<br/>or %s now.'), $recoverLink, $registerLink)}</p>
                         </div>
                     </div>

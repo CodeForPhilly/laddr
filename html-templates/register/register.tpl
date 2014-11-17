@@ -75,7 +75,7 @@
                 <label class="control-label"></label>
                 <div class="controls">
                     <input type="submit" class="btn btn-primary submit" value="{_ 'Create Account'}"><br/><br/>
-                    <p class="form-hint">{_ "Already have an account?"} <a href="/login">{_ "Log in"}</a></p>
+                    <p class="form-hint">{_ "Already have an account?"} <a href="/login{tif $.request.return ? cat('?return=', escape($.request.return, url))}">{_ "Log in"}</a></p>
                 </div>
             </div>
         </div>

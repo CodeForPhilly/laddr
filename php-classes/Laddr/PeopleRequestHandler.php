@@ -6,10 +6,10 @@ use Tag;
 
 class PeopleRequestHandler extends \PeopleRequestHandler
 {
-    static public $accountLevelBrowse = false;
-    static public $browseOrder = array('ID' => 'DESC');
+    public static $accountLevelBrowse = false;
+    public static $browseOrder = array('ID' => 'DESC');
 
-    static public function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
+    public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
         // apply tag filter
         if (!empty($_REQUEST['tag'])) {
@@ -18,13 +18,13 @@ class PeopleRequestHandler extends \PeopleRequestHandler
                 return static::throwNotFoundError('Tag not found');
             }
 
-            $conditions[] = 'ID IN (SELECT ContextID FROM tag_items WHERE TagID = '.$Tag->ID.' AND ContextClass = "Person")';
+            $conditions[] = 'ID IN (SELECT ContextID FROM tag_items WHERE TagID = '.$Tag->ID.' AND ContextClass = "'.\DB::escape(\Emergence\People\Person::getStaticRootClass()).'")';
         }
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
 
-    static public function handleRecordRequest(\ActiveRecord $Member, $action = false)
+    public static function handleRecordRequest(\ActiveRecord $Member, $action = false)
     {
         switch ($action ? $action : $action = static::shiftPath()) {
             case 'comment':

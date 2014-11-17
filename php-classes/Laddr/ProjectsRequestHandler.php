@@ -2,24 +2,22 @@
 
 namespace Laddr;
 
-use User;
+use Emergence\People\User;
 use Tag;
 use Comment;
 
 class ProjectsRequestHandler extends \RecordsRequestHandler
 {
-    public static $recordClass = 'Laddr\Project';
+    public static $recordClass = Project::class;
     public static $accountLevelBrowse = false;
     public static $accountLevelWrite = 'User';
-    public static $browseOrder = array('ID' => 'DESC');
+    public static $browseOrder = ['ID' => 'DESC'];
 
     public static function handleRecordRequest(\ActiveRecord $Project, $action = false)
     {
         switch ($action ? $action : $action = static::shiftPath()) {
             case 'add-member':
                 return static::handleAddMemberRequest($Project);
-#            case 'create-request':
-#                return RequestsRequestHandler::handleCreateRequestRequest($Project);
             case 'remove-member':
                 return static::handleRemoveMemberRequest($Project);
             case 'change-maintainer':
@@ -33,7 +31,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         }
     }
 
-    public static function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
+    public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
         // apply tag filter
         if (!empty($_REQUEST['tag'])) {
@@ -56,14 +54,14 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             return static::throwError(_('Parameter "username" required'));
         }
 
-        if (!$Member = USer::getByUsername($_POST['username'])) {
+        if (!$Member = User::getByUsername($_POST['username'])) {
             return static::throwError(_('User not found'));
         }
 
-        $recordData = array(
-            'ProjectID' => $Project->ID
-            ,'MemberID' => $Member->ID
-        );
+        $recordData = [
+            'ProjectID' => $Project->ID,
+            'MemberID' => $Member->ID
+        ];
 
         if (ProjectMember::getByWhere($recordData)) {
             return static::throwError(_('This member is already in this project'));
@@ -77,11 +75,11 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
         $ProjectMember->save();
 
-        return static::respond('memberAdded', array(
-            'data' => $ProjectMember
-            ,'Project' => $Project
-            ,'Member' => $Member
-        ));
+        return static::respond('memberAdded', [
+            'data' => $ProjectMember,
+            'Project' => $Project,
+            'Member' => $Member
+        ]);
     }
 
     public static function handleRemoveMemberRequest(Project $Project)
@@ -97,29 +95,29 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         }
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            return static::respond('confirm', array(
+            return static::respond('confirm', [
                 'question' => sprintf(
-                    _('Are you sure you want to remove %s from %s?')
-                    ,htmlspecialchars($Member->FullName)
-                    ,htmlspecialchars($Project->Title)
+                    _('Are you sure you want to remove %s from %s?'),
+                    htmlspecialchars($Member->FullName),
+                    htmlspecialchars($Project->Title)
                 )
-            ));
+            ]);
         }
 
-        $ProjectMember = ProjectMember::getByWhere(array(
-            'ProjectID' => $Project->ID
-            ,'MemberID' => $Member->ID
-        ));
+        $ProjectMember = ProjectMember::getByWhere([
+            'ProjectID' => $Project->ID,
+            'MemberID' => $Member->ID
+        ]);
 
         if ($ProjectMember) {
             $ProjectMember->destroy();
         }
 
-        return static::respond('memberRemoved', array(
-            'data' => $ProjectMember
-            ,'Project' => $Project
-            ,'Member' => $Member
-        ));
+        return static::respond('memberRemoved', [
+            'data' => $ProjectMember,
+            'Project' => $Project,
+            'Member' => $Member
+        ]);
     }
 
     public static function handleChangeMaintainerRequest(Project $Project)
@@ -135,37 +133,37 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         }
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            return static::respond('confirm', array(
+            return static::respond('confirm', [
                 'question' => sprintf(
-                    _('Are you sure you want to make %s the maintainer of %s?')
-                    ,htmlspecialchars($Project->Maintainer->FullName)
-                    ,htmlspecialchars($Project->Title)
+                    _('Are you sure you want to make %s the maintainer of %s?'),
+                    htmlspecialchars($Project->Maintainer->FullName),
+                    htmlspecialchars($Project->Title)
                 )
-            ));
+            ]);
         }
 
         $Project->save();
 
-        return static::respond('maintainerChanged', array(
+        return static::respond('maintainerChanged', [
             'data' => $Project
-        ));
+        ]);
     }
 
     public static function handleUpdatesRequest(Project $Project)
     {
         if ($updateNumber = static::shiftPath()) {
-            $Update = ProjectUpdate::getByWhere(array(
-                'ProjectID' => $Project->ID
-                ,'Number' => $updateNumber
-            ));
+            $Update = ProjectUpdate::getByWhere([
+                'ProjectID' => $Project->ID,
+                'Number' => $updateNumber
+            ]);
 
             if (!$Update) {
                 return static::throwNotFoundError(_('Update not found'));
             }
 
-            return static::respond('projectUpdate', array(
+            return static::respond('projectUpdate', [
                 'data' => $Update
-            ));
+            ]);
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -175,28 +173,30 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
                 return static::throwError(_('Update body cannot be blank'));
             }
 
-            $Update = ProjectUpdate::create(array(
-                'Project' => $Project
-                ,'Number' => $Project->NextUpdate++
-                ,'Body' => $_POST['Body']
-            ), true);
+            $Update = ProjectUpdate::create([
+                'Project' => $Project,
+                'Number' => $Project->NextUpdate++,
+                'Body' => $_POST['Body']
+            ], true);
 
-            return static::respond('projectUpdateCreated', array(
+            return static::respond('projectUpdateCreated', [
                 'data' => $Update
-            ));
+            ]);
         }
 
-        return static::respond('projectUpdates', array(
-            'data' => $Project->Updates
-            ,'Project' => $Project
-        ));
+        return static::respond('projectUpdates', [
+            'data' => $Project->Updates,
+            'Project' => $Project
+        ]);
     }
 
     public static function onRecordSaved(\ActiveRecord $Project, $requestData)
     {
         // assign tags
-        if (isset($requestData['tags'])) {
-            Tag::setTags($Project, $requestData['tags']);
+        if (isset($requestData['tags']) && is_array($requestData['tags'])) {
+            foreach ($requestData['tags'] AS $prefix => $tags) {
+                Tag::setTags($Project, $tags, true, $prefix);
+            }
         }
     }
 }

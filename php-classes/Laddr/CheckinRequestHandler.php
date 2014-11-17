@@ -23,49 +23,49 @@ class CheckinRequestHandler extends RequestHandler
             case '':
             case false:
                 return static::handleCheckinRequest();
-            default: 
+            default:
                 return static::throwNotFoundError();
         }
     }
-    
+
     public static function handleCheckinRequest()
     {
         $GLOBALS['Session']->requireAuthentication();
-        
+
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             return static::throwError('A checkin can only be performed via HTTP POST');
         }
-        
+
         if (empty($_POST['MeetupID'])) {
             return static::throwError('A MeetupID must be provided');
         }
-        
+
         // check for existing checkin for this Member+Meetup
-        $Checkin = MemberCheckin::getByWhere(array(
+        $Checkin = MemberCheckin::getByWhere([
             'MemberID' => $GLOBALS['Session']->PersonID
             ,'MeetupID' => $_POST['MeetupID']
-        ));
-        
+        ]);
+
         // create new checkin if there wasn't an existing one
         if (!$Checkin) {
-            $Checkin = MemberCheckin::create(array(
+            $Checkin = MemberCheckin::create([
                 'MemberID' => $GLOBALS['Session']->PersonID
                 ,'MeetupID' => $_POST['MeetupID']
-            ));
+            ]);
         }
 
         // apply selected project
         $Checkin->ProjectID = empty($_POST['ProjectID']) ? null : $_POST['ProjectID'];
-        
+
         // save checkin to database
         $Checkin->save();
 
-        static::respond('checkinComplete', array(
+        static::respond('checkinComplete', [
             'data' => $Checkin
             ,'success' => true
-        ));
+        ]);
     }
-    
+
     public static function handleTopMembersRequest()
     {
         return static::respond('topMembers', [
@@ -78,7 +78,7 @@ class CheckinRequestHandler extends RequestHandler
             )
         ]);
     }
-    
+
     public static function handleLatestEventsRequest()
     {
         return static::respond('latestEvents', [

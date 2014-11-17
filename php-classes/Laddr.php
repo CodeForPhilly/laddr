@@ -2,9 +2,9 @@
 
 class Laddr
 {
-    static public $siteName;
-    static public $siteAbbr;
-    static public $siteSlogan;
+    public static $siteName;
+    public static $siteAbbr;
+    public static $siteSlogan;
 
     static function __classLoaded()
     {

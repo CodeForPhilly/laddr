@@ -18,75 +18,87 @@ class Project extends \VersionedRecord
     public static $pluralNoun = 'projects'; // a plural noun for this model's object
 
     // gets combined with all the extended layers
-    public static $fields = array(
-        'Title'
-        ,'Handle' => array(
-            'type' => 'string'
-            ,'unique' => true
-        )
-        ,'MaintainerID' => array(
-            'type' => 'uint'
-            ,'notnull' => false
-        )
-        ,'UsersUrl' => array(
-            'type' => 'string'
-            ,'notnull' => falsea
-        )
-        ,'DevelopersUrl' => array(
-            'type' => 'string'
-            ,'notnull' => false
-        )
-        ,'README' => array(
-            'type' => 'clob'
-            ,'notnull' => false
-        )
-        ,'NextUpdate' => array(
-            'type' => 'uint'
-            ,'default' => 1
-        )
-    );
+    public static $fields = [
+        'Title',
+        'Handle' => [
+            'type' => 'string',
+            'unique' => true
+        ],
+        'MaintainerID' => [
+            'type' => 'uint',
+            'notnull' => false
+        ],
+        'UsersUrl' => [
+            'type' => 'string',
+            'notnull' => false
+        ],
+        'DevelopersUrl' => [
+            'type' => 'string',
+            'notnull' => false
+        ],
+        'README' => [
+            'type' => 'clob',
+            'notnull' => false
+        ],
+        'NextUpdate' => [
+            'type' => 'uint',
+            'default' => 1
+        ]
+    ];
 
-    public static $relationships = array(
-        'Maintainer' => array(
-            'type' => 'one-one'
-            ,'class' => 'Person'
-        )
-        ,'Members' => array(
-            'type' => 'many-many'
-            ,'class' => 'Person'
-            ,'linkClass' => 'Laddr\ProjectMember'
-            ,'linkLocal' => 'ProjectID'
-            ,'linkForeign' => 'MemberID'
-            ,'indexField' => 'ID'
-        )
-        ,'Memberships' => array(
-            'type' => 'one-many'
-            ,'class' => 'Laddr\ProjectMember'
-            ,'foreign' => 'ProjectID'
-        )
-        ,'Updates' => array(
-            'type' => 'one-many'
-            ,'class' => 'Laddr\ProjectUpdate'
-            ,'foreign' => 'ProjectID'
-            ,'order' => array('ID' => 'DESC')
-        )
-        ,'Requests' => array(
-            'type' => 'one-many'
-            ,'class' => 'Request'
-        )
-        ,'Comments' => array(
-            'type' => 'context-children'
-            ,'class' => 'Comment'
-            ,'order' => array('ID' => 'DESC')
-        )
-        ,'Tags' => array(
-            'type' => 'many-many'
-            ,'class' => 'Tag'
-            ,'linkClass' => 'TagItem'
-            ,'linkLocal' => 'ContextID'
-            ,'conditions' => array('Link.ContextClass = "Laddr\\\\Project"')
-        )
-    );
+    public static $relationships = [
+        'Maintainer' => [
+            'type' => 'one-one',
+            'class' => \Emergence\People\Person::class
+        ],
+        'Members' => [
+            'type' => 'many-many',
+            'class' => \Emergence\People\Person::class,
+            'linkClass' => ProjectMember::class,
+            'linkLocal' => 'ProjectID',
+            'linkForeign' => 'MemberID',
+            'indexField' => 'ID'
+        ],
+        'Memberships' => [
+            'type' => 'one-many',
+            'class' => ProjectMember::class,
+            'foreign' => 'ProjectID'
+        ],
+        'Updates' => [
+            'type' => 'one-many',
+            'class' => ProjectUpdate::class,
+            'foreign' => 'ProjectID',
+            'order' => ['ID' => 'DESC']
+        ],
+        'Comments' => [
+            'type' => 'context-children',
+            'class' => \Comment::class,
+            'order' => ['ID' => 'DESC']
+        ],
+        'Tags' => [
+            'type' => 'many-many',
+            'class' => \Tag::class,
+            'linkClass' => \TagItem::class,
+            'linkLocal' => 'ContextID',
+            'conditions' => ['Link.ContextClass = "Laddr\\\\Project"']
+        ]
+    ];
+    
+    public static $validators = [
+        'Title' => [
+            'errorMessage' => 'Project title is required'
+        ],
+        'UsersUrl' => [
+            'validator' => 'url',
+            'required' => false,
+            'errorMessage' => 'Users\' URL must be blank or a complete and valid URL'
+        ],
+        'DevelopersUrl' => [
+            'validator' => 'url',
+            'required' => false,
+            'errorMessage' => 'Developers\' URL must be blank or a complete and valid URL'
+        ]
+    ];
 
     public function getValue($name)
     {
@@ -115,43 +127,15 @@ class Project extends \VersionedRecord
         parent::save($deep);
 
         if (!$this->Members) {
-            ProjectMember::create(array(
-                'ProjectID' => $this->ID
-                ,'MemberID' => $this->Maintainer->ID
-                ,'Role' => 'Founder' // _("Founder") -- placeholder to make this string translatable, actual translation is done during rendering though
-            ), true);
+            ProjectMember::create([
+                'ProjectID' => $this->ID,
+                'MemberID' => $this->Maintainer->ID,
+                'Role' => 'Founder' // _("Founder") -- placeholder to make this string translatable, actual translation is done during rendering though
+            ], true);
         }
     }
 
-    public function validate($deep = true)
-    {
-        parent::validate($deep);
-
-        HandleBehavior::onValidate($this, $this->_validator);
-
-        $this->_validator->validate(array(
-            'field' => 'Title'
-            ,'errorMessage' => 'Project title is required'
-        ));
-
-        $this->_validator->validate(array(
-            'field' => 'UsersUrl'
-            ,'validator' => 'url'
-            ,'required' => false
-            ,'errorMessage' => 'Users\' URL must be blank or a complete and valid URL'
-        ));
-
-        $this->_validator->validate(array(
-            'field' => 'DevelopersUrl'
-            ,'validator' => 'url'
-            ,'required' => false
-            ,'errorMessage' => 'Developers\' URL must be blank or a complete and valid URL'
-        ));
-
-        return $this->finishValidation();
-    }
-
-    public function hasMember(\Person $Person)
+    public function hasMember(\Emergence\People\IPerson $Person)
     {
         foreach ($this->Members AS $Member) {
             if ($Member->ID == $Person->ID) {
@@ -169,28 +153,28 @@ class Project extends \VersionedRecord
         // retrieve updates and buzz metadata from database
         try {
             $updates = \DB::allRecords(
-                'SELECT ID, Class, UNIX_TIMESTAMP(Created) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s'
-                ,array(
-                    ProjectUpdate::$tableName
-                    ,$this->ID
-                    ,$limitSql
-                )
+                'SELECT ID, Class, UNIX_TIMESTAMP(Created) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s',
+                [
+                    ProjectUpdate::$tableName,
+                    $this->ID,
+                    $limitSql
+                ]
             );
         } catch (\TableNotFoundException $e) {
-            $updates = array();
+            $updates = [];
         }
 
         try {
             $buzz = \DB::allRecords(
-                'SELECT ID, Class, UNIX_TIMESTAMP(Published) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s'
-                ,array(
-                    ProjectBuzz::$tableName
-                    ,$this->ID
-                    ,$limitSql
-                )
+                'SELECT ID, Class, UNIX_TIMESTAMP(Published) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s',
+                [
+                    ProjectBuzz::$tableName,
+                    $this->ID,
+                    $limitSql
+                ]
             );
         } catch (\TableNotFoundException $e) {
-            $buzz = array();
+            $buzz = [];
         }
 
         // merge, sort, and limit
@@ -202,7 +186,7 @@ class Project extends \VersionedRecord
             }
             return ($a['Timestamp'] > $b['Timestamp']) ? -1 : 1;
         });
-        
+
         if ($limit) {
             $activity = array_slice($activity, 0, $limit);
         }
@@ -211,8 +195,8 @@ class Project extends \VersionedRecord
         return array_map(
             function($result) {
                 return $result['Class']::getByID($result['ID']);
-            }
-            ,$activity
+            },
+            $activity
         );
     }
 }

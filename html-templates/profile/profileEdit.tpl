@@ -4,11 +4,9 @@
 
 {block js-bottom}
     {$dwoo.parent}
-    <script>
-        var tagTitles = {Tag::getAllTitles()|json_encode};
-    </script>
     {jsmin "epiceditor.js"}
     {jsmin "pages/profile-edit.js"}
+    {jsmin "features/tag-fields.js"}
 {/block}
 
 {block "content"}
@@ -75,8 +73,13 @@
         </div>
 
         <div class="field expand">
-            <label for="tagsInput">{_ "Personal Tags"}</label>
-            <input type="text" id="tagsInput" name="tags" placeholder="tech.php, topic.outdoors" value="{refill field=tags default=Tag::getTagsString($.User->Tags)}">
+            <label for="topicTagsInput">{_ "Topics of interest"}</label>
+            <input type="tags" data-tag-prefix="topic" id="topicTagsInput" name="tags[topic]" placeholder="{_ 'Education, Mapping, Crime'}" value="{refill field=tags.topic default=Tag::getTagsString($.User->Tags, topic)}">
+        </div>
+
+        <div class="field expand">
+            <label for="techTagsInput">{_ "Technologies of interest"}</label>
+            <input type="tags" data-tag-prefix="tech" id="techTagsInput" name="tags[tech]" placeholder="{_ 'PHP, Bootstrap, JavaScript'}" value="{refill field=tags.tech default=Tag::getTagsString($.User->Tags, tech)}">
         </div>
 
         <div class="submit">
