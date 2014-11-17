@@ -33,14 +33,14 @@ class MemberCheckin extends \ActiveRecord
             'type' => 'one-one',
             'class' => Project::class
         ]
-    );
+    ];
 
     public static $indexes = [
         'MeetupMember' => [
             'fields' => ['MeetupID', 'MemberID'],
             'unique' => true
         ]
-    );
+    ];
 
     public static function getAllForMeetupByProject($meetupID)
     {
