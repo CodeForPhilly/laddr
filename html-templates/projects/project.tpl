@@ -39,6 +39,11 @@
                     <dd><a href="{$Project->DevelopersUrl|escape}">{$Project->DevelopersUrl|escape}</a></dd>
                 {/if}
 
+                {if $Project->Stage}
+                    <dt>{_ "Stage"}</dt>
+                    <dd><strong>{$Project->Stage}</strong>: {Laddr\Project::getStageDescription($Project->Stage)}</dd>
+                {/if}
+
                 {if $Project->README}
                     <dt>{_ "README"}</dt>
                     <dd class="markdown readme well">{$Project->README|escape|markdown}</dd>

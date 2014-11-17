@@ -6,6 +6,8 @@ use HandleBehavior;
 
 class Project extends \VersionedRecord
 {
+    public static $stageDescriptions = [];
+
     // VersionedRecord configuration
     public static $historyTable = 'history_projects'; // the name of this model's history table
 
@@ -227,5 +229,10 @@ class Project extends \VersionedRecord
         }
 
         return $stages;
+    }
+
+    public static function getStageDescription($stage = null)
+    {
+        return $stage ? static::$stageDescriptions[$stage] : static::$stageDescriptions;
     }
 }
