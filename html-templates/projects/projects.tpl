@@ -61,5 +61,7 @@
             {/if}
         </div> <!-- .row-fluid -->
         <hr>
+    {foreachelse}
+        <em>No projects were found, try creating one{if count($conditions)} or <a href="?">browse without any filters</a>{/if}.</em>
     {/foreach}
 {/block}
