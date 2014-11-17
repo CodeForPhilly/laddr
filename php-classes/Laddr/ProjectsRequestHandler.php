@@ -2,7 +2,7 @@
 
 namespace Laddr;
 
-use User;
+use Emergence\People\User;
 use Tag;
 use Comment;
 
@@ -54,7 +54,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             return static::throwError(_('Parameter "username" required'));
         }
 
-        if (!$Member = USer::getByUsername($_POST['username'])) {
+        if (!$Member = User::getByUsername($_POST['username'])) {
             return static::throwError(_('User not found'));
         }
 
@@ -193,8 +193,10 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
     public static function onRecordSaved(\ActiveRecord $Project, $requestData)
     {
         // assign tags
-        if (isset($requestData['tags'])) {
-            Tag::setTags($Project, $requestData['tags']);
+        if (isset($requestData['tags']) && is_array($requestData['tags'])) {
+            foreach ($requestData['tags'] AS $prefix => $tags) {
+                Tag::setTags($Project, $tags, true, $prefix);
+            }
         }
     }
 }

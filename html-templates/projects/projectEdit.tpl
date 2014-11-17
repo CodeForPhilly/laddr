@@ -4,11 +4,9 @@
 
 {block js-bottom}
     {$dwoo.parent}
-    <script>
-        var tagTitles = {Tag::getAllTitles()|json_encode};
-    </script>
     {jsmin "epiceditor.js"}
     {jsmin "pages/project-edit.js"}
+    {jsmin "features/tag-fields.js"}
 {/block}
 
 {block content}
@@ -56,9 +54,21 @@
             </div>
         </div>
         <div class="control-group">
-            <label for="tagsInput" class="control-label">{_ 'Tags'}:</label>
+            <label for="topicTagsInput" class="control-label">{_ 'Topic Tags'}:</label>
             <div class="controls">
-                <input id="tagsInput" name="tags" placeholder="{_ 'tech.php, topic.outdoors'}" value="{refill field=tags default=Tag::getTagsString($Project->Tags)}"/>
+                <input type="tags" data-tag-prefix="topic" id="topicTagsInput" name="tags[topic]" placeholder="{_ 'Education, Mapping, Crime'}" value="{refill field=tags.topic default=Tag::getTagsString($Project->Tags, topic)}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="techTagsInput" class="control-label">{_ 'Technology Tags'}:</label>
+            <div class="controls">
+                <input type="tags" data-tag-prefix="tech" id="techTagsInput" name="tags[tech]" placeholder="{_ 'PHP, Bootstrap, JavaScript'}" value="{refill field=tags.tech default=Tag::getTagsString($Project->Tags, tech)}"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="eventTagsInput" class="control-label">{_ 'Event Tags'}:</label>
+            <div class="controls">
+                <input type="tags" data-tag-prefix="event" id="eventTagsInput" name="tags[event]" placeholder="{_ 'Education Hackathon 2014'}" value="{refill field=tags.event default=Tag::getTagsString($Project->Tags, event)}"/>
             </div>
         </div>
         <div class="control-group">
