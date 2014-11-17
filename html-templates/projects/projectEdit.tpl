@@ -44,13 +44,14 @@
             <label for="field-url-users" class="control-label">{_ "Users' URL"}:</label>
             <div class="controls">
                 <input name="UsersUrl" id="field-url-users" placeholder="{_ 'http://mypublicapp.org'}"
-                 value="{refill field=UsersUrl default=$Project->UsersUrl}"/>
+                    value="{refill field=UsersUrl default=$Project->UsersUrl}" class="input-xxlarge" />
             </div>
         </div>
         <div class="control-group">
             <label for="field-url-developers" class="control-label">{_ "Developers' URL"}:</label>
             <div class="controls">
-                <input name="DevelopersUrl" id="field-url-developers" placeholder="http://github.com/..." value="{refill field=DevelopersUrl default=$Project->DevelopersUrl}"/>
+                <input name="DevelopersUrl" id="field-url-developers" placeholder="http://github.com/..."
+                    value="{refill field=DevelopersUrl default=$Project->DevelopersUrl}"  class="input-xxlarge"/>
             </div>
         </div>
         <div class="control-group">
