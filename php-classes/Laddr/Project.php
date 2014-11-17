@@ -43,6 +43,19 @@ class Project extends \VersionedRecord
         'NextUpdate' => [
             'type' => 'uint',
             'default' => 1
+        ],
+        'Stage' => [
+            'type' => 'enum',
+            'values' => [
+                'Commenting',
+                'Bootstrapping',
+                'Prototyping',
+                'Testing',
+                'Maintaining',
+                'Drifting',
+                'Hibernating'
+            ],
+            'default' => 'Commenting'
         ]
     ];
 
@@ -83,7 +96,7 @@ class Project extends \VersionedRecord
             'conditions' => ['Link.ContextClass = "Laddr\\\\Project"']
         ]
     ];
-    
+
     public static $validators = [
         'Title' => [
             'errorMessage' => 'Project title is required'
@@ -198,5 +211,21 @@ class Project extends \VersionedRecord
             },
             $activity
         );
+    }
+
+    public static function getStagesSummary()
+    {
+        try {
+            $stages = \DB::allRecords(
+                'SELECT Stage, COUNT(*) AS itemsCount FROM `%s` GROUP BY Stage ORDER BY itemsCount',
+                [
+                    static::$tableName
+                ]
+            );
+        } catch (\TableNotFoundException $e) {
+            $stages = [];
+        }
+
+        return $stages;
     }
 }

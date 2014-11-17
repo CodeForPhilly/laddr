@@ -72,6 +72,39 @@
             </div>
         </div>
         <div class="control-group">
+            <label class="control-label">{_ 'Stage'}:</label>
+            <div class="controls">
+                <label class="radio">
+                    <input type="radio" name="Stage" value="Commenting" {refill field=Stage default=$Project->Stage|default:Commenting checked=Commenting}>
+                    <strong>Commenting</strong>: Initial status for project, it's an idea people are commenting on
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Stage" value="Bootstrapping" {refill field=Stage default=$Project->Stage checked=Bootstrapping}>
+                    <strong>Bootstrapping</strong>: People and resources are being recruited to start
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Stage" value="Prototyping" {refill field=Stage default=$Project->Stage checked=Prototyping}>
+                    <strong>Prototyping</strong>: Something is being built
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Stage" value="Testing" {refill field=Stage default=$Project->Stage checked=Testing}>
+                    <strong>Testing</strong>: Something has been built and some people are using it
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Stage" value="Maintaining" {refill field=Stage default=$Project->Stage checked=Maintaining}>
+                    <strong>Maintaining</strong>: The project is publicly accessible, useable, and responding to ongoing feedback
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Stage" value="Drifting" {refill field=Stage default=$Project->Stage checked=Drifting}>
+                    <strong>Drifting</strong>: The project is still usable but not being actively maintained
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Stage" value="Hibernating" {refill field=Stage default=$Project->Stage checked=Hibernating}>
+                    <strong>Hibernating</strong>: The project is not currently usable or maintained
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
             <label for="README" class="control-label">{_ 'README(.md)'}</label>
             <div class="controls">
                 <textarea name="README" class="input-block-level" rows="10">{refill field=README default=$Project->README}</textarea>

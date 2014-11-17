@@ -55,6 +55,7 @@ $pageData = array();
             'ContextClass' => Laddr\Project::getStaticRootClass()
         )
     ));
+    $pageData['projectsStages'] = Laddr\Project::getStagesSummary();
 
 
 // members

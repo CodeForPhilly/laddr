@@ -43,6 +43,11 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             $conditions[] = 'ID IN (SELECT ContextID FROM tag_items WHERE TagID = '.$Tag->ID.' AND ContextClass = "Laddr\\\\Project")';
         }
 
+        // apply stage filter
+        if (!empty($_REQUEST['stage'])) {
+            $conditions['Stage'] = $_REQUEST['stage'];
+        }
+
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
 

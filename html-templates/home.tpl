@@ -36,7 +36,8 @@
             <header class="btn-group">
                 <a href="#projects-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
                 <a href="#projects-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">{_ "by topic"}</a> |
-                <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byEvent">{_ "by event"}</a>
+                <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byEvent">{_ "by event"}</a> |
+                <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byStage">{_ "by stage"}</a>
             </header>
 
             <ul class="tags nav nav-tabs nav-stacked byTech">
@@ -54,6 +55,12 @@
             <ul class="tags nav nav-tabs nav-stacked byEvent" style="display: none">
                 {foreach item=tag from=$projectsTags.byEvent}
                     <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
+                {/foreach}
+            </ul>
+
+            <ul class="tags nav nav-tabs nav-stacked byStage" style="display: none">
+                {foreach item=stage from=$projectsStages}
+                    <li><a href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a></li>
                 {/foreach}
             </ul>
         </section>
