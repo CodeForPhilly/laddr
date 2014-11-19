@@ -79,28 +79,34 @@ $pageData = array();
 
 
 // build activity stream
-    try {
-        $pageData['activity'] = array_map(
-            function($result) {
-                return $result['Class']::getByID($result['ID']);
-            }
-            ,DB::allRecords(
-                 'SELECT ID, Class, Created AS Timestamp FROM `%s`'
-                .' UNION'
-                .' SELECT ID, Class, Published AS Timestamp FROM `%s`'
-                .' ORDER BY Timestamp DESC LIMIT 10'
-                ,array(
-                    Laddr\ProjectUpdate::$tableName
-                    ,Laddr\ProjectBuzz::$tableName
-                )
-            )
-        );
-    } catch (TableNotFoundException $e) {
-        $pageData['activity'] = Laddr\ProjectUpdate::getAll(array('order' => array('Created' => 'DESC'), 'limit' => 10));
+    if (!$pageData['activity'] = Cache::fetch('home-activity')) {
+        $existingTables = \DB::allValues('table_name', 'SELECT table_name FROM information_schema.TABLES WHERE TABLE_SCHEMA = SCHEMA()');
+        $activityQueries = [];
         
-        if (!count($pageData['activity'])) {
-            $pageData['activity'] = Laddr\ProjectBuzz::getAll(array('order' => array('Published' => 'DESC'), 'limit' => 10));
+        if (in_array(Emergence\CMS\AbstractContent::$tableName, $existingTables)) {
+            $activityQueries[] = sprintf('SELECT ID, Class, Published AS Timestamp FROM `%s`', Emergence\CMS\AbstractContent::$tableName);
         }
+
+        if (in_array(Laddr\ProjectUpdate::$tableName, $existingTables)) {
+            $activityQueries[] = sprintf('SELECT ID, Class, Created AS Timestamp FROM `%s`', Laddr\ProjectUpdate::$tableName);
+        }
+
+        if (in_array(Laddr\ProjectBuzz::$tableName, $existingTables)) {
+            $activityQueries[] = sprintf('SELECT ID, Class, Published AS Timestamp FROM `%s`', Laddr\ProjectBuzz::$tableName);
+        }
+
+        if (count($activityQueries)) {
+            $pageData['activity'] = array_map(
+                function($result) {
+                    return $result['Class']::getByID($result['ID']);
+                }
+                ,DB::allRecords(implode(' UNION ', $activityQueries).' ORDER BY Timestamp DESC LIMIT 10')
+            );
+        } else {
+            $pageData['activity'] = [];
+        }
+
+        Cache::store('home-activity', $pageData['activity'], 30);
     }
 
 

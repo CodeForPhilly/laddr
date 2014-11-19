@@ -183,7 +183,9 @@
                     <em>{_ "No project updates have been posted on this site yet."}</em>
                 {/foreach}
 
-                <a href="/project-updates">{_ "Browse all project updates"}&hellip;</a>
+                <a href="/project-updates" class="btn">{_ "Browse all project updates"}</a>
+                <a href="/project-buzz" class="btn">{_ "Browse all project buzz"}</a>
+                <a href="/blog" class="btn">{_ "Browse all blog posts"}</a>
 
             </div> <!-- .row-fluid -->
         </section>
