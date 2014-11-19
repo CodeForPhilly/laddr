@@ -1,5 +1,6 @@
 {load_templates subtemplates/buzz.tpl}
 {load_templates subtemplates/updates.tpl}
+{load_templates subtemplates/blog.tpl}
 
 {template projectLink Project}
     <a href="{$Project->getURL()}">{$Project->Title|escape}</a>
@@ -22,5 +23,7 @@
         {projectUpdate $Article headingLevel=$headingLevel showHeading=$showHeading showProject=$showProject articleClass=$articleClass}
     {elseif is_a($Article, 'Laddr\\ProjectBuzz')}
         {projectBuzz $Article headingLevel=$headingLevel showHeading=$showHeading showProject=$showProject articleClass=$articleClass}
+    {elseif is_a($Article, 'Emergence\\CMS\\BlogPost')}
+        {blogPost $Article headingLevel=$headingLevel showHeader=$showHeading showContext=$showProject}
     {/if}
 {/template}

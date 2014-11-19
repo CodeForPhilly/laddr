@@ -219,7 +219,7 @@ class Project extends \VersionedRecord
     {
         try {
             $stages = \DB::allRecords(
-                'SELECT Stage, COUNT(*) AS itemsCount FROM `%s` GROUP BY Stage ORDER BY itemsCount',
+                'SELECT Stage, COUNT(*) AS itemsCount FROM `%s` GROUP BY Stage ORDER BY itemsCount DESC',
                 [
                     static::$tableName
                 ]
