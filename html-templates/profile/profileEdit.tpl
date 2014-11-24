@@ -10,8 +10,11 @@
 {/block}
 
 {block "content"}
-    <h1>{_ "Manage Your Profile"}</h1>
-    <hr class="clear" />
+    {$User = $data}
+
+    <header class="page-header">
+        <h1 class="header-title title-1">{if $User->ID == $.User->ID}{_ "Manage Your Profile"}{else}{sprintf(_("Manage %s Profile"), $User->FullNamePossessive|escape)}{/if}</h1>
+    </header>
 
     {if $.get.status == 'photoUploaded'}
         <p class="status highlight">{_ "Photo uploaded."}</p>
@@ -25,115 +28,124 @@
         <p class="status highlight">{_ "Profile saved."}</p>
     {/if}
 
+    <div class="sidebar-layout sidebar-28">
 
-    <form id="uploadPhotoForm" class="generic" action="/profile/uploadPhoto" method="POST" enctype="multipart/form-data">
+        <div class="main-col">
+            <div class="col-inner">
 
-        <fieldset class="section">
-            <legend>{_ Photos}</legend>
-            {strip}
-            <div class="photosGallery clearfix">
-                {foreach item=Photo from=$.User->Photos}
-                    <div class="photo {if $Photo->ID == $.User->PrimaryPhotoID}highlight{/if}">
-                        <div class="photothumb"><img src="{$Photo->getThumbnailRequest(100,100)}"></div>
-                        {*<input type="text" name="Caption[{$Photo->ID}]" class="caption" value="{$Photo->Caption|escape}">*}
-                        <div class="buttons">
-                            <span>{if $Photo->ID != $.Session->Person->PrimaryPhotoID}
-                                <a href="/profile/primaryPhoto?MediaID={$Photo->ID}" alt="Make Default" title="Make Default"><img src="/img/icons/fugue/user-silhouette.png" alt="Make Default" /></a>
-                            {else}
-                                <img src="/img/icons/fugue/user-silhouette.png" alt="Default Photo" class="nofade" />Default
-                            {/if}</span>
-                            <a href="/profile/deletePhoto?MediaID={$Photo->ID}" alt="Delete Photo" title="Delete Photo" onclick="return confirm('Are you sure you want to delete this photo from your profile?');"><img src="/img/icons/fugue/slash.png" alt="Delete Photo" /></a>
+                <form method="POST">
+                    {if ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers)}
+
+                        <fieldset class="stretch">
+                            <h2 class="legend title-3">{sprintf(_("Account Settings (%s only)"), ProfileRequestHandler::$accountLevelEditOthers)}</h2>
+
+                            {field inputName="Username" label=_('Username') default=$User->Username}
+
+                            {capture assign=accountLevelHtml}
+                                <select name="AccountLevel">
+                                    {foreach item=level from=Emergence\People\User::getFieldOptions(AccountLevel, values)}
+                                        <option {refill field=AccountLevel default=$User->AccountLevel selected=$level}>{$level}</option>
+                                    {/foreach}
+                                </select>
+                            {/capture}
+                            {labeledField html=$accountLevelHtml type=select label=_('Account Level')}
+
+                            {capture assign=classHtml}
+                                <select name="Class">
+                                    {foreach item=class from=Emergence\People\User::getFieldOptions(Class, values)}
+                                        <option {refill field=Class default=$User->Class selected=$class}>{$class}</option>
+                                    {/foreach}
+                                </select>
+                            {/capture}
+                            {labeledField html=$classHtml type=select label=_('Person subclass')}
+
+                            <div class="submit-area">
+                                <input type="submit" class="submit" value="{_ 'Save Profile'}">
+                            </div>
+                        </fieldset>
+                    {/if}
+
+                    <fieldset class="stretch">
+                        <h2 class="legend title-2">{_ 'Profile Details'}</h2>
+
+                        {field inputName="Location" label=_("Location") default=$User->Location}
+                        {textarea inputName="About" label=_("About Me") default=$User->About hint=markdown(_("Use [Markdown](http://daringfireball.net/projects/markdown) to give your text some style"))}
+
+                        {load_templates subtemplates/tagsField.tpl}
+    
+                        {tagsField Record=$User prefix=topic label=_("Topics of interest") placeholder=_("Education, Mapping, Crime")}
+                        {tagsField Record=$User prefix=tech label=_("Technologies of interest") placeholder=_("PHP, Bootstrap, JavaScript")}
+
+                        <div class="submit-area">
+                            <input type="submit" class="submit" value="{_ 'Save Profile'}">
                         </div>
-                    </div>
-                {/foreach}
+                    </fieldset>
+
+                    <fieldset class="stretch">
+                        <h2 class="legend title-2">{_ 'Contact Information'}</h2>
+
+                        {field inputName="Email" label="Email" type="email" default=$User->Email}
+                        {field inputName="Phone" label="Phone" type="tel" default=$User->Phone}
+                        {field inputName="Twitter" label="Twitter" type="text" default=$User->Twitter}
+
+                        <div class="submit-area">
+                            <input type="submit" class="submit" value="{_ 'Save Profile'}">
+                        </div>
+                    </fieldset>
+                </form>
+
+                <form action="/profile/password?{refill_query}" method="POST">
+                    <fieldset class="stretch">
+                        <h2 class="legend title-2">{_ 'Change Password'}</h2>
+                        {field inputName="OldPassword" label=_('Old Password') type="password"}
+                        {field inputName="Password" label=_('New Password') type="password"}
+                        {field inputName="PasswordConfirm" label=_('New Password (Confirm)') type="password"}
+
+                        <div class="submit-area">
+                            <input type="submit" class="submit" value="{_ 'Change Password'}">
+                        </div>
+                    </fieldset>
+                </form>
+
             </div>
-            {/strip}
+        </div>
 
-            <div class="field upload">
-                <input type="file" name="photoFile" id="photoFile">
+        <div class="sidebar-col">
+            <div class="col-inner">
+                <form class="profile-photo-form" action="/profile/uploadPhoto?{refill_query}" method="POST" enctype="multipart/form-data">
+                    <fieldset class="stretch">
+                        <h2 class="title-2">{_ 'Profile Photo'}</h2>
+
+                        <div class="current-photo">
+                            {avatar $User size=200}
+                            {if $User->PrimaryPhoto}
+                                <a class="button small block destructive" href="/profile/deletePhoto?{refill_query MediaID=$User->PrimaryPhotoID}">{_ 'Remove This Photo'}</a>
+                            {else}
+                                <div class="muted">{markdown(sprintf(_('Using [Gravatar](//gravatar.com) image for %s.'), $User->Email))}</div>
+                            {/if}
+                        </div>
+
+                        {if $User->Photos}
+                            <ul class="available-photos">
+                                <p class="hint">{_ 'Choose a default:'}</p>
+                            {foreach item=Photo from=$User->Photos}
+                                <li class="photo-item {if $Photo->ID == $User->PrimaryPhotoID}current{/if}">
+                                    {if $Photo->ID != $.Session->Person->PrimaryPhotoID}<a href="/profile/primaryPhoto?{refill_query MediaID=$Photo->ID}" title="{_ 'Make Default'}">{/if}
+                                        <img src="{$Photo->getThumbnailRequest(96, 96, null, true)}" width=48 height=48 alt="">
+                                    {if $Photo->ID != $.Session->Person->PrimaryPhotoID}</a>{/if}
+                                </li>
+                            {/foreach}
+                            </ul>
+                        {/if}
+
+                        <div class="photo-upload field">
+                            <input class="field-control" type="file" name="photoFile">
+                            <input class="field-control submit" type="submit" value="{_ 'Upload New Photo'}">
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-            <div class="submit">
-                <input type="submit" class="submit inline" value="Upload New Photo">
-            </div>
-        </fieldset>
-    </form>
-
-    <form method="POST" id="profileForm" class="generic">
-    <fieldset class="section">
-        <legend>{_ "Profile Details"}</legend>
-        <div class="field">
-            <label for="Location">{_ Location}</label>
-            <input type="text" class="text" id="Location" name="Location" value="{refill field=Location default=$.User->Location}">
         </div>
 
-        <div class="field expand">
-            <label for="about">{_ About}</label>
-            <textarea id="about" name="About">{refill field=About default=$.User->About}</textarea>
-            <p class="hint">{_("Use [Markdown](http://daringfireball.net/projects/markdown) to give your text some style")|markdown}</p>
-        </div>
-
-        <div class="field expand">
-            <label for="topicTagsInput">{_ "Topics of interest"}</label>
-            <input type="tags" data-tag-prefix="topic" id="topicTagsInput" name="tags[topic]" placeholder="{_ 'Education, Mapping, Crime'}" value="{refill field=tags.topic default=Tag::getTagsString($.User->Tags, topic)}">
-        </div>
-
-        <div class="field expand">
-            <label for="techTagsInput">{_ "Technologies of interest"}</label>
-            <input type="tags" data-tag-prefix="tech" id="techTagsInput" name="tags[tech]" placeholder="{_ 'PHP, Bootstrap, JavaScript'}" value="{refill field=tags.tech default=Tag::getTagsString($.User->Tags, tech)}">
-        </div>
-
-        <div class="submit">
-            <input type="submit" class="submit" value="Save profile">
-        </div>
-
-    </fieldset>
-
-
-    <fieldset class="section">
-        <legend>{_ "Contact Information"}</legend>
-        <div class="field">
-            <label for="Email">{_ Email}</label>
-            <input type="email" class="text" id="Email" name="Email" value="{refill field=Email default=$.User->Email}">
-        </div>
-
-        <div class="field">
-            <label for="Phone">{_ Phone}</label>
-            <input type="tel" class="text" id="Phone" name="Phone" value="{refill field=Phone default=$.User->Phone modifier=phone}">
-        </div>
-
-        <div class="field">
-            <label for="Twitter">Twitter</label>
-            <input type="text" class="text" id="Twitter" name="Twitter" value="{refill field=Twitter default=$.User->Twitter}">
-        </div>
-
-        <div class="submit">
-            <input type="submit" class="submit" value="Save profile">
-        </div>
-
-    </fieldset>
-    </form>
-
-
-
-    <form action="/profile/password" method="POST" id="passwordForm" class="generic">
-    <fieldset class="section">
-        <legend>{_ "Change password"}</legend>
-        <div class="field">
-            <label for="oldpassword">{_ "Old Password"}</label>
-            <input type="password" class="text" id="oldpassword" name="OldPassword">
-        </div>
-        <div class="field">
-            <label for="password">{_ "New Password"}</label>
-            <input type="password" class="text" id="password" name="Password">
-            <input type="password" class="text" id="password2" name="PasswordConfirm">
-            <p class="hint">{_ "Please type your new password in both boxes above to make sure it is correct."}</p>
-        </div>
-
-        <div class="submit">
-            <input type="submit" class="submit" value="Save new password">
-        </div>
-
-    </fieldset>
-    </form>
-
+    </div>
 {/block}
