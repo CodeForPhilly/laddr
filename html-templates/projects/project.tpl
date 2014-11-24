@@ -91,7 +91,7 @@
             {/foreach}
         </article>
 
-        <aside class="twitterstream span4">
+        <aside class="span4">
             {if $Project->Memberships}
                 <h3>Members</h3>
 
