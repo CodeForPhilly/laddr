@@ -175,18 +175,19 @@
 
         <section>
             <h2>{_ "Latest Project Activity"}</h2>
-            <div class="row-fluid">
 
+            <div class="row-fluid">
                 {foreach item=Article from=$activity}
                     {projectActivity $Article headingLevel=h3 showProject=true}
                 {foreachelse}
                     <em>{_ "No project updates have been posted on this site yet."}</em>
                 {/foreach}
+            </div> <!-- .row-fluid -->
 
+            <div class="row-fluid">
                 <a href="/project-updates" class="btn">{_ "Browse all project updates"}</a>
                 <a href="/project-buzz" class="btn">{_ "Browse all project buzz"}</a>
                 <a href="/blog" class="btn">{_ "Browse all blog posts"}</a>
-
             </div> <!-- .row-fluid -->
         </section>
     </section>
