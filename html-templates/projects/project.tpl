@@ -17,7 +17,7 @@
                     {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
                         <li><a href="#post-update" data-toggle="modal">{_ "Post Update"}</a></li>
                     {/if}
-                    {if $.Session->hasAccountLevel('Staff')}
+                    {if ($.User && $Project->CreatorID == $.User->ID) || $.Session->hasAccountLevel('Staff')}
                         <li><a href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a></li>
                     {/if}
                 </ul>
@@ -91,7 +91,7 @@
             {/foreach}
         </article>
 
-        <aside class="twitterstream span4">
+        <aside class="span4">
             {if $Project->Memberships}
                 <h3>Members</h3>
 
@@ -171,7 +171,7 @@
         </form>
     {/if}
 
-    {if $.Session->hasAccountLevel('Staff')}
+    {if ($.User && $Project->CreatorID == $.User->ID) || $.Session->hasAccountLevel('Staff')}
         <div id="manage-members" class="modal fade hide">
             <header class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
