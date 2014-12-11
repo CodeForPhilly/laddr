@@ -4,7 +4,7 @@
   xmlns="http://purl.org/rss/1.0/"
   xmlns:dc="http://purl.org/dc/elements/1.1/"
 >
-<channel rdf:about="http://{$.server.HTTP_HOST}{$.server.REQUEST_URI}">
+<channel rdf:about="http://{$.server.HTTP_HOST}{$.server.REQUEST_URI|escape}">
     <title>{if $Project}{$Project->Title|escape} &#8212; {/if}Project Updates</title>
     <link>http://{Site::getConfig(primary_hostname)}/project-updates{if $Project}?ProjectID={$Project->ID}{/if}</link>
     <description>Updates from {if $Project}project {$Project->Title|escape}{else}all projects{/if} on {Laddr::$siteName}</description>
