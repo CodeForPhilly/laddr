@@ -69,11 +69,9 @@
             </ul>
         {/if}
 
-        <h3>{_ "Last event checkin"}</h3>
         {if $Person->LastCheckin}
+            <h3>{_ "Last event checkin"}</h3>
             <a href="{RemoteSystems\Meetup::getEventUrl($Person->LastCheckin->MeetupID)}">{$Person->LastCheckin->Created|date_format:'%c'}</a>
-        {else}
-            <p>{_ Never}</p>
         {/if}
     </div>
 {/block}
