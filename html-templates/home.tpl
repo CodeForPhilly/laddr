@@ -34,20 +34,20 @@
             <h4><a href="/projects">{_ "Projects"} <span class="badge badge-info">{$projectsTotal|number_format}</span></a></h4>
 
             <header class="btn-group">
-                <a href="#projects-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
-                <a href="#projects-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">{_ "by topic"}</a> |
+                <a href="#projects-by-topic" class="tagFilter active btn btn-mini" data-group="byTopic">{_ "by topic"}</a> |
+                <a href="#projects-by-tech" class="tagFilter btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
                 <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byEvent">{_ "by event"}</a> |
                 <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byStage">{_ "by stage"}</a>
             </header>
 
-            <ul class="tags nav nav-tabs nav-stacked byTech">
-                {foreach item=tag from=$projectsTags.byTech}
+            <ul class="tags nav nav-tabs nav-stacked byTopic">
+                {foreach item=tag from=$projectsTags.byTopic}
                     <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
                 {/foreach}
             </ul>
 
-            <ul class="tags nav nav-tabs nav-stacked byTopic" style="display: none">
-                {foreach item=tag from=$projectsTags.byTopic}
+            <ul class="tags nav nav-tabs nav-stacked byTech" style="display: none">
+                {foreach item=tag from=$projectsTags.byTech}
                     <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
                 {/foreach}
             </ul>
