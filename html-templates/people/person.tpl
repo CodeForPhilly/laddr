@@ -1,6 +1,6 @@
 {extends "designs/site.tpl"}
 
-{block "title"}{$data->FullNamePossessive} Profile &mdash; {$dwoo.parent}{/block}
+{block "title"}{$data->FullName} &mdash; {$dwoo.parent}{/block}
 
 
 {block "content"}
