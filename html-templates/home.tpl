@@ -34,20 +34,20 @@
             <h4><a href="/projects">{_ "Projects"} <span class="badge badge-info">{$projectsTotal|number_format}</span></a></h4>
 
             <header class="btn-group">
-                <a href="#projects-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
-                <a href="#projects-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">{_ "by topic"}</a> |
+                <a href="#projects-by-topic" class="tagFilter active btn btn-mini" data-group="byTopic">{_ "by topic"}</a> |
+                <a href="#projects-by-tech" class="tagFilter btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
                 <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byEvent">{_ "by event"}</a> |
                 <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byStage">{_ "by stage"}</a>
             </header>
 
-            <ul class="tags nav nav-tabs nav-stacked byTech">
-                {foreach item=tag from=$projectsTags.byTech}
+            <ul class="tags nav nav-tabs nav-stacked byTopic">
+                {foreach item=tag from=$projectsTags.byTopic}
                     <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
                 {/foreach}
             </ul>
 
-            <ul class="tags nav nav-tabs nav-stacked byTopic" style="display: none">
-                {foreach item=tag from=$projectsTags.byTopic}
+            <ul class="tags nav nav-tabs nav-stacked byTech" style="display: none">
+                {foreach item=tag from=$projectsTags.byTech}
                     <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
                 {/foreach}
             </ul>
@@ -116,58 +116,7 @@
     </nav>
 
     <aside class="sidebar right meetups">
-
-        {if $currentMeetup}
-            <article class="meetup meetup-current">
-                <h3>{_ "Current Meetup"}</h3>
-                {meetup $currentMeetup showRsvp=false}
-                <form class="checkin" action="/checkin" method="POST">
-                    <input type="hidden" name="MeetupID" value="{$currentMeetup.id}">
-                    <select name="ProjectID" class="project-picker">
-                        <option value="">Current Project (if any)</option>
-                        {foreach item=Project from=Laddr\Project::getAll()}
-                            <option value="{$Project->ID}">{$Project->Title|escape}</option>
-                        {/foreach}
-                    </select>
-                    <input type="submit" value="Check In" class="btn btn-success">
-                </form>
-                <aside class="checkins">
-                    <h4>{_ "Checked-in Members"}</h4>
-                    {$lastProjectID = false}
-                    <h5 class="muted">{_ "No Current Project"}</h5>
-                    <ul class="nav nav-pills nav-stacked">
-                    {foreach item=Checkin from=$currentMeetup.checkins}
-                        {if $Checkin->ProjectID != $lastProjectID || $lastProjectID === false}
-                            {if $lastProjectID}
-                                </ul>
-                            {/if}
-                            <h5>{if $Checkin->Project}{projectLink $Checkin->Project}{/if}</h5>
-                            {$lastProjectID = $Checkin->ProjectID}
-                            <ul class="nav nav-pills nav-stacked">
-                        {/if}
-                        <li>{personLink $Checkin->Member photo=yes photoSize=32}</li>
-                    {/foreach}
-                    </ul>
-                </aside>
-            </article>
-        {/if}
-
-        {if $nextMeetup}
-            <article class="meetup meetup-next">
-                <h3>{_ "Next Meetup"}</h3>
-                {meetup $nextMeetup}
-            </article>
-        {/if}
-
-        {if count($futureMeetups)}
-            <h3>{_ "Future Meetups"}</h3>
-            {foreach item=futureMeetup from=$futureMeetups}
-                <article class="meetup meetup-future">
-                    {meetup $futureMeetup}
-                </article>
-            {/foreach}
-        {/if}
-
+        {include includes/home.meetups.tpl}
     </aside>
 
     <section class="content fixed-fixed">
