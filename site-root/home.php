@@ -84,7 +84,18 @@ $pageData = array();
         $activityQueries = [];
         
         if (in_array(Emergence\CMS\AbstractContent::$tableName, $existingTables)) {
-            $activityQueries[] = sprintf('SELECT ID, Class, Published AS Timestamp FROM `%s`', Emergence\CMS\AbstractContent::$tableName);
+            $activityQueries[] = sprintf(
+                'SELECT'
+                .'  ID, Class, Published AS Timestamp'
+                .' FROM `%s`'
+                .' WHERE'
+                .'  Class = "%s" AND'
+                .'  Visibility = "Public" AND'
+                .'  Status = "Published" AND'
+                .'  (Published IS NULL OR Published <= CURRENT_TIMESTAMP)',
+                Emergence\CMS\AbstractContent::$tableName,
+                DB::escape(Emergence\CMS\BlogPost::class)
+            );
         }
 
         if (in_array(Laddr\ProjectUpdate::$tableName, $existingTables)) {
@@ -105,7 +116,6 @@ $pageData = array();
         } else {
             $pageData['activity'] = [];
         }
-
         Cache::store('home-activity', $pageData['activity'], 30);
     }
 
