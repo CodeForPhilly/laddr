@@ -26,11 +26,11 @@
                         <div class="markdown readme">{$Project->README|escape|markdown}</div>
                     {/if}
                     {if $Project->UsersUrl}
-                        For Users: <a href="{$Project->UsersUrl|escape}">{$Project->UsersUrl|escape}</a>
+                        {_ "For Users:"} <a href="{$Project->UsersUrl|escape}">{$Project->UsersUrl|escape}</a>
                         <br/>
                     {/if}
                     {if $Project->DevelopersUrl}
-                        For Developers: <a href="{$Project->DevelopersUrl|escape}">{$Project->DevelopersUrl|escape}</a>
+                        {_ "For Developers:"} <a href="{$Project->DevelopersUrl|escape}">{$Project->DevelopersUrl|escape}</a>
                     {/if}
                 </div>
             </div>
@@ -61,5 +61,7 @@
             {/if}
         </div> <!-- .row-fluid -->
         <hr>
+    {foreachelse}
+        <em>No projects were found, try creating one{if count($conditions)} or <a href="?">browse without any filters</a>{/if}.</em>
     {/foreach}
 {/block}

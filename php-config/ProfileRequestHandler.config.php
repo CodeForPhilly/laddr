@@ -11,7 +11,9 @@ ProfileRequestHandler::$onBeforeProfileValidated = function($User, $profileChang
 
 ProfileRequestHandler::$onProfileSaved = function($User, $profileChanges, $requestData) {
     // assign tags
-    if (isset($requestData['tags'])) {
-        Tag::setTags($User, $requestData['tags']);
+    if (isset($requestData['tags']) && is_array($requestData['tags'])) {
+        foreach ($requestData['tags'] AS $prefix => $tags) {
+            Tag::setTags($User, $tags, true, $prefix);
+        }
     }
 };

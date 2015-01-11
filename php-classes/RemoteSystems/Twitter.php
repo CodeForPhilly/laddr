@@ -14,11 +14,11 @@ class Twitter
         $params = array_merge(static::$defaultTweetIntentParams, array(
             'text' => $text
         ), $params);
-        
+
         if (static::$siteHandle) {
             $params['via'] = static::$siteHandle;
         }
-        
+
         return '//twitter.com/intent/tweet/?' . http_build_query($params);
     }
 }

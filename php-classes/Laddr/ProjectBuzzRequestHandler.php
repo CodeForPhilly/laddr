@@ -7,12 +7,12 @@ use MediaRequestHandler;
 
 class ProjectBuzzRequestHandler extends \RecordsRequestHandler
 {
-    public static $recordClass = 'Laddr\ProjectBuzz';
+    public static $recordClass = ProjectBuzz::class;
     public static $accountLevelBrowse = false;
     public static $accountLevelWrite = 'User';
-    public static $browseOrder = array('Published' => 'DESC');
+    public static $browseOrder = ['Published' => 'DESC'];
 
-    public static function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
+    public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
         if (!empty($_GET['ProjectID']) && ctype_digit($_GET['ProjectID']) && ($Project = Project::getByID($_GET['ProjectID']))) {
             $conditions['ProjectID'] = $Project->ID;
@@ -30,11 +30,11 @@ class ProjectBuzzRequestHandler extends \RecordsRequestHandler
         MediaRequestHandler::$responseMode = 'return';
 
         if (!empty($_FILES['image'])) {
-            $uploadResponse = MediaRequestHandler::handleUploadRequest(array(
-                'fieldName' => 'image'
-                ,'ContextClass' => 'Buzz'
-                ,'ContextID' => $Buzz->ID
-            ));
+            $uploadResponse = MediaRequestHandler::handleUploadRequest([
+                'fieldName' => 'image',
+                'ContextClass' => 'Buzz',
+                'ContextID' => $Buzz->ID
+            ]);
 
             if ($uploadResponse['responseID'] == 'uploadComplete') {
                 $Buzz->Image = $uploadResponse['data']['data'];
