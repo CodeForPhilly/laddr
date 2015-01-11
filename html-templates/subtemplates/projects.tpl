@@ -24,6 +24,6 @@
     {elseif is_a($Article, 'Laddr\\ProjectBuzz')}
         {projectBuzz $Article headingLevel=$headingLevel showHeading=$showHeading showProject=$showProject articleClass=$articleClass}
     {elseif is_a($Article, 'Emergence\\CMS\\BlogPost')}
-        {blogPost $Article headingLevel=$headingLevel showHeader=$showHeading showContext=$showProject}
+        {blogPost $Article headingLevel=$headingLevel showHeader=$showHeading showContext=$showProject useSummary=true}
     {/if}
 {/template}
