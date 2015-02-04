@@ -6,7 +6,7 @@
         {foreach item=Person from=$data}
             <li class="span2">
                 <div class="thumbnail">
-                    {personLink $Person photo=yes photoSize=200}
+                    {personLink $Person photo=yes photoSize=150}
                 </div>
              </li>
         {/foreach}
