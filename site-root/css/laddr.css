@@ -6,6 +6,10 @@ body {
     padding-top: 40px; /* Padding at top of screen for fixed navbar as recommended in bootstrap docs */
 }
 
+.reading-width {
+    max-width: 40em;
+}
+
 .navbar .avatar {
     height: 18px;
 }
@@ -64,4 +68,13 @@ footer.site {
     margin-top: 20px;
     padding: 1em;
     border-top: 1px dashed #aaa;
+}
+
+/* Blog posts */
+.blogPost-tpl .blog-post {
+    margin: 3em auto;
+}
+
+.content-media {
+    text-align: center;
 }
