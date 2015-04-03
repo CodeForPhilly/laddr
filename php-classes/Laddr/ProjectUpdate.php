@@ -49,4 +49,9 @@ class ProjectUpdate extends \VersionedRecord
 
         return $success;
     }
+
+    public function getTitle()
+    {
+        return $this->Project->Title . ' Update #' . $this->Number;
+    }
 }
