@@ -51,6 +51,8 @@
     {/if}
 {/block}
 
+{block "js-analytics"}{*Ignore this page for analytics*}{/block}
+
 {block content-wrapper-open}<div class="container-fluid bigscreen-content">{/block}
 {block content}
     <div class="row-fluid">
