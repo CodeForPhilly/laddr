@@ -8,7 +8,7 @@
 {block header}
     {$dwoo.parent}
 
-    <div class="hero-unit">
+    <div class="jumbotron">
         <div class="caption">
             <img src="{versioned_url img/logo.png}" class="logo" alt="{Laddr::$siteName|escape}">
             <p>{Laddr::$siteSlogan|escape}</p>
@@ -28,91 +28,113 @@
     {/template}
 
     <nav class="sidebar left">
+    <!-- PROJECTS BLOCK -->
+        <section class="tagsSummary projects ">
+            <h4><a href="/projects">{_ "Projects"} <span class="badge badge-info">{$projectsTotal|number_format}</span></a>
+            <a class="btn btn-success btn-xs pull-right" href="/projects/create">{_ "+ project"}</a></h4>
 
-        <section class="tagsSummary projects">
-            <a class="btn btn-success btn-mini pull-right" href="/projects/create">{_ "Add project"}</a>
-            <h4><a href="/projects">{_ "Projects"} <span class="badge badge-info">{$projectsTotal|number_format}</span></a></h4>
-
-            <header class="btn-group">
-                <a href="#projects-by-topic" class="tagFilter active btn btn-mini" data-group="byTopic">{_ "by topic"}</a> |
-                <a href="#projects-by-tech" class="tagFilter btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
-                <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byEvent">{_ "by event"}</a> |
-                <a href="#projects-by-event" class="tagFilter btn btn-mini" data-group="byStage">{_ "by stage"}</a>
+            <header class="btn-group btn-group-justified btn-group-xs" role="group">
+                <a href="#projects-by-topic" class="tagFilter active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
+                <a href="#projects-by-tech" class="tagFilter btn btn-default" role="button" data-group="byTech">{_ "tech"}</a>
+                <a href="#projects-by-event" class="tagFilter btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
+                <a href="#projects-by-event" class="tagFilter btn btn-default" role="button" data-group="byStage">{_ "stages"}</a>
             </header>
 
-            <ul class="tags nav nav-tabs nav-stacked byTopic">
+            <ul class="tags list-group byTopic">
                 {foreach item=tag from=$projectsTags.byTopic}
-                    <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
+                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/projects"}</li>
                 {/foreach}
             </ul>
 
-            <ul class="tags nav nav-tabs nav-stacked byTech" style="display: none">
+            <ul class="tags list-group byTech" style="display: none">
                 {foreach item=tag from=$projectsTags.byTech}
-                    <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
+                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/projects"}</li>
                 {/foreach}
             </ul>
 
-            <ul class="tags nav nav-tabs nav-stacked byEvent" style="display: none">
+            <ul class="tags list-group byEvent" style="display: none">
                 {foreach item=tag from=$projectsTags.byEvent}
-                    <li>{tagLink tagData=$tag rootUrl="/projects"}</li>
+                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/projects"}</li>
                 {/foreach}
             </ul>
 
-            <ul class="tags nav nav-tabs nav-stacked byStage" style="display: none">
+            <ul class="tags list-group byStage" style="display: none">
                 {foreach item=stage from=$projectsStages}
-                    <li><a href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a></li>
+                    <li class="list-group-item"><a href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a></li>
                 {/foreach}
             </ul>
         </section>
 
+<!-- MEMBERS BLOCK -->
         <section class="tagsSummary members">
             <h4><a href="/people">{_ "Members"} <span class="badge badge-info">{$membersTotal|number_format}</span></a></h4>
 
-            <header class="btn-group">
-                <a href="#members-by-tech" class="tagFilter active btn btn-mini" data-group="byTech">{_ "by tech"}</a> |
-                <a href="#members-by-topic" class="tagFilter btn btn-mini" data-group="byTopic">{_ "by topic"}</a>
+            <header class="btn-group btn-group-justified btn-group-xs" role="group">
+                <a href="#members-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
+                <a href="#members-by-project" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "projects"}</a>
             </header>
 
-            <ul class="tags nav nav-tabs nav-stacked byTech">
+            <ul class="tags list-group byTech">
                 {foreach item=tag from=$membersTags.byTech}
-                    <li>{tagLink tagData=$tag rootUrl="/people"}</li>
+                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/people"}</li>
                 {/foreach}
             </ul>
 
-            <ul class="tags nav nav-tabs nav-stacked byTopic" style="display: none">
+            <ul class="tags list-group byTopic" style="display: none">
                 {foreach item=tag from=$membersTags.byTopic}
-                    <li>{tagLink tagData=$tag rootUrl="/people"}</li>
+                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/people"}</li>
                 {/foreach}
             </ul>
         </section>
 
-        {include includes/home.resources.tpl}
+{*
+<!-- EVENTS BLOCK -->
+        <section class="tagsSummary events">
+            <h4><a href="/events">Events <span class="badge badge-info">108</span></a></h4>
 
-        {*
-        <a href="#"><h5>Events (108)</h5></a>
-        <ul>
-            <li><a href="#">Workshops (100/3)</h3></a></li>
-            <li><a href="#">Hackathons (10/4)</h3></a></li>
-            <li><a href="#">Social (6/3)</h3></a></li>
-        </ul>
-        <h6><a href="#">event count</a> | <a href="#">next closest</a></h6>
+            <header class="btn-group btn-group-justified btn-group-xs" role="group">
+                <a href="#events-by-date" class="tagFilter active btn btn-default" role="button" data-group="byDate">{_ "dates"}</a>
+                <a href="#events-by-topic" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
+            </header>
+            <ul class="tags list-group">
+                <li class="list-group-item"><a href="#">Workshops <span class="badge pull-right">100/3</span></a></li>
+                <li class="list-group-item"><a href="#">Hackathons <span class="badge pull-right">10/4</span></a></li>
+                <li class="list-group-item"><a href="#">Social <span class="badge pull-right">6/3</span></a></li>
+            </ul>
+        </section>
 
-        <a href="#"><h5>Help Wanted (10)</h5></a>
-        <ul>
-            <li><a href="#">PHP (1)</a></li>
-            <li><a href="#">JS (2)</a></li>
-            <li><a href="#">Python (100)</a></li>
-            <li><a href="#">Rails (42)</a></li>
-        </ul>
-        <h6><a href="#">job count</a> | <a href="#">by tech</a></h6>
+<!-- HELP WANTED BLOCK -->
+        <section class="tagsSummary wanted">
+            <h4><a href="/wanted">Help Wanted <span class="badge badge-info">10</span></a></h4>
+            <header class="btn-group btn-group-justified btn-group-xs" role="group">
+                <a href="#wanted-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
+                <a href="#wanted-by-event" class="tagFilter btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
+                <a href="#wanted-by-topic" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
+            </header>
+            <ul class="tags list-group">
+                <li class="list-group-item"><a href="#">PHP <span class="badge pull-right">1</span></a></li>
+                <li class="list-group-item"><a href="#">JS <span class="badge pull-right">2</span></a></li>
+                <li class="list-group-item"><a href="#">Python <span class="badge pull-right">100</span></a></li>
+                <li class="list-group-item"><a href="#">Rails <span class="badge pull-right">42</span></a></li>
+            </ul>
+        </section>
 
-        <a href="#"><h5>Help Offered</h5></a>
-        <ul>
-            <li><a href="#">Django (2)</a></li>
-            <li><a href="#">Node.js (1)</a></li>
-        </ul>
-        <h6><a href="#">job count</a> | <a href="#">by tech</a></h6>
-        *}
+<!-- HELP OFFERED BLOCK -->
+        <section class="tagsSummary offered">
+            <h4><a href="/offered">Help Offered <span class="badge badge-info">8</span></a></h4>
+            <header class="btn-group btn-group-justified btn-group-xs" role="group">
+                <a href="#wanted-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
+                <a href="#wanted-by-event" class="tagFilter btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
+                <a href="#wanted-by-topic" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
+            </header>
+            <ul class="tags list-group">
+                <li class="list-group-item"><a href="#">Django <span class="badge pull-right">2</span></a></li>
+                <li class="list-group-item"><a href="#">Node.js <span class="badge pull-right">1</span></a></li>
+            </ul>
+         </section>
+*}
+
+    {* include includes/home.resources.tpl *}
     </nav>
 
     <aside class="sidebar right meetups">

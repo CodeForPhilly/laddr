@@ -1,4 +1,4 @@
-.hero-unit {
+.jumbotron {
     background: url(/img/cover.jpg) no-repeat center;
     background-size: cover;
     border-radius: 0;
@@ -6,58 +6,59 @@
     color: white;
 }
 
-.hero-unit .caption {
+.jumbotron .caption {
     background-color: rgba(0, 0, 0, 0.65);
     border-radius: 3px;
     width: auto;
     max-width: 60%;
     display: inline-block;
     padding: 25px;
+    margin-left: 25px;
 }
 
 /*
-.hero-unit h1 {
+.jumbotron h1 {
     margin: 0;
 }
 */
 
-.hero-unit .logo {
+.jumbotron .logo {
     float: left;
     height: 10em;
     margin-right: 1em;
 }
 
-.hero-unit p {
+.jumbotron p {
     margin: 10px 0 0;
 }
 
-.hero-unit footer {
+.jumbotron footer {
 
 }
 
 @media (min-width: 1400px) {
-    .hero-unit {
+    .jumbotron {
         min-height: 400px;
     }
 }
 
 @media (max-width: 768px) {
-    .hero-unit {
+    .jumbotron {
         margin-right: -20px;
         margin-left: -20px;
     }
 
-    .hero-unit .caption {
+    .jumbotron .caption {
         max-width: none;
     }
 
-    .hero-unit h1 {
+    .jumbotron h1 {
         font-size: 40px;
     }
 }
 
 @media (max-width: 480px) {
-    .hero-unit {
+    .jumbotron {
         padding: 1em;
     }
 }

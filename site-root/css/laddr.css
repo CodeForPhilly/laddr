@@ -48,6 +48,73 @@ body {
     }
 }
 
+/* Site search results */
+.site-search {
+    position: relative;
+    padding: 0;
+}
+
+    .site-search .search-results {
+        background-color: white;
+        box-shadow: 0 0 1em rgba(black, .4);
+        left: 1px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 1px;
+        top: 100%;
+        z-index: 99;
+    }
+
+    .site-search .group-title {
+        background-color: #666;
+        color: white;
+        font-size: 1em;
+        margin: 0;
+        padding: 0 1em;
+        text-shadow: none;
+        text-transform: uppercase;
+    }
+    
+    .site-search .search-result {
+        border-top: 1px solid rgba(black, .2);
+        display: block;
+        line-height: 1.3;
+        margin: 0;
+        padding: 0;
+    }
+        .site-search .search-result .muted {
+            font-weight: normal;
+            color: #999;
+        }
+
+        .site-search .search-result > a {
+            color: #333;
+            display: block;
+            padding: .75em 1em;
+            text-decoration: none;
+            text-shadow: none;
+        }
+            .site-search .search-result > a:hover,
+            .site-search .search-result > a:focus {
+                background-color: #AAA;
+            }
+
+            .site-search .search-result > a:active {
+                background-color: #CCC;
+            }
+
+        .site-search .search-result:first-of-type {
+            border-top: none;
+        }
+
+    .site-search .more-link {
+        text-align: center;
+    }
+
+
+/* Misc */
 .avatar {
     background-position: center;
     background-size: cover;
@@ -63,12 +130,24 @@ body {
     width: 100%;
 }
 
+.badge.badge-info {
+    line-height: .8;
+    background-color: #43B041;
+    border-radius: 5px;
+    vertical-align: 6%;
+}
+
+.well {
+    margin-top: 18px;
+}
+
 footer.site {
     text-align: center;
     margin-top: 20px;
     padding: 1em;
     border-top: 1px dashed #aaa;
 }
+
 
 /* Blog posts */
 .blogPost-tpl .blog-post {

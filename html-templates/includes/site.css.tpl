@@ -4,7 +4,6 @@
 *}
 {cssmin array(
     'bootstrap/bootstrap.css'
-    ,'bootstrap/bootstrap-responsive.css'
     ,'bootstrap-combobox.css'
     ,'bootstrap-tagsinput.css'
     ,'laddr.css'

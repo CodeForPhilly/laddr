@@ -4,12 +4,10 @@
 *}
 {jsmin array(
     'jquery.min.js'
-    ,'bootstrap/bootstrap-collapse.js'
-    ,'bootstrap/bootstrap-typeahead.js'
-    ,'bootstrap/bootstrap-dropdown.js'
-    ,'bootstrap/bootstrap-modal.js'
-    ,'bootstrap/bootstrap-modal.js'
-    ,'bootstrap/bootstrap-tooltip.js'
+    ,'bootstrap.js'
+    ,'typeahead.bundle.js'
     ,'bootstrap-combobox.js'
     ,'bootstrap-tagsinput.js'
+    ,'features/site-search.js'
+    ,'features/site-search-renderers/*'
 )}
