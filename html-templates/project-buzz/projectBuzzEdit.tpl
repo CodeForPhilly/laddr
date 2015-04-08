@@ -73,7 +73,7 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn-small btn btn-primary" value="{tif $Buzz->isPhantom ? 'Create Buzz' : 'Save Changes'}"/>
+                <input type="submit" class="btn-sm btn btn-primary" value="{tif $Buzz->isPhantom ? 'Create Buzz' : 'Save Changes'}"/>
             </div>
         </div>
     </form>

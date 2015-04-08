@@ -110,7 +110,7 @@
             <div class="controls">
                 <textarea name="README" class="input-block-level" rows="10">{refill field=README default=$Project->README}</textarea>
                 <br/><br/>
-                <input type="submit" class="btn-small btn" value="{if $Project->isPhantom}{_ 'Create Project'}{else}{_ 'Save Changes'}{/if}"/>
+                <input type="submit" class="btn-sm btn btn-default" value="{if $Project->isPhantom}{_ 'Create Project'}{else}{_ 'Save Changes'}{/if}"/>
             </div>
         </div>
     </form>

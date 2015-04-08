@@ -7,8 +7,8 @@
             <{$headingLevel}>
                 {if Laddr\ProjectBuzzRequestHandler::checkWriteAccess($Buzz)}
                     <div class="btn-group pull-right">
-                        <a href="{$Buzz->getURL()}/edit" class="btn btn-mini">{_ Edit}</a>
-                        <a href="{$Buzz->getURL()}/delete" class="btn btn-mini btn-warning">{_ Delete}</a>
+                        <a href="{$Buzz->getURL()}/edit" class="btn btn-xs">{_ Edit}</a>
+                        <a href="{$Buzz->getURL()}/delete" class="btn btn-xs btn-warning">{_ Delete}</a>
                     </div>
                 {/if}
                 {if $showProject}

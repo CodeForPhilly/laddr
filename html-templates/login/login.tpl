@@ -53,7 +53,7 @@
                             <label class="checkbox" for="_LOGIN[remember]">
                                 <input type="checkbox" name="_LOGIN[remember]"/> {_ "Remember me"}
                             </label>
-                            <input type="submit" class="btn btn-small" value="{_ Login}"/>
+                            <input type="submit" class="btn btn-default btn-sm" value="{_ Login}"/>
                         </div>
                     </div>
 

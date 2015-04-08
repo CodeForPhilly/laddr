@@ -7,8 +7,8 @@
             <{$headingLevel}>
                 {if Laddr\ProjectUpdatesRequestHandler::checkWriteAccess($Update)}
                     <div class="btn-group pull-right">
-                        <a href="{$Update->getURL()}/edit" class="btn btn-mini">{_ Edit}</a>
-                        <a href="{$Update->getURL()}/delete" class="btn btn-mini btn-warning">{_ Delete}</a>
+                        <a href="{$Update->getURL()}/edit" class="btn btn-xs">{_ Edit}</a>
+                        <a href="{$Update->getURL()}/delete" class="btn btn-xs btn-warning">{_ Delete}</a>
                     </div>
                 {/if}
                 {if $showProject}
