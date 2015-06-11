@@ -1,3 +1,4 @@
+{load_templates subtemplates/glyphicons.tpl}
 {load_templates subtemplates/timestamp.tpl}
 {load_templates subtemplates/people.tpl}
 {load_templates subtemplates/contentBlocks.tpl}

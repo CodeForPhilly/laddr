@@ -6,6 +6,7 @@
     'bootstrap/bootstrap.css'
     ,'bootstrap-combobox.css'
     ,'bootstrap-tagsinput.css'
+    ,'bootstrap-typeahead.css'
     ,'laddr.css'
     ,'pages/*'
     ,'branding/*'

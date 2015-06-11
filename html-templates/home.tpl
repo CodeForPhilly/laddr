@@ -13,7 +13,7 @@
             <img src="{versioned_url img/logo.png}" class="logo" alt="{Laddr::$siteName|escape}">
             <p>{Laddr::$siteSlogan|escape}</p>
             <p>
-                <a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-primary">{_ "Start Hacking"}</a>
+                <a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-lg btn-primary">{glyph "fire"}&nbsp;{_ "Start Hacking"}</a>
                 <small>or <a href="/mission">{_ "Learn More"}&hellip;</a></small>
             </p>
         </div>
@@ -23,15 +23,15 @@
 {block content-wrapper-open}<div class="container-fluid">{/block}
 {block content}
 
-    {template tagLink tagData rootUrl}
-        <a href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
+    {template tagLink tagData rootUrl linkCls=""}
+        <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
     {/template}
 
     <nav class="sidebar left">
     <!-- PROJECTS BLOCK -->
         <section class="tagsSummary projects ">
-            <h4><a href="/projects">{_ "Projects"} <span class="badge badge-info">{$projectsTotal|number_format}</span></a>
-            <a class="btn btn-success btn-xs pull-right" href="/projects/create">{_ "+ project"}</a></h4>
+            <h4><a href="/projects">{_ "Projects"} <span class="badge">{$projectsTotal|number_format}</span></a>
+            <a class="btn btn-success btn-xs pull-right" href="/projects/create">{glyph "plus"}&nbsp;{_ "Add Project"}</a></h4>
 
             <header class="btn-group btn-group-justified btn-group-xs" role="group">
                 <a href="#projects-by-topic" class="tagFilter active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
@@ -40,51 +40,51 @@
                 <a href="#projects-by-event" class="tagFilter btn btn-default" role="button" data-group="byStage">{_ "stages"}</a>
             </header>
 
-            <ul class="tags list-group byTopic">
+            <div class="tags list-group byTopic">
                 {foreach item=tag from=$projectsTags.byTopic}
-                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/projects"}</li>
+                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
                 {/foreach}
-            </ul>
+            </div>
 
-            <ul class="tags list-group byTech" style="display: none">
+            <div class="tags list-group byTech" style="display: none">
                 {foreach item=tag from=$projectsTags.byTech}
-                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/projects"}</li>
+                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-grou-item"}
                 {/foreach}
-            </ul>
+            </div>
 
-            <ul class="tags list-group byEvent" style="display: none">
+            <div class="tags list-group byEvent" style="display: none">
                 {foreach item=tag from=$projectsTags.byEvent}
-                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/projects"}</li>
+                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
                 {/foreach}
-            </ul>
+            </div>
 
-            <ul class="tags list-group byStage" style="display: none">
+            <div class="tags list-group byStage" style="display: none">
                 {foreach item=stage from=$projectsStages}
-                    <li class="list-group-item"><a href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a></li>
+                    <a class="list-group-item" href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a>
                 {/foreach}
-            </ul>
+            </div>
         </section>
 
 <!-- MEMBERS BLOCK -->
         <section class="tagsSummary members">
-            <h4><a href="/people">{_ "Members"} <span class="badge badge-info">{$membersTotal|number_format}</span></a></h4>
+            <h4><a href="/people">{_ "Members"} <span class="badge">{$membersTotal|number_format}</span></a></h4>
 
             <header class="btn-group btn-group-justified btn-group-xs" role="group">
                 <a href="#members-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
                 <a href="#members-by-project" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "projects"}</a>
             </header>
 
-            <ul class="tags list-group byTech">
+            <div class="tags list-group byTech">
                 {foreach item=tag from=$membersTags.byTech}
-                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/people"}</li>
+                    {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item"}
                 {/foreach}
-            </ul>
+            </div>
 
-            <ul class="tags list-group byTopic" style="display: none">
+            <div class="tags list-group byTopic" style="display: none">
                 {foreach item=tag from=$membersTags.byTopic}
-                    <li class="list-group-item">{tagLink tagData=$tag rootUrl="/people"}</li>
+                    {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item"}
                 {/foreach}
-            </ul>
+            </div>
         </section>
 
 {*
@@ -155,10 +155,10 @@
                 {/foreach}
             </div> <!-- .row-fluid -->
 
-            <div class="row-fluid">
-                <a href="/project-updates" class="btn">{_ "Browse all project updates"}</a>
-                <a href="/project-buzz" class="btn">{_ "Browse all project buzz"}</a>
-                <a href="/blog" class="btn">{_ "Browse all blog posts"}</a>
+            <div>
+                <a href="/project-updates" class="btn btn-link">{glyph "asterisk"} {_ "Browse all project updates"}</a>
+                <a href="/project-buzz" class="btn btn-link">{glyph "flash"} {_ "Browse all project buzz"}</a>
+                <a href="/blog" class="btn btn-link">{glyph "file"} {_ "Browse all blog posts"}</a>
             </div> <!-- .row-fluid -->
         </section>
     </section>

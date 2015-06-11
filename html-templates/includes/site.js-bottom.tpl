@@ -10,4 +10,5 @@
     ,'bootstrap-tagsinput.js'
     ,'features/site-search.js'
     ,'features/site-search-renderers/*'
+    ,'features/tooltips.js'
 )}

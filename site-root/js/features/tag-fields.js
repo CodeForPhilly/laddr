@@ -45,17 +45,24 @@
                 prefixTags = $.grep(tagData.data, function(tag) {
                     return tag.Handle.indexOf(tagPrefix + '.') === 0;
                 }),
-                prefixTitles = $.map(prefixTags, function(tag) {
-                    return tag.Title;
-                }),
                 tagsInput;
 
             // initialize taginput UI
             tagsInput = $input.tagsinput({
                 confirmKeys: [13, 44, 188],
                 tagClass: tagPrefix ? 'label label-info tag-' + tagPrefix : undefined,
-                typeahead: {
-                    source: prefixTitles
+                typeaheadjs: {
+                    name: tagPrefix,
+                    local: prefixTags,
+                    displayKey: 'Title',
+                    valueKey: 'Title',
+                    source: function(query, callback) {
+                        var substringRegex = new RegExp(query, 'i');
+
+                        callback($.grep(prefixTags, function(tag) {
+                            return substringRegex.test(tag.Title);
+                        }));
+                    }
                 }
             })[0];
             

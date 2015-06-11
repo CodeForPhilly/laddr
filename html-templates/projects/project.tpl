@@ -90,11 +90,11 @@
 
             <h3>
                 {_ "Project Activity"}
-                <div class="btn-group">
+                <div class="btn-group pull-right">
                     {if $.User && $Project->hasMember($.User)}
-                        <a href="#post-update" class="btn btn-xs" data-toggle="modal">{_ "Post Update"}</a>
+                        <a href="#post-update" class="btn btn-primary btn-xs" data-toggle="modal">{_ "Post Update"}</a>
                     {/if}
-                    <a href="/project-buzz/create?ProjectID={$Project->ID}" class="btn btn-xs">{_ "Log Buzz"}</a>
+                    <a href="/project-buzz/create?ProjectID={$Project->ID}" class="btn btn-success btn-sm">{_ "Log Buzz"}</a>
                 </div>
             </h3>
 

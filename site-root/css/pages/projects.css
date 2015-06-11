@@ -7,6 +7,10 @@
     width: 70px;
 }
 
+.people-list a {
+    display: inline-block;
+}
+
 .people-list .add-person {
 }
 

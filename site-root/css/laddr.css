@@ -1,13 +1,16 @@
 /**
 * Common site design elements
 */
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic);
 
 body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
     padding-top: 40px; /* Padding at top of screen for fixed navbar as recommended in bootstrap docs */
 }
 
 .reading-width {
-    max-width: 40em;
+    max-width: 50em;
 }
 
 .navbar .avatar {
@@ -16,7 +19,7 @@ body {
 
 @media (max-width: 979px) {
     body {
-        padding-top: 0;
+        padding-top: 50px; /* Padding at top of screen for fixed nav bar as recommened in bootstrap docs */
     }
 
     .navbar-fixed-top {
@@ -118,9 +121,8 @@ body {
 .avatar {
     background-position: center;
     background-size: cover;
-    border-radius: .25em;
+    border-radius: 50%;
     display: inline-block;
-    margin-right: .25em;
     vertical-align: middle;
 }
 
@@ -141,19 +143,13 @@ body {
     margin-top: 18px;
 }
 
+.markdown > :first-child {
+    margin-top: 0;
+}
+
 footer.site {
     text-align: center;
     margin-top: 20px;
     padding: 1em;
     border-top: 1px dashed #aaa;
-}
-
-
-/* Blog posts */
-.blogPost-tpl .blog-post {
-    margin: 3em auto;
-}
-
-.content-media {
-    text-align: center;
 }

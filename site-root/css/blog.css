@@ -1,0 +1,164 @@
+/*
+ *
+ *  ONLY TO BE INCLUDED ON BIG-FANCY-BLOG-POST PAGES
+ *
+ */
+
+@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic,700italic);
+
+.article-collection .blog-post {
+    margin: 3em auto;
+    max-width: 50em;
+}
+
+.content-item,
+.article-header,
+.blog-comments {
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 3em auto;
+    max-width: 40em;
+    text-rendering: optimizeLegibility;
+}
+
+.content-media {
+    margin: 1em -15px;
+    max-width: none;
+}
+
+.article-header .header-title {
+    font-size: 3.25em;
+    font-weight: 300;
+    letter-spacing: -.01em;
+    margin-left: -.0625em;
+    margin-bottom: .75em;
+}
+
+.article-header .header-title a {
+    text-decoration: none;
+}
+
+.article-meta {
+    font-size: smaller;
+    text-transform: uppercase;
+}
+
+.article-meta .avatar {
+    border: 1px solid rgba(0, 0, 0, .2);
+    margin-right: .25em;
+}
+
+.article-meta a {
+    color: inherit;
+    font-weight: bold;
+}
+
+.article-summary {
+    border-left: 1px solid #ccc;
+    color: #999;
+    font-size: larger;
+    font-weight: 300;
+    margin: 0 38px 2em;
+    max-width: 40em;
+    padding-left: 1em;
+}
+
+.content-item h1 {
+    font-size: 2.25em;
+    font-weight: 300;
+    margin-top: 1.5em;
+}
+
+.content-item h2 {
+    color: #444;
+    font-size: 1.75em;
+    margin-top: 1em;
+}
+
+.content-item h3 {
+    color: #777;
+    font-size: 1.3333em;
+    margin-top: 1em;
+}
+
+.content-item h4 {
+    color: #aaa;
+    font-size: smaller;
+    font-weight: bold;
+    letter-spacing: .02em;
+    margin-top: 2em;
+    text-transform: uppercase;
+}
+
+.content-item blockquote {
+    border: none;
+    color: #999;
+    font-size: larger;
+    font-weight: 300;
+    margin: 0 38px;
+    min-height: 4.5em;
+    padding: 1em;
+    position: relative;
+}
+
+.content-item blockquote::before {
+    content: '“';
+    font-size: 10em;
+    font-weight: bold;
+    left: -.25em;
+    line-height: 1;
+    opacity: .15;
+    position: absolute;
+    top: -.125em;
+}
+
+.content-media {
+    text-align: center;
+}
+
+.media-figure {
+    
+}
+
+.media-img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.media-caption {
+    color: #999;
+    font-size: larger;
+    font-style: italic;
+    margin: 1em auto;
+    max-width: 40em;
+}
+
+.blog-comments {
+    border-top: 3px solid #ccc;
+    padding-top: 2em;
+}
+
+.comments-list {
+    margin-top: 2em;
+}
+
+.comment {
+    border-top: 1px solid #ccc;
+    padding: 1em 0;
+}
+
+.comment .author {
+    float: left;
+    margin: 0 .5em 0 -.25em;
+    width: 64px;
+}
+
+.comment .message {
+    overflow: hidden;
+}
+
+.comment textarea {
+    font-size: inherit;
+}

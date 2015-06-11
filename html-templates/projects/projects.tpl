@@ -4,19 +4,19 @@
 
 {block content}
     <div class="page-header">
-        <h2>{_ "Civic Projects Directory"}</h2>
         {if $.User}
-            <form action="/projects/create">
-                <button class="btn btn-success" type="submit">{_ "Add Project"}&hellip;</button>
+            <form class="pull-right" action="/projects/create">
+                <button class="btn btn-success" type="submit">{glyph "plus"}&nbsp;{_ "Add Project&hellip;"}</button>
             </form>
         {else}
-            <a href="/register" class="btn btn-danger">{_ "Register with the Brigade!"}</a>
+            <a href="/register" class="btn btn-danger pull-right">{glyph "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
         {/if}
+        <h2>{_ "Civic Projects Directory"}</h2>
     </div>
 
     {foreach item=Project from=$data}
-        <div class="row-fluid">
-            <div class="span8">
+        <div class="project-listing row-fluid clearfix">
+            <div class="col-sm-8">
                 <h3>
                     <a name="{$Project->Handle}" href="{$Project->getURL()}">{$Project->Title|escape}</a>
                 </h3>
@@ -25,32 +25,32 @@
                     {if $Project->README}
                         <div class="markdown readme">{$Project->README|escape|markdown}</div>
                     {/if}
-                    {if $Project->UsersUrl}
-                        {_ "For Users:"} <a href="{$Project->UsersUrl|escape}">{$Project->UsersUrl|escape}</a>
-                        <br/>
-                    {/if}
-                    {if $Project->DevelopersUrl}
-                        {_ "For Developers:"} <a href="{$Project->DevelopersUrl|escape}">{$Project->DevelopersUrl|escape}</a>
-                    {/if}
                 </div>
             </div>
 
             {if $Project->Memberships}
-            <div class="span4">
-                <h3><small>{_ "Members"}</small></h3>
+            <div class="col-sm-4">
+                <h4>Project Info</h4>
 
-                <ul class="inline people-list">
+                <div class="btn-group btn-group-justified" role="group">
+                    {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{glyph "link"}&nbsp;Public Site</a>{/if}
+                    {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}Developers</a>{/if}
+                </div>
+
+
+                <h4>{_ "Members"}</h4>
+
+                <ul class="list-inline people-list">
                 {foreach item=Membership from=$Project->Memberships}
                     {$Member = $Membership->Member}
                     <li class="listed-person {tif $Project->MaintainerID == $Member->ID ? maintainer}">
                         <a
                             href="/members/{$Member->Username}"
-                            class="thumbnail member-thumbnail"
+                            class="member-thumbnail"
                             data-toggle="tooltip"
-                            data-placement="bottom"
                             title="{$Member->FullName|escape} &mdash; {projectMemberTitle $Membership}"
                         >
-                            {avatar $Member size=60}
+                            {avatar $Member size=48}
                         </a>
                     </li>
                 {foreachelse}

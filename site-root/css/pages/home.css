@@ -73,8 +73,8 @@
     margin-top: 0;
 }
 
-.project-update h3 {
-    margin-bottom: 0;
+.panel-body h3:first-child {
+    margin-top: 0;
 }
 
 .update-body {
@@ -85,9 +85,17 @@
     margin-bottom: 0;
 }
 
+.panel-footer .text-muted a {
+    color: #777;
+}
+
 /* Activity Stream */
 .site-stream {
     margin-left: 0 !important;
+}
+
+.media-right .avatar {
+    margin: 0;
 }
 
 /* Meetups list */
@@ -111,4 +119,12 @@
 .checkins li a {
     margin: 0;
     padding: 0;
+}
+
+.buzz-headline {
+    font-weight: bold;
+}
+
+.buzz-summary {
+    margin: 0 0 1em;
 }
