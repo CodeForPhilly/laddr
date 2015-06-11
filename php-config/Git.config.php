@@ -1,16 +1,18 @@
 <?php
 
-Git::$repositories['laddr'] = array(
-    'remote' => 'git@github.com:CfABrigadePhiladelphia/laddr.git'
-    ,'originBranch' => 'master'
-    ,'workingBranch' => 'laddr.poplar.phl.io'
+Git::$repositories['laddr'] = [
+    'remote' => 'https://github.com/CfABrigadePhiladelphia/laddr.git'
+    ,'originBranch' => 'releases/v2'
+    ,'workingBranch' => 'releases/v2'
     ,'localOnly' => true
-    ,'trees' => array(
-        'html-templates'
-        ,'php-classes'
-        ,'php-config'
-        ,'php-migrations'
-        ,'site-root'
-        ,'locales'
-    )
-);
+    ,'trees' => [
+        'html-templates',
+        'locales',
+        'php-classes',
+        'php-config' => [
+            'exclude' => '#^/Git\\.config\\.php$#' // don't sync this file
+        ],
+        'php-migrations',
+        'site-root'
+    ]
+];
