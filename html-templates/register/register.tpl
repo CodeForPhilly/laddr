@@ -71,6 +71,15 @@
                     <input type="password" name="PasswordConfirm">
                 </div>
             </div>
+            <!--Uncomment the following lines to enable recaptcha on the Registration form, you also need to enable it in RegistrationRequestHandler.config.php and Captcha.config.php -->
+            <!--
+            <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                    <div class="g-recaptcha" data-sitekey="{\Captcha\Captcha::$captchaPublicKey}"></div>
+                </div>
+                </div>
+                -->
             <div class="control-group">
                 <label class="control-label"></label>
                 <div class="controls">
