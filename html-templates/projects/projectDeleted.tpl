@@ -3,5 +3,5 @@
 {block title}Project Deleted &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <p>Project {$data->Title}</a> deleted.</p>       
+    <p>Project  {$data->Title|escape} deleted.</p>       
 {/block}
