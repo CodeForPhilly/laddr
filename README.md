@@ -45,7 +45,7 @@ it will configure services on the machine as-needed to host an instance of the a
 sites, clones, or child sites. The guides for Ubuntu and Gentoo are most up-to-date: http://emr.ge/docs/setup
 
 ## Installation via Emergence (linked child)
--  Create an emergence site that extends v1.laddr.io (access key: MaPG1YxorgU6ew64)
+-  Create an emergence site that extends v1.laddr.us (access key: MaPG1YxorgU6ew64)
 
 ## Installation from Git
 -  Create an emergence site that extends skeleton.emr.ge (access key: 8U6kydil36bl3vlJ)
