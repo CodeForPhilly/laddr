@@ -36,6 +36,7 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
 - [Code for Croatia](http://codeforcroatia.org)
 - [Creative Commons Korea](http://labs.cckorea.org/)
 - [Code for Cary](http://www.codeforcary.org/)
+- [Code for Durham](http://codefordurham.com/)
 
 ## Requirements
 Laddr is built on the Emergence PHP framework and deployement engine, and requires an Emergence server to host it.
