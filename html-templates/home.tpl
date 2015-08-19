@@ -48,7 +48,7 @@
 
             <div class="tags list-group byTech" style="display: none">
                 {foreach item=tag from=$projectsTags.byTech}
-                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-grou-item"}
+                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
                 {/foreach}
             </div>
 
