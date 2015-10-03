@@ -12,7 +12,7 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
 
 - [ ] Changes to Members
     - [ ] Move the “Members” sidebar to /people
-    - [X] (CfP only?) Fix the grid display issue
+    - [x] (CfP only?) Fix the grid display issue
      
 - [ ] Changes to Projects Page (https://codeforphilly.org/projects)
      - [ ] Move the “Projects” sidebar from the front page to /projects so projects navigation is all in one place (see: Code for Charlotte)
