@@ -19,8 +19,8 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
      * Sort the Stages list - ie, Commenting, then Prototyping, etc.
      * Possibly rename a Stage or two - are they all as clear as possible? Research needed.
           * At the very least include descriptions, which are already somewhere in the code
-     * Ability to sort projects by latest activity
-          * Activity is: Check-ins; new member joined; update made; github commit made
+     * [] Ability to sort projects by latest activity (#74)
+          * Activity is: Check-ins; new member joined; update made; github commit made (#73)
      * Display tags under/alongside each project
      * Display Stage under/alongside each project
 
