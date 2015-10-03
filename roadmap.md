@@ -6,29 +6,29 @@ We'd like to grow it into a more comprehensive plan, with every bullet point lin
 It's a growing doc; please propose changes, talk on the Laddr slack about this, etc. Thanks!
 
 
-- [ ] General display isssues:
-    - [ ] Text on confirmation pages (ie: created a new project update) is cut off at top
-    - [ ] Placeholder bullet point as a reminder that there are other CSS issues to be identified & resolved.
+* General display isssues:
+   * Text on confirmation pages (ie: created a new project update) is cut off at top
+    * Placeholder bullet point as a reminder that there are other CSS issues to be identified & resolved.
 
-- [ ] Changes to Members
-    - [ ] Move the “Members” sidebar to /people
-    - [x] Fix the grid display issue
+* Changes to Members
+    * Move the “Members” sidebar to /people [#88](https://github.com/CfABrigadePhiladelphia/laddr/issues/88)
+    * ~~Fix the grid display issue~~
      
-- [ ] Changes to Projects Page (https://codeforphilly.org/projects)
-     - [ ] Move the “Projects” sidebar from the front page to /projects so projects navigation is all in one place (see: Code for Charlotte)
-     - [ ] Sort the Stages list - ie, Commenting, then Prototyping, etc.
-     - [ ] Possibly rename a Stage or two - are they all as clear as possible? Research needed.
-          - [ ] At the very least include descriptions, which are already somewhere in the code
-     - [ ] Ability to sort projects by latest activity (#74)
-          - [ ] Activity is: Check-ins; new member joined; update made; github commit made (#73)
-     - [ ] Display tags under/alongside each project
-     - [ ] Display Stage under/alongside each project
+* Changes to Projects Page (https://codeforphilly.org/projects)
+     * Move the “Projects” sidebar from the front page to /projects so projects navigation is all in one place (see: Code for Charlotte) [#89](https://github.com/CfABrigadePhiladelphia/laddr/issues/89)
+     * Sort the Stages list - ie, Commenting, then Prototyping, etc. [#90](https://github.com/CfABrigadePhiladelphia/laddr/issues/90)
+     * Possibly rename a Stage or two - are they all as clear as possible? Research needed.
+          * At the very least include descriptions, which are already somewhere in the code [#91](https://github.com/CfABrigadePhiladelphia/laddr/issues/91) 
+     * Ability to sort projects by latest activity (#74)
+        * Activity is: Check-ins; new member joined; update made; github commit made [#73](https://github.com/CfABrigadePhiladelphia/laddr/issues/73)
+     * Display tags under/alongside each project 
+     * Display Stage under/alongside each project
 
 
-- [ ] Changes to individual project pages (ex: https://codeforphilly.org/projects/Solar_Sunflower)
-     - [ ] List tags!
-     - [ ] Stage “status bar” should grow!
-     - [ ] List Founders/Maintainers before other project members, so it’s more clear who an interested party can contact
+* Changes to individual project pages (ex: https://codeforphilly.org/projects/Solar_Sunflower)
+     * List tags!
+     * Stage “status bar” should grow!
+     * List Founders/Maintainers before other project members, so it’s more clear who an interested party can contact
 
 - [ ] Changes to check-in process
      - [ ] The “Upcoming Meetups” list can get awfully crowded if organizers are setting them up well in advance. It should probably just show the next event, not all future events.
