@@ -12,7 +12,7 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
 
 - [ ] Changes to Members
     - [ ] Move the “Members” sidebar to /people
-    - [x] (CfP only?) Fix the grid display issue
+    - [x] Fix the grid display issue
      
 - [ ] Changes to Projects Page (https://codeforphilly.org/projects)
      - [ ] Move the “Projects” sidebar from the front page to /projects so projects navigation is all in one place (see: Code for Charlotte)
@@ -20,7 +20,7 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
      - [ ] Possibly rename a Stage or two - are they all as clear as possible? Research needed.
           - [ ] At the very least include descriptions, which are already somewhere in the code
      - [ ] Ability to sort projects by latest activity (#74)
-          - [ ] Activity is: Check-ins; new member joined; update made; github commit made #73
+          - [ ] Activity is: Check-ins; new member joined; update made; github commit made (#73)
      - [ ] Display tags under/alongside each project
      - [ ] Display Stage under/alongside each project
 
