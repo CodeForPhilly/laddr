@@ -27,7 +27,7 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
 * Changes to individual project pages (ex: https://codeforphilly.org/projects/Solar_Sunflower)
      * List tags! [#94](https://github.com/CfABrigadePhiladelphia/laddr/issues/94)
      * Stage “status bar” should grow! [#95](https://github.com/CfABrigadePhiladelphia/laddr/issues/95)
-     * List Founders/Maintainers before other project members, so it’s more clear who an interested party can contact [#96](https://github.com/CfABrigadePhiladelphia/laddr/issues/96
+     * List Founders/Maintainers before other project members, so it’s more clear who an interested party can contact [#96](https://github.com/CfABrigadePhiladelphia/laddr/issues/96)
 
 * Changes to check-in process
      * The “Upcoming Meetups” list can get awfully crowded if organizers are setting them up well in advance. It should probably just show the next event, not all future events.
