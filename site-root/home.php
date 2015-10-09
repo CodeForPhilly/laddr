@@ -38,6 +38,7 @@ $pageData = array();
         ,'itemConditions' => array(
             'ContextClass' => Laddr\Project::getStaticRootClass()
         )
+        ,'limit' => 10
     ));
     $pageData['projectsTags']['byTopic'] = TagItem::getTagsSummary(array(
         'tagConditions' => array(
@@ -46,6 +47,7 @@ $pageData = array();
         ,'itemConditions' => array(
             'ContextClass' => Laddr\Project::getStaticRootClass()
         )
+        ,'limit' => 10
     ));
     $pageData['projectsTags']['byEvent'] = TagItem::getTagsSummary(array(
         'tagConditions' => array(
@@ -67,6 +69,7 @@ $pageData = array();
         ,'itemConditions' => array(
             'ContextClass' => Emergence\People\Person::getStaticRootClass()
         )
+        ,'limit' => 10
     ));
     $pageData['membersTags']['byTopic'] = TagItem::getTagsSummary(array(
         'tagConditions' => array(
@@ -75,6 +78,7 @@ $pageData = array();
         ,'itemConditions' => array(
             'ContextClass' => Emergence\People\Person::getStaticRootClass()
         )
+        ,'limit' => 10
     ));
 
 
