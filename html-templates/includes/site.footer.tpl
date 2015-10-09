@@ -6,7 +6,7 @@
     <br>
     {localeSelector}
     {*
-    {if $responseID == 'home'}
+    {if $.responseId == 'home'}
         <br>Cover photo by <a href="XXXXXX" target="_blank">XXXXXX</a>.
     {/if}
     *}
