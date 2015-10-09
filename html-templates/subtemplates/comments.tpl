@@ -61,7 +61,7 @@
                     {/if}
 
                 </header>
-                <div class="message-body">{$Comment->Message|markdown}</div>
+                <div class="message-body">{$Comment->Message|escape|markdown}</div>
             </div>
         </article>
     {foreachelse}
