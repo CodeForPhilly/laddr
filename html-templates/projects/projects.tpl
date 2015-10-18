@@ -28,15 +28,20 @@
                 </div>
             </div>
 
-            {if $Project->Memberships}
             <div class="col-sm-4">
                 <h4>Project Info</h4>
+                
 
                 <div class="btn-group btn-group-justified" role="group">
                     {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{glyph "link"}&nbsp;Public Site</a>{/if}
                     {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}Developers</a>{/if}
                 </div>
-
+            
+                {if $Project->Stage}
+                    Stage: <span class="label label-info">{_ "$Project->Stage"}</span>
+                {/if}
+            
+                {if $Project->Memberships}
 
                 <h4>{_ "Members"}</h4>
 
