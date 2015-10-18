@@ -23,7 +23,7 @@
 
                 <div class="well">
                     {if $Project->README}
-                        <div class="markdown readme">{truncate $Project->README|escape|markdown 600}</div>
+                        <div class="markdown readme">{$Project->README|truncate:600|escape|markdown}</div>
                     {/if}
                 </div>
             </div>
