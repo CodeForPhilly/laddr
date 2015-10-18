@@ -62,8 +62,8 @@
                     <li class="muted">{_ "None registered"}</li>
                 {/foreach}
                 </ul>
+                {/if}
             </div>
-            {/if}
         </div> <!-- .row-fluid -->
         <hr>
     {foreachelse}
