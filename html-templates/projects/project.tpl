@@ -147,7 +147,7 @@
             {if $Project->Tags}
                 {$Tags = Tag::getTagsWithPrefix($Project->Tags,"tech")}
                 {if $Tags}
-                    {_ "Tech:"}
+                    {_ "Tech"}:
                     <ul>
                     {foreach item=Tag from=$Tags}
                         <li>{contextLink $Tag}</li>
@@ -157,7 +157,7 @@
 
                 {$Tags = Tag::getTagsWithPrefix($Project->Tags,"topic")}
                 {if $Tags}
-                    {_ "Topics:"}
+                    {_ "Topics"}:
                     <ul>
                     {foreach item=Tag from=$Tags}
                         <li>{contextLink $Tag}</li>
@@ -167,7 +167,7 @@
                 
                 {$Tags = Tag::getTagsWithPrefix($Project->Tags,"event")}
                 {if $Tags}
-                    {_ "Events:"}
+                    {_ "Events"}:
                     <ul>
                     {foreach item=Tag from=$Tags}
                         <li>{contextLink $Tag}</li>
