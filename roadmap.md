@@ -46,6 +46,6 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
 * New Feature Ideas (not fully baked)
      * A Help Wanted flag for projects, maybe per-tag, to help people find stuff that wants love?
      * Break Commenting stage for projects out into a new Ideas section, to keep Projects limited to things that have some work done?
-     * Reduce Stages to "Idea," "In Development," "Deployed," "Abandoned."
+     * Reduce Stages to "Idea," "In Development," "Deployed," "Dormant." Maybe "Experiment" Too?
      
      * Would be great if users could star/upvote projects to follow their updates, help identify which Ideas have momentum/interest.
