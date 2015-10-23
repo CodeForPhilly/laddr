@@ -112,8 +112,8 @@
     <!--  PROJECT LINKS  -->  
         <aside class="col-md-4">
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
-              <a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}"><span class="glyphicon glyphicon-link" style="margin-right:7px;"></span>Public Site</a>
-              <a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}"><span class="glyphicon glyphicon-link" style="margin-right:7px;"></span>Developers</a>
+              {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{glyph "link"}&nbsp;Public Site</a>{/if}
+              {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}&nbsp;Developers</a>{/if}
             </div>
         </aside>
                 
