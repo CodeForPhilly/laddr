@@ -59,7 +59,29 @@
                 {/if}
             </dl>
         {/if}
+        
+        {if $Person->Tags}
+                {$Tags = Tag::getTagsWithPrefix($Person->Tags,"tech")}
+                {if $Tags}
+                    {_ "Tech I'm interested in"}:
+                    <ul>
+                    {foreach item=Tag from=$Tags}
+                        <li>{contextLink $Tag}</li>
+                    {/foreach}
+                    </ul>
+                {/if}
 
+                {$Tags = Tag::getTagsWithPrefix($Person->Tags,"topic")}
+                {if $Tags}
+                    {_ "Topics I'm interested in"}:
+                    <ul>
+                    {foreach item=Tag from=$Tags}
+                        <li>{contextLink $Tag}</li>
+                    {/foreach}
+                    </ul>
+                {/if}
+            {/if}
+            
         {if $Person->ProjectMemberships}
             <h3>{_ 'My projects'}</h3>
             <ul>
