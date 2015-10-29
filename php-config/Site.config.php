@@ -3,7 +3,7 @@
 Site::$debug = true; // set to true for extended query logging
 //Site::$production = true; // set to true for heavy file caching
 
-Site::$autoPull = Site::$hostname != 'v1.laddr.io';
+Site::$autoPull = Site::$hostname != 'v2.laddr.us';
 
 // these resolved paths will skip initializing a user session
 Site::$skipSessionPaths[] = 'thumbnail.php';
