@@ -144,37 +144,32 @@
             {/if}
             <hr>
     <!-- TAGS BLOCK -->
-            {if $Project->Tags}
-                {$Tags = Tag::getTagsWithPrefix($Project->Tags,"tech")}
-                {if $Tags}
+                {if $Project->TechTags}
                     {_ "Tech"}:
                     <ul>
-                    {foreach item=Tag from=$Tags}
+                    {foreach item=Tag from=$Project->TechTags}
                         <li>{contextLink $Tag}</li>
                     {/foreach}
                     </ul>
                 {/if}
 
-                {$Tags = Tag::getTagsWithPrefix($Project->Tags,"topic")}
-                {if $Tags}
+                {if $Project->TopicTags}
                     {_ "Topics"}:
                     <ul>
-                    {foreach item=Tag from=$Tags}
+                    {foreach item=Tag from=$Project->TopicTags}
                         <li>{contextLink $Tag}</li>
                     {/foreach}
                     </ul>
                 {/if}
                 
-                {$Tags = Tag::getTagsWithPrefix($Project->Tags,"event")}
-                {if $Tags}
+                {if $Project->EventTags}
                     {_ "Events"}:
                     <ul>
-                    {foreach item=Tag from=$Tags}
+                    {foreach item=Tag from=$Project->EventTags}
                         <li>{contextLink $Tag}</li>
                     {/foreach}
                     </ul>
                 {/if}
-            {/if}
 
             <hr>
 
