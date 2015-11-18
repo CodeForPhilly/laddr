@@ -20,3 +20,13 @@ namespace Emergence\People;
 #        'send_welcome' => false
 #    ]);
 #};
+
+RegistrationRequestHandler::$applyRegistrationData = function(User $User, array $requestData, array &$additionalErrors) {
+    if ($recaptcha = \RemoteSystems\ReCaptcha::getInstance()) {
+        $recaptchaResponse = $recaptcha->verify($requestData['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+
+        if (!$recaptchaResponse->isSuccess()) {
+            $additionalErrors['ReCaptcha'] = 'Please prove that you aren\'t a spam robot by completing the reCAPTCHA';
+        }
+    }
+};

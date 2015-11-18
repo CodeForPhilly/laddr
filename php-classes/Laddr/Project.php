@@ -96,6 +96,36 @@ class Project extends \VersionedRecord
             'linkClass' => \TagItem::class,
             'linkLocal' => 'ContextID',
             'conditions' => ['Link.ContextClass = "Laddr\\\\Project"']
+        ],
+        'TopicTags' => [
+            'type' => 'many-many',
+            'class' => \Tag::class,
+            'linkClass' => \TagItem::class,
+            'linkLocal' => 'ContextID',
+            'conditions' => [
+                'Link.ContextClass = "Laddr\\\\Project"',
+                'Related.Handle LIKE "topic.%"'
+            ]
+        ],
+        'TechTags' => [
+            'type' => 'many-many',
+            'class' => \Tag::class,
+            'linkClass' => \TagItem::class,
+            'linkLocal' => 'ContextID',
+            'conditions' => [
+                'Link.ContextClass = "Laddr\\\\Project"',
+                'Related.Handle LIKE "tech.%"'
+            ]
+        ],
+        'EventTags' => [
+            'type' => 'many-many',
+            'class' => \Tag::class,
+            'linkClass' => \TagItem::class,
+            'linkLocal' => 'ContextID',
+            'conditions' => [
+                'Link.ContextClass = "Laddr\\\\Project"',
+                'Related.Handle LIKE "event.%"'
+            ]
         ]
     ];
 

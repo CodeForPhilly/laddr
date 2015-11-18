@@ -7,7 +7,7 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
 
 
 * General display isssues:
-   * Text on confirmation pages (ie: created a new project update) is cut off at top
+    * ~~Text on confirmation pages (ie: created a new project update) is cut off at top~~
     * Placeholder bullet point as a reminder that there are other CSS issues to be identified & resolved.
 
 * Changes to Members
@@ -18,14 +18,14 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
      * Move the “Projects” sidebar from the front page to /projects so projects navigation is all in one place (see: Code for Charlotte) [#89](https://github.com/CfABrigadePhiladelphia/laddr/issues/89)
      * Sort the Stages list - ie, Commenting, then Prototyping, etc. [#90](https://github.com/CfABrigadePhiladelphia/laddr/issues/90)
      * Possibly rename a Stage or two - are they all as clear as possible? Research needed.
-          * At the very least include descriptions, which are already somewhere in the code [#91](https://github.com/CfABrigadePhiladelphia/laddr/issues/91) 
+       * At the very least include descriptions, which are already somewhere in the code [#91](https://github.com/CfABrigadePhiladelphia/laddr/issues/91) 
      * Ability to sort projects by latest activity [#74](https://github.com/CfABrigadePhiladelphia/laddr/issues/74)
         * Activity is: Check-ins; new member joined; update made; github commit made [#73](https://github.com/CfABrigadePhiladelphia/laddr/issues/73)
-     * Display tags under/alongside each project [#93](https://github.com/CfABrigadePhiladelphia/laddr/issues/93)
-     * Display Stage under/alongside each project  [#94](https://github.com/CfABrigadePhiladelphia/laddr/issues/94)
+     * ~~Display tags under/alongside each project [#93](https://github.com/CfABrigadePhiladelphia/laddr/issues/93)~~
+     * ~~Display Stage under/alongside each project  [#94](https://github.com/CfABrigadePhiladelphia/laddr/issues/94)~~
 
 * Changes to individual project pages (ex: https://codeforphilly.org/projects/Solar_Sunflower)
-     * List tags! [#94](https://github.com/CfABrigadePhiladelphia/laddr/issues/94)
+     * ~~List tags! [#94](https://github.com/CfABrigadePhiladelphia/laddr/issues/94)~~
      * Stage “status bar” should grow! [#95](https://github.com/CfABrigadePhiladelphia/laddr/issues/95)
      * List Founders/Maintainers before other project members, so it’s more clear who an interested party can contact [#96](https://github.com/CfABrigadePhiladelphia/laddr/issues/96)
 
@@ -46,4 +46,6 @@ It's a growing doc; please propose changes, talk on the Laddr slack about this, 
 * New Feature Ideas (not fully baked)
      * A Help Wanted flag for projects, maybe per-tag, to help people find stuff that wants love?
      * Break Commenting stage for projects out into a new Ideas section, to keep Projects limited to things that have some work done?
+     * Reduce Stages to "Idea," "In Development," "Deployed," "Dormant." Maybe "Experiment" Too?
+     
      * Would be great if users could star/upvote projects to follow their updates, help identify which Ideas have momentum/interest.

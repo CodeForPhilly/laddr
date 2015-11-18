@@ -116,6 +116,7 @@
               <a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}"><span class="glyphicon glyphicon-link" style="margin-right:7px;"></span>Developers</a>
             </div>
         </aside>
+                
     <!--  MEMBERS BLOCK  -->
         <aside class="col-md-4">
             {if $Project->Memberships}
@@ -141,6 +142,34 @@
                     <li><a class="btn btn-success add-person" href="#add-member" data-toggle="modal">+ {_ "Add"}</a></li>
                 </ul>
             {/if}
+            <hr>
+    <!-- TAGS BLOCK -->
+                {if $Project->TechTags}
+                    {_ "Tech"}:
+                    <ul>
+                    {foreach item=Tag from=$Project->TechTags}
+                        <li>{contextLink $Tag}</li>
+                    {/foreach}
+                    </ul>
+                {/if}
+
+                {if $Project->TopicTags}
+                    {_ "Topics"}:
+                    <ul>
+                    {foreach item=Tag from=$Project->TopicTags}
+                        <li>{contextLink $Tag}</li>
+                    {/foreach}
+                    </ul>
+                {/if}
+                
+                {if $Project->EventTags}
+                    {_ "Events"}:
+                    <ul>
+                    {foreach item=Tag from=$Project->EventTags}
+                        <li>{contextLink $Tag}</li>
+                    {/foreach}
+                    </ul>
+                {/if}
 
             <hr>
 
