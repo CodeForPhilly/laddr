@@ -69,7 +69,7 @@
 }
 
 /* Project updates */
-.content h2:first-child {
+main .page-header, main .page-header h2 {
     margin-top: 0;
 }
 
