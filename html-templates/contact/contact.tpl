@@ -4,7 +4,7 @@
 
 {block "content"}
     <header class="page-header">
-        <h1 class="header-title title-1">Contact Us</h1>
+        <h2>Contact Us</h2>
 	</header>
 
 	<form action="/contact" method="POST" class="contact-form">

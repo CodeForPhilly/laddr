@@ -3,16 +3,19 @@
 {block title}{_ "Projects"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <div class="page-header">
-        {if $.User}
-            <form class="pull-right" action="/projects/create">
-                <button class="btn btn-success" type="submit">{glyph "plus"}&nbsp;{_ "Add Project&hellip;"}</button>
-            </form>
-        {else}
-            <a href="/register" class="btn btn-danger pull-right">{glyph "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
-        {/if}
+    <header class="page-header">
+        <div class="btn-toolbar pull-right">
+            {if $.User}
+                <form action="/projects/create">
+                    <button class="btn btn-success" type="submit">{glyph "plus"}&nbsp;{_ "Add Project&hellip;"}</button>
+                </form>
+            {else}
+                <a href="/register" class="btn btn-danger">{glyph "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
+            {/if}
+        </div>
+
         <h2>{_ "Civic Projects Directory"}</h2>
-    </div>
+    </header>
 
     {foreach item=Project from=$data}
         <div class="project-listing row-fluid clearfix">

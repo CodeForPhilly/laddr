@@ -5,10 +5,9 @@
 {block content}
     {$Project = $data}
 
-    <div class="padded-header" style="padding-top:15px;">
-        <h2>
-            {$Project->Title|escape}
-            <div class="btn-group pull-right">
+    <header class="page-header">
+        <div class="btn-toolbar pull-right">
+            <div class="btn-group">
                 <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">{_ "Edit Project"}</a>
                 {if $.User}
                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
@@ -24,8 +23,11 @@
                     </ul>
                 {/if}
             </div>
-        </h2>
-    </div>
+        </div>
+
+        <h2>{$Project->Title|escape}</h2>
+    </header>
+
     <div class="row">
         <article class="project col-md-8">
 <!--  Unnecessary? Leave for screen readers?          
