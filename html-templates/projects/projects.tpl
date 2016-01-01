@@ -56,7 +56,7 @@
                             href="/members/{$Member->Username}"
                             class="member-thumbnail"
                             data-toggle="tooltip"
-                            title="{$Member->FullName|escape} &mdash; {projectMemberTitle $Membership}"
+                            title="{personName $Member} &mdash; {projectMemberTitle $Membership}"
                         >
                             {avatar $Member size=48}
                         </a>

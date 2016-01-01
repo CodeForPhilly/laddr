@@ -1,13 +1,13 @@
 {extends "designs/site.tpl"}
 
-{block "title"}{$data->FullName} &mdash; {$dwoo.parent}{/block}
+{block "title"}{personName $data} &mdash; {$dwoo.parent}{/block}
 
 
 {block "content"}
     {$Person = $data}
 
     <header class="page-header">
-        <h1 class="header-title title-1">{$Person->FullName|escape}</h1>
+        <h1 class="header-title title-1">{personName $Person}</h1>
         {if $Person->Location}
             <h2 class="header-details"><a href="http://maps.google.com/?q={$Person->Location|escape:url}" target="_blank">{$Person->Location|escape}</a></h2>
         {/if}
@@ -45,7 +45,7 @@
             <dl class="section">
                 {if $Person->Email}
                     <dt>Email</dt>
-                    <dd><a href="mailto:{$Person->Email}" title="Email {$Person->FullName|escape}">{$Person->Email}</a></dd>
+                    <dd><a href="mailto:{$Person->Email}" title="Email {personName $Person}">{$Person->Email}</a></dd>
                 {/if}
 
                 {if $Person->Twitter}

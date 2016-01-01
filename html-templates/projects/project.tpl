@@ -133,7 +133,7 @@
                             class="thumbnail member-thumbnail"
                             data-toggle="tooltip"
                             data-placement="bottom"
-                            title="{$Member->FullName|escape} &mdash; {projectMemberTitle $Membership}"
+                            title="{personName $Member} &mdash; {projectMemberTitle $Membership}"
                         >
                             {avatar $Member size=60}
                         </a>

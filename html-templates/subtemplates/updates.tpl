@@ -1,3 +1,4 @@
+{load_templates subtemplates/personName.tpl}
 {load_templates subtemplates/glyphicons.tpl}
 {load_templates subtemplates/timestamp.tpl}
 {load_templates subtemplates/people.tpl}
@@ -8,7 +9,7 @@
             {if $showHeading}
                 <{$headingLevel}>
                     {if $showProject}
-                        <a class="pull-right" href="{$Update->Creator->getURL()}" title="{$Update->Creator->FullName}" data-toggle="tooltip">{avatar $Update->Creator size=64}</a>
+                        <a class="pull-right" href="{$Update->Creator->getURL()}" title="{personName $Update->Creator}" data-toggle="tooltip">{avatar $Update->Creator size=64}</a>
                         <a href="{$Update->Project->getURL()}">{$Update->Project->Title|escape}</a>
                         <small class="text-muted">{glyph "asterisk"} <a href="{$Update->Project->getURL()}/updates/{$Update->Number}">{_("Update #%s")|sprintf:$Update->Number}</a></small>
                     {else}
