@@ -7,12 +7,14 @@
 
 {block title}Project Updates &mdash; {$dwoo.parent}{/block}
 {block content}
-    <h2>
-        Project Updates
-        {if $Project}
-            in <a href="{$Project->getURL()}">{$Project->Title|escape}</a>
-        {/if}
-    </h2>
+    <header class="page-header">
+        <h2>
+            Project Updates
+            {if $Project}
+                in <a href="{$Project->getURL()}">{$Project->Title|escape}</a>
+            {/if}
+        </h2>
+    </header>
 
     {foreach item=Update from=$data}
         {projectUpdate $Update headingLevel=h3 showProject=true}

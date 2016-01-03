@@ -4,9 +4,11 @@
 
 {block "content"}
     
-	<h1>Reset Your Password</h1>
+	<header class="page-header">
+        <h2>Reset Your Password</h2>
+    </header>
 
-	<p class="page-info">Enter the username or email address associated with your account below, and you will receive an email with instructions to reset your password.</p>
+	<p>Enter the username or email address associated with your account below, and you will receive an email with instructions to reset your password.</p>
 
 	{if $error}
         <div class="well well-sm">

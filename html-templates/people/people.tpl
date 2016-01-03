@@ -1,7 +1,10 @@
 {extends "designs/site.tpl"}
 
 {block content}
-    <h2>Registered Members</h2>
+    <header class="page-header">
+        <h2>Registered Members</h2>
+    </header>
+
     {foreach item=Person from=$data}
         {if $.foreach.default.index % 6 == 0}<div class="row members-list">{/if}
             <div class="col-sm-2">

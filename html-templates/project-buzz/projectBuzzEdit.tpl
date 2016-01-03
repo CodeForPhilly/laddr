@@ -5,13 +5,15 @@
 {block content}
     {$Buzz = $data}
 
-    <h2>
-        {if $Buzz->isPhantom}
-            Log new buzz
-        {else}
-            Edit buzz <strong>{$Buzz->Headline|escape}</strong>
-        {/if}
-    </h2>
+    <header class="page-header">
+        <h2>
+            {if $Buzz->isPhantom}
+                Log new buzz
+            {else}
+                Edit buzz <strong>{$Buzz->Headline|escape}</strong>
+            {/if}
+        </h2>
+    </header>
 
     {if !$Buzz->isValid}
     <div class="error well">

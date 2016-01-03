@@ -4,7 +4,9 @@
 
 
 {block "content"}
-    <h2>{sprintf(_("Login to %s"), Laddr::$siteName|escape)}</h2>
+    <header class="page-header">
+        <h2>{sprintf(_("Login to %s"), Laddr::$siteName|escape)}</h2>
+    </header>
 
     <form method="POST" class="form-horizontal" id="login">
         

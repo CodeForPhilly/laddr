@@ -7,15 +7,16 @@
     {$Person = $data}
 
     <header class="page-header">
-        <h1 class="header-title title-1">{personName $Person}</h1>
-        {if $Person->Location}
-            <h2 class="header-details"><a href="http://maps.google.com/?q={$Person->Location|escape:url}" target="_blank">{$Person->Location|escape}</a></h2>
-        {/if}
-        <div class="header-buttons pull-right">
+        <div class="btn-toolbar pull-right">
             {if $.User->ID == $Person->ID || (ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers))}
-                <a class="btn" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">Edit Profile</a>
+                <a class="btn btn-primary" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">Edit Profile</a>
             {/if}
         </div>
+
+        <h2>{personName $Person}</h2>
+        {if $Person->Location}
+            <h3><a href="http://maps.google.com/?q={$Person->Location|escape:url}" target="_blank">{$Person->Location|escape}</a></h3>
+        {/if}
     </header>
 
     <div id="photos">

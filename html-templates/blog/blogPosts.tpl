@@ -10,10 +10,11 @@
     {load_templates "subtemplates/paging.tpl"}
     
     <header class="page-header">
-        <div class="pull-right">
-            <a href="/blog/create" class="btn btn-success btn-lg">New Post</a>
-        </div>            
-        <h1 class="header-title title-1">Blog Feed</h1>
+        <div class="btn-toolbar pull-right">
+            <a href="/blog/create" class="btn btn-success">New Post</a>
+        </div>
+
+        <h2>Blog Feed</h2>
     </header>
     
     <section class="page-section article-collection">

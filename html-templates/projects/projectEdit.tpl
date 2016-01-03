@@ -12,13 +12,15 @@
 {block content}
     {$Project = $data}
 
-    <h2>
-        {if $Project->isPhantom}
-            {_ "Create new project"}
-        {else}
-            {_("Edit project %s")|sprintf:$Project->Title|escape}
-        {/if}
-    </h2>
+    <header class="page-header">
+        <h2>
+            {if $Project->isPhantom}
+                {_ "Create new project"}
+            {else}
+                {_("Edit project %s")|sprintf:$Project->Title|escape}
+            {/if}
+        </h2>
+    </header>
 
     {if !$Project->isValid}
     <div class="error well">

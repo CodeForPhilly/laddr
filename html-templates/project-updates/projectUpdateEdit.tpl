@@ -5,13 +5,15 @@
 {block content}
     {$Update = $data}
 
-    <h2>
-        {if $Update->isPhantom}
-            Create new project upate
-        {else}
-            Edit <a href="/projects/{$Update->Project->Handle}/updates/{$Update->Number}">Update #{$Update->Number}</a>
-        {/if}
-    </h2>
+    <header class="page-header">
+        <h2>
+            {if $Update->isPhantom}
+                Create new project upate
+            {else}
+                Edit <a href="/projects/{$Update->Project->Handle}/updates/{$Update->Number}">Update #{$Update->Number}</a>
+            {/if}
+        </h2>
+    </header>
 
     {if !$Update->isValid}
     <div class="error well">
