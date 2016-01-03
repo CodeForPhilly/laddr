@@ -24,73 +24,75 @@
         {/if}
     </header>
 
-    <div id="photos">
-        {avatar $Person size=200}
-        <div id="photo-thumbs" class="clearfix">
-            {foreach item=Photo from=$Person->Photos}
-                <a href="{$Photo->getThumbnailRequest(1024,768)}" class="photo-thumb" id="t{$Photo->ID}" title="{$Photo->Caption|escape}"><img src="{$Photo->getThumbnailRequest(48,48)}" /></a>
-            {/foreach}
-        </div>
-    </div>
+    <div class="row">
+        <section id="info" class="col-md-9">
+            {if $Person->About}
+                <h3>{_ 'About Me'}</h3>
+                <section class="about">
+                    {$Person->About|escape|markdown}
+                </section>
+            {/if}
 
-    <div id="info">
-        {if $Person->About}
-            <h3>{_ 'About Me'}</h3>
-            <section class="about">
-                {$Person->About|escape|markdown}
-            </section>
-        {/if}
+            {if $.User}
+                <h3>{_ 'Contact Information'}</h3>
+                <dl class="section">
+                    {if $Person->Email}
+                        <dt>Email</dt>
+                        <dd><a href="mailto:{$Person->Email}" title="Email {personName $Person}">{$Person->Email}</a></dd>
+                    {/if}
 
-        {if $.User}
-            <h3>{_ 'Contact Information'}</h3>
-            <dl class="section">
-                {if $Person->Email}
-                    <dt>Email</dt>
-                    <dd><a href="mailto:{$Person->Email}" title="Email {personName $Person}">{$Person->Email}</a></dd>
-                {/if}
+                    {if $Person->Twitter}
+                        <dt>Twitter</dt>
+                        <dd><a href="https://twitter.com/{$Person->Twitter|escape}">{$Person->Twitter|escape}</a></dd>
+                    {/if}
 
-                {if $Person->Twitter}
-                    <dt>Twitter</dt>
-                    <dd><a href="https://twitter.com/{$Person->Twitter|escape}">{$Person->Twitter|escape}</a></dd>
-                {/if}
+                    {if $Person->Phone}
+                        <dt>Phone</dt>
+                        <dd><a href="tel:{$Person->Phone|escape:url}">{$Person->Phone|phone}</a></dd>
+                    {/if}
+                </dl>
+            {/if}
 
-                {if $Person->Phone}
-                    <dt>Phone</dt>
-                    <dd><a href="tel:{$Person->Phone|escape:url}">{$Person->Phone|phone}</a></dd>
-                {/if}
-            </dl>
-        {/if}
+            {if $Person->TechTags}
+                <h3>{_ "Tech I'm interested in"}</h3>
+                <ul>
+                {foreach item=Tag from=$Person->TechTags}
+                    <li>{contextLink $Tag}</li>
+                {/foreach}
+                </ul>
+            {/if}
 
-        {if $Person->TechTags}
-            <h3>{_ "Tech I'm interested in"}</h3>
-            <ul>
-            {foreach item=Tag from=$Person->TechTags}
-                <li>{contextLink $Tag}</li>
-            {/foreach}
-            </ul>
-        {/if}
+            {if $Person->TopicTags}
+                <h3>{_ "Topics I'm interested in"}</h3>
+                <ul>
+                {foreach item=Tag from=$Person->TopicTags}
+                    <li>{contextLink $Tag}</li>
+                {/foreach}
+                </ul>
+            {/if}
 
-        {if $Person->TopicTags}
-            <h3>{_ "Topics I'm interested in"}</h3>
-            <ul>
-            {foreach item=Tag from=$Person->TopicTags}
-                <li>{contextLink $Tag}</li>
-            {/foreach}
-            </ul>
-        {/if}
+            {if $Person->ProjectMemberships}
+                <h3>{_ 'My projects'}</h3>
+                <ul>
+                {foreach item=Membership from=$Person->ProjectMemberships}
+                    <li>{projectLink $Membership->Project} &mdash; {projectMemberTitle $Membership}</li>
+                {/foreach}
+                </ul>
+            {/if}
 
-        {if $Person->ProjectMemberships}
-            <h3>{_ 'My projects'}</h3>
-            <ul>
-            {foreach item=Membership from=$Person->ProjectMemberships}
-                <li>{projectLink $Membership->Project} &mdash; {projectMemberTitle $Membership}</li>
-            {/foreach}
-            </ul>
-        {/if}
+            {if $Person->LastCheckin}
+                <h3>{_ "Last event checkin"}</h3>
+                <a href="{RemoteSystems\Meetup::getEventUrl($Person->LastCheckin->MeetupID)}">{$Person->LastCheckin->Created|date_format:'%c'}</a>
+            {/if}
+        </section>
 
-        {if $Person->LastCheckin}
-            <h3>{_ "Last event checkin"}</h3>
-            <a href="{RemoteSystems\Meetup::getEventUrl($Person->LastCheckin->MeetupID)}">{$Person->LastCheckin->Created|date_format:'%c'}</a>
-        {/if}
+        <section id="photos" class="col-md-3">
+            {avatar $Person size=200}
+            <div id="photo-thumbs" class="clearfix">
+                {foreach item=Photo from=$Person->Photos}
+                    <a href="{$Photo->getThumbnailRequest(1024,768)}" class="photo-thumb" id="t{$Photo->ID}" title="{$Photo->Caption|escape}"><img src="{$Photo->getThumbnailRequest(48,48)}" /></a>
+                {/foreach}
+            </div>
+        </section>
     </div>
 {/block}
