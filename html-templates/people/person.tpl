@@ -7,11 +7,16 @@
     {$Person = $data}
 
     <header class="page-header">
-        <div class="btn-toolbar pull-right">
-            {if $.User->ID == $Person->ID || (ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers))}
-                <a class="btn btn-primary" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">Edit Profile</a>
-            {/if}
-        </div>
+        {if $.User->ID == $Person->ID || (ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers))}
+            <div class="btn-toolbar pull-right">
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">Edit Profile</a>
+                    {if $.User->hasAccountLevel('Staff')}
+                        <a class="btn btn-danger" href="{$Person->getUrl('/delete')|escape}">Delete {personName $Person}</a>
+                    {/if}
+                </div>
+            </div>
+        {/if}
 
         <h2>{personName $Person}</h2>
         {if $Person->Location}
