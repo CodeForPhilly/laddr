@@ -9,5 +9,5 @@
     
     <p class="lead reading-width">{_("Person has been removed from %s")|sprintf:Laddr::$siteName|escape}!</p>
     
-    <a href="/people">{_ "Retun to members list"}</a>
+    <a href="/people">{_ "Retun to member list"}</a>
 {/block}
