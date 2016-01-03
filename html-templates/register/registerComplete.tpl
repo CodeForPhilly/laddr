@@ -10,7 +10,7 @@
     </header>
 
     {capture assign=personLink}<a href="{$User->getUrl()|escape}">{$User->Username|escape}</a>{/capture}
-    <p class="lead">{"Your username for %s is: %s"|_|sprintf:Site::getConfig('primary_hostname'):$personLink}</p>
+    <p class="lead">{"Your username for %s is: %s"|_|sprintf:Laddr::$siteName:$personLink}</p>
 
     <p>
         {_ "Things to do next…"}
