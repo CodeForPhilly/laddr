@@ -17,7 +17,7 @@ RequestHandler::respond('projects', array(
                         ,Tag::getTagsWithPrefix($Project->Tags, 'topic')
                     )
                 )
-            ,'stage' => $Project->Stage
+            ,'status' => $Project->Stage
         );
     }, Laddr\Project::getAll())
 ));
