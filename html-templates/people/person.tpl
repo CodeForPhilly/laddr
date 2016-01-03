@@ -66,6 +66,24 @@
             </dl>
         {/if}
 
+        {if $Person->TechTags}
+            <h3>{_ "Tech I'm interested in"}</h3>
+            <ul>
+            {foreach item=Tag from=$Person->TechTags}
+                <li>{contextLink $Tag}</li>
+            {/foreach}
+            </ul>
+        {/if}
+
+        {if $Person->TopicTags}
+            <h3>{_ "Topics I'm interested in"}</h3>
+            <ul>
+            {foreach item=Tag from=$Person->TopicTags}
+                <li>{contextLink $Tag}</li>
+            {/foreach}
+            </ul>
+        {/if}
+
         {if $Person->ProjectMemberships}
             <h3>{_ 'My projects'}</h3>
             <ul>
