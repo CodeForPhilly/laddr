@@ -1,0 +1,3 @@
+<?php
+
+Emergence\Locale::loadRequestedLocale();
