@@ -33,12 +33,7 @@
         </div>
     </div>
 
-    <div id="page-intro" class="">
-        <h2 class="run-in"></h2>
-    </div>
-
-    <div id="info" class="">
-
+    <div id="info">
         {if $Person->About}
             <h3>{_ 'About Me'}</h3>
             <section class="about">
