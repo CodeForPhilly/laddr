@@ -7,7 +7,8 @@
         <h2>{_ "Person deleted"}</h2>
     </header>
 
-    <p class="lead reading-width">{_("Person has been removed from %s")|sprintf:Laddr::$siteName|escape}!</p>
+    {capture assign=personName}{personName $data}{/capture}
+    <p class="lead reading-width">{sprintf("%s has been removed from %s"|_, $personName, Laddr::$siteName)}!</p>
 
     <a href="/people">{_ "Retun to member list"}</a>
 {/block}
