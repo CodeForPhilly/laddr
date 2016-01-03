@@ -1,11 +1,12 @@
 {extends "designs/site.tpl"}
 
+{block title}{_ "Registration complete"} &mdash; {$dwoo.parent}{/block}
 
 {block "content"}
 	{$User = $data}
 
     <header class="page-header">
-	    <h2>{$.server.HTTP_HOST} {_ "account created"}</h2>
+        <h2>{_ "Registration complete"}</h2>
     </header>
 	
 	<p>{_ "Your username is:"} <a href="/people/{$User->Username}">{$User->Username|escape}</a></p>
