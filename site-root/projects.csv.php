@@ -14,7 +14,7 @@ RequestHandler::respond('projects', array(
                         function($Tag) {
                             return $Tag->UnprefixedTitle;
                         }
-                        ,Tag::getTagsWithPrefix($Project->Tags, 'topic')
+                        ,$Project->TopicTags
                     )
                 )
             ,'status' => $Project->Stage
