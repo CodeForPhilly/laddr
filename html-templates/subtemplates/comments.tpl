@@ -1,3 +1,4 @@
+{load_templates "subtemplates/personName.tpl"}
 {load_templates "subtemplates/contextLinks.tpl"}
 {load_templates "subtemplates/people.tpl"}
 {load_templates "subtemplates/forms.tpl"}
@@ -16,7 +17,7 @@
                 <div class="author">{avatar $.User size=64}</div>
 
                 <div class="message form-group">
-                    <label for="Message">{$.User->FullName|escape}</label>
+                    <label for="Message">{personName $.User}</label>
                     <textarea rows="7" class="form-control" name="Message" id="Message" required aria-required="true">{refill field=$inputName default=$default}</textarea>
                     <p class="help-block">
                         You can use <a href="http://daringfireball.net/projects/markdown/basics" target="_blank">Markdown</a> for formatting.
@@ -53,7 +54,7 @@
                                data-confirm-yes="Delete Comment"
                                data-confirm-no="Don&rsquo;t Delete"
                                data-confirm-title="Deleting Comment"
-                               data-confirm-body="Are you sure you want to delete this comment from {$Comment->Creator->FullName|escape}?"
+                               data-confirm-body="Are you sure you want to delete this comment from {personName $Comment->Creator}?"
                                data-confirm-destructive="true"
                                data-confirm-success-target=".comment"
                                data-confirm-success-message="Comment deleted">Delete</a>

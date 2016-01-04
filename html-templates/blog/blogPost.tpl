@@ -62,48 +62,54 @@
 
 {block "title"}{$data->Title} &mdash; {$dwoo.parent}{/block}
 
-{block "content-wrapper-open"}<div class="container-fluid">{/block}
+{block "content-wrapper"}
+    <div class="container-fluid">
+    {block "content"}
 
-{block "content"}
-    {$Post = $data}
+        {$Post = $data}
 
-    <article class="blog-post">
-        <header class="article-header">
-            {if Emergence\CMS\BlogRequestHandler::checkWriteAccess($Post)}
-                <div class="btn-group pull-right">
-                    <a href="{$Post->getURL()}/edit" class="btn btn-default">{*glyph "pencil"*} {_ Edit}</a>
-                    <a href="{$Post->getURL()}/delete"
-                       class="btn btn-danger confirm"
-                       data-confirm-yes="Delete Post"
-                       data-confirm-no="Don&rsquo;t Delete"
-                       data-confirm-title="Deleting Post"
-                       data-confirm-body="Are you sure you want to delete the post &ldquo;{$Post->Title|escape}?&rdquo;"
-                       data-confirm-destructive="true"
-                       data-confirm-success-target=".blog-post"
-                       data-confirm-success-message="Blog post deleted">{*glyph "trash"*} {_ Delete}</a>
+        <article class="blog-post">
+            <header class="article-header">
+                {if Emergence\CMS\BlogRequestHandler::checkWriteAccess($Post)}
+                    <div class="btn-toolbar pull-right">
+                        <div class="btn-group">
+                            <a href="{$Post->getURL()}/edit" class="btn btn-default">{*glyph "pencil"*} {_ Edit}</a>
+                            <a href="{$Post->getURL()}/delete"
+                               class="btn btn-danger confirm"
+                               data-confirm-yes="Delete Post"
+                               data-confirm-no="Don&rsquo;t Delete"
+                               data-confirm-title="Deleting Post"
+                               data-confirm-body="Are you sure you want to delete the post &ldquo;{$Post->Title|escape}?&rdquo;"
+                               data-confirm-destructive="true"
+                               data-confirm-success-target=".blog-post"
+                               data-confirm-success-message="Blog post deleted">{*glyph "trash"*} {_ Delete}</a>
+                        </div>
+                    </div>
+                {/if}
+
+                <h1 class="header-title"><a href="{$Post->getURL()}">{$Post->Title|escape}</a></h1>
+
+                <div class="article-meta">
+                    by {personLink $Post->Author photo=yes photoSize=36 pixelRatio=2}
+                    on <a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
                 </div>
-            {/if}
 
-            <h1 class="header-title"><a href="{$Post->getURL()}">{$Post->Title|escape}</a></h1>
+                {if $Post->Summary}
+                <div class="article-summary">
+                    {$Post->Summary|escape}
+                </div>
+                {/if}
+            </header>
 
-            <div class="article-meta">
-                by {personLink $Post->Author photo=yes photoSize=36 pixelRatio=2}
-                on <a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
+            <div class="article-body">
+                {$Post->RenderBody()}
             </div>
 
-            {if $Post->Summary}
-            <div class="article-summary">
-                {$Post->Summary|escape}
-            </div>
-            {/if}
-        </header>
+            <section class="blog-comments">
+                {commentSection $Post}
+            </section>
+        </article>
 
-        <div class="article-body">
-            {$Post->RenderBody()}
-        </div>
-
-        <section class="blog-comments">
-            {commentSection $Post}
-        </section>
-    </article>
+    {/block}
+    </div>
 {/block}

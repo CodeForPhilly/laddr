@@ -1,3 +1,4 @@
+{load_templates "subtemplates/personName.tpl"}
 {load_templates "subtemplates/glyphicons.tpl"}
 {load_templates "subtemplates/people.tpl"}
 {load_templates "subtemplates/comments.tpl"}
@@ -10,7 +11,7 @@
             {if $showHeader}
                 <header class="article-header">
                     <{$headingLevel} class="header-title">
-                        <a class="pull-right" href="{$Post->Author->getURL()}" data-toggle="tooltip" title="{$Post->Author->FullName}">{avatar $Post->Author size=64}</a>
+                        <a class="pull-right" href="{$Post->Author->getURL()}" data-toggle="tooltip" title="{personName $Post->Author}">{avatar $Post->Author size=64}</a>
                         <a href="{$Post->getURL()}">{$Post->Title|escape}</a>
                     </{$headingLevel}>
                 </header>

@@ -35,12 +35,18 @@
             {include includes/site.header.tpl}
         {/block}
 
-        {block content-wrapper-open}<div class="container">{/block}
-        {block content}{/block}
-        {block content-wrapper-close}</div>{/block}
+        {block content-wrapper}
+            <main class="container page-body-default">
+                {block content}{/block}
+            </main>
+        {/block}
 
-        {block footer}
-            {include includes/site.footer.tpl}
+        {block footer-wrapper}
+            <footer class="site">
+                {block footer}
+                    {include includes/site.footer.tpl}
+                {/block}
+            </footer>
         {/block}
 
         {block "js-bottom"}
@@ -54,5 +60,4 @@
         {* enables site developers to dump the internal session log here by setting ?log_report=1 on any page *}
         {log_report}
     </body>
-
 </html>

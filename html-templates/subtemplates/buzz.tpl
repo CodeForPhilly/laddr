@@ -1,3 +1,4 @@
+{load_templates subtemplates/personName.tpl}
 {load_templates subtemplates/glyphicons.tpl}
 {load_templates subtemplates/timestamp.tpl}
 {load_templates subtemplates/people.tpl}
@@ -7,7 +8,7 @@
         <div class="panel-body">
             {if $showHeading && $showProject}
                 <{$headingLevel}>
-                    <a class="pull-right" href="{$Buzz->Creator->getURL()}" title="{$Buzz->Creator->FullName}" data-toggle="tooltip">{avatar $Buzz->Creator size=64}</a>
+                    <a class="pull-right" href="{$Buzz->Creator->getURL()}" title="{personName $Buzz->Creator}" data-toggle="tooltip">{avatar $Buzz->Creator size=64}</a>
                     <a href="{$Buzz->Project->getURL()}">{$Buzz->Project->Title|escape}</a>
                     <small class="text-muted">{glyph "flash"} Buzz</small>
                 </{$headingLevel}>

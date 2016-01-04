@@ -5,10 +5,9 @@
 {block content}
     {$Project = $data}
 
-    <div class="padded-header" style="padding-top:15px;">
-        <h2>
-            {$Project->Title|escape}
-            <div class="btn-group pull-right">
+    <header class="page-header">
+        <div class="btn-toolbar pull-right">
+            <div class="btn-group">
                 <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">{_ "Edit Project"}</a>
                 {if $.User}
                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
@@ -24,8 +23,11 @@
                     </ul>
                 {/if}
             </div>
-        </h2>
-    </div>
+        </div>
+
+        <h2>{$Project->Title|escape}</h2>
+    </header>
+
     <div class="row">
         <article class="project col-md-8">
 <!--  Unnecessary? Leave for screen readers?          
@@ -112,8 +114,8 @@
     <!--  PROJECT LINKS  -->  
         <aside class="col-md-4">
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
-              <a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}"><span class="glyphicon glyphicon-link" style="margin-right:7px;"></span>Public Site</a>
-              <a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}"><span class="glyphicon glyphicon-link" style="margin-right:7px;"></span>Developers</a>
+              {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{glyph "link"}&nbsp;Public Site</a>{/if}
+              {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}&nbsp;Developers</a>{/if}
             </div>
         </aside>
                 
@@ -131,7 +133,7 @@
                             class="thumbnail member-thumbnail"
                             data-toggle="tooltip"
                             data-placement="bottom"
-                            title="{$Member->FullName|escape} &mdash; {projectMemberTitle $Membership}"
+                            title="{personName $Member} &mdash; {projectMemberTitle $Membership}"
                         >
                             {avatar $Member size=60}
                         </a>

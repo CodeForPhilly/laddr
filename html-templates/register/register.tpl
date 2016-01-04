@@ -12,10 +12,13 @@
 
 {block "content"}
     {$User = $data}
+
+    <header class="page-header">
+        <h2>{_("Register with %s")|sprintf:Laddr::$siteName|escape}!</h2>
+    </header>
+
     <form method="POST" id="register">
         {strip}
-            <h2>{_("Register with %s")|sprintf:Laddr::$siteName|escape}!</h2>
-        
             {if $User->validationErrors}
                 <div class="well well-sm">
                     <h3>{_ "There were problems with your submission:"}</h3>

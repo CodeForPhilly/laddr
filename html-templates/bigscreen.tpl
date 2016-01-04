@@ -53,34 +53,36 @@
 
 {block "js-analytics"}{*Ignore this page for analytics*}{/block}
 
-{block content-wrapper-open}<div class="container-fluid bigscreen-content">{/block}
-{block content}
-    <div class="row">
+{block content-wrapper}
+    <div class="container-fluid bigscreen-content">
+    {block content}
 
-        <section class="col-md-4 announcements">
-            {contentBlock "bigscreen-announcement"}
-        </section>
+        <div class="row">
+            <section class="col-md-4 announcements">
+                {contentBlock "bigscreen-announcement"}
+            </section>
 
-        <section class="col-md-4">
-            <h2>{_("Check in at %s")|sprintf:$.server.HTTP_HOST}</strong></h2>
-            <img src="{versioned_url 'img/screenshot-checkin.png'}" class="screenshot">
-        </section>
+            <section class="col-md-4">
+                <h2>{_("Check in at %s")|sprintf:$.server.HTTP_HOST}</strong></h2>
+                <img src="{versioned_url 'img/screenshot-checkin.png'}" class="screenshot">
+            </section>
 
-        <section class="col-md-4 checkins">
-            <h2>{_ "Latest Checkins"}</h2>
-            {if count($checkins)}
-                <p class="lead">{$checkins|count} checkin{tif count($checkins) > 1 ? 's'} so far for this event:</p>
-                <ul>
-                    {foreach item=Checkin from=$checkins}
-                        <li>
-                            {personLink $Checkin->Member photo=yes photoSize=32} checked in{if $Checkin->Project} to {projectLink $Checkin->Project}{else}.{/if}
-                            {timestamp $Checkin->Created}
-                        </li>
-                    {/foreach}
-                </ul>
-            {/if}
-        </section>
+            <section class="col-md-4 checkins">
+                <h2>{_ "Latest Checkins"}</h2>
+                {if count($checkins)}
+                    <p class="lead">{$checkins|count} checkin{tif count($checkins) > 1 ? 's'} so far for this event:</p>
+                    <ul>
+                        {foreach item=Checkin from=$checkins}
+                            <li>
+                                {personLink $Checkin->Member photo=yes photoSize=32} checked in{if $Checkin->Project} to {projectLink $Checkin->Project}{else}.{/if}
+                                {timestamp $Checkin->Created}
+                            </li>
+                        {/foreach}
+                    </ul>
+                {/if}
+            </section>
+        </div>
 
+    {/block}
     </div>
 {/block}
-{block content-wrapper-close}</div>{/block}

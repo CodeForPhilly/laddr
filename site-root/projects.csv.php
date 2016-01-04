@@ -9,22 +9,15 @@ RequestHandler::respond('projects', array(
             ,'description' => trim($matches[0])
             ,'link_url' => $Project->UsersUrl
             ,'code_url' => $Project->DevelopersUrl
-            ,'type' => ''
-            ,'categories' =>
-                implode(
-                    ', ',
+            ,'tags' => implode(',',
                     array_map(
                         function($Tag) {
                             return $Tag->UnprefixedTitle;
-                        },
-                        array_filter(
-                            $Project->Tags,
-                            function($Tag) {
-                                return $Tag->Prefix == 'topic';
-                            }
-                        )
+                        }
+                        ,$Project->TopicTags
                     )
                 )
+            ,'status' => $Project->Stage
         );
     }, Laddr\Project::getAll())
 ));

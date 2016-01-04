@@ -3,7 +3,10 @@
 {block title}{_ "Top Members"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <h2>{_ "Top Members"}</h2>
+    <header class="page-header">
+        <h2>{_ "Top Members"}</h2>
+    </header>
+
     <table width="350">
         <tr>
             <th align="left">Member</th>

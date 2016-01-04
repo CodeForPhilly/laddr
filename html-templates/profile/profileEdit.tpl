@@ -13,7 +13,7 @@
     {$User = $data}
 
     <header class="page-header">
-        <h1 class="header-title title-1">{if $User->ID == $.User->ID}{_ "Manage Your Profile"}{else}{sprintf(_("Manage %s Profile"), $User->FullNamePossessive|escape)}{/if}</h1>
+        <h2>{if $User->ID == $.User->ID}{_ "Manage Your Profile"}{else}{sprintf(_("Manage %s Profile"), $User->FullNamePossessive|escape)}{/if}</h2>
     </header>
 
     {if $.get.status == 'photoUploaded'}

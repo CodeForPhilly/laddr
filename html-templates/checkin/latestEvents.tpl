@@ -3,7 +3,10 @@
 {block title}{_ "Latest Events"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <h2>{_ "Latest Events"}</h2>
+    <header class="page-header">
+        <h2>{_ "Latest Events"}</h2>
+    </header>
+
     <table width="600">
         <tr>
             <th align="left">Meetup ID</th>

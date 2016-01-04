@@ -3,16 +3,19 @@
 {block title}{_ "Projects"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <div class="page-header">
-        {if $.User}
-            <form class="pull-right" action="/projects/create">
-                <button class="btn btn-success" type="submit">{glyph "plus"}&nbsp;{_ "Add Project&hellip;"}</button>
-            </form>
-        {else}
-            <a href="/register" class="btn btn-danger pull-right">{glyph "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
-        {/if}
+    <header class="page-header">
+        <div class="btn-toolbar pull-right">
+            {if $.User}
+                <form action="/projects/create">
+                    <button class="btn btn-success" type="submit">{glyph "plus"}&nbsp;{_ "Add Project&hellip;"}</button>
+                </form>
+            {else}
+                <a href="/register" class="btn btn-danger">{glyph "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
+            {/if}
+        </div>
+
         <h2>{_ "Civic Projects Directory"}</h2>
-    </div>
+    </header>
 
     {foreach item=Project from=$data}
         <div class="project-listing row-fluid clearfix">
@@ -34,7 +37,7 @@
 
                 <div class="btn-group btn-group-justified" role="group">
                     {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{glyph "link"}&nbsp;Public Site</a>{/if}
-                    {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}Developers</a>{/if}
+                    {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}&nbsp;Developers</a>{/if}
                 </div>
             
                 {if $Project->Stage}
@@ -53,7 +56,7 @@
                             href="/members/{$Member->Username}"
                             class="member-thumbnail"
                             data-toggle="tooltip"
-                            title="{$Member->FullName|escape} &mdash; {projectMemberTitle $Membership}"
+                            title="{personName $Member} &mdash; {projectMemberTitle $Membership}"
                         >
                             {avatar $Member size=48}
                         </a>
