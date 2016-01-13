@@ -2,7 +2,7 @@
 
 {block content}
     <header class="page-header">
-        <h2>Registered Members</h2>
+        <h2>{_ "Registered Members"}</h2>
     </header>
 
     {foreach item=Person from=$data}
