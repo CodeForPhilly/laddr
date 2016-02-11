@@ -38,6 +38,10 @@ class ProjectUpdate extends \VersionedRecord
         ]
     ];
 
+    public static $dynamicFields = [
+        'Project'
+    ];
+
     public function destroy()
     {
         $success = parent::destroy();

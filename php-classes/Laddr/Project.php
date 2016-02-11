@@ -129,6 +129,16 @@ class Project extends \VersionedRecord
         ]
     ];
 
+    public static $dynamicFields = [
+        'Maintainer',
+        'Members',
+        'Memberships',
+        'Tags',
+        'TopicTags',
+        'TechTags',
+        'EventTags'
+    ];
+
     public static $validators = [
         'Title' => [
             'errorMessage' => 'Project title is required'
