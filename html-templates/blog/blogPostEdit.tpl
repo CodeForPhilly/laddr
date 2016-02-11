@@ -2,7 +2,7 @@
 
 {block "css"}
     {$dwoo.parent}
-    {cssmin "blog.css"}
+    {cssmin "pages/blog.css"}
 {/block}
 
 {block title}{if $data->isPhantom}Create blog post{else}Edit &ldquo;{$data->Title|escape}&rdquo;{/if} &mdash; {$dwoo.parent}{/block}
