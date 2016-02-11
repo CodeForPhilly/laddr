@@ -2,6 +2,11 @@
 
 {block title}{$data->Title|escape} &mdash; {_ 'Projects'} &mdash; {$dwoo.parent}{/block}
 
+{block "css"}
+    {$dwoo.parent}
+    {cssmin "pages/projects.css"}
+{/block}
+
 {block content}
     {$Project = $data}
 

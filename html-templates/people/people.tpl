@@ -1,5 +1,10 @@
 {extends "designs/site.tpl"}
 
+{block "css"}
+    {$dwoo.parent}
+    {cssmin "pages/members.css"}
+{/block}
+
 {block content}
     <header class="page-header">
         <h2>{_ "Registered Members"}</h2>

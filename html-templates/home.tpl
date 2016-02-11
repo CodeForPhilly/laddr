@@ -1,5 +1,10 @@
 {extends designs/site.tpl}
 
+{block "css"}
+    {$dwoo.parent}
+    {cssmin "pages/home.css"}
+{/block}
+
 {block js-bottom}
     {$dwoo.parent}
     {jsmin "features/sidebar-tags.js+features/sidebar-checkin.js"}

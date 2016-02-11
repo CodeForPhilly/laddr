@@ -2,6 +2,11 @@
 
 {block title}{_ "Projects"} &mdash; {$dwoo.parent}{/block}
 
+{block "css"}
+    {$dwoo.parent}
+    {cssmin "pages/projects.css"}
+{/block}
+
 {block content}
     <header class="page-header">
         <div class="btn-toolbar pull-right">
