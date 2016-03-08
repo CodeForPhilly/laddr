@@ -40,6 +40,9 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
 - [Code for Durham](http://codefordurham.com/)
 - [Code for Raleigh](http://www.codeforraleigh.com/)
 
+## Help / Support / Questions / Chat
+Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org: https://codeforphilly.slack.com/messages/laddr
+
 ## Requirements
 Laddr is built on the Emergence PHP framework and deployement engine, and requires an Emergence server to host it.
 
