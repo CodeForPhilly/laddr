@@ -19,7 +19,7 @@
         $('form.site-search').each(function() {
             var $searchForm = $(this),
                 $searchField = $searchForm.find('input[name=q]'),
-                $resultsList = $('<ul />').appendTo($searchForm).addClass('search-results').hide(),
+                $resultsList = $('<ul />').appendTo($searchForm).addClass('dropdown-menu').hide(),
                 lastTypedQuery, lastRequestedQuery, searchTimeout, searchXHR;
     
     
@@ -153,30 +153,28 @@
                             return;
                         }
 
-                        var $section = $('<section class="results-group" />');
-                        $('<h1 class="group-title" />').appendTo($section).text(
+                        $('<li class="dropdown-header" />').appendTo($resultsList).text(
                             key in resultRenderers ? resultRenderers[key].groupTitle : key
                         );
 
                         $.each(value.slice(0, 5), function(index, result) {
-                            $('<li class="search-result" />').append(
+                            $('<li />').append(
                                 (resultRenderers[result.Class] || _defaultResultRenderer)(result)
-                            ).appendTo($section);
+                            ).appendTo($resultsList);
                         });
     
                         if (value.length > 5) {
-                            $('<li class="search-result" />').append(
+                            $('<li />').append(
                                 $('<a class="more-link" />')
                                     .html((value.length - 5) + ' more&hellip;')
                                     .attr('href', '/search?q=' + encodeURIComponent(lastRequestedQuery))
-                            ).appendTo($section);
+                            ).appendTo($resultsList);
                         }
-    
-                        $section.appendTo($resultsList);
+
                     });
                 } else {
                     $searchForm.addClass('no-results');
-                    $resultsList.html('<div class="empty-text">No results</div>');
+                    $resultsList.html('<li class="empty-text">No results</li>');
                 }
             }
 

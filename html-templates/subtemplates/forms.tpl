@@ -10,23 +10,21 @@
     {/if}
 {/template}
 
-{template labeledField html type=text label='' error='' hint='' required=false class=null}
-    <label class="field {$type}-field {if $error}has-error{/if} {if $required}is-required{/if} {$class}">
-        {if $label}<span class="field-label">{$label}</span>{/if}
-    </label>
-
-    {$html}
-
-    {if $error}<p class="error-text">{$error}</p>{/if}
-    {if $hint}<p class="hint help-block">{$hint}</p>{/if}
+{template labeledField html type=text label='' error='' hint='' required=false id=null class=null}
+    <div class="form-group {$type}-field {if $error}has-error{/if} {if $required}is-required{/if} {$class}">
+        {if $label}<label class="control-label" for="{$id}">{$label}{/if}</label>
+        {$html}
+        {if $error}<p class="error-text">{$error}</p>{/if}
+        {if $hint}<p class="hint help-block">{$hint}</p>{/if}
+    </div>
 {/template}
 
 {template field inputName label='' error='' type=text placeholder='' hint='' required=false autofocus=false attribs='' default=null class=null fieldClass=null}
-    
-    <div class="form-group">
+
         {capture assign=html}
         <input type="{$type}"
-            class="field-control form-control {$class}"
+            class="form-control {$class}"
+            id="{$inputName|escape}"
             name="{$inputName|escape}"
             {if $placeholder}placeholder="{$placeholder|escape}"{/if}
             {if $autofocus}autofocus{/if}
@@ -35,8 +33,7 @@
             value="{refill field=$inputName default=$default}">
         {/capture}
 
-        {labeledField html=$html type=$type label=$label error=$error hint=$hint required=$required class=$fieldClass}
-    </div>
+        {labeledField html=$html type=$type label=$label error=$error hint=$hint required=$required id=$inputName class=$fieldClass}
 {/template}
 
 {template checkbox inputName value label='' error='' hint='' attribs='' default=null class=null unsetValue=null}

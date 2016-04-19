@@ -3,9 +3,9 @@
 {block title}{_ Resources} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <header class="page-header">
-        <h2>{_ Resources}</h2>
-    </header>
+    <div class="page-header">
+        <h1>{_ Resources}</h1>
+    </div>
 
     <ul>
         {include includes/site.resourcelinks.tpl}

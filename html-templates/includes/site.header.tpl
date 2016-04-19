@@ -24,7 +24,7 @@
                 {if $.User}
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">{avatar $.User 18} {$.User->FirstName} <b class="caret"></b></a>
-                        <ul class="dropdown-menu" role="menu">
+                        <ul class="dropdown-menu">
                             {include includes/site.nav-userlinks.tpl}
                         </ul>
                      </li>
@@ -34,7 +34,7 @@
                 {/if}
             </ul>
 
-            <form class="navbar-form navbar-right site-search" role="search" action="/search">
+            <form class="navbar-form navbar-right dropdown dropdown-results site-search" role="search" action="/search">
                 <div class="form-group">
                     <input type="search" class="form-control" placeholder="Search" name="q">
                 </div>

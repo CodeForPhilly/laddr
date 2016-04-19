@@ -3,5 +3,8 @@
 {block title}Members &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <p>{personLink $data->Maintainer} has been made the maintainer of {projectLink $data}</p>
+    <div class="page-header">
+        <h1>Maintainer Changed</h1>
+    </div>
+    <p class="lead">{personLink $data->Maintainer} has been made the maintainer of {projectLink $data}</p>
 {/block}

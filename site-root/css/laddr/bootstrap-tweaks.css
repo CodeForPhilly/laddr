@@ -1,0 +1,98 @@
+/*
+ * Bootstrap tweaks
+ *
+ *  + CSS   
+ *      - Typography
+ *      - Forms
+ *
+ *  + Components
+ *      - Jumbotron
+ *
+ */
+
+/* 
+ * + CSS
+ */
+
+/* - Typography */
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-weight: 600;
+}
+
+/* - Typography */
+
+legend {
+    border: 0;
+}
+
+/* 
+ * + Components
+ */
+
+/* - Jumbotron */
+
+.jumbotron {
+    background-image: url(/img/cover.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0;
+    color: white;
+}
+
+.jumbotron-caption {
+    background-color: rgba(0, 0, 0, 0.65);
+    border-radius: 3px;
+    padding: 25px;
+}
+
+.jumbotron-caption .media-left {
+    padding-right: 15px;
+}
+
+.jumbotron-caption .media-right {
+    padding-left: 15px;
+}
+
+@media (max-width: 479px) {
+
+    .jumbotron-caption {
+        text-align: center;
+    }
+
+    .jumbotron-caption .media-left, 
+    .jumbotron-caption .media-right,
+    .jumbotron-caption .media-body {
+        display: block;
+    }
+
+    .media-object {
+        display: inline-block;
+    }
+
+    .jumbotron-caption .media-body {
+        width: auto;
+    }
+
+    .jumbotron-caption .media-left, 
+    .jumbotron-caption .media-right,
+    .jumbotron-caption .list-inline > li {
+        margin-bottom: 15px;
+    }
+
+    .jumbotron-caption .list-inline > li {
+        display: block;
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .jumbotron-caption {
+        margin: auto;
+        max-width: 75%;
+    }
+
+}

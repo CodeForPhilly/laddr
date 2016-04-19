@@ -6,7 +6,7 @@
 {block "content"}
     {$Person = $data}
 
-    <header class="page-header">
+    <div class="page-header">
         {if $.User->ID == $Person->ID || (ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers))}
             <div class="btn-toolbar pull-right">
                 <div class="btn-group">
@@ -18,23 +18,32 @@
             </div>
         {/if}
 
-        <h2>{personName $Person}</h2>
+        <h1>{personName $Person}</h1>
         {if $Person->Location}
-            <h3><a href="http://maps.google.com/?q={$Person->Location|escape:url}" target="_blank">{$Person->Location|escape}</a></h3>
+            <p><a href="http://maps.google.com/?q={$Person->Location|escape:url}" target="_blank">{$Person->Location|escape}</a></p>
         {/if}
-    </header>
+    </div>
 
     <div class="row">
-        <section id="info" class="col-md-9">
+        <div id="photos" class="col-sm-3">
+            {avatar $Person size=200 imgCls="img-responsive"}
+            <div id="photo-thumbs" class="clearfix">
+                {foreach item=Photo from=$Person->Photos}
+                    <a href="{$Photo->getThumbnailRequest(1024,768)}" class="photo-thumb" id="t{$Photo->ID}" title="{$Photo->Caption|escape}"><img src="{$Photo->getThumbnailRequest(48,48)}" /></a>
+                {/foreach}
+            </div>
+        </div>
+
+        <div id="info" class="col-sm-9">
             {if $Person->About}
-                <h3>{_ 'About Me'}</h3>
+                <h2 class="h3">{_ 'About Me'}</h2>
                 <section class="about">
                     {$Person->About|escape|markdown}
                 </section>
             {/if}
 
             {if $.User}
-                <h3>{_ 'Contact Information'}</h3>
+                <h2 class="h3">{_ 'Contact Information'}</h2>
                 <dl class="section">
                     {if $Person->Email}
                         <dt>Email</dt>
@@ -54,7 +63,7 @@
             {/if}
 
             {if $Person->TechTags}
-                <h3>{_ "Tech I'm interested in"}</h3>
+                <h2 class="h3">{_ "Tech I'm interested in"}</h2>
                 <ul>
                 {foreach item=Tag from=$Person->TechTags}
                     <li>{contextLink $Tag}</li>
@@ -63,7 +72,7 @@
             {/if}
 
             {if $Person->TopicTags}
-                <h3>{_ "Topics I'm interested in"}</h3>
+                <h2 class="h3">{_ "Topics I'm interested in"}</h2>
                 <ul>
                 {foreach item=Tag from=$Person->TopicTags}
                     <li>{contextLink $Tag}</li>
@@ -72,7 +81,7 @@
             {/if}
 
             {if $Person->ProjectMemberships}
-                <h3>{_ 'My projects'}</h3>
+                <h2 class="h3">{_ 'My projects'}</h2>
                 <ul>
                 {foreach item=Membership from=$Person->ProjectMemberships}
                     <li>{projectLink $Membership->Project} &mdash; {projectMemberTitle $Membership}</li>
@@ -81,18 +90,10 @@
             {/if}
 
             {if $Person->LastCheckin}
-                <h3>{_ "Last event checkin"}</h3>
+                <h2 class="h3">{_ "Last event checkin"}</h2>
                 <a href="{RemoteSystems\Meetup::getEventUrl($Person->LastCheckin->MeetupID)}">{$Person->LastCheckin->Created|date_format:'%c'}</a>
             {/if}
-        </section>
+        </div>
 
-        <section id="photos" class="col-md-3">
-            {avatar $Person size=200}
-            <div id="photo-thumbs" class="clearfix">
-                {foreach item=Photo from=$Person->Photos}
-                    <a href="{$Photo->getThumbnailRequest(1024,768)}" class="photo-thumb" id="t{$Photo->ID}" title="{$Photo->Caption|escape}"><img src="{$Photo->getThumbnailRequest(48,48)}" /></a>
-                {/foreach}
-            </div>
-        </section>
     </div>
 {/block}

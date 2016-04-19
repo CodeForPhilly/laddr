@@ -6,11 +6,11 @@
 {load_templates "subtemplates/timestamp.tpl"}
 
 {template blogPost Post headingLevel=h1 showHeader=true showBody=true showFooter=true showComments=false showCommentsSummary=true showContext=true useSummary=false}
-    <article class="blog-post panel panel-default {if $headingLevel=='h1'}reading-width{/if}">
+    <article class="post panel panel-default {if $headingLevel=='h1'}reading-width{/if}">
         <div class="panel-body">
             {if $showHeader}
-                <header class="article-header">
-                    <{$headingLevel} class="header-title">
+                <header class="post-header">
+                    <{$headingLevel} class="post-title">
                         <a class="pull-right" href="{$Post->Author->getURL()}" data-toggle="tooltip" title="{personName $Post->Author}">{avatar $Post->Author size=64}</a>
                         <a href="{$Post->getURL()}">{$Post->Title|escape}</a>
                     </{$headingLevel}>
@@ -18,19 +18,19 @@
             {/if}
     
             {if $useSummary && $Post->Summary}
-                <section class="article-summary">
+                <div class="post-summary">
                     <p>{$Post->Summary|escape}</p>
                     <div><a class="btn btn-info" href="{$Post->getURL()}">{_ "Read more&hellip;"}</a></div>
-                </section>
+                </div>
             {elseif $showBody}
-                <section class="section-body">
+                <div class="post-body">
                     {$Post->renderBody()}
-                </section>
+                </div>
             {/if}
         </div>
 
         {if $showFooter}
-            <footer class="blog-footer panel-footer clearfix">
+            <footer class="post-footer panel-footer clearfix">
                 {if Emergence\CMS\BlogRequestHandler::checkWriteAccess($Post)}
                 <div class="btn-group pull-right">
                     <a href="{$Post->getURL()}/edit" class="btn btn-xs btn-default">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></span></a>
