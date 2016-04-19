@@ -4,10 +4,10 @@
 {load_templates subtemplates/people.tpl}
 
 {template projectUpdate Update headingLevel=h2 showHeading=true showProject=true articleClass=""}
-    <article class="project-update {$articleClass} panel panel-default">
-        <div class="update-body panel-body">
+    <article class="post post-update panel panel-default {$articleClass}">
+        <div class="panel-body">
             {if $showHeading}
-                <{$headingLevel}>
+                <{$headingLevel} class="post-title">
                     {if $showProject}
                         <a class="pull-right" href="{$Update->Creator->getURL()}" title="{personName $Update->Creator}" data-toggle="tooltip">{avatar $Update->Creator size=64}</a>
                         <a href="{$Update->Project->getURL()}">{$Update->Project->Title|escape}</a>
@@ -20,7 +20,7 @@
 
             {$Update->Body|escape|markdown}
         </div>
-        <div class="update-footer panel-footer clearfix">
+        <footer class="post-footer panel-footer clearfix">
             {capture assign=timestampCreated}{glyph "time"}&nbsp;<a href="{$Update->getURL()}">{timestamp $Update->Created}</a>{/capture}
             {capture assign=creatorLink}{glyph "user"}&nbsp;{personLink $Update->Creator}{/capture}
 
@@ -32,6 +32,6 @@
             {/if}
 
             <small class="text-muted">{sprintf(_("%s &emsp; %s"), $creatorLink, $timestampCreated)}</small>
-        </div>
+        </footer>
     </article>
 {/template}

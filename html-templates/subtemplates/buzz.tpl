@@ -4,19 +4,20 @@
 {load_templates subtemplates/people.tpl}
 
 {template projectBuzz Buzz headingLevel=h2 showHeading=true showProject=true articleClass=""}
-    <article class="project-buzz panel panel-default {$articleClass}">
+    <article class="post post-buzz panel panel-default {$articleClass}">
         <div class="panel-body">
-            {if $showHeading && $showProject}
-                <{$headingLevel}>
-                    <a class="pull-right" href="{$Buzz->Creator->getURL()}" title="{personName $Buzz->Creator}" data-toggle="tooltip">{avatar $Buzz->Creator size=64}</a>
-                    <a href="{$Buzz->Project->getURL()}">{$Buzz->Project->Title|escape}</a>
-                    <small class="text-muted">{glyph "flash"} Buzz</small>
-                </{$headingLevel}>
-            {/if}
+            <header class="post-header">
+                {if $showHeading && $showProject}
+                    <{$headingLevel} class="post-title">
+                        <a class="pull-right" href="{$Buzz->Creator->getURL()}" title="{personName $Buzz->Creator}" data-toggle="tooltip">{avatar $Buzz->Creator size=64}</a>
+                        <a href="{$Buzz->Project->getURL()}">{$Buzz->Project->Title|escape}</a>
+                        <small class="text-muted">{glyph "flash"} Buzz</small>
+                    </{$headingLevel}>
+                {/if}
+                <p class="post-subtitle"><a href="{$Buzz->getURL()}">{$Buzz->Headline|escape}</a></p>
+            </header>
 
-            <div class="buzz-headline"><a href="{$Buzz->getURL()}">{$Buzz->Headline|escape}</a></div>
-
-            <div class="buzz-summary">{$Buzz->Summary|markdown}</div>
+            <div class="post-summary">{$Buzz->Summary|markdown}</div>
 
             {if $Buzz->Image}
                 <blockquote><a href="{$Buzz->URL|escape}"><img class="img-responsive img-rounded" src="{$Buzz->Image->getThumbnailRequest(300, 300)}"></a></blockquote>
@@ -26,7 +27,7 @@
             &ensp;
             <small class="text-muted">{_ "Published"} {timestamp $Buzz->Published}</small>
         </div>
-        <div class="panel-footer">
+        <footer class="post-footer panel-footer">
             {capture assign=timestampCreated}{glyph "time"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>{/capture}
             {capture assign=creatorLink}{glyph "user"}&nbsp;{personLink $Buzz->Creator}{/capture}
 
@@ -38,6 +39,6 @@
             {/if}
 
             <small class="text-muted">{sprintf(_("%s &emsp; %s"), $creatorLink, $timestampCreated)}</small>
-        </div>
+        </footer>
     </article>
 {/template}

@@ -3,12 +3,12 @@
 {block title}{_ "Person deleted"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <header class="page-header">
-        <h2>{_ "Person deleted"}</h2>
-    </header>
+    <div class="page-header">
+        <h1>{_ "Person deleted"}</h1>
+    </div>
 
     {capture assign=personName}{personName $data}{/capture}
-    <p class="lead reading-width">{sprintf("%s has been removed from %s"|_, $personName, Laddr::$siteName)}!</p>
+    <p class="lead">{sprintf("%s has been removed from %s"|_, $personName, Laddr::$siteName)}!</p>
 
-    <a href="/people">{_ "Retun to member list"}</a>
+    <p><a href="/people">{_ "Retun to member list"}</a></p>
 {/block}
