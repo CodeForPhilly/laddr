@@ -1,10 +1,5 @@
 {extends designs/site.tpl}
 
-{block "css"}
-    {$dwoo.parent}
-    {cssmin "pages/home.css"}
-{/block}
-
 {block js-bottom}
     {$dwoo.parent}
     {jsmin "features/sidebar-tags.js+features/sidebar-checkin.js"}
@@ -13,9 +8,10 @@
 {block header}
     {$dwoo.parent}
 
-    <div class="jumbotron">
+
+   <div class="jumbotron">
         <div class="caption">
-            <img src="{versioned_url img/logo.png}" class="logo" alt="{Laddr::$siteName|escape}">
+         <img src="{versioned_url img/logo.png}" class="logo" alt="{Laddr::$siteName|escape}">
             <p>{Laddr::$siteSlogan|escape}</p>
             <p>
                 <a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-lg btn-primary">{glyph "fire"}&nbsp;{_ "Start Hacking"}</a>

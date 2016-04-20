@@ -1,3 +1,56 @@
+
+/* Added by AcriCAA 02-01-2016 */
+
+header .header-content .header-content-inner h2 {
+
+    /*font-weight: 500;*/
+    color: rgb(255, 255, 255);
+    /*font-size: 30px;*/
+}
+
+header .header-content .header-content-inner hr {
+    margin: 30px auto;
+}
+
+header .header-content .header-content-inner p {
+    margin-bottom: 50px;
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,.7);
+}
+
+@media(min-width:768px) {
+    header {
+        min-height: 100%;
+    }
+
+    header .header-content {
+        position: absolute;
+        top: 50%;
+        padding: 0 50px;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    header .header-content .header-content-inner {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 1000px;
+    }
+
+    header .header-content .header-content-inner p {
+        margin-right: auto;
+        margin-left: auto;
+        max-width: 80%;
+        font-size: 18px;
+    }
+}
+
+/* End Added by AcriCAA */
+
+
+
 .jumbotron {
     background: url(/img/cover.jpg) no-repeat center;
     background-size: cover;
@@ -14,6 +67,7 @@
     display: inline-block;
     padding: 25px;
     margin-left: 25px;
+
 }
 
 /*
