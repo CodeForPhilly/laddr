@@ -2,6 +2,11 @@
 
 {block title}{_ "Projects"} &mdash; {$dwoo.parent}{/block}
 
+{block js-bottom}
+    {$dwoo.parent}
+    {jsmin "features/sidebar-tags.js"}
+{/block}
+
 {block "css"}
     {$dwoo.parent}
     {cssmin "pages/projects.css"}
@@ -21,12 +26,12 @@
         <h1>{_ "Civic Projects Directory"} <span class="badge">{$projectsTotal|number_format}</span></h1>
     </header>
     <div class="row">
-        <div class="col-sm-4 col-md-3">
+        <div class="col-sm-4 col-md-3 tags-ct">
             <div class="btn-group btn-group-justified btn-group-xs" role="group">
-                <a href="#projects-by-topic" class="tagFilter active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                <a href="#projects-by-tech" class="tagFilter btn btn-default" role="button" data-group="byTech">{_ "tech"}</a>
-                <a href="#projects-by-event" class="tagFilter btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
-                <a href="#projects-by-event" class="tagFilter btn btn-default" role="button" data-group="byStage">{_ "stages"}</a>
+                <a href="#projects-by-topic" class="active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
+                <a href="#projects-by-tech" class="btn btn-default" role="button" data-group="byTech">{_ "tech"}</a>
+                <a href="#projects-by-event" class="btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
+                <a href="#projects-by-event" class="btn btn-default" role="button" data-group="byStage">{_ "stages"}</a>
             </div>
 
             {template tagLink tagData rootUrl linkCls=""}
