@@ -19,11 +19,11 @@
 
     <div class="row">
         <div class="col-sm-4 col-md-3">
-            <div class="tagsSummary members">
+            <div class="tags-ct members">
 
                 <header class="btn-group btn-group-justified btn-group-xs" role="group">
                     <a href="#members-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
-                    <a href="#members-by-project" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "projects"}</a>
+                    <a href="#members-by-project" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
                 </header>
 
                 {template tagLink tagData rootUrl linkCls=""}
