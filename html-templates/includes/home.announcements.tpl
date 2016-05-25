@@ -1,4 +1,9 @@
-<h2>Announcements</h2>
-<div class="alert alert-info">
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-</div>
+{load_templates subtemplates/contentBlocks.tpl}
+
+{$ContentBlock = Emergence\CMS\ContentBlock::getByHandle('home-announcements')}
+
+{if $.User->hasAccountLevel('Staff') || ($ContentBlock && $ContentBlock->Content)}
+    <h2>Announcements</h2>
+
+    {contentBlock "home-announcements" extraClass="alert alert-info"}
+{/if}
