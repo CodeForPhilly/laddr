@@ -57,7 +57,7 @@
 
 {block "css"}
     {$dwoo.parent}
-    {cssmin "blog.css"}
+    {cssmin "pages/blog.css"}
 {/block}
 
 {block "title"}{$data->Title} &mdash; {$dwoo.parent}{/block}

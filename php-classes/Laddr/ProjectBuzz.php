@@ -67,6 +67,10 @@ class ProjectBuzz extends \ActiveRecord
         ]
     ];
 
+    public static $dynamicFields = [
+        'Project'
+    ];
+
     public function validate($deep = true)
     {
         parent::validate($deep);

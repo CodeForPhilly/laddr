@@ -38,4 +38,9 @@ class ProjectMember extends \ActiveRecord
             'unique' => true
         ]
     ];
+
+    public static $dynamicFields = [
+        'Project',
+        'Member'
+    ];
 }

@@ -1,5 +1,9 @@
-{*
-<section class="announcements">
+{load_templates subtemplates/contentBlocks.tpl}
 
-</section>
-*}
+{$ContentBlock = Emergence\CMS\ContentBlock::getByHandle('home-announcements')}
+
+{if $.User->hasAccountLevel('Staff') || ($ContentBlock && $ContentBlock->Content)}
+    <h2>Announcements</h2>
+
+    {contentBlock "home-announcements" extraClass="alert alert-info"}
+{/if}

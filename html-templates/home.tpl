@@ -1,168 +1,127 @@
 {extends designs/site.tpl}
 
-{block js-bottom}
+{block "css"}
     {$dwoo.parent}
-    {jsmin "features/sidebar-tags.js+features/sidebar-checkin.js"}
+    {cssmin "pages/home.css"}
 {/block}
 
-{block header}
+{block js-bottom}
     {$dwoo.parent}
-
-    <div class="jumbotron">
-        <div class="caption">
-            <img src="{versioned_url img/logo.png}" class="logo" alt="{Laddr::$siteName|escape}">
-            <p>{Laddr::$siteSlogan|escape}</p>
-            <p>
-                <a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-lg btn-primary">{glyph "fire"}&nbsp;{_ "Start Hacking"}</a>
-                <small>or <a href="/mission">{_ "Learn More"}&hellip;</a></small>
-            </p>
-        </div>
-    </div>
+    {jsmin "features/sidebar-checkin.js"}
 {/block}
 
 {block content-wrapper}
-    <div class="container-fluid">
-    {block content}
-
-        {template tagLink tagData rootUrl linkCls=""}
-            <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
-        {/template}
-
-        <nav class="sidebar left">
-        <!-- PROJECTS BLOCK -->
-            <section class="tagsSummary projects ">
-                <h4><a href="/projects">{_ "Projects"} <span class="badge">{$projectsTotal|number_format}</span></a>
-                <a class="btn btn-success btn-xs pull-right" href="/projects/create">{glyph "plus"}&nbsp;{_ "Add Project"}</a></h4>
-
-                <header class="btn-group btn-group-justified btn-group-xs" role="group">
-                    <a href="#projects-by-topic" class="tagFilter active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                    <a href="#projects-by-tech" class="tagFilter btn btn-default" role="button" data-group="byTech">{_ "tech"}</a>
-                    <a href="#projects-by-event" class="tagFilter btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
-                    <a href="#projects-by-event" class="tagFilter btn btn-default" role="button" data-group="byStage">{_ "stages"}</a>
-                </header>
-
-                <div class="tags list-group byTopic">
-                    {foreach item=tag from=$projectsTags.byTopic}
-                        {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
-                    {/foreach}
+<main role="main">
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <div class="jumbotron-caption">
+                <div class="media">
+                    <div class="media-left">
+                        <img src="{versioned_url img/logo.png}" class="media-object" height="140" alt="{Laddr::$siteName|escape}">
+                    </div>
+                    <div class="media-body">
+                        <p class="media-heading">{Laddr::$siteSlogan|escape}</p>
+                        <ul class="list-inline">
+                            {if $.User}
+                                <li><a href="/chat" class="btn btn-lg btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></li>
+                            {else}
+                                <li><a href="/register" class="btn btn-lg btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></li>
+                            {/if}
+                            <li><a href="/projects" class="btn btn-lg btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="sr-only">Code for [My Town]</h1>
+        <div class="row">
+            <div class="col-md-8">
+                {include includes/home.announcements.tpl}
 
-                <div class="tags list-group byTech" style="display: none">
-                    {foreach item=tag from=$projectsTags.byTech}
-                        {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
-                    {/foreach}
-                </div>
+                {load_templates subtemplates/meetups.tpl}
+                {load_templates subtemplates/projects.tpl}
+                {load_templates subtemplates/people.tpl}
 
-                <div class="tags list-group byEvent" style="display: none">
-                    {foreach item=tag from=$projectsTags.byEvent}
-                        {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
-                    {/foreach}
-                </div>
+                {if $currentMeetup}
+                    <h2>{_ "Current Meetup"}</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {meetup $currentMeetup showRsvp=false}
+                        </div>
+                        <div class="panel-body">
+                            <form class="checkin" action="/checkin" method="POST">
+                                <div class="form-group">
+                                    <input type="hidden" name="MeetupID" value="{$currentMeetup.id}">
+                                    <select name="ProjectID" class="project-picker form-control">
+                                        <option value="">Current Project (if any)</option>
+                                        {foreach item=Project from=Laddr\Project::getAll()}
+                                            <option value="{$Project->ID}">{$Project->Title|escape}</option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <input type="submit" value="Check In" class="btn btn-success">
+                            </form>
+                            <div class="checkins">
+                                <h3>{_ "Checked-in Members"}</h3>
 
-                <div class="tags list-group byStage" style="display: none">
-                    {foreach item=stage from=$projectsStages}
-                        <a class="list-group-item" href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a>
-                    {/foreach}
-                </div>
-            </section>
+                                {$lastProjectID = false}
+                                <dl class="checkins-list">
+                                    <dt class="checkins-list-title">{_ "No Current Project"}</dt>
+                                    {foreach item=Checkin from=$currentMeetup.checkins}
+                                        {if $Checkin->ProjectID != $lastProjectID || $lastProjectID === false}
+                                            {if $Checkin->Project && $lastProjectID === false}
+                                                <dt class="checkins-list-title">{projectLink $Checkin->Project}</dt>
+                                                {$lastProjectID = $Checkin->ProjectID}
+                                            {/if}
+                                        {/if}
+                                        <dd class="checkins-list-person">{personLink $Checkin->Member photo=yes photoSize=32}</dd>
+                                    {/foreach}
+                                </dl>
 
-    <!-- MEMBERS BLOCK -->
-            <section class="tagsSummary members">
-                <h4><a href="/people">{_ "Members"} <span class="badge">{$membersTotal|number_format}</span></a></h4>
+                                {*
+                                {$lastProjectID = false}
+                                <p class="muted">{_ "No Current Project"}</p>
+                                <ul class="nav nav-pills nav-stacked">
+                                {foreach item=Checkin from=$currentMeetup.checkins}
+                                    {if $Checkin->ProjectID != $lastProjectID || $lastProjectID === false}
+                                        {if $lastProjectID}
+                                            </ul>
+                                        {/if}
+                                        <h5>{if $Checkin->Project}{projectLink $Checkin->Project}{/if}</h5>
+                                        {$lastProjectID = $Checkin->ProjectID}
+                                        <ul class="nav nav-pills nav-stacked">
+                                    {/if}
+                                    <li>{personLink $Checkin->Member photo=yes photoSize=32}</li>
+                                {/foreach}
+                                </ul>
+                                *}
+                            </div>
+                        </div>
+                    </div>
+                {/if}
 
-                <header class="btn-group btn-group-justified btn-group-xs" role="group">
-                    <a href="#members-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
-                    <a href="#members-by-project" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "projects"}</a>
-                </header>
-
-                <div class="tags list-group byTech">
-                    {foreach item=tag from=$membersTags.byTech}
-                        {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item"}
-                    {/foreach}
-                </div>
-
-                <div class="tags list-group byTopic" style="display: none">
-                    {foreach item=tag from=$membersTags.byTopic}
-                        {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item"}
-                    {/foreach}
-                </div>
-            </section>
-
-    {*
-    <!-- EVENTS BLOCK -->
-            <section class="tagsSummary events">
-                <h4><a href="/events">Events <span class="badge badge-info">108</span></a></h4>
-                <header class="btn-group btn-group-justified btn-group-xs" role="group">
-                    <a href="#events-by-date" class="tagFilter active btn btn-default" role="button" data-group="byDate">{_ "dates"}</a>
-                    <a href="#events-by-topic" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                </header>
-                <ul class="tags list-group">
-                    <li class="list-group-item"><a href="#">Workshops <span class="badge pull-right">100/3</span></a></li>
-                    <li class="list-group-item"><a href="#">Hackathons <span class="badge pull-right">10/4</span></a></li>
-                    <li class="list-group-item"><a href="#">Social <span class="badge pull-right">6/3</span></a></li>
-                </ul>
-            </section>
-
-    <!-- HELP WANTED BLOCK -->
-            <section class="tagsSummary wanted">
-                <h4><a href="/wanted">Help Wanted <span class="badge badge-info">10</span></a></h4>
-                <header class="btn-group btn-group-justified btn-group-xs" role="group">
-                    <a href="#wanted-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
-                    <a href="#wanted-by-event" class="tagFilter btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
-                    <a href="#wanted-by-topic" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                </header>
-                <ul class="tags list-group">
-                    <li class="list-group-item"><a href="#">PHP <span class="badge pull-right">1</span></a></li>
-                    <li class="list-group-item"><a href="#">JS <span class="badge pull-right">2</span></a></li>
-                    <li class="list-group-item"><a href="#">Python <span class="badge pull-right">100</span></a></li>
-                    <li class="list-group-item"><a href="#">Rails <span class="badge pull-right">42</span></a></li>
-                </ul>
-            </section>
-
-    <!-- HELP OFFERED BLOCK -->
-            <section class="tagsSummary offered">
-                <h4><a href="/offered">Help Offered <span class="badge badge-info">8</span></a></h4>
-                <header class="btn-group btn-group-justified btn-group-xs" role="group">
-                    <a href="#wanted-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
-                    <a href="#wanted-by-event" class="tagFilter btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
-                    <a href="#wanted-by-topic" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                </header>
-                <ul class="tags list-group">
-                    <li class="list-group-item"><a href="#">Django <span class="badge pull-right">2</span></a></li>
-                    <li class="list-group-item"><a href="#">Node.js <span class="badge pull-right">1</span></a></li>
-                </ul>
-             </section>
-    *}
-
-        {* include includes/home.resources.tpl *}
-        </nav>
-
-        <aside class="sidebar right meetups">
-            {include includes/home.meetups.tpl}
-        </aside>
-
-        <main class="fixed-fixed">
-            {include includes/home.announcements.tpl}
-
-            <header class="page-header">
                 <h2>{_ "Latest Project Activity"}</h2>
-            </header>
 
-            <div class="row-fluid">
+                <ul class="list-inline">
+                    <li><a href="/project-updates" class="btn btn-link">{glyph "asterisk"} {_ "Browse all project updates"}</a></li>
+                    <li><a href="/project-buzz" class="btn btn-link">{glyph "flash"} {_ "Browse all project buzz"}</a></li>
+                    <li><a href="/blog" class="btn btn-link">{glyph "file"} {_ "Browse all blog posts"}</a></li>
+                </ul>
+
                 {foreach item=Article from=$activity}
                     {projectActivity $Article headingLevel=h3 showProject=true}
                 {foreachelse}
-                    <em>{_ "No project updates have been posted on this site yet."}</em>
+                    <i>{_ "No project updates have been posted on this site yet."}</i>
                 {/foreach}
-            </div> <!-- .row-fluid -->
-
-            <div>
-                <a href="/project-updates" class="btn btn-link">{glyph "asterisk"} {_ "Browse all project updates"}</a>
-                <a href="/project-buzz" class="btn btn-link">{glyph "flash"} {_ "Browse all project buzz"}</a>
-                <a href="/blog" class="btn btn-link">{glyph "file"} {_ "Browse all blog posts"}</a>
-            </div> <!-- .row-fluid -->
-    </main>
-
-    {/block}
+            </div>
+            <div class="col-md-4">
+                <aside class="meetups" role="complementary">
+                    {include includes/home.meetups.tpl}
+                </aside>
+            </div>
+        </div>
     </div>
+</main>
 {/block}

@@ -3,9 +3,9 @@
 {block title}{_ "Our Mission"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <header class="page-header">
-        <h2>{_ "Our Mission"}</h2>
-    </header>
+    <div class="page-header">
+        <h1>{_ "Our Mission"}</h1>
+    </div>
 
     {capture assign=aboutMarkdown}
 [Code for America](http://www.codeforamerica.org/) is a 501(c)3

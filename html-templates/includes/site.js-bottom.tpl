@@ -12,3 +12,7 @@
     ,'features/site-search-renderers/*'
     ,'features/tooltips.js'
 )}
+
+{if $.User->hasAccountLevel('Staff')}
+    {jsmin "jquery.filedrop.js+markdown.js+features/content-editable.js"}
+{/if}

@@ -2,7 +2,7 @@
 
 {block "css"}
     {$dwoo.parent}
-    {cssmin "blog.css"}
+    {cssmin "pages/blog.css"}
 {/block}
 
 {block "content"}

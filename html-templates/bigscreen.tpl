@@ -3,15 +3,11 @@
 {block css}
     {$dwoo.parent}
 
-    {if $.User->hasAccountLevel('Staff')}
-        {cssmin "features/content-editable.css"}
-    {/if}
-
     <style type="text/css">
         .bigscreen-content, .bigscreen-content code {
             font-size: 140%;
         }
-        
+
         .checkins ul {
             list-style: none;
             padding: 0;
@@ -30,7 +26,7 @@
             color: #666;
             font-size: 90%;
         }
-        
+
         .screenshot {
             box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 15px;
         }
@@ -40,9 +36,7 @@
 {block js-bottom}
     {$dwoo.parent}
 
-    {if $.User->hasAccountLevel('Staff')}
-        {jsmin "jquery.filedrop.js+markdown.js+features/content-editable.js"}
-    {else}
+    {if !$.User->hasAccountLevel('Staff')}
         <script>
             setTimeout(function() {
                 location.reload();

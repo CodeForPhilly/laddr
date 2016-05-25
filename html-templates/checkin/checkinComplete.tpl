@@ -5,12 +5,11 @@
 {block content}
     {$Checkin = $data}
 
-    <header class="page-header">
-        <h2>{_ "Success!"}</h2>
-    </header>
-
+    <div class="page-header">
+        <h1>{_ "Success!"}</h1>
+    </div>
     <p>Thanks for checking in {if $Checkin->Project}to {projectLink $Checkin->Project}{/if} @ {Laddr::$siteName|escape}!</p>
-    <h3>{_ "Things to do next:"}</h3>
+    <h2>{_ "Things to do next:"}</h2>
     <ul>
         {if $Checkin->Project}
             <li><a href="{$Checkin->Project->getURL()}">{_ "Post an update to your project"}</a></li>

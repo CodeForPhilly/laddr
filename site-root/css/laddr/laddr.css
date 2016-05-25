@@ -1,0 +1,209 @@
+/*
+ * Laddr
+ *
+ *  + CSS
+ *
+ *  + Components
+ *      - Checkins
+ *      - Dropdown Results
+ *      - Event
+ *      - Person
+ *      - Post
+ *      - Site Footer
+ *
+ */
+
+
+/* 
+ * + CSS 
+ */
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    padding-top: 50px; /* Padding at top of screen for fixed navbar as recommended in bootstrap docs */
+}
+
+.reading-width {
+    max-width: 50em;
+}
+
+
+/* 
+ * + Components 
+ */
+
+
+/* - Checkins */
+
+.checkins-list:last-child {
+    margin-bottom: 0;
+}
+
+.checkins-list-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.checkins-list-title + .checkins-list-title {
+    margin-top: 10px;
+}
+
+.checkins-list-person {
+    margin-bottom: 5px;
+}
+
+.checkins-list-person .avatar {
+    margin-right: 5px;
+}
+
+@media (min-width: 480px) {
+
+    .checkins-list {
+        margin-left: -10px;
+    }
+
+    .checkins-list-title,
+    .checkins-list-person {
+        margin-left: 10px;
+    }
+
+    .checkins-list-title {
+        clear: left;
+    }
+
+    .checkins-list-person {
+        float: left;
+    }
+
+}
+
+
+/* - Dropdown Results */
+
+.dropdown-results .dropdown-menu {
+    right: 15px;
+    width: 240px;
+}
+
+.dropdown-results .dropdown-header {
+    background-color: #ddd;
+    color: #555;
+}
+
+.dropdown-results .empty-text,
+.dropdown-results .muted {
+    color: #777;
+}
+
+.dropdown-results .empty-text {
+    padding: 3px 20px;
+}
+
+.dropdown-results .muted {
+    font-size: 11px;
+    font-style: italic;
+}
+
+
+/* - Event */
+
+.event {
+    margin-bottom: 15px;
+}
+
+.event-title,
+.event-meta {
+    margin-bottom: 5px;
+}
+
+.event-title {
+    font-size: 1.28571em;
+}
+
+.panel-heading .event {
+    margin-bottom: 0;
+}
+
+.panel-heading .event-title {
+    margin-top: 0;
+}
+
+
+/* - Person */
+
+.avatar {
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.people-list.inline li,
+.people-list-person {
+    margin-bottom: .25em;
+    padding: 0;
+    text-align: center;
+    vertical-align: bottom;
+    width: 70px;
+}
+
+.people-list a {
+    display: inline-block;
+}
+
+
+/* - Post */
+
+.panel-body .post-title:first-child,
+.panel-body .post-link-group + .post-title {
+    margin-top: 0;
+}
+
+.post-link-group {
+    display: table;
+    margin-bottom: 10px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.post-link-group > .btn {
+    display: table-cell;
+    float: none;
+}
+
+.post-title .label {
+    font-size: 0.4em;
+    margin-left: 0.5em;
+    vertical-align: 0.5em;
+}
+
+.post-subtitle {
+    font-weight: 700;
+}
+
+.post-footer .text-muted a {
+    color: inherit;
+}
+
+@media screen and (min-width: 970px) {
+
+    .post-link-group {
+        display: block;
+        width: auto;
+    }
+
+    .post-link-group > .btn {
+        display: inline-block;
+        float: left;
+    }
+
+}
+
+
+/* - Site Footer */
+
+.site-footer {
+    border-top: 1px dashed #aaa;
+    margin-top: 20px;
+    padding: 1em;
+    text-align: center;
+}

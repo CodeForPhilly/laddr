@@ -32,17 +32,21 @@
     {* using the responseID as a class on the body can help with subpage-specific styles *}
     <body class="{block 'body-class'}{str_replace('/', '_', $.responseId)}-tpl{/block}">
         {block header}
-            {include includes/site.header.tpl}
+            <header class="site-header">
+                {include includes/site.header.tpl}
+            </header>
         {/block}
 
         {block content-wrapper}
-            <main class="container page-body-default">
-                {block content}{/block}
+            <main role="main">
+                <div class="container">
+                    {block content}{/block}
+                </div>
             </main>
         {/block}
 
         {block footer-wrapper}
-            <footer class="site">
+            <footer class="site-footer">
                 {block footer}
                     {include includes/site.footer.tpl}
                 {/block}

@@ -2,6 +2,7 @@
 
 use Emergence\People\User;
 
+
 User::$relationships['Projects'] = [
     'type' => 'many-many',
     'class' => \Laddr\Project::class,
@@ -9,9 +10,11 @@ User::$relationships['Projects'] = [
     'linkForeign' => 'ProjectID',
     'linkLocal' => 'MemberID'
 ];
+User::$dynamicFields[] = 'Projects';
 
 User::$relationships['ProjectMemberships'] = [
     'type' => 'one-many',
     'class' => \Laddr\ProjectMember::class,
     'foreign' => 'MemberID'
 ];
+User::$dynamicFields[] = 'ProjectMemberships';

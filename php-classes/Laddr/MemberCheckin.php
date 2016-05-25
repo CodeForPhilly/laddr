@@ -42,6 +42,11 @@ class MemberCheckin extends \ActiveRecord
         ]
     ];
 
+    public static $dynamicFields = [
+        'Member',
+        'Project'
+    ];
+
     public static function getAllForMeetupByProject($meetupID)
     {
         return static::getAllByField('MeetupID', $meetupID, ['order' => 'ProjectID IS NOT NULL, ProjectID DESC']);
