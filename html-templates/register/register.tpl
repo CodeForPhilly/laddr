@@ -13,6 +13,8 @@
 {block "content"}
     {$User = $data}
 
+    {contentBlock "register-introduction"}
+
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="page-header">
@@ -30,33 +32,33 @@
                             </ul>
                         </div>
                     {/if}
-                    
+
                     <div class="form-group">
                         <label class="control-label" for="FirstName">{_ "First Name"}</label>
                         <input type="text" class="form-control" id="FirstName" name="FirstName" value="{refill field=FirstName}" placeholder="{_ 'Jill'}">
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label" for="LastName">{_ "Last Name"}</label>
                         <input type="text" class="form-control" id="LastName" name="LastName" value="{refill field=LastName}" placeholder="{_ 'Appleseed'}">
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label" for="Email">{_ "Email"}</label>
                         <input type="email" class="form-control" id="Email" name="Email" value="{refill field=Email}" placeholder="{_ 'civichacker@example.com'}" aria-describedby="email-help-block">
                         <p id="email-help-block" class="help-block">Email address <strong>will</strong> be visible to other signed-in memebers.</p>
                     </div>
-                
+
                     <div class="form-group">
                         <label class="control-label" for="Username">{_ "Username"}</label>
                         <input type="text" class="form-control" id="Username" name="Username" value="{refill field=Username}" placeholder="{_ 'CivicHacker'}">
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label" for="Password">{_ "Password"}</label>
                         <input type="password" class="form-control" id="Password" name="Password" value="{refill field=Password}">
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label" for="PasswordConfirm">{_ "Password Confirmation"}</label>
                         <input type="password" class="form-control" id="PasswordConfirm" name="PasswordConfirm" value="{refill field=PasswordConfirm}">
