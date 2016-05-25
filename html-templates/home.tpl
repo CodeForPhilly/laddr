@@ -22,8 +22,12 @@
                     <div class="media-body">
                         <p class="media-heading">{Laddr::$siteSlogan|escape}</p>
                         <ul class="list-inline">
-                            <li><a href="{tif $.User ? '/projects' : '/register'}" class="btn btn-lg btn-primary">{glyph "fire"}&nbsp;{_ "Join Us"}</a></li>
-                            <li><a href="/mission" class="btn btn-lg btn-info">{_ "Learn More"}</a></li>
+                            {if $.User}
+                                <li><a href="/chat" class="btn btn-lg btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></li>
+                            {else}
+                                <li><a href="/register" class="btn btn-lg btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></li>
+                            {/if}
+                            <li><a href="/projects" class="btn btn-lg btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -75,7 +79,7 @@
                                         <dd class="checkins-list-person">{personLink $Checkin->Member photo=yes photoSize=32}</dd>
                                     {/foreach}
                                 </dl>
-                                
+
                                 {*
                                 {$lastProjectID = false}
                                 <p class="muted">{_ "No Current Project"}</p>
