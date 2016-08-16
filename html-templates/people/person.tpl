@@ -8,14 +8,14 @@
 
     <div class="page-header">
         {if $.User->ID == $Person->ID || (ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers))}
-            <div class="btn-toolbar pull-right">
+            <p class="btn-toolbar pull-right">
                 <div class="btn-group">
                     <a class="btn btn-primary" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">Edit Profile</a>
                     {if $.User->hasAccountLevel('Staff')}
                         <a class="btn btn-danger" href="{$Person->getUrl('/delete')|escape}">Delete {personName $Person}</a>
                     {/if}
                 </div>
-            </div>
+            </p>
         {/if}
 
         <h1>{personName $Person}</h1>
@@ -26,11 +26,13 @@
 
     <div class="row">
         <div id="photos" class="col-sm-3">
-            {avatar $Person size=200 imgCls="img-responsive"}
-            <div id="photo-thumbs" class="clearfix">
-                {foreach item=Photo from=$Person->Photos}
-                    <a href="{$Photo->getThumbnailRequest(1024,768)}" class="photo-thumb" id="t{$Photo->ID}" title="{$Photo->Caption|escape}"><img src="{$Photo->getThumbnailRequest(48,48)}" /></a>
-                {/foreach}
+            <div class="text-center">
+                {avatar $Person size=200 imgCls="img-responsive"}
+                <div id="photo-thumbs" class="clearfix">
+                    {foreach item=Photo from=$Person->Photos}
+                        <a href="{$Photo->getThumbnailRequest(1024,768)}" class="photo-thumb" id="t{$Photo->ID}" title="{$Photo->Caption|escape}"><img src="{$Photo->getThumbnailRequest(48,48)}" /></a>
+                    {/foreach}
+                </div>
             </div>
         </div>
 

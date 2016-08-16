@@ -23,11 +23,11 @@
                         <p class="media-heading">{Laddr::$siteSlogan|escape}</p>
                         <ul class="list-inline">
                             {if $.User}
-                                <li><a href="/chat" class="btn btn-lg btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></li>
+                                <li><p><a href="/chat" class="btn btn-lg btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
                             {else}
-                                <li><a href="/register" class="btn btn-lg btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></li>
+                                <li><p><a href="/register" class="btn btn-lg btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></p></li>
                             {/if}
-                            <li><a href="/projects" class="btn btn-lg btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></li>
+                            <li><p><a href="/projects" class="btn btn-lg btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></p></li>
                         </ul>
                     </div>
                 </div>

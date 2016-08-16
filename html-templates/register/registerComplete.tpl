@@ -5,9 +5,9 @@
 {block "content"}
     {$User = $data}
 
-    <header class="page-header">
-        <h2>{_ "Registration complete"}</h2>
-    </header>
+    <div class="page-header">
+        <h1>{_ "Registration complete"}</h1>
+    </div>
 
     {capture assign=personLink}<a href="{$User->getUrl()|escape}">{$User->Username|escape}</a>{/capture}
     <p class="lead">{"Your username for %s is: %s"|_|sprintf:Laddr::$siteName:$personLink}</p>

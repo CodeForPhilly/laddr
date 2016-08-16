@@ -69,7 +69,7 @@
                     {/if}
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">{_ "Create Account"}</button>
+                        <p><button type="submit" class="btn btn-primary">{_ "Create Account"}</button></p>
                         <p class="help-block">{_ "Already have an account?"} <a href="/login{tif $.request.return ? cat('?return=', escape($.request.return, url))}">{_ "Log in"}</a></p>
                     </div>
                 {/strip}

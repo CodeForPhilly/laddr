@@ -12,108 +12,109 @@
 {block content}
     {$Project = $data}
 
-    <header class="page-header">
-        <h2>
-            {if $Project->isPhantom}
-                {_ "Create new project"}
-            {else}
-                {_("Edit project %s")|sprintf:$Project->Title|escape}
-            {/if}
-        </h2>
-    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <div class="page-header">
+                    <h1>
+                        {if $Project->isPhantom}
+                            {_ "Create new project"}
+                        {else}
+                            {_("Edit project %s")|sprintf:$Project->Title|escape}
+                        {/if}
+                    </h1>
+                </div>
 
-    {if !$Project->isValid}
-    <div class="error well">
-        <strong>{_ "There were problems with your entry:"}</strong>
-        <ul class="errors">
-        {foreach item=error key=field from=$Project->validationErrors}
-            <li>{$error}</li>
-        {/foreach}
-        </ul>
+                {if !$Project->isValid}
+                <div class="error well">
+                    <strong>{_ "There were problems with your entry:"}</strong>
+                    <ul class="errors">
+                    {foreach item=error key=field from=$Project->validationErrors}
+                        <li>{$error}</li>
+                    {/foreach}
+                    </ul>
+                </div>
+                {/if}
+
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="field-title">{_ "Title"}:</label>
+                        <input name="Title" id="field-title" class="form-control" placeholder="{_ 'Train Schedule Analyzer'}" value="{refill field=Title default=$Project->Title}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="field-url-users">{_ "Users' URL"}:</label>
+                        <input type="url" name="UsersUrl" id="field-url-users" class="form-control" placeholder="{_ 'http://mypublicapp.org'}" value="{refill field=UsersUrl default=$Project->UsersUrl}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="field-url-developers">{_ "Developers' URL"}:</label>
+                        <input type="url" name="DevelopersUrl" id="field-url-developers" class="form-control" placeholder="http://github.com/..." value="{refill field=DevelopersUrl default=$Project->DevelopersUrl}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="topicTagsInput">{_ 'Topic Tags'}:</label>
+                        <input type="tags" data-tag-prefix="topic" id="topicTagsInput" class="form-control" name="tags[topic]" placeholder="{_ 'Education, Mapping, Crime'}" value="{refill field=tags.topic default=Tag::getTagsString($Project->Tags, topic)}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="techTagsInput">{_ 'Technology Tags'}:</label>
+                        <input type="tags" data-tag-prefix="tech" id="techTagsInput" class="form-control" name="tags[tech]" placeholder="{_ 'PHP, Bootstrap, JavaScript'}" value="{refill field=tags.tech default=Tag::getTagsString($Project->Tags, tech)}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventTagsInput">{_ 'Event Tags'}:</label>
+                        <input type="tags" data-tag-prefix="event" id="eventTagsInput" class="form-control" name="tags[event]" placeholder="{_ 'Education Hackathon 2014'}" value="{refill field=tags.event default=Tag::getTagsString($Project->Tags, event)}"/>
+                    </div>
+                    <p id="project-stage"><b>{_ 'Stage'}:</b></p>
+                    <div aria-labelledby="project-stage">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Stage" value="Commenting" {refill field=Stage default=$Project->Stage|default:Commenting checked=Commenting}>
+                                <b>{_ Commenting}</b>: {Laddr\Project::getStageDescription(Commenting)}
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Stage" value="Bootstrapping" {refill field=Stage default=$Project->Stage checked=Bootstrapping}>
+                                <b>{_ Bootstrapping}</b>: {Laddr\Project::getStageDescription(Bootstrapping)}
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Stage" value="Prototyping" {refill field=Stage default=$Project->Stage checked=Prototyping}>
+                                <b>{_ Prototyping}</b>: {Laddr\Project::getStageDescription(Prototyping)}
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Stage" value="Testing" {refill field=Stage default=$Project->Stage checked=Testing}>
+                                <b>{_ Testing}</b>: {Laddr\Project::getStageDescription(Testing)}
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Stage" value="Maintaining" {refill field=Stage default=$Project->Stage checked=Maintaining}>
+                                <b>{_ Maintaining}</b>: {Laddr\Project::getStageDescription(Maintaining)}
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Stage" value="Drifting" {refill field=Stage default=$Project->Stage checked=Drifting}>
+                                <b>{_ Drifting}</b>: {Laddr\Project::getStageDescription(Drifting)}
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="Stage" value="Hibernating" {refill field=Stage default=$Project->Stage checked=Hibernating}>
+                                <b>{_ Hibernating}</b>: {Laddr\Project::getStageDescription(Hibernating)}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="README">{_ 'README(.md)'}</label>
+                        <div class="controls">
+                            <textarea name="README" class="input-block-level" rows="10">{refill field=README default=$Project->README}</textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">{if $Project->isPhantom}{_ 'Create Project'}{else}{_ 'Save Changes'}{/if}</button>
+                </form>
+            </div>
+        </div>
     </div>
-    {/if}
-
-
-    <form method="POST" class="form-horizontal">
-        <div class="control-group">
-            <label for="field-title" class="control-label">{_ "Title"}:</label>
-            <div class="controls">
-                <input name="Title" id="field-title" placeholder="{_ 'Train Schedule Analyzer'}"
-                    value="{refill field=Title default=$Project->Title}" />
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="field-url-users" class="control-label">{_ "Users' URL"}:</label>
-            <div class="controls">
-                <input name="UsersUrl" id="field-url-users" placeholder="{_ 'http://mypublicapp.org'}"
-                    value="{refill field=UsersUrl default=$Project->UsersUrl}" class="input-xxlarge" />
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="field-url-developers" class="control-label">{_ "Developers' URL"}:</label>
-            <div class="controls">
-                <input name="DevelopersUrl" id="field-url-developers" placeholder="http://github.com/..."
-                    value="{refill field=DevelopersUrl default=$Project->DevelopersUrl}"  class="input-xxlarge"/>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="topicTagsInput" class="control-label">{_ 'Topic Tags'}:</label>
-            <div class="controls">
-                <input type="tags" data-tag-prefix="topic" id="topicTagsInput" name="tags[topic]" placeholder="{_ 'Education, Mapping, Crime'}" value="{refill field=tags.topic default=Tag::getTagsString($Project->Tags, topic)}"/>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="techTagsInput" class="control-label">{_ 'Technology Tags'}:</label>
-            <div class="controls">
-                <input type="tags" data-tag-prefix="tech" id="techTagsInput" name="tags[tech]" placeholder="{_ 'PHP, Bootstrap, JavaScript'}" value="{refill field=tags.tech default=Tag::getTagsString($Project->Tags, tech)}"/>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="eventTagsInput" class="control-label">{_ 'Event Tags'}:</label>
-            <div class="controls">
-                <input type="tags" data-tag-prefix="event" id="eventTagsInput" name="tags[event]" placeholder="{_ 'Education Hackathon 2014'}" value="{refill field=tags.event default=Tag::getTagsString($Project->Tags, event)}"/>
-            </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">{_ 'Stage'}:</label>
-            <div class="controls">
-                <label class="radio">
-                    <input type="radio" name="Stage" value="Commenting" {refill field=Stage default=$Project->Stage|default:Commenting checked=Commenting}>
-                    <strong>{_ Commenting}</strong>: {Laddr\Project::getStageDescription(Commenting)}
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Stage" value="Bootstrapping" {refill field=Stage default=$Project->Stage checked=Bootstrapping}>
-                    <strong>{_ Bootstrapping}</strong>: {Laddr\Project::getStageDescription(Bootstrapping)}
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Stage" value="Prototyping" {refill field=Stage default=$Project->Stage checked=Prototyping}>
-                    <strong>{_ Prototyping}</strong>: {Laddr\Project::getStageDescription(Prototyping)}
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Stage" value="Testing" {refill field=Stage default=$Project->Stage checked=Testing}>
-                    <strong>{_ Testing}</strong>: {Laddr\Project::getStageDescription(Testing)}
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Stage" value="Maintaining" {refill field=Stage default=$Project->Stage checked=Maintaining}>
-                    <strong>{_ Maintaining}</strong>: {Laddr\Project::getStageDescription(Maintaining)}
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Stage" value="Drifting" {refill field=Stage default=$Project->Stage checked=Drifting}>
-                    <strong>{_ Drifting}</strong>: {Laddr\Project::getStageDescription(Drifting)}
-                </label>
-                <label class="radio">
-                    <input type="radio" name="Stage" value="Hibernating" {refill field=Stage default=$Project->Stage checked=Hibernating}>
-                    <strong>{_ Hibernating}</strong>: {Laddr\Project::getStageDescription(Hibernating)}
-                </label>
-            </div>
-        </div>
-        <div class="control-group">
-            <label for="README" class="control-label">{_ 'README(.md)'}</label>
-            <div class="controls">
-                <textarea name="README" class="input-block-level" rows="10">{refill field=README default=$Project->README}</textarea>
-                <br/><br/>
-                <input type="submit" class="btn-sm btn btn-default" value="{if $Project->isPhantom}{_ 'Create Project'}{else}{_ 'Save Changes'}{/if}"/>
-            </div>
-        </div>
-    </form>
 {/block}

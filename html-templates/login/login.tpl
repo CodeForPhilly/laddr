@@ -41,13 +41,10 @@
                         <button type="submit" class="btn btn-primary">{_ Login}</button>
                     </div>
 
-                    <div class="form-group">
-                        {capture assign=recoverLink}<a href="/register/recover{tif $.request.return || $.server.SCRIPT_NAME != '/login' ? cat('?return=', escape(default($.request.return, $.server.REQUEST_URI), url))}">{_ "recover your password"}</a>{/capture}
-                        {capture assign=registerLink}<a href="/register{tif $.request.return || $.server.SCRIPT_NAME != '/login' ? cat('?return=', escape(default($.request.return, $.server.REQUEST_URI), url))}">{_ "create an account"}</a>{/capture}
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <p>{sprintf(_('You can %s, or %s now.'), $recoverLink, $registerLink)}</p>
-                        </div>
-                    </div>
+                    {capture assign=recoverLink}<a href="/register/recover{tif $.request.return || $.server.SCRIPT_NAME != '/login' ? cat('?return=', escape(default($.request.return, $.server.REQUEST_URI), url))}">{_ "recover your password"}</a>{/capture}
+                    {capture assign=registerLink}<a href="/register{tif $.request.return || $.server.SCRIPT_NAME != '/login' ? cat('?return=', escape(default($.request.return, $.server.REQUEST_URI), url))}">{_ "create an account"}</a>{/capture}
+
+                    <p>{sprintf(_('You can %s, or %s now.'), $recoverLink, $registerLink)}</p>
                 {/strip}
                 
                 {foreach item=value key=name from=$postVars}
