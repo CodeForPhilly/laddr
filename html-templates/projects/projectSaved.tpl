@@ -7,6 +7,9 @@
 
     {capture assign=projectLink}{projectLink $Project}{/capture}
 
+    <div class="page-header">
+        <h1>Project Created</h1>
+    </div>
     {if $Project->isNew}
         <p>{_("Your project has been created: %s")|sprintf:$projectLink}</p>
     {else}
