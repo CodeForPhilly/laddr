@@ -27,11 +27,32 @@
                         <h2 class="post-title">
                             <a name="{$Event->Handle}" href="{$Event->getURL()}">{$Event->Title|escape}</a>
                         </h2>
-                        {if $Event->Description}
-                            <div class="well">
-                                <div class="markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
-                            </div>
-                        {/if}
+                        <dl class="dl-horizontal">
+                            {if $Event->Status != 'published'}
+                                <dt>Status</dt>
+                                <dd><strong>{$Event->Status}</strong></dd>
+                            {/if}
+
+                            <dt>Start time</dt>
+                            <dd>{timestamp $Event->StartTime time=yes}</dd>
+
+                            {if $Event->EndTime}
+                                <dt>End time</dt>
+                                <dd>{timestamp $Event->EndTime time=yes}</dd>
+                            {/if}
+
+                            {if $Event->Location}
+                                <dt>Location</dt>
+                                <dd><a href="https://www.google.com/maps?q={$Event->Location|escape:url}">{$Event->Location|escape}</a></dd>
+                            {/if}
+
+                            {if $Event->Description}
+                                <dt>Description</dt>
+                                <dd class="well">
+                                    <div class="markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
+                                </dd>
+                            {/if}
+                        </dl>
                     </div>
                 </article>
             {foreachelse}
