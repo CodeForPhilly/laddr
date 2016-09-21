@@ -4,6 +4,7 @@ namespace Laddr;
 
 use Emergence\People\User;
 use Tag;
+use TagItem;
 use Comment;
 
 class ProjectsRequestHandler extends \RecordsRequestHandler
@@ -33,6 +34,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
+
         // apply tag filter
         if (!empty($_REQUEST['tag'])) {
             // get tag
@@ -47,6 +49,36 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         if (!empty($_REQUEST['stage'])) {
             $conditions['Stage'] = $_REQUEST['stage'];
         }
+
+        $responseData['projectsTotal'] = Project::getCount();
+        $responseData['projectsTags']['byTech'] = TagItem::getTagsSummary(array(
+            'tagConditions' => array(
+                'Handle LIKE "tech.%"'
+            )
+            ,'itemConditions' => array(
+                'ContextClass' => Project::getStaticRootClass()
+            )
+            ,'limit' => 10
+        ));
+        $responseData['projectsTags']['byTopic'] = TagItem::getTagsSummary(array(
+            'tagConditions' => array(
+                'Handle LIKE "topic.%"'
+            )
+            ,'itemConditions' => array(
+                'ContextClass' => Project::getStaticRootClass()
+            )
+            ,'limit' => 10
+        ));
+        $responseData['projectsTags']['byEvent'] = TagItem::getTagsSummary(array(
+            'tagConditions' => array(
+                'Handle LIKE "event.%"'
+            )
+            ,'itemConditions' => array(
+                'ContextClass' => Project::getStaticRootClass()
+            )
+        ));
+        $responseData['projectsStages'] = Project::getStagesSummary();
+
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
