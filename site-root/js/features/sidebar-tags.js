@@ -1,6 +1,6 @@
 $(function() {
-    $('.sidebar.left').delegate('.tagsSummary .tagFilter', 'click', function() {
-        var tagsSummaryEl = $(this).closest('.tagsSummary')
+    $('.tags-ct .btn-group').delegate('.btn', 'click', function() {
+        var tagsSummaryEl = $(this).closest('.tags-ct')
             ,tagGroup = $(this).data('group');
 
         tagsSummaryEl.find('.tags.'+tagGroup).show();
