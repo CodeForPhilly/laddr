@@ -3,8 +3,6 @@
 {block title}{_ 'Events'} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-
-{block content}
     <header class="page-header">
         <div class="btn-toolbar pull-right">
             {if $.User}
@@ -25,7 +23,7 @@
                 <article class="post panel panel-default">
                     <div class="panel-body">
                         <h2 class="post-title">
-                            <a name="{$Event->Handle}" href="{$Event->getURL()}">{$Event->Title|escape}</a>
+                            <a name="{$Event->Handle}" href="{$Event->getUrl()}">{$Event->Title|escape}</a>
                         </h2>
                         <dl class="dl-horizontal">
                             {if $Event->Status != 'published'}
@@ -60,6 +58,4 @@
             {/foreach}
         </div>
     </div>
-{/block}
-
 {/block}
