@@ -16,7 +16,11 @@
 
     <div class="row">
         <div class="col-sm-4 col-md-3">
-            [Event Filters]
+            <ul>
+                <li><a href="/events/*past">Past Events</a></li>
+                <li><a href="/events/*upcoming">Upcoming Events</a></li>
+                <li><a href="/events/*all">All Events</a></li>
+            </ul>
         </div>
         <div class="col-sm-8 col-md-9">
             {foreach item=Event from=$data}
