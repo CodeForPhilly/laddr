@@ -29,36 +29,50 @@
                         <h2 class="post-title">
                             <a name="{$Event->Handle}" href="{$Event->getUrl()}">{$Event->Title|escape}</a>
                         </h2>
-                        <dl class="dl-horizontal">
+                        <ul class="row list-unstyled">
                             {if $Event->Status != 'published'}
-                                <dt>Status</dt>
-                                <dd><strong>{$Event->Status}</strong></dd>
+                                <li class="col-md-3">
+                                    <p>
+                                        <b>Status</b><br/>
+                                        {$Event->Status}
+                                    </p>
+                                </li>
                             {/if}
 
-                            <dt>Start time</dt>
-                            <dd>{timestamp $Event->StartTime time=yes}</dd>
+                            <li class="col-md-3">
+                                <p>
+                                    <b>Start time</b><br/>
+                                    {timestamp $Event->StartTime time=yes}
+                                </p>
+                            </li>
 
                             {if $Event->EndTime}
-                                <dt>End time</dt>
-                                <dd>{timestamp $Event->EndTime time=yes}</dd>
+                            <li class="col-md-3">
+                                <p>
+                                    <b>End time</b><br/>
+                                    {timestamp $Event->EndTime time=yes}
+                                </p>
+                            </li>
                             {/if}
 
                             {if $Event->Location}
-                                <dt>Location</dt>
-                                <dd><a href="https://www.google.com/maps?q={$Event->Location|escape:url}">{$Event->Location|escape}</a></dd>
+                            <li class="col-md-3">
+                                <p>
+                                    <b>Location</b><br/>
+                                    <a href="https://www.google.com/maps?q={$Event->Location|escape:url}">{$Event->Location|escape}</a>
+                                </p>
+                            </li>
                             {/if}
-
-                            {if $Event->Description}
-                                <dt>Description</dt>
-                                <dd class="well">
-                                    <div class="markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
-                                </dd>
-                            {/if}
-                        </dl>
+                        </ul>
+                        {if $Event->Description}
+                            <div class="well">
+                                <div class="markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
+                            </div>
+                        {/if}
                     </div>
                 </article>
             {foreachelse}
-                <em>No events were found, try creating one{if count($conditions)} or <a href="?">browse without any filters</a>{/if}.</em>
+                <p><em>No events were found, try creating one{if count($conditions)} or <a href="?">browse without any filters</a>{/if}.</em></p>
             {/foreach}
         </div>
     </div>

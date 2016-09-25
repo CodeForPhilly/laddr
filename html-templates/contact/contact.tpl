@@ -11,39 +11,39 @@
 {/block}
 
 {block "content"}
-    <header class="page-header">
-        <h2>Contact Us</h2>
-    </header>
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
-	<form action="/contact" method="POST" class="contact-form">
-		{if $validationErrors}
-			<div class="notify error">
-				<strong>Please double-check the fields highlighted below.</strong>
-			</div>
-		{/if}
-
-		<fieldset class="shrink show-required left-labels">
-
-			{* field name label='' error='' type=text placeholder='' hint='' required=false attribs='' *}
-
-            {field inputName=Name  label=Name  error=$validationErrors.Name  required=true attribs='autofocus autocapitalize="words"'}
-            {field inputName=Email label=Email error=$validationErrors.Email type=email required=true}
-            {field inputName=Phone label=Phone error=$validationErrors.Phone type=tel hint='Optional. Include your area code.'}
-
-            {textarea inputName=Message label=Message error=$validationErrors.Message required=true}
-
-            {if RemoteSystems\ReCaptcha::$siteKey}
-                <div class="form-group g-recaptcha" data-sitekey="{RemoteSystems\ReCaptcha::$siteKey|escape}"></div>
-            {/if}
-
-            {if $validationErrors.ReCaptcha}
-                <p class="error-text">{$validationErrors.ReCaptcha}</p>
-            {/if}
-
-            <div class="submit-area">
-            	<input type="submit" class="btn btn-primary btn-block" value="Send">
+            <div class="page-header">
+                <h1>Contact Us</h1>
             </div>
 
-		</fieldset>
-	</form>
+            <form action="/contact" method="POST" class="contact-form">
+                {if $validationErrors}
+                    <div class="alert alert-danger">
+                        Please double-check the fields highlighted below.
+                    </div>
+                {/if}
+
+                {* field name label='' error='' type=text placeholder='' hint='' required=false attribs='' *}
+
+                {field inputName=Name  label=Name  error=$validationErrors.Name  required=true attribs='autofocus autocapitalize="words"'}
+                {field inputName=Email label=Email error=$validationErrors.Email type=email required=true}
+                {field inputName=Phone label=Phone error=$validationErrors.Phone type=tel hint='Optional. Include your area code.'}
+
+                {textarea inputName=Message label=Message error=$validationErrors.Message required=true}
+
+                {if RemoteSystems\ReCaptcha::$siteKey}
+                    <div class="form-group g-recaptcha" data-sitekey="{RemoteSystems\ReCaptcha::$siteKey|escape}"></div>
+                {/if}
+
+                {if $validationErrors.ReCaptcha}
+                    <p class="text-danger">{$validationErrors.ReCaptcha}</p>
+                {/if}
+
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+
+        </div>
+    </div>
 {/block}

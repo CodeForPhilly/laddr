@@ -31,6 +31,12 @@ legend {
  * + Components
  */
 
+/* - Badges */
+
+h1 .badge {
+    vertical-align: middle;
+}
+
 /* - Jumbotron */
 
 .jumbotron {
