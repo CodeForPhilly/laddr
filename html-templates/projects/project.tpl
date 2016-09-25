@@ -102,7 +102,7 @@
                 {/if}
                 {if $Project->ChatChannel}
                     {if Laddr::$chatLinker}
-                        <a class="btn btn-success btn-block" role="button" href="{call_user_func(Laddr::$chatLinker, $Project->ChatChannel)|escape}">
+                        <a class="btn btn-success btn-block" role="button" href="{call_user_func(Laddr::$chatLinker, $Project->ChatChannel)|escape}" target="_blank">
                             {glyph "comment"}&nbsp;Chat Channel
                             <div class="small">#{$Project->ChatChannel|escape}</div>
                         </a>
