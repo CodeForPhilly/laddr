@@ -58,6 +58,10 @@ class Project extends \VersionedRecord
                 'Hibernating'
             ],
             'default' => 'Commenting'
+        ],
+        'ChatChannel' => [
+            'type' => 'string',
+            'default' => null
         ]
     ];
 

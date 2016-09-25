@@ -5,6 +5,7 @@ class Laddr
     public static $siteName;
     public static $siteAbbr;
     public static $siteSlogan;
+    public static $chatLinker;
 
     static function __classLoaded()
     {

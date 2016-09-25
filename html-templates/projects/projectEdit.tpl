@@ -42,12 +42,16 @@
                         <input name="Title" id="field-title" class="form-control" placeholder="{_ 'Train Schedule Analyzer'}" value="{refill field=Title default=$Project->Title}" />
                     </div>
                     <div class="form-group">
-                        <label for="field-url-users">{_ "Users' URL"}:</label>
+                        <label for="field-url-users">{_ "URL for Users"}:</label>
                         <input type="url" name="UsersUrl" id="field-url-users" class="form-control" placeholder="{_ 'http://mypublicapp.org'}" value="{refill field=UsersUrl default=$Project->UsersUrl}" />
                     </div>
                     <div class="form-group">
-                        <label for="field-url-developers">{_ "Developers' URL"}:</label>
+                        <label for="field-url-developers">{_ "URL for Developers"}:</label>
                         <input type="url" name="DevelopersUrl" id="field-url-developers" class="form-control" placeholder="http://github.com/..." value="{refill field=DevelopersUrl default=$Project->DevelopersUrl}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-chat-channel">{_ "Chat Channel/Hashtag"}:</label>
+                        <input name="ChatChannel" id="field-chat-channel" class="form-control" placeholder="train_schedule_analyzer" value="{refill field=ChatChannel default=$Project->ChatChannel}"/>
                     </div>
                     <div class="form-group">
                         <label for="topicTagsInput">{_ 'Topic Tags'}:</label>

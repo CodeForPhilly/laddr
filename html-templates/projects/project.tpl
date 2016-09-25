@@ -86,10 +86,30 @@
         <div class="col-md-4">
             <h2>{_ "Project Info"}</h2> 
 
-            <!--  PROJECT LINKS  -->  
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-              {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{glyph "link"}&nbsp;Public Site</a>{/if}
-              {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}&nbsp;Developers</a>{/if}
+            <!--  PROJECT LINKS  -->
+            <div role="group" aria-label="...">
+                {if $Project->UsersUrl}
+                    <a class="btn btn-primary btn-block" role="button" href="{$Project->UsersUrl|escape}">
+                        {glyph "user"}&nbsp;Users' Site
+                        <div class="small">{$Project->UsersUrl|escape}</div>
+                    </a>
+                {/if}
+                {if $Project->DevelopersUrl}
+                    <a class="btn btn-success btn-block" role="button" href="{$Project->DevelopersUrl|escape}">
+                        {glyph "cog"}&nbsp;Developers' Site
+                        <div class="small">{$Project->DevelopersUrl|escape}</div>
+                    </a>
+                {/if}
+                {if $Project->ChatChannel}
+                    {if Laddr::$chatLinker}
+                        <a class="btn btn-success btn-block" role="button" href="{call_user_func(Laddr::$chatLinker, $Project->ChatChannel)|escape}">
+                            {glyph "comment"}&nbsp;Chat Channel
+                            <div class="small">#{$Project->ChatChannel|escape}</div>
+                        </a>
+                    {else}
+                        <p class="text-center">Chat Channel: <strong>#{$Project->ChatChannel|escape}</strong></p>
+                    {/if}
+                {/if}
             </div>
                 
             <!--  MEMBERS BLOCK  -->
@@ -121,6 +141,7 @@
                 <a class="btn btn-success add-person" href="#add-member" data-toggle="modal">+ {_ "Add"}</a>
             {/if}
             <hr>
+
             <!-- TAGS BLOCK -->
             {if $Project->TechTags}
                 {_ "Tech"}:
