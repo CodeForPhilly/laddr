@@ -3,6 +3,7 @@
 namespace Emergence\Events;
 
 use HandleBehavior;
+use Emergence\Comments\Comment;
 
 
 class Event extends \VersionedRecord
@@ -32,7 +33,11 @@ class Event extends \VersionedRecord
             'type' => 'timestamp',
             'default' => null
         ],
-        'Location' => [
+        'LocationName' => [
+            'type' => 'string',
+            'default' => null
+        ],
+        'LocationAddress' => [
             'type' => 'string',
             'default' => null
         ],
@@ -45,8 +50,13 @@ class Event extends \VersionedRecord
     public static $relationships = [
         'Comments' => [
             'type' => 'context-children',
-            'class' => 'Comment',
+            'class' => Comment::class,
             'order' => ['ID' => 'DESC']
+        ],
+        'Segments' => [
+            'type' => 'one-many',
+            'class' => EventSegment::class,
+            'order' => 'StartTime'
         ]
     ];
 
@@ -86,6 +96,7 @@ class Event extends \VersionedRecord
             'validator' => 'datetime',
             'errorMessage' => 'Event start time is required'
         ]
+        // TODO: validate that EndTime > StartTime if set
     ];
 
     public function getIsAllDay()
