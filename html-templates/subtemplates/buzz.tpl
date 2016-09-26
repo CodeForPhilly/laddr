@@ -17,7 +17,7 @@
                 <p class="post-subtitle"><a href="{$Buzz->getURL()}">{$Buzz->Headline|escape}</a></p>
             </header>
 
-            <div class="post-summary">{$Buzz->Summary|markdown}</div>
+            <div class="post-summary content-markdown">{$Buzz->Summary|markdown}</div>
 
             {if $Buzz->Image}
                 <blockquote><a href="{$Buzz->URL|escape}"><img class="img-responsive img-rounded" src="{$Buzz->Image->getThumbnailRequest(300, 300)}"></a></blockquote>

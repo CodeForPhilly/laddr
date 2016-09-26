@@ -66,7 +66,7 @@
                         </ul>
                         {if $Event->Description}
                             <div class="well">
-                                <div class="markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
+                                <div class="content-markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
                             </div>
                         {/if}
                     </div>

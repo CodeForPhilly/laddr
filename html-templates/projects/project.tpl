@@ -41,7 +41,7 @@
             {/if}  
             {if $Project->README}
                 <h2>{_ "README"}</h2>
-                <div class="readme markdown well">
+                <div class="content-readme content-markdown well">
                     {$Project->README|escape|markdown}
                 </div>
             {/if}

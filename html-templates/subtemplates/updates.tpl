@@ -18,7 +18,7 @@
                 </{$headingLevel}>
             {/if}
 
-            {$Update->Body|escape|markdown}
+            <div class="content-markdown update-body">{$Update->Body|escape|markdown}</div>
         </div>
         <footer class="post-footer panel-footer clearfix">
             {capture assign=timestampCreated}{glyph "time"}&nbsp;<a href="{$Update->getURL()}">{timestamp $Update->Created}</a>{/capture}

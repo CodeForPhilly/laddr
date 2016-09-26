@@ -63,7 +63,7 @@
         <div class="col-md-9">
             {if $Event->Description}
                 <div class="well">
-                    <div class="markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
+                    <div class="content-markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
                 </div>
             {/if}
 
@@ -98,7 +98,7 @@
                                         </a>
                                     </p>
                                 {/if}
-                                {$Segment->Description|escape|markdown}
+                                <div class="content-markdown event-segment-description">{$Segment->Description|escape|markdown}</div>
                             </dd>
                 {/foreach}
             {/if}
