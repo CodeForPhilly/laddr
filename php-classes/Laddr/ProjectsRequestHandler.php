@@ -2,6 +2,7 @@
 
 namespace Laddr;
 
+use ActiveRecord;
 use Emergence\People\User;
 use Tag;
 use TagItem;
@@ -225,6 +226,15 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             'data' => $Project->Updates,
             'Project' => $Project
         ]);
+    }
+
+    protected static function applyRecordDelta(ActiveRecord $Project, $requestData)
+    {
+        if (!empty($requestData['ChatChannel']) && $requestData['ChatChannel'][0] == '#') {
+            $requestData['ChatChannel'] = substr($requestData['ChatChannel'], 1);
+        }
+
+        return parent::applyRecordDelta($Project, $requestData);
     }
 
     public static function onRecordSaved(\ActiveRecord $Project, $requestData)

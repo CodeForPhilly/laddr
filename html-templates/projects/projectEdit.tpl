@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <label for="field-chat-channel">{_ "Chat Channel/Hashtag"}:</label>
-                        <input name="ChatChannel" id="field-chat-channel" class="form-control" placeholder="train_schedule_analyzer" value="{refill field=ChatChannel default=$Project->ChatChannel}"/>
+                        <input name="ChatChannel" id="field-chat-channel" class="form-control" placeholder="train_schedule_analyzer" value="{refill field=ChatChannel default=$Project->ChatChannel}" pattern="[A-Za-z0-9_]+" title="Hash tag containing only letters, numbers, or underscores without leading #"/>
                     </div>
                     <div class="form-group">
                         <label for="topicTagsInput">{_ 'Topic Tags'}:</label>
