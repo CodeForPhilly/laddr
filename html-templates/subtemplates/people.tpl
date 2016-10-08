@@ -1,12 +1,18 @@
 {load_templates subtemplates/personName.tpl}
 
+{*
+    Gravatar – 'default=' image options:
+    mm (mystery-man), identicon, monsterid, wavatar, retro, blank
+    see: http://en.gravatar.com/site/implement/images/
+ *}
+
 {template avatar Person size=32 pixelRatio=2 urlOnly=false forceSquare=true imgCls=no}{strip}
     {$pixels = $size * $pixelRatio}
 
     {if $Person->PrimaryPhoto}
         {$src = $Person->PrimaryPhoto->getThumbnailRequest($pixels, $pixels, null, $forceSquare)}
     {else}
-        {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?s=", $pixels, "&r=g&d=mm")}
+        {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?s=", $pixels, "&r=g&default=monsterid")}
     {/if}
 
     {if $urlOnly}
@@ -26,7 +32,7 @@
             {if $Person->PrimaryPhoto}
                 {$src = $Person->PrimaryPhoto->getThumbnailRequest($pixels, $pixels)}
             {else}
-                {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?s=", $pixels, "&r=g&d=mm")}
+                {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?s=", $pixels, "&r=g&default=monsterid")}
             {/if}
             <img src="{$src}" class="avatar {if $imgCls}{$imgCls}{/if}" width="{$photoSize}" height="{$photoSize}" />
         {/if}
