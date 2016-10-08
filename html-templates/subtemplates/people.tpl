@@ -12,7 +12,7 @@
     {if $Person->PrimaryPhoto}
         {$src = $Person->PrimaryPhoto->getThumbnailRequest($pixels, $pixels, null, $forceSquare)}
     {else}
-        {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?s=", $pixels, "&r=g&default=monsterid")}
+        {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?size=", $pixels, "&rating=g&default=monsterid")}
     {/if}
 
     {if $urlOnly}
@@ -32,7 +32,7 @@
             {if $Person->PrimaryPhoto}
                 {$src = $Person->PrimaryPhoto->getThumbnailRequest($pixels, $pixels)}
             {else}
-                {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?s=", $pixels, "&r=g&default=monsterid")}
+                {$src = cat("//www.gravatar.com/avatar/", md5(strtolower($Person->Email)), "?size=", $pixels, "&rating=g&default=monsterid")}
             {/if}
             <img src="{$src}" class="avatar {if $imgCls}{$imgCls}{/if}" width="{$photoSize}" height="{$photoSize}" />
         {/if}
