@@ -6,6 +6,7 @@ class Laddr
     public static $siteAbbr;
     public static $siteSlogan;
     public static $chatLinker;
+    public static $gravatarDefault = 'mm';
 
     static function __classLoaded()
     {
