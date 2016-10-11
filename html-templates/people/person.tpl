@@ -39,7 +39,7 @@
         <div id="info" class="col-sm-9">
             {if $Person->About}
                 <h2 class="h3">{_ 'About Me'}</h2>
-                <section class="about">
+                <section class="about content-markdown">
                     {$Person->About|escape|markdown}
                 </section>
             {/if}

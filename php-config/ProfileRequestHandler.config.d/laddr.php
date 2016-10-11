@@ -1,5 +1,7 @@
 <?php
 
+ProfileRequestHandler::$profileFields[] = 'FirstName';
+ProfileRequestHandler::$profileFields[] = 'LastName';
 ProfileRequestHandler::$profileFields[] = 'Twitter';
 
 ProfileRequestHandler::$onBeforeProfileValidated = function($User, $profileChanges, $requestData) {

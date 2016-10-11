@@ -76,6 +76,8 @@
 
                 <h2 class="h3">{_ 'Contact Information'}</h2>
 
+                {field inputName="FirstName" label="First Name" type="text" default=$User->FirstName}
+                {field inputName="LastName" label="Last Name" type="text" default=$User->LastName}
                 {field inputName="Email" label="Email" type="email" default=$User->Email}
                 {field inputName="Phone" label="Phone" type="tel" default=$User->Phone}
                 {field inputName="Twitter" label="Twitter" type="text" default=$User->Twitter}

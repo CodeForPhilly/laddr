@@ -70,33 +70,13 @@
                                 <dl class="checkins-list">
                                     <dt class="checkins-list-title">{_ "No Current Project"}</dt>
                                     {foreach item=Checkin from=$currentMeetup.checkins}
-                                        {if $Checkin->ProjectID != $lastProjectID || $lastProjectID === false}
-                                            {if $Checkin->Project && $lastProjectID === false}
-                                                <dt class="checkins-list-title">{projectLink $Checkin->Project}</dt>
-                                                {$lastProjectID = $Checkin->ProjectID}
-                                            {/if}
+                                        {if $Checkin->Project && $Checkin->ProjectID != $lastProjectID}
+                                            <dt class="checkins-list-title">{projectLink $Checkin->Project}</dt>
+                                            {$lastProjectID = $Checkin->ProjectID}
                                         {/if}
                                         <dd class="checkins-list-person">{personLink $Checkin->Member photo=yes photoSize=32}</dd>
                                     {/foreach}
                                 </dl>
-
-                                {*
-                                {$lastProjectID = false}
-                                <p class="muted">{_ "No Current Project"}</p>
-                                <ul class="nav nav-pills nav-stacked">
-                                {foreach item=Checkin from=$currentMeetup.checkins}
-                                    {if $Checkin->ProjectID != $lastProjectID || $lastProjectID === false}
-                                        {if $lastProjectID}
-                                            </ul>
-                                        {/if}
-                                        <h5>{if $Checkin->Project}{projectLink $Checkin->Project}{/if}</h5>
-                                        {$lastProjectID = $Checkin->ProjectID}
-                                        <ul class="nav nav-pills nav-stacked">
-                                    {/if}
-                                    <li>{personLink $Checkin->Member photo=yes photoSize=32}</li>
-                                {/foreach}
-                                </ul>
-                                *}
                             </div>
                         </div>
                     </div>

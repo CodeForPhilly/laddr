@@ -47,7 +47,7 @@
         <div class="col-sm-8 col-md-9">
             {foreach item=Person from=$data}
                 {if $.foreach.default.index % 6 == 0}<div class="row members-list">{/if}
-                    <div class="col-sm-2">
+                    <div class="col-sm-4 col-md-2">
                         {personLink $Person photo=yes photoSize=150 linkCls="thumbnail"}
                     </div>
                 {if $.foreach.default.index % 6 == 5 || $.foreach.default.last}</div>{/if}

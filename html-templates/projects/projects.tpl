@@ -71,7 +71,7 @@
                         </h2>
                         <div class="well">
                             {if $Project->README}
-                                <div class="markdown readme">{$Project->README|truncate:600|escape|markdown}</div>
+                                <div class="content-markdown content-readme">{$Project->README|truncate:600|escape|markdown}</div>
                             {/if}
                         </div>
                         {if $Project->Memberships}
