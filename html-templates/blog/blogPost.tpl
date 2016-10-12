@@ -57,7 +57,7 @@
 
 {block "css"}
     {$dwoo.parent}
-    {cssmin "pages/blog.css"}
+    {cssmin "pages/article.css"}
 {/block}
 
 {block "title"}{$data->Title} &mdash; {$dwoo.parent}{/block}
@@ -68,7 +68,7 @@
 
         {$Post = $data}
 
-        <article class="blog-post">
+        <article class="article">
             <header class="article-header">
                 {if Emergence\CMS\BlogRequestHandler::checkWriteAccess($Post)}
                     <div class="btn-toolbar pull-right">
@@ -105,7 +105,7 @@
                 {$Post->RenderBody()}
             </div>
 
-            <section class="blog-comments">
+            <section class="article-comments">
                 {commentSection $Post}
             </section>
         </article>

@@ -10,7 +10,7 @@
     'branding/*'
 )}
 
-<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
 {if $.User->hasAccountLevel('Staff')}
     {cssmin "features/content-editable.css"}

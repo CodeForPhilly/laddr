@@ -1,10 +1,5 @@
 {extends designs/site.tpl}
 
-{block "css"}
-    {$dwoo.parent}
-    {cssmin "pages/home.css"}
-{/block}
-
 {block js-bottom}
     {$dwoo.parent}
     {jsmin "features/sidebar-checkin.js"}
@@ -66,6 +61,8 @@
                             <div class="checkins">
                                 <h3>{_ "Checked-in Members"}</h3>
 
+                                {*
+
                                 {$lastProjectID = false}
                                 <dl class="checkins-list">
                                     <dt class="checkins-list-title">{_ "No Current Project"}</dt>
@@ -74,9 +71,24 @@
                                             <dt class="checkins-list-title">{projectLink $Checkin->Project}</dt>
                                             {$lastProjectID = $Checkin->ProjectID}
                                         {/if}
-                                        <dd class="checkins-list-person">{personLink $Checkin->Member photo=yes photoSize=32}</dd>
+                                        <dd class="checkins-list-person">{personLink $Checkin->Member photo=yes photoSize=64 linkCls="thumbnail"}</dd>
                                     {/foreach}
                                 </dl>
+
+                                *}
+
+                                <h4>No Current Project</h4>
+
+                                <h4><a href="/projects/example_project-4">Example Project</a></h4>
+                                <ul class="row list-unstyled">    
+                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                                </ul>
+
                             </div>
                         </div>
                     </div>
@@ -89,6 +101,49 @@
                     <li><a href="/project-buzz" class="btn btn-link">{glyph "flash"} {_ "Browse all project buzz"}</a></li>
                     <li><a href="/blog" class="btn btn-link">{glyph "file"} {_ "Browse all blog posts"}</a></li>
                 </ul>
+
+                <article class="post panel panel-default ">
+                    <div class="panel-body">
+                        <header class="post-header">
+                            <h3 class="post-title">
+                                <a href="#">Code for Philly Hack Night</a><small class="text-muted margin-left">{glyph "console"}</small>
+                            </h3>
+                        </header>
+                        <div class="update-body">
+                            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+
+                            <h4>Projects</h4>
+                            <h5><a href="/projects/example_project-4">Example Project</a></h5>
+                            <ul class="row list-unstyled">    
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                            </ul>
+
+                            <h4>New Projects</h4>
+                            <ul class="padding-bottom">    
+                                <li><a href="#">Example Project 2</a></li>
+                                <li><a href="#">Example Project 3</a></li>
+                                <li><a href="#">Example Project 4</a></li>
+                                <li><a href="#">Example Project 5</a></li>
+                            </ul>
+
+                            <h4>New Members</h4>
+                            <ul class="row list-unstyled">    
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
+                                <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <footer class="post-footer panel-footer clearfix">
+                        <small class="text-muted"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;<a href="/blog/lorem_ipsum_dolor_sit_amet"><time datetime="2016-10-05T19:21:00-04:00" title="Wed 05 Oct 2016 07:21:00 PM EDT">5 Oct 2016</time></a></small>
+                    </footer>
+                </article>
 
                 {foreach item=Article from=$activity}
                     {projectActivity $Article headingLevel=h3 showProject=true}

@@ -4,16 +4,14 @@
  *
  */
 
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic,700italic);
-
-.article-collection .blog-post {
+.article-collection .article {
     margin: 3em auto;
     max-width: 50em;
 }
 
 .content-item,
 .article-header,
-.blog-comments {
+.article-comments {
     font-size: 20px;
     line-height: 1.5;
     margin: 3em auto;
@@ -111,6 +109,12 @@
     top: -.125em;
 }
 
+.content-item iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .content-media {
     text-align: center;
 }
@@ -134,30 +138,7 @@
     max-width: 40em;
 }
 
-.blog-comments {
+.article-comments {
     border-top: 3px solid #ccc;
     padding-top: 2em;
-}
-
-.comments-list {
-    margin-top: 2em;
-}
-
-.comment {
-    border-top: 1px solid #ccc;
-    padding: 1em 0;
-}
-
-.comment .author {
-    float: left;
-    margin: 0 .5em 0 -.25em;
-    width: 64px;
-}
-
-.comment .message {
-    overflow: hidden;
-}
-
-.comment textarea {
-    font-size: inherit;
 }
