@@ -58,38 +58,39 @@
                                 </div>
                                 <input type="submit" value="Check In" class="btn btn-success">
                             </form>
+
+                            {if count($currentMeetup.checkins)}
                             <div class="checkins">
                                 <h3>{_ "Checked-in Members"}</h3>
 
-                                {*
-
                                 {$lastProjectID = false}
-                                <dl class="checkins-list">
-                                    <dt class="checkins-list-title">{_ "No Current Project"}</dt>
-                                    {foreach item=Checkin from=$currentMeetup.checkins}
-                                        {if $Checkin->Project && $Checkin->ProjectID != $lastProjectID}
-                                            <dt class="checkins-list-title">{projectLink $Checkin->Project}</dt>
-                                            {$lastProjectID = $Checkin->ProjectID}
+
+                                {foreach item=Checkin from=$currentMeetup.checkins}
+                                    {if $Checkin->ProjectID !== $lastProjectID}
+                                        {tif !$.foreach.default.first ? '</ul>'}
+                                        <h4>
+                                        {if $Checkin->Project}
+                                            {projectLink $Checkin->Project}
+                                        {else}
+                                            No Current Project
                                         {/if}
-                                        <dd class="checkins-list-person">{personLink $Checkin->Member photo=yes photoSize=64 linkCls="thumbnail"}</dd>
-                                    {/foreach}
-                                </dl>
+                                        </h4>
 
-                                *}
+                                        {$lastProjectID = $Checkin->ProjectID}
 
-                                <h4>No Current Project</h4>
+                                        <ul class="row list-unstyled">
+                                    {/if}
 
-                                <h4><a href="/projects/example_project-4">Example Project</a></h4>
-                                <ul class="row list-unstyled">    
-                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
-                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
-                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
-                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
-                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
-                                    <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
+                                    <li class="col-xs-6 col-sm-4 col-md-3">
+                                        {personLink $Checkin->Member photo=yes photoSize=64 linkCls="thumbnail"}
+                                    </li>
+                                {/foreach}
+
                                 </ul>
 
                             </div>
+                            {/if}
+
                         </div>
                     </div>
                 {/if}
@@ -114,7 +115,7 @@
 
                             <h4>Projects</h4>
                             <h5><a href="/projects/example_project-4">Example Project</a></h5>
-                            <ul class="row list-unstyled">    
+                            <ul class="row list-unstyled">
                                 <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
                                 <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
                                 <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
@@ -124,7 +125,7 @@
                             </ul>
 
                             <h4>New Projects</h4>
-                            <ul class="padding-bottom">    
+                            <ul class="padding-bottom">
                                 <li><a href="#">Example Project 2</a></li>
                                 <li><a href="#">Example Project 3</a></li>
                                 <li><a href="#">Example Project 4</a></li>
@@ -132,7 +133,7 @@
                             </ul>
 
                             <h4>New Members</h4>
-                            <ul class="row list-unstyled">    
+                            <ul class="row list-unstyled">
                                 <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
                                 <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/chris" title="Chris Alfano" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/36b6d909c0c65d4fcdfcc307b84fb06f?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Chris Alfano</span></a></li>
                                 <li class="col-xs-6 col-sm-4 col-md-3"><a href="/people/kurt" title="Kurt Gawinowicz" class="thumbnail text-center"><img src="//www.gravatar.com/avatar/5d5ff5fd825a914d5057562aec05eb9b?s=128&amp;r=g&amp;d=mm" class="avatar " width="64" height="64"><span class="name ">Kurt Gawinowicz</span></a></li>
