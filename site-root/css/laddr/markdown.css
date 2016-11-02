@@ -22,3 +22,8 @@
     background-color: #f8f8f8;
     background-color: rgba(0, 0, 0, 0.05);
 }
+
+/* Images */
+.content-markdown img.pull-right {
+    margin: 0 0 1em 1em;
+}
