@@ -103,6 +103,7 @@
                     <li><a href="/blog" class="btn btn-link">{glyph "file"} {_ "Browse all blog posts"}</a></li>
                 </ul>
 
+{*
                 <article class="post panel panel-default ">
                     <div class="panel-body">
                         <header class="post-header">
@@ -145,6 +146,7 @@
                         <small class="text-muted"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;<a href="/blog/lorem_ipsum_dolor_sit_amet"><time datetime="2016-10-05T19:21:00-04:00" title="Wed 05 Oct 2016 07:21:00 PM EDT">5 Oct 2016</time></a></small>
                     </footer>
                 </article>
+*}
 
                 {foreach item=Article from=$activity}
                     {projectActivity $Article headingLevel=h3 showProject=true}
