@@ -3,9 +3,13 @@
 {block title}{_ "Our Mission"} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <div class="page-header">
-        <h1>{_ "Our Mission"}</h1>
-    </div>
+
+<div class="row">
+    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+
+        <div class="page-header">
+            <h1>{_ "Our Mission"}</h1>
+        </div>
 
     {capture assign=aboutMarkdown}
 [Code for America](http://www.codeforamerica.org/) is a 501(c)3
@@ -21,5 +25,8 @@ Our programs change how we participate in government by:
 
     {_($aboutMarkdown)|markdown}
 
-    <iframe width="560" height="315" src="//www.youtube.com/embed/kDFhzNfd-bg?rel=0" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="//www.youtube.com/embed/kDFhzNfd-bg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+    </div>
+</div>
 {/block}

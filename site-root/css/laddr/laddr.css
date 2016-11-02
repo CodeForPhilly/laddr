@@ -4,7 +4,7 @@
  *  + CSS
  *
  *  + Components
- *      - Checkins
+ *      - Comments
  *      - Dropdown Results
  *      - Event
  *      - Person
@@ -23,58 +23,45 @@ body {
     padding-top: 50px; /* Padding at top of screen for fixed navbar as recommended in bootstrap docs */
 }
 
-.reading-width {
-    max-width: 50em;
-}
+.margin-bottom { margin-bottom: 10px; }
+.margin-left   { margin-left: 10px;   }
+.margin-right  { margin-right: 10px;  }
+.margin-top    { margin-top: 10px;    }
+
+.padding-bottom { padding-bottom: 10px; }
+.padding-left   { padding-left: 10px;   }
+.padding-right  { padding-right: 10px;  }
+.padding-top    { padding-top: 10px;    }
 
 
 /* 
  * + Components 
  */
+ 
 
+/* - Comments - */
 
-/* - Checkins */
-
-.checkins-list:last-child {
-    margin-bottom: 0;
+.comments-list {
+    margin-top: 2em;
 }
 
-.checkins-list-title {
-    font-weight: 600;
-    margin-bottom: 5px;
+.comment {
+    border-top: 1px solid #ccc;
+    padding: 1em 0;
 }
 
-.checkins-list-title + .checkins-list-title {
-    margin-top: 10px;
+.comment .author {
+    float: left;
+    margin: 0 .5em 0 -.25em;
+    width: 64px;
 }
 
-.checkins-list-person {
-    margin-bottom: 5px;
+.comment .message {
+    overflow: hidden;
 }
 
-.checkins-list-person .avatar {
-    margin-right: 5px;
-}
-
-@media (min-width: 480px) {
-
-    .checkins-list {
-        margin-left: -10px;
-    }
-
-    .checkins-list-title,
-    .checkins-list-person {
-        margin-left: 10px;
-    }
-
-    .checkins-list-title {
-        clear: left;
-    }
-
-    .checkins-list-person {
-        float: left;
-    }
-
+.comment textarea {
+    font-size: inherit;
 }
 
 
@@ -206,8 +193,8 @@ body {
 /* - Site Footer */
 
 .site-footer {
-    border-top: 1px dashed #aaa;
-    margin-top: 20px;
-    padding: 1em;
+    border-top: 1px solid #ddd;
+    margin-top: 40px;
+    padding: 20px;
     text-align: center;
 }

@@ -8,14 +8,14 @@
 
     <div class="page-header">
         {if $.User->ID == $Person->ID || (ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers))}
-            <p class="btn-toolbar pull-right">
+            <div class="btn-toolbar pull-right margin-bottom margin-left">
                 <div class="btn-group">
                     <a class="btn btn-primary" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">Edit Profile</a>
                     {if $.User->hasAccountLevel('Staff')}
                         <a class="btn btn-danger" href="{$Person->getUrl('/delete')|escape}">Delete {personName $Person}</a>
                     {/if}
                 </div>
-            </p>
+            </div>
         {/if}
 
         <h1>{personName $Person}</h1>

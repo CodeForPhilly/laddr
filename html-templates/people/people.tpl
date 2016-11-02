@@ -2,11 +2,6 @@
 
 {block title}{_ 'Members'} &mdash; {$dwoo.parent}{/block}
 
-{block "css"}
-    {$dwoo.parent}
-    {cssmin "pages/members.css"}
-{/block}
-
 {block js-bottom}
     {$dwoo.parent}
     {jsmin "features/sidebar-tags.js"}
@@ -19,12 +14,11 @@
 
     <div class="row">
         <div class="col-sm-4 col-md-3">
-            <div class="tags-ct members">
-
-                <header class="btn-group btn-group-justified btn-group-xs" role="group">
+            <div class="tags-ct">
+                <div class="btn-group btn-group-justified btn-group-xs margin-bottom" role="group">
                     <a href="#members-by-tech" class="tagFilter active btn btn-default" role="button" data-group="byTech">{_ "skills"}</a>
                     <a href="#members-by-project" class="tagFilter btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                </header>
+                </div>
 
                 {template tagLink tagData rootUrl linkCls=""}
                     <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
@@ -46,9 +40,9 @@
 
         <div class="col-sm-8 col-md-9">
             {foreach item=Person from=$data}
-                {if $.foreach.default.index % 6 == 0}<div class="row members-list">{/if}
+                {if $.foreach.default.index % 6 == 0}<div class="row">{/if}
                     <div class="col-sm-4 col-md-2">
-                        {personLink $Person photo=yes photoSize=150 linkCls="thumbnail"}
+                        {personLink $Person photo=yes photoSize=150 linkCls="thumbnail text-center"}
                     </div>
                 {if $.foreach.default.index % 6 == 5 || $.foreach.default.last}</div>{/if}
             {/foreach}
