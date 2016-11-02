@@ -5,6 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{Sencha_App::getByName('ContentEditor')->getVersionedPath('build/production/resources/ContentEditor-all.css')}" />
 
     {$dwoo.parent}
+
+    {cssmin "pages/article.css"}
 {/block}
 
 {block js-bottom}
