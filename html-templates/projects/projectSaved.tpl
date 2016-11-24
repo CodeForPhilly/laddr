@@ -1,6 +1,6 @@
 {extends designs/site.tpl}
 
-{block title}Saved {$data->Title|escape} &mdash; Projects &mdash; {$dwoo.parent}{/block}
+{block title}{_ 'Saved'} {$data->Title|escape} &mdash; {_ 'Projects'} &mdash; {$dwoo.parent}{/block}
 
 {block content}
     {$Project = $data}
