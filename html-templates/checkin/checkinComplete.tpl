@@ -1,6 +1,6 @@
 {extends designs/site.tpl}
 
-{block title}How to help &mdash; {$dwoo.parent}{/block}
+{block title}Checkin Complete &mdash; {$dwoo.parent}{/block}
 
 {block content}
     {$Checkin = $data}
