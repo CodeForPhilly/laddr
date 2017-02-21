@@ -29,6 +29,7 @@
 
         .screenshot {
             box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 15px;
+            max-width: 90%;
         }
     </style>
 {/block}
