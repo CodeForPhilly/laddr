@@ -71,6 +71,11 @@ class ProjectBuzz extends \ActiveRecord
         'Project'
     ];
 
+    public function getTitle()
+    {
+        return $this->Headline;
+    }
+
     public function validate($deep = true)
     {
         parent::validate($deep);
