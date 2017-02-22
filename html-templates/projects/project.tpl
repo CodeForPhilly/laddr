@@ -37,49 +37,49 @@
                 {/if}
                 {if $Project->Stage == Commenting}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Hibernating)}">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Hibernating)|escape}">
                     <span class="show">{$Project->Stage}</span>
                     </div>
                 </div>
                 {/if}
                 {if $Project->Stage == Bootstrapping}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Bootstrapping)}">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Bootstrapping)|escape}">
                     <span class="show">{$Project->Stage}</span>
                     </div>
                 </div>
                 {/if}
                 {if $Project->Stage == Prototyping}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Prototyping)}">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Prototyping)|escape}">
                     {$Project->Stage}
                     </div>
                 </div>
                 {/if}
                 {if $Project->Stage == Testing}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Testing)}">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Testing)|escape}">
                     {$Project->Stage}
                     </div>
                 </div>
                 {/if}
                 {if $Project->Stage == Maintaining}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Maintaining)}">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Maintaining)|escape}">
                     {$Project->Stage}
                     </div>
                 </div>
                 {/if}
                 {if $Project->Stage == Drifting}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Drifting)}">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Drifting)|escape}">
                     <span class="show">{$Project->Stage}</span>
                     </div>
                 </div>
                 {/if}
                 {if $Project->Stage == Hibernating}
                 <div class="progress">
-                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Hibernating)}">
+                    <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" data-toggle="tooltip" title="{Laddr\Project::getStageDescription(Hibernating)|escape}">
                     {$Project->Stage}
                     </div>
                 </div>
