@@ -34,59 +34,6 @@ $pageData = array();
     }
 
 
-// projects
-    $pageData['projectsTotal'] = Laddr\Project::getCount();
-    $pageData['projectsTags']['byTech'] = TagItem::getTagsSummary(array(
-        'tagConditions' => array(
-            'Handle LIKE "tech.%"'
-        )
-        ,'itemConditions' => array(
-            'ContextClass' => Laddr\Project::getStaticRootClass()
-        )
-        ,'limit' => 10
-    ));
-    $pageData['projectsTags']['byTopic'] = TagItem::getTagsSummary(array(
-        'tagConditions' => array(
-            'Handle LIKE "topic.%"'
-        )
-        ,'itemConditions' => array(
-            'ContextClass' => Laddr\Project::getStaticRootClass()
-        )
-        ,'limit' => 10
-    ));
-    $pageData['projectsTags']['byEvent'] = TagItem::getTagsSummary(array(
-        'tagConditions' => array(
-            'Handle LIKE "event.%"'
-        )
-        ,'itemConditions' => array(
-            'ContextClass' => Laddr\Project::getStaticRootClass()
-        )
-    ));
-    $pageData['projectsStages'] = Laddr\Project::getStagesSummary();
-
-
-// members
-    $pageData['membersTotal'] = Emergence\People\Person::getCount();
-    $pageData['membersTags']['byTech'] = TagItem::getTagsSummary(array(
-        'tagConditions' => array(
-            'Handle LIKE "tech.%"'
-        )
-        ,'itemConditions' => array(
-            'ContextClass' => Emergence\People\Person::getStaticRootClass()
-        )
-        ,'limit' => 10
-    ));
-    $pageData['membersTags']['byTopic'] = TagItem::getTagsSummary(array(
-        'tagConditions' => array(
-            'Handle LIKE "topic.%"'
-        )
-        ,'itemConditions' => array(
-            'ContextClass' => Emergence\People\Person::getStaticRootClass()
-        )
-        ,'limit' => 10
-    ));
-
-
 // build activity stream
     if (!$pageData['activity'] = Cache::fetch('home-activity')) {
         $existingTables = \DB::allValues('table_name', 'SELECT table_name FROM information_schema.TABLES WHERE TABLE_SCHEMA = SCHEMA()');
