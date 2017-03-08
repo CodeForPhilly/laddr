@@ -6,27 +6,32 @@ $pageData = array();
 
 
 // meetups
-    $meetups = RemoteSystems\Meetup::getEvents();
-    $nextMeetup = array_shift($meetups);
+    try {
+        $meetups = RemoteSystems\Meetup::getEvents();
 
-    // detect if meetup is happening right now
-    if($nextMeetup && $nextMeetup['time'] < $now) {
-        $currentMeetup = $nextMeetup;
         $nextMeetup = array_shift($meetups);
-    }
 
-    // TODO: delete this!
-    elseif(!empty($_GET['force_current'])) {
-        $currentMeetup = $nextMeetup;
-    }
+        // detect if meetup is happening right now
+        if($nextMeetup && $nextMeetup['time'] < $now) {
+            $currentMeetup = $nextMeetup;
+            $nextMeetup = array_shift($meetups);
+        }
 
-    if($currentMeetup) {
-        $currentMeetup['checkins'] = Laddr\MemberCheckin::getAllForMeetupByProject($currentMeetup['id']);
-    }
+        // TODO: delete this!
+        elseif(!empty($_GET['force_current'])) {
+            $currentMeetup = $nextMeetup;
+        }
 
-    $pageData['currentMeetup'] = $currentMeetup;
-    $pageData['nextMeetup'] = $nextMeetup;
-    $pageData['futureMeetups'] = $meetups;
+        if($currentMeetup) {
+            $currentMeetup['checkins'] = Laddr\MemberCheckin::getAllForMeetupByProject($currentMeetup['id']);
+        }
+
+        $pageData['currentMeetup'] = $currentMeetup;
+        $pageData['nextMeetup'] = $nextMeetup;
+        $pageData['futureMeetups'] = $meetups;
+    } catch (Exception $e) {
+        // just omit meetup data
+    }
 
 
 // projects
@@ -82,7 +87,7 @@ $pageData = array();
     if (!$pageData['activity'] = Cache::fetch('home-activity')) {
         $existingTables = \DB::allValues('table_name', 'SELECT table_name FROM information_schema.TABLES WHERE TABLE_SCHEMA = SCHEMA()');
         $activityQueries = [];
-        
+
         if (in_array(Emergence\CMS\AbstractContent::$tableName, $existingTables)) {
             $activityQueries[] = sprintf(
                 'SELECT'
