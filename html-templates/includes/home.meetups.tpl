@@ -6,7 +6,8 @@
     <article class="meetup meetup-current">
         <h3>{_ "Current Meetup"}</h3>
         {meetup $currentMeetup showRsvp=false}
-        <form class="checkin" action="/checkin" method="POST">
+        <form class="checkin well" action="/checkin" method="POST">
+            <p><strong>At the Meetup?</strong> Check in to a project:</p>
             <input type="hidden" name="MeetupID" value="{$currentMeetup.id}">
             <select name="ProjectID" class="project-picker">
                 <option value="">Current Project (if any)</option>

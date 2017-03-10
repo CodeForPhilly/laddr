@@ -101,6 +101,7 @@
 }
 
 .checkin .project-picker {
+    width: auto;
 }
 
 .checkins h5 {

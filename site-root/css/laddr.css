@@ -24,8 +24,8 @@ body {
 .container-fluid > .sidebar {
     position: relative;
     top: 0;
-    left:auto;
-    width: 220px;
+    left: auto;
+    width: auto;
 }
 
 @media (min-width: 979px) {
