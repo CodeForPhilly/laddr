@@ -16,13 +16,7 @@
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="page-header">
-                    <h1>
-                        {if $Project->isPhantom}
-                            {_ "Create new project"}
-                        {else}
-                            {_("Edit project %s")|sprintf:$Project->Title|escape}
-                        {/if}
-                    </h1>
+                    {include includes/projects.edit-title.tpl}
                 </div>
 
                 {if !$Project->isValid}
