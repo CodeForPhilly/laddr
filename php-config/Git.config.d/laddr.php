@@ -9,7 +9,8 @@ Git::$repositories['laddr'] = [
         'event-handlers',
         'html-templates' => [
             'exclude' => [
-                '#^/redirects/#' // exclude redirects library
+                '#^/redirects/#', // exclude redirects library
+                '#^/connectors/github/#'
             ]
         ],
         'locales',
@@ -23,10 +24,15 @@ Git::$repositories['laddr'] = [
         'php-config' => [
             'exclude' => [
                 '#^/Site.config.d/redirects\.php$#', // exclude redirects library
+                '#^/Emergence/GitHub/#',
+                '#^/Emergence/People/User\.config\.d/github-token\.php$#'
+            ]
+        ],
+        'php-migrations' => [
+            'exclude' => [
                 '#^/Emergence/GitHub/#'
             ]
         ],
-        'php-migrations',
         'site-root' => [
             'exclude' => [
                 '#^/redirects\.php$#', // exclude redirects library
