@@ -8,6 +8,8 @@
 {/block}
 
 {block content}
+    {load_templates "subtemplates/paging.tpl"}
+
     <div class="page-header">
         <h1>{_ "Registered Members"} <span class="badge">{$membersTotal|number_format}</span></h1>
     </div>
@@ -46,6 +48,10 @@
                     </div>
                 {if $.foreach.default.index % 6 == 5 || $.foreach.default.last}</div>{/if}
             {/foreach}
+
+            <footer class="page-footer">
+                {pagingLinks $total pageSize=$limit}
+            </footer>
         </div>
     </div>
 {/block}
