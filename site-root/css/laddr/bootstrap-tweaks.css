@@ -105,6 +105,10 @@ h1 .badge {
 }
 
 /* - Menus - */
-.dropdown:hover .dropdown-menu {
-    display: block;
+@media (min-width: 1024px) {
+    /* Active submenu on hover, but only in desktop mode */
+    .dropdown-toggle:hover + .dropdown-menu,
+    .dropdown-menu:hover {
+        display: block;
+    }
 }
