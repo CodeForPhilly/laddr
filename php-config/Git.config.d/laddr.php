@@ -16,18 +16,21 @@ Git::$repositories['laddr'] = [
         'php-classes' => [
             'exclude' => [
                 '#^/ReCaptcha/#', // exclude ReCaptcha library pulled from google repo
-                '#^/Emergence/Redirects/#'
+                '#^/Emergence/Redirects/#',
+                '#^/Emergence/GitHub/#'
             ]
         ],
         'php-config' => [
             'exclude' => [
-                '#^/Site.config.d/redirects.php$#' // exclude redirects library
+                '#^/Site.config.d/redirects\.php$#', // exclude redirects library
+                '#^/Emergence/GitHub/#'
             ]
         ],
         'php-migrations',
         'site-root' => [
             'exclude' => [
-                '#^/redirects.php$#' // exclude redirects library
+                '#^/redirects\.php$#', // exclude redirects library
+                '#^/connectors/github\.php#'
             ]
         ]
     ]
