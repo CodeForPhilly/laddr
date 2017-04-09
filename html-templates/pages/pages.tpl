@@ -5,14 +5,15 @@
 {block content}
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-
-            <header class="page-header">
-                <form action="/pages/create" method="GET" class="pull-right">
-                    {* field "Title" "Page Title" *}
-                    <button type="submit" class="btn btn-success">Create New Page</button>
-                </form>
-                <h1>Pages Directory</h1>
-            </header>
+            {if Emergence\CMS\PagesRequestHandler::checkWriteAccess(\Emergence\CMS\Page::create())}
+                <header class="page-header">
+                    <form action="/pages/create" method="GET" class="pull-right">
+                        {* field "Title" "Page Title" *}
+                        <button type="submit" class="btn btn-success">Create New Page</button>
+                    </form>
+                    <h1>Pages Directory</h1>
+                </header>
+            {/if}
 
             <ul>
             {foreach item=Page from=$data}
