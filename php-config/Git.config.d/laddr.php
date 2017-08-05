@@ -9,25 +9,34 @@ Git::$repositories['laddr'] = [
         'event-handlers',
         'html-templates' => [
             'exclude' => [
-                '#^/redirects/#' // exclude redirects library
+                '#^/redirects/#', // exclude redirects library
+                '#^/connectors/github/#'
             ]
         ],
         'locales',
         'php-classes' => [
             'exclude' => [
                 '#^/ReCaptcha/#', // exclude ReCaptcha library pulled from google repo
-                '#^/Emergence/Redirects/#'
+                '#^/Emergence/Redirects/#',
+                '#^/Emergence/GitHub/#'
             ]
         ],
         'php-config' => [
             'exclude' => [
-                '#^/Site.config.d/redirects.php$#' // exclude redirects library
+                '#^/Site.config.d/redirects\.php$#', // exclude redirects library
+                '#^/Emergence/GitHub/#',
+                '#^/Emergence/People/User\.config\.d/github-token\.php$#'
             ]
         ],
-        'php-migrations',
+        'php-migrations' => [
+            'exclude' => [
+                '#^/Emergence/GitHub/#'
+            ]
+        ],
         'site-root' => [
             'exclude' => [
-                '#^/redirects.php$#' // exclude redirects library
+                '#^/redirects\.php$#', // exclude redirects library
+                '#^/connectors/github\.php#'
             ]
         ]
     ]

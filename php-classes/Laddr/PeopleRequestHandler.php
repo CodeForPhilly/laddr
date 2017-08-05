@@ -9,7 +9,8 @@ use TagItem;
 class PeopleRequestHandler extends \PeopleRequestHandler
 {
     public static $accountLevelBrowse = false;
-    public static $browseOrder = array('ID' => 'DESC');
+    public static $browseOrder = ['ID' => 'DESC'];
+    public static $browseLimitDefault = 30;
 
     public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {

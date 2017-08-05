@@ -8,6 +8,8 @@
 {/block}
 
 {block content}
+    {load_templates "subtemplates/paging.tpl"}
+
     <div class="page-header">
         <h1>{_ "Registered Members"} <span class="badge">{$membersTotal|number_format}</span></h1>
     </div>
@@ -39,13 +41,17 @@
         </div>
 
         <div class="col-sm-8 col-md-9">
+            <div class="row row-wrap">
             {foreach item=Person from=$data}
-                {if $.foreach.default.index % 6 == 0}<div class="row">{/if}
-                    <div class="col-sm-4 col-md-2">
-                        {personLink $Person photo=yes photoSize=150 linkCls="thumbnail text-center"}
-                    </div>
-                {if $.foreach.default.index % 6 == 5 || $.foreach.default.last}</div>{/if}
+                <div class="col-sm-4 col-md-2">
+                    {personLink $Person photo=yes photoSize=150 linkCls="thumbnail text-center"}
+                </div>
             {/foreach}
+            </div>
+
+            <footer class="page-footer">
+                {pagingLinks $total pageSize=$limit}
+            </footer>
         </div>
     </div>
 {/block}
