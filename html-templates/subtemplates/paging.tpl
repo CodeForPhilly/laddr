@@ -9,12 +9,12 @@
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-        
+
                 {foreach item=page from=range(1,ceil($total/$pageSize))}
                     {math "($page-1)*$pageSize" assign=offset}
                     <li class="{if $.get.offset == $offset}active{/if}"><a href="?{refill_query limit=$pageSize offset=$offset}">{$page}</a></li>
                 {/foreach}
-                
+
                 {if $.get.offset < $total - $pageSize}
                     <li>
                         <a href="?{refill_query limit=$pageSize offset=$nextOffset}" aria-label="Next">
@@ -22,8 +22,6 @@
                         </a>
                     </li>
                 {/if}
-    
-    
             {/if}
         </ul>
     </nav>
