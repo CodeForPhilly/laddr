@@ -9,6 +9,7 @@ RequestHandler::respond('projects', array(
             ,'description' => trim($matches[0])
             ,'link_url' => $Project->UsersUrl
             ,'code_url' => $Project->DevelopersUrl
+            ,'chat_channel' => $Project->ChatChannel
             ,'tags' => implode(',',
                     array_map(
                         function($Tag) {
