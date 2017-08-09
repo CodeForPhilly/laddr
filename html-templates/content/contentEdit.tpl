@@ -1,42 +1,11 @@
-{extends designs/site.tpl}
+{extends app/EmergenceContentEditor/ext.tpl}
 
 {block "css"}
-    {cssmin fonts/font-awesome.css}
-    <link rel="stylesheet" type="text/css" href="{Sencha_App::getByName('ContentEditor')->getVersionedPath('build/production/resources/ContentEditor-all.css')}" />
-
     {$dwoo.parent}
-
     {cssmin "pages/article.css"}
 {/block}
 
 {block js-bottom}
-    <script type="text/javascript">
-        var SiteEnvironment = SiteEnvironment || { };
-        SiteEnvironment.user = {JSON::translateObjects($.User)|json_encode};
-        SiteEnvironment.cmsContent = {tif $data ? JSON::translateObjects($data, false, 'tags,items,Author,Context.recordURL,Context.recordTitle')|json_encode : 'null'};
-        SiteEnvironment.cmsComposers = ['markdown', 'multimedia', 'embed'];
-        SiteEnvironment.mediaSupportedTypes = {Media::getSupportedTypes()|json_encode};
-    </script>
-
-    {include includes/site.ext-bootstrap.tpl}
-
-    {if $.get.jsdebug}
-        {sencha_bootstrap
-            patchLoader=false
-            packages=array('emr-skeleton-theme')
-            packageRequirers=array('sencha-workspace/pages/src/page/ContentEditor.js')
-        }
-    {else}
-        <script src="{Site::getVersionedRootUrl('js/pages/ContentEditor.js')}"></script>
-    {/if}
-
-    {jsmin "markdown.js"}
-
-    <script>
-        Ext.require('Site.page.ContentEditor');
-    </script>
-{/block}
-
-{block content}
-    <div id='contentEditorCt'>Loading content editor&hellip;</div>
+    {$cmsComposers = array('markdown', 'multimedia', 'embed')}
+    {$dwoo.parent}
 {/block}
