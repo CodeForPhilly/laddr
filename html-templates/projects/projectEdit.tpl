@@ -25,6 +25,8 @@
                     </h1>
                 </div>
 
+                {contentBlock "projects-create-introduction"}
+
                 {if !$Project->isValid}
                 <div class="error well">
                     <strong>{_ "There were problems with your entry:"}</strong>

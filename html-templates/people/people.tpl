@@ -14,6 +14,8 @@
         <h1>{_ "Registered Members"} <span class="badge">{$membersTotal|number_format}</span></h1>
     </div>
 
+    {contentBlock "members-browse-introduction"}
+
     <div class="row">
         <div class="col-sm-4 col-md-3">
             <div class="tags-ct">
