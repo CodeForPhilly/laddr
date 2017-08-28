@@ -13,13 +13,14 @@
 {block "content"}
     {$User = $data}
 
-    {contentBlock "register-introduction"}
-
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="page-header">
                 <h1>{_("Register with %s")|sprintf:Laddr::$siteName|escape}!</h1>
             </div>
+
+            {contentBlock "register-introduction"}
+
             <form method="POST" id="register">
                 {strip}
                     {if $User->validationErrors}

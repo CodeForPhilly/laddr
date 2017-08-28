@@ -18,6 +18,8 @@
                 <h1>Contact Us</h1>
             </div>
 
+            {contentBlock "contact-introduction"}
+
             <form action="/contact" method="POST" class="contact-form">
                 {if $validationErrors}
                     <div class="alert alert-danger">

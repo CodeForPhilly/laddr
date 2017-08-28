@@ -20,6 +20,9 @@
         </div>
         <h1>{_ "Civic Projects Directory"} <span class="badge">{$projectsTotal|number_format}</span></h1>
     </header>
+
+    {contentBlock "projects-browse-introduction"}
+
     <div class="row">
         <div class="col-sm-4 col-md-3 tags-ct">
             <div class="btn-group btn-group-justified btn-group-xs margin-bottom" role="group">
