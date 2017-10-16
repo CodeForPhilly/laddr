@@ -63,8 +63,11 @@ do_build() {
       source "/src/.holobranches/site/${src_name}.sh";
       echo "src_url='${src_url[*]}'";
       echo "src_ref='${src_ref[*]}'";
-      echo "src_merge='${src_merge[*]}'";
+      #echo "src_merge='${src_merge[*]}'";
     )
+
+    # force merge to parent for now
+    src_merge="parent"
 
     build_line "Applying parent ${src_name} from ${src_url}#${src_ref}"
 
@@ -72,7 +75,14 @@ do_build() {
     src_cache_ref="refs/sources/${src_name}"
 
     git fetch "${src_url}" "${src_ref}:${src_cache_ref}"
-    git archive "${src_cache_ref}" | tar -x --directory="${CACHE_PATH}" --skip-old-files
+
+    tar_args=(-x --directory="${CACHE_PATH}")
+
+    if [ "${src_merge}" = "parent" ]; then
+      tar_args+=(--skip-old-files)
+    fi
+
+    git archive "${src_cache_ref}" | tar "${tar_args[@]}"
   done
 
   popd > /dev/null
