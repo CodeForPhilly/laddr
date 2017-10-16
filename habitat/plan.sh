@@ -49,25 +49,14 @@ do_before() {
   SOURCES_CACHE_PATH="${HAB_CACHE_SRC_PATH}/sources"
 }
 
-do_clean() {
-  rm -rf "${SOURCES_CACHE_PATH}"
-  do_default_clean
-  return $?
-}
-
 do_unpack() {
   mkdir "${CACHE_PATH}"
-  attach
-  git --work-tree="${CACHE_PATH}" checkout -f "${pkg_commit}"
-  attach
+  build_line "Extracting ${GIT_DIR}#${pkg_commit}"
+  git archive "${pkg_commit}" | tar -x --directory="${CACHE_PATH}"
 }
 
 do_build() {
   pushd "${CACHE_PATH}" > /dev/null
-
-  attach
-
-  mkdir "${SOURCES_CACHE_PATH}"
 
   for src_name in "${emergence_parents[@]}"; do
     source <(
@@ -77,14 +66,13 @@ do_build() {
       echo "src_merge='${src_merge[*]}'";
     )
 
+    build_line "Applying parent ${src_name} from ${src_url}#${src_ref}"
+
     src_cache_path="${SOURCES_CACHE_PATH}/${src_name}"
     src_cache_ref="refs/sources/${src_name}"
 
-    mkdir "${src_cache_path}"
     git fetch "${src_url}" "${src_ref}:${src_cache_ref}"
-    git --work-tree="${src_cache_path}" checkout -f "${src_cache_ref}"
-
-    attach
+    git archive "${src_cache_ref}" | tar -x --directory="${CACHE_PATH}" --skip-old-files
   done
 
   popd > /dev/null
