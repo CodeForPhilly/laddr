@@ -2,6 +2,9 @@
 
 Laddr -- pronounced "ladder" and named after the essential tool for fire brigades -- is a web application designed to create an online home-base for [Code for America brigades](http://brigade.codeforamerica.org).
 
+## Hosting
+Code for Philly hosts and maintains instances for free for other brigades on our multi-tenant infrastructure. Email [hello@codeforphilly.org](mailto:hello@codeforphilly.org) to get started with a sandbox instance.
+
 ## Features
 - [Projects Directory]
   - Each project can have a users URL, developers URL, markdown README
@@ -32,6 +35,7 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
 
 ## Brigades using Laddr
 - [Code for Philly](http://codeforphilly.org)
+- [Code for Dayton](http://codefordayton.org)
 - [Code for Miami](http://projects.codeformiami.org)
 - [Code for Croatia](http://codeforcroatia.org)
 - [Creative Commons Korea](http://labs.cckorea.org/)
