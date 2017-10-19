@@ -8,7 +8,7 @@ Code for Philly hosts and maintains instances for free for other brigades on our
 ## Help / Support / Questions / Chat
 Guides and support are available at our Discourse foreum at [forum.laddr.us](http://forum.laddr.us/)
 
-Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org: https://codeforphilly.org/chat/laddr
+Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org: [codeforphilly.org/chat/laddr](https://codeforphilly.org/chat/laddr)
 
 ## Features
 - [Projects Directory]
