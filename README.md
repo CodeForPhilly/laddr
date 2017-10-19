@@ -5,6 +5,11 @@ Laddr -- pronounced "ladder" and named after the essential tool for fire brigade
 ## Hosting
 Code for Philly hosts and maintains instances for free for other brigades on our multi-tenant infrastructure. Email [hello@codeforphilly.org](mailto:hello@codeforphilly.org) to get started with a sandbox instance.
 
+## Help / Support / Questions / Chat
+Guides and support are available at our Discourse foreum at [forum.laddr.us](http://forum.laddr.us/)
+
+Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org: https://codeforphilly.org/chat/laddr
+
 ## Features
 - [Projects Directory]
   - Each project can have a users URL, developers URL, markdown README
@@ -43,9 +48,6 @@ Code for Philly hosts and maintains instances for free for other brigades on our
 - [Code for Charlotte](http://codeforcharlotte.org)
 - [Code for Durham](http://codefordurham.com/)
 - [Code for Raleigh](http://www.codeforraleigh.com/)
-
-## Help / Support / Questions / Chat
-Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org: https://codeforphilly.slack.com/messages/laddr
 
 ## Requirements
 Laddr is built on the Emergence PHP framework and deployement engine, and requires an Emergence server to host it.
