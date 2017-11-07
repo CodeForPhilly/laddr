@@ -2,6 +2,9 @@
 
 namespace Laddr;
 
+use Emergence\People\Person;
+
+
 class ProjectMember extends \ActiveRecord
 {
     // ActiveRecord configuration
@@ -17,18 +20,18 @@ class ProjectMember extends \ActiveRecord
         'MemberID' => 'uint',
         'Role' => [
             'type' => 'string',
-            'notnull' => false
+            'default' => null
         ]
     ];
 
     public static $relationships = [
         'Project' => [
             'type' => 'one-one',
-            'class' => 'Laddr\Project'
+            'class' => Project::class
         ],
         'Member' => [
             'type' => 'one-one',
-            'class' => 'Person'
+            'class' => Person::class
         ]
     ];
 
