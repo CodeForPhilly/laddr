@@ -1,1 +1,1 @@
-{template glyph name}<span class="glyphicon glyphicon-{$name}" aria-hidden="true"></span>{/template}
+{template glyph name}<i class="fa fa-{$name}" aria-hidden="true"></i>{/template}

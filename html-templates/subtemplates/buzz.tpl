@@ -5,7 +5,7 @@
 
 {template projectBuzz Buzz headingLevel=h2 showHeading=true showProject=true articleClass=""}
     <article class="post post-buzz card {$articleClass}">
-        <div class="card-block">
+        <div class="card-body">
             <header class="post-header">
                 {if $showHeading && $showProject}
                     <{$headingLevel} class="post-title">
@@ -33,7 +33,7 @@
 
             {if Laddr\ProjectBuzzRequestHandler::checkWriteAccess($Buzz)}
                 <div class="btn-group pull-right">
-                    <a href="{$Buzz->getURL()}/edit" class="btn btn-xs btn-default">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
+                    <a href="{$Buzz->getURL()}/edit" class="btn btn-xs btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
                     <a href="{$Buzz->getURL()}/delete" class="btn btn-xs btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
             {/if}
