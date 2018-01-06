@@ -59,7 +59,7 @@
         </div>
         <div class="col-sm-8 col-md-9">
             {foreach item=Project from=$data}
-                <article class="post card">
+                <article class="post card mb-4">
                     <div class="card-body">
                         <h2 class="post-title">
                             <a name="{$Project->Handle}" href="{$Project->getURL()}">{$Project->Title|escape}</a>
