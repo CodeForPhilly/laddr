@@ -73,7 +73,7 @@
                 {if Emergence\CMS\BlogRequestHandler::checkWriteAccess($Post)}
                     <div class="btn-toolbar pull-right">
                         <div class="btn-group">
-                            <a href="{$Post->getURL()}/edit" class="btn btn-default">{*glyph "pencil"*} {_ Edit}</a>
+                            <a href="{$Post->getURL()}/edit" class="btn btn-secondary">{*glyph "pencil"*} {_ Edit}</a>
                             <a href="{$Post->getURL()}/delete"
                                class="btn btn-danger confirm"
                                data-confirm-yes="Delete Post"

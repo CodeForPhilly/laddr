@@ -26,10 +26,10 @@
     <div class="row">
         <div class="col-sm-4 col-md-3 tags-ct">
             <div class="btn-group btn-group-justified btn-group-xs margin-bottom" role="group">
-                <a href="#projects-by-topic" class="active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                <a href="#projects-by-tech" class="btn btn-default" role="button" data-group="byTech">{_ "tech"}</a>
-                <a href="#projects-by-event" class="btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
-                <a href="#projects-by-event" class="btn btn-default" role="button" data-group="byStage">{_ "stages"}</a>
+                <a href="#projects-by-topic" class="active btn btn-secondary" role="button" data-group="byTopic">{_ "topics"}</a>
+                <a href="#projects-by-tech" class="btn btn-secondary" role="button" data-group="byTech">{_ "tech"}</a>
+                <a href="#projects-by-event" class="btn btn-secondary" role="button" data-group="byEvent">{_ "events"}</a>
+                <a href="#projects-by-event" class="btn btn-secondary" role="button" data-group="byStage">{_ "stages"}</a>
             </div>
 
             {template tagLink tagData rootUrl linkCls=""}
@@ -60,7 +60,7 @@
         <div class="col-sm-8 col-md-9">
             {foreach item=Project from=$data}
                 <article class="post card">
-                    <div class="card-block">
+                    <div class="card-body">
                         <h2 class="post-title">
                             <a name="{$Project->Handle}" href="{$Project->getURL()}">{$Project->Title|escape}</a>
                             {if $Project->Stage}

@@ -4,8 +4,8 @@
 {load_templates subtemplates/people.tpl}
 
 {template projectUpdate Update headingLevel=h2 showHeading=true showProject=true articleClass=""}
-    <article class="post post-update card {$articleClass}">
-        <div class="card-block">
+    <article class="post post-update card mb-4 {$articleClass}">
+        <div class="card-body">
             {if $showHeading}
                 <{$headingLevel} class="post-title">
                     {if $showProject}
@@ -26,7 +26,7 @@
 
             {if Laddr\ProjectUpdatesRequestHandler::checkWriteAccess($Update)}
                 <div class="btn-group pull-right">
-                    <a href="{$Update->getURL()}/edit" class="btn btn-xs btn-default">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
+                    <a href="{$Update->getURL()}/edit" class="btn btn-xs btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
                     <a href="{$Update->getURL()}/delete" class="btn btn-xs btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
             {/if}

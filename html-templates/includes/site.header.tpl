@@ -1,5 +1,5 @@
 {load_templates subtemplates/people.tpl}
-<nav class="navbar navbar-toggleable-md fixed-top navbar-dark bg-dark" role="navigation">
+<nav class="navbar navbar-toggleable-md fixed-top navbar-dark bg-dark navbar-expand-lg" role="navigation">
     <div class="container">
 
         <a class="navbar-brand" href="#"> {include includes/site.brand.tpl}</a>
@@ -17,8 +17,8 @@
                 </div>
 
                 {*
-                <button type="submit" class="btn btn-default" >
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                <button type="submit" class="btn btn-secondary" >
+                    <span class="fa fa-search" aria-hidden="true"></span>
                 </button>
                 *}
             </form>
@@ -31,8 +31,10 @@
                         </div>
                      </li>
                 {else}
-                    <li class="nav-item"><a href="/login?return={$.server.REQUEST_URI|escape:url}">{_ "Login"}</a></li>
-                    <li class="nav-item"><a href="/register?return={$.server.REQUEST_URI|escape:url}">{_ "Sign up"}</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login?return={$.server.REQUEST_URI|escape:url}">{_ "Login"}</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register?return={$.server.REQUEST_URI|escape:url}">{_ "Sign up"}</a></li>
                 {/if}
             </ul>
         </div><!-- /.navbar-collapse -->

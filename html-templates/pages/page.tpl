@@ -17,7 +17,7 @@
                     {if Emergence\CMS\PagesRequestHandler::checkWriteAccess($Page, true)}
                         <div class="btn-toolbar pull-right">
                             <div class="btn-group">
-                                <a href="{$Page->getURL()}/edit" class="btn btn-default">Edit</a>&nbsp;
+                                <a href="{$Page->getURL()}/edit" class="btn btn-secondary">Edit</a>&nbsp;
                                 <a href="{$Page->getURL()}/delete"
                                    class="btn btn-danger confirm"
                                    data-confirm-yes="Delete Page"

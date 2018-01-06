@@ -47,7 +47,7 @@
                         &middot;
                         <div class="btn-group">
                             {if $.User->hasAccountLevel(Staff)}
-                                <a href="{$Comment->getURL()}/edit" class="btn btn-xs btn-default">{*glyph "pencil"*} {_ Edit}</a>
+                                <a href="{$Comment->getURL()}/edit" class="btn btn-xs btn-secondary">{*glyph "pencil"*} {_ Edit}</a>
                             {/if}
                             <a href="{$Comment->getURL()}/delete"
                                class="btn btn-xs btn-danger confirm"
