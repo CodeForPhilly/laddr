@@ -6,7 +6,7 @@
 {load_templates "subtemplates/timestamp.tpl"}
 
 {template blogPost Post headingLevel=h1 showHeader=true showBody=true showFooter=true showComments=false showCommentsSummary=true showContext=true useSummary=false}
-    <article class="post card {if $headingLevel=='h1'}reading-width{/if}">
+    <article class="post card mb-4 {if $headingLevel=='h1'}reading-width{/if}">
         <div class="card-body">
             {if $showHeader}
                 <header class="post-header">
