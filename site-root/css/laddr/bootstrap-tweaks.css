@@ -36,7 +36,7 @@ legend {
             flex-wrap: wrap;
 }
 
-    .row-wrap [class*="col"] {
+.row-wrap [class*="col"] {
         -webkit-flex: 0 0 auto;
                 flex: 0 0 auto;
         float: none;
@@ -118,6 +118,13 @@ h1 .badge {
         padding: 40px 50px;
     }
 
+}
+
+/* page-header was dropped in BS4 but we use it a bunch */
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
 }
 
 /* - Menus - */
