@@ -33,7 +33,7 @@
             {if $Project->Stage}
                 <h2>{_ "Stage"}</h2>
                 {if $Project->Stage == null}
-                <span class="label label-info" data-toggle="tooltip" data-placement="bottom" title="{Laddr\Project::getStageDescription($Project->Stage)}">{$Project->Stage}</span>
+                <span class="badge bage-info" data-toggle="tooltip" data-placement="bottom" title="{Laddr\Project::getStageDescription($Project->Stage)}">{$Project->Stage}</span>
                 {/if}
                 {if $Project->Stage == Commenting}
                 <div class="progress">
@@ -165,7 +165,7 @@
                 <ul class="list-inline people-list">
                 {foreach item=Membership from=$Project->Memberships}
                     {$Member = $Membership->Member}
-                    <li class="people-list-person {tif $Project->MaintainerID == $Member->ID ? maintainer}">
+                    <li class="list-inline-item people-list-person {tif $Project->MaintainerID == $Member->ID ? maintainer}">
                         <a
                             href="/members/{$Member->Username}"
                             class="member-thumbnail"
@@ -181,7 +181,7 @@
                         </a>
                     </li>
                 {foreachelse}
-                    <li class="muted">{_ "No registered members"}</li>
+                    <li class="muted list-inline-item">{_ "No registered members"}</li>
                 {/foreach}
                 </ul>
                 <a class="btn btn-success add-person" href="#add-member" data-toggle="modal">+ {_ "Add"}</a>

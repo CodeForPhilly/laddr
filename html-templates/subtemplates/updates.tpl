@@ -4,8 +4,8 @@
 {load_templates subtemplates/people.tpl}
 
 {template projectUpdate Update headingLevel=h2 showHeading=true showProject=true articleClass=""}
-    <article class="post post-update panel panel-default {$articleClass}">
-        <div class="panel-body">
+    <article class="post post-update card {$articleClass}">
+        <div class="card-block">
             {if $showHeading}
                 <{$headingLevel} class="post-title">
                     {if $showProject}
@@ -20,7 +20,7 @@
 
             <div class="content-markdown update-body">{$Update->Body|escape|markdown}</div>
         </div>
-        <footer class="post-footer panel-footer clearfix">
+        <footer class="post-footer card-footer clearfix">
             {capture assign=timestampCreated}{glyph "time"}&nbsp;<a href="{$Update->getURL()}">{timestamp $Update->Created}</a>{/capture}
             {capture assign=creatorLink}{glyph "user"}&nbsp;{personLink $Update->Creator}{/capture}
 

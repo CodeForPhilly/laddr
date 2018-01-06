@@ -24,8 +24,8 @@
         </div>
         <div class="col-sm-8 col-md-9">
             {foreach item=Event from=$data}
-                <article class="post panel panel-default">
-                    <div class="panel-body">
+                <article class="post card">
+                    <div class="card-block">
                         <h2 class="post-title">
                             <a name="{$Event->Handle}" href="{$Event->getUrl()}">{$Event->Title|escape}</a>
                         </h2>

@@ -6,8 +6,8 @@
 {load_templates "subtemplates/timestamp.tpl"}
 
 {template blogPost Post headingLevel=h1 showHeader=true showBody=true showFooter=true showComments=false showCommentsSummary=true showContext=true useSummary=false}
-    <article class="post panel panel-default {if $headingLevel=='h1'}reading-width{/if}">
-        <div class="panel-body">
+    <article class="post card {if $headingLevel=='h1'}reading-width{/if}">
+        <div class="card-block">
             {if $showHeader}
                 <header class="post-header">
                     <{$headingLevel} class="post-title">
@@ -30,7 +30,7 @@
         </div>
 
         {if $showFooter}
-            <footer class="post-footer panel-footer clearfix">
+            <footer class="post-footer card-footer clearfix">
                 {if Emergence\CMS\BlogRequestHandler::checkWriteAccess($Post)}
                 <div class="btn-group pull-right">
                     <a href="{$Post->getURL()}/edit" class="btn btn-xs btn-default">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></span></a>
