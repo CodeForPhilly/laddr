@@ -59,12 +59,12 @@
         </div>
         <div class="col-sm-8 col-md-9">
             {foreach item=Project from=$data}
-                <article class="post panel panel-default">
-                    <div class="panel-body">
+                <article class="post card">
+                    <div class="card-block">
                         <h2 class="post-title">
                             <a name="{$Project->Handle}" href="{$Project->getURL()}">{$Project->Title|escape}</a>
                             {if $Project->Stage}
-                                <span class="label label-info">{_ "$Project->Stage"}</span>
+                                <span class="badge badge-info">{_ "$Project->Stage"}</span>
                             {/if}
                         </h2>
                         <div class="well">
@@ -76,7 +76,7 @@
                             <ul class="list-inline people-list">
                             {foreach item=Membership from=$Project->Memberships}
                                 {$Member = $Membership->Member}
-                                <li class="people-list-person {tif $Project->MaintainerID == $Member->ID ? maintainer}">
+                                <li class="list-inline-item people-list-person {tif $Project->MaintainerID == $Member->ID ? maintainer}">
                                     <a
                                         href="/members/{$Member->Username}"
                                         class="member-thumbnail"
@@ -91,7 +91,7 @@
                                     </a>
                                 </li>
                             {foreachelse}
-                                <li class="muted">{_ "No registered members"}</li>
+                                <li class="muted list-inline-item">{_ "No registered members"}</li>
                             {/foreach}
                             </ul>
                         {/if}

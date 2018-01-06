@@ -4,8 +4,8 @@
 {load_templates subtemplates/people.tpl}
 
 {template projectBuzz Buzz headingLevel=h2 showHeading=true showProject=true articleClass=""}
-    <article class="post post-buzz panel panel-default {$articleClass}">
-        <div class="panel-body">
+    <article class="post post-buzz card {$articleClass}">
+        <div class="card-block">
             <header class="post-header">
                 {if $showHeading && $showProject}
                     <{$headingLevel} class="post-title">
@@ -27,7 +27,7 @@
             &ensp;
             <small class="text-muted">{_ "Published"} {timestamp $Buzz->Published}</small>
         </div>
-        <footer class="post-footer panel-footer">
+        <footer class="post-footer card-footer">
             {capture assign=timestampCreated}{glyph "time"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>{/capture}
             {capture assign=creatorLink}{glyph "user"}&nbsp;{personLink $Buzz->Creator}{/capture}
 
