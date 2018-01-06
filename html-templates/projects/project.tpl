@@ -304,11 +304,11 @@
                                         <td>{projectMemberTitle $Membership}</td>
                                         <td>
                                             {if $Membership->MemberID != $Project->MaintainerID}
-                                                <a href="/projects/{$Project->Handle}/change-maintainer?username={$Membership->Member->Username|escape:url}" class="btn btn-xs btn-primary">{_ "Make Maintainer"}</a>
+                                                <a href="/projects/{$Project->Handle}/change-maintainer?username={$Membership->Member->Username|escape:url}" class="btn btn-sm btn-primary">{_ "Make Maintainer"}</a>
                                             {/if}
                                         </td>
                                         <td>
-                                            <a href="/projects/{$Project->Handle}/remove-member?username={$Membership->Member->Username|escape:url}" class="btn btn-xs btn-danger">{_ "Remove"}</a>
+                                            <a href="/projects/{$Project->Handle}/remove-member?username={$Membership->Member->Username|escape:url}" class="btn btn-sm btn-danger">{_ "Remove"}</a>
                                         </td>
                                     </tr>
                                 {foreachelse}

@@ -33,9 +33,9 @@
             <footer class="post-footer card-footer clearfix">
                 {if Emergence\CMS\BlogRequestHandler::checkWriteAccess($Post)}
                 <div class="btn-group pull-right">
-                    <a href="{$Post->getURL()}/edit" class="btn btn-xs btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></span></a>
+                    <a href="{$Post->getURL()}/edit" class="btn btn-sm btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></span></a>
                     <a href="{$Post->getURL()}/delete"
-                       class="btn btn-xs btn-danger confirm"
+                       class="btn btn-sm btn-danger confirm"
                        data-confirm-yes="Delete Post"
                        data-confirm-no="Don&rsquo;t Delete"
                        data-confirm-title="Deleting Post"
