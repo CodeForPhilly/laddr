@@ -25,8 +25,8 @@
         <div class="col-sm-8 col-md-9">
             {foreach item=Event from=$data}
                 <article class="post card">
-                    <div class="card-block">
-                        <h2 class="post-title">
+                    <div class="card-body">
+                        <h2 class="card-title">
                             <a name="{$Event->Handle}" href="{$Event->getUrl()}">{$Event->Title|escape}</a>
                         </h2>
                         <ul class="row list-unstyled">

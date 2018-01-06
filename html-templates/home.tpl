@@ -18,11 +18,11 @@
                         <p class="media-heading">{Laddr::$siteSlogan|escape}</p>
                         <ul class="list-inline">
                             {if $.User}
-                                <li class="list-inline-item"><p><a href="/chat" class="btn btn-lg btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
+                                <li class="list-inline-item"><p><a href="/chat" class="btn btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
                             {else}
-                                <li class="list-inline-item"><p><a href="/register" class="btn btn-lg btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></p></li>
+                                <li class="list-inline-item"><p><a href="/register" class="btn btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></p></li>
                             {/if}
-                            <li class="list-inline-item"><p><a href="/projects" class="btn btn-lg btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></p></li>
+                            <li class="list-inline-item"><p><a href="/projects" class="btn btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></p></li>
                         </ul>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                         <div class="card-header">
                             {meetup $currentMeetup showRsvp=false}
                         </div>
-                        <div class="card-block">
+                        <div class="card-body">
                             <form class="checkin" action="/checkin" method="POST">
                                 <div class="form-group">
                                     <input type="hidden" name="MeetupID" value="{$currentMeetup.id}">
