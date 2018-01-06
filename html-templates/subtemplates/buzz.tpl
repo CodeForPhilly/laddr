@@ -4,7 +4,7 @@
 {load_templates subtemplates/people.tpl}
 
 {template projectBuzz Buzz headingLevel=h2 showHeading=true showProject=true articleClass=""}
-    <article class="post post-buzz card {$articleClass}">
+    <article class="post post-buzz card mb-4 {$articleClass}">
         <div class="card-body">
             <header class="post-header">
                 {if $showHeading && $showProject}
@@ -33,8 +33,8 @@
 
             {if Laddr\ProjectBuzzRequestHandler::checkWriteAccess($Buzz)}
                 <div class="btn-group pull-right">
-                    <a href="{$Buzz->getURL()}/edit" class="btn btn-xs btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
-                    <a href="{$Buzz->getURL()}/delete" class="btn btn-xs btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
+                    <a href="{$Buzz->getURL()}/edit" class="btn btn-sm btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
+                    <a href="{$Buzz->getURL()}/delete" class="btn btn-sm btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
             {/if}
 

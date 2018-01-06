@@ -47,10 +47,10 @@
                         &middot;
                         <div class="btn-group">
                             {if $.User->hasAccountLevel(Staff)}
-                                <a href="{$Comment->getURL()}/edit" class="btn btn-xs btn-secondary">{*glyph "pencil"*} {_ Edit}</a>
+                                <a href="{$Comment->getURL()}/edit" class="btn btn-sm btn-secondary">{*glyph "pencil"*} {_ Edit}</a>
                             {/if}
                             <a href="{$Comment->getURL()}/delete"
-                               class="btn btn-xs btn-danger confirm"
+                               class="btn btn-sm btn-danger confirm"
                                data-confirm-yes="Delete Comment"
                                data-confirm-no="Don&rsquo;t Delete"
                                data-confirm-title="Deleting Comment"

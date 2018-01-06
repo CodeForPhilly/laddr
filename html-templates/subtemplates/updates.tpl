@@ -26,8 +26,8 @@
 
             {if Laddr\ProjectUpdatesRequestHandler::checkWriteAccess($Update)}
                 <div class="btn-group pull-right">
-                    <a href="{$Update->getURL()}/edit" class="btn btn-xs btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
-                    <a href="{$Update->getURL()}/delete" class="btn btn-xs btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
+                    <a href="{$Update->getURL()}/edit" class="btn btn-sm btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
+                    <a href="{$Update->getURL()}/delete" class="btn btn-sm btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
             {/if}
 
