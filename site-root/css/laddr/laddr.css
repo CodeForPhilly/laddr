@@ -18,6 +18,8 @@
  * + CSS 
  */
 
+html { font-size: 16px; }
+
 body {
     font-family: 'Source Sans Pro', sans-serif;
     padding-top: 50px; /* Padding at top of screen for fixed navbar as recommended in bootstrap docs */
