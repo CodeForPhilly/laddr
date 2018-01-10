@@ -4,7 +4,47 @@
 
 {block content}
     {$Project = $data}
-
+    
+    <form id="modify-role" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/modify-role" method="POST">
+        <div class="modal-dialog">    
+            <div class="modal-content">    
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h2 id="add-member-title" class="modal-title">{_ "Edit project role"}</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="display: none;">
+                        <label for="inputRoleId" class="col-sm-2 control-label">{_ "Role"}</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputRoleId" class="form-control" name="role_id" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRole" class="col-sm-2 control-label">{_ "Role"}</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputRole" class="form-control" name="role" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRoleDescription" class="col-sm-2 control-label">{_ "Description"}</label>
+                        <div class="col-sm-10">
+                            <textarea rows="4" cols="50" id="inputRoleDescription" class="form-control" name="description" value="" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUsername" class="col-sm-2 control-label">{_ "Username"}</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputUsername" class="form-control" name="username" placeholder="{_ 'optional'}">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">{_ "Save Role"}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    
     <div class="page-header">
         <div class="btn-toolbar pull-right">
             <div class="btn-group">
@@ -12,12 +52,15 @@
                 {if $.User}
                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                     <ul class="dropdown-menu">
+                        <li><a href="#add-role" data-toggle="modal">{_ "Add Role"}</a></li>
                         <li><a href="#add-member" data-toggle="modal">{_ "Add Member"}</a></li>
                         <li><a href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a></li>
                         {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
+                            <li><a href="/project-applications/view?ProjectID={$Project->ID}">{_ "Role Applications"}</a></li>
                             <li><a href="#post-update" data-toggle="modal">{_ "Post Update"}</a></li>
                         {/if}
                         {if $.Session->hasAccountLevel('Staff')}
+                            <li><a href="#manage-roles" data-toggle="modal">{_ "Manage Roles"}</a></li>
                             <li><a href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a></li>
                         {/if}
                     </ul>
@@ -158,6 +201,105 @@
                 {/if}
             </div>
                 
+            <!--  PROJECT ROLES BLOCK  -->
+            <h3> Filled Roles</h3>
+            <table id='role_table' width="100%" style="margin-bottom: 10px">
+            {foreach item=Role from=$Project->Roles}
+                {$Person = $Role->Person}
+                    {if $Person}
+                        <tr>
+                            <td rowspan="2" width="70px">
+                                <a
+                                    href="/members/{$Person->Username}"
+                                    class="member-thumbnail"
+                                    data-toggle="tooltip"
+                                    data-placement="bottom"
+                                    title="{projectMemberTitle $Role} {tif $Role->PersonID>0 ? '&mdash;' : '&mdash; Vacant'} {personName $Person}"
+                                >
+                                    {if $Project->MaintainerID == $Person->ID}
+                                        {avatar $Person size=64}
+                                    {else}
+                                        {avatar $Person size=48}
+                                    {/if}
+                                </a>
+                            </td>
+                            <td>
+                                {$Role->Role}
+                            </td>
+                            <td style="text-align:right">
+                                {if $.Session->hasAccountLevel('Staff')}
+                                    {if $Role->PersonID != $Project->MaintainerID}
+                                        <a href="/projects/{$Project->Handle}/change-maintainer?username={$Role->Person->Username|escape:url}" data-toggle="modal" title="Make maintainer" style="margin-left: 4px">
+                                            <span class="glyphicon glyphicon-transfer"></span>
+                                        </a>
+                                    {/if}
+                                    <a href="role" data-toggle="modal" data-role_id="{$Role->ID}" data-role_name="{$Role->Role}"  data-role_description="{$Role->Description}" data-role_person="{$Person->Username}" title="Edit Role" style="margin-left: 4px">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a href="/projects/{$Project->Handle}/remove-role?role_id={$Role->ID|escape:url}" data-toggle="modal" title="Trash" style="margin-left: 4px">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=3>
+                                {personName $Person}
+                            </td>
+                        </tr>
+                    {/if}
+            {foreachelse}
+                <tr>
+                    <td colspan=3>
+                        <span class="muted">{_ "No filled roles"}</span>
+                    </td>
+                </tr>
+            {/foreach}
+            </table>
+            
+            <h3> Vacant Roles</h3>
+            <table id="open_role_table" width="100%">
+            {foreach item=Role from=$Project->Roles}
+                {$Person = $Role->Person}
+                    {if !$Person}
+                        <tr>
+                            <td>
+                                {$Role->Role}
+                            </td>
+                            <td style="text-align:right">
+                                <a href="role_application" data-toggle="modal" data-role="{$Role->ID}" data-role_title="{$Project->Title} -- {$Role->Role}" title="Apply" style="margin-left: 4px">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                </a>
+                                {if $.Session->hasAccountLevel('Staff')}
+                                    <a href="role" data-toggle="modal" data-role_id="{$Role->ID}" data-role_name="{$Role->Role}"  data-role_description="{$Role->Description}" data-role_person="{$Person->Username}" title="Edit Role" style="margin-left: 4px">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                    </a>
+                                    <a href="/projects/{$Project->Handle}/remove-role?role_id={$Role->ID|escape:url}" data-toggle="modal" title="Trash" style="margin-left: 4px">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=2>
+                                {$Role->Description}
+                            </td>
+                        </tr>
+                    {/if}
+            {foreachelse}
+                <tr>
+                    <td colspan=3>
+                        <span class="muted">{_ "No vacant roles"}</span>
+                    </td>
+                </tr>
+            {/foreach}
+            </table>
+
+            {if $.Session->hasAccountLevel('Staff')}
+                <a class="btn btn-success btn-sm add-person" href="#add-role" data-toggle="modal">+ {_ "Add"}</a>
+            {/if}
+            <hr>
+            
             <!--  MEMBERS BLOCK  -->
             {if $Project->Memberships}
                 <h3>Members</h3>
@@ -229,6 +371,68 @@
 {block js-bottom}
     {$dwoo.parent}
 
+    <form id="add-role" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-role" method="POST">
+        <div class="modal-dialog">    
+            <div class="modal-content">    
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h2 id="add-member-title" class="modal-title">{_ "Add project role"}</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputRole" class="col-sm-2 control-label">{_ "Role"}</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputRole" class="form-control" name="role" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputRoleDescription" class="col-sm-2 control-label">{_ "Description"}</label>
+                        <div class="col-sm-10">
+                            <textarea rows="4" cols="50" id="inputRoleDescription" class="form-control" name="description" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputUsername" class="col-sm-2 control-label">{_ "Username"}</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputUsername" class="form-control" name="username" placeholder="{_ 'optional'}">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">{_ "Add Role"}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    <form id="add-application" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-application" method="POST">
+        <div class="modal-dialog">    
+            <div class="modal-content">    
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h2 id="add-application-title" class="modal-title"></h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="display: none;">
+                        <label for="inputRoleId" class="col-sm-2 control-label">{_ "Role"}</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputRoleId" class="form-control" name="role_id" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputApplication" class="col-sm-2 control-label">{_ "Application"}</label>
+                        <div class="col-sm-10">
+                            <textarea rows="4" cols="50" id="inputApplication" class="form-control" name="application" placeholder="{_ 'optional'}"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">{_ "Apply"}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    
     <form id="add-member" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-member" method="POST">
         <div class="modal-dialog">    
             <div class="modal-content">    
@@ -280,6 +484,56 @@
     {/if}
 
     {if $.Session->hasAccountLevel('Staff')}
+        <div id="manage-roles" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage-roles-title">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <h2 id="manage-roles-title" class="modal-title">{_ "Manage project roles"}</h2>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Description</th>
+                                    <th>Person</th>
+                                    <th><span class="sr-only">Remove Role</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach item=Role from=$Project->Roles}
+                                    <tr>
+                                        <td>{$Role->Role}</td>
+                                        <td>{$Role->Description}</td>
+                                        {if $Role->PersonID==null}
+                                            <td>Vacant</td>
+                                        {else}
+                                            <td>{personLink $Role->Person}</td>
+                                        {/if}
+                                        <td width="60px">
+                                            {if $Role->PersonID != $Project->MaintainerID}
+                                                <a href="/projects/{$Project->Handle}/change-maintainer?username={$Role->Person->Username|escape:url}" data-toggle="modal" title="Make maintainer" style="margin-left: 4px">
+                                                    <span class="glyphicon glyphicon-transfer"></span>
+                                                </a>
+                                            {/if}
+                                            <a href="/projects/{$Project->Handle}/remove-role?role_id={$Role->ID|escape:url}"  title="Trash" style="margin-left: 4px">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {foreachelse}
+                                    <tr>
+                                        <td class="muted" colspan="4">{_ "None registered"}</td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <div id="manage-members" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage-members-title">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -324,9 +578,6 @@
         </div>
     {/if}
 
-{/block}
-
-{block js-bottom}
     {jsmin "epiceditor.js"}
     {jsmin "pages/project.js"}
 {/block}
