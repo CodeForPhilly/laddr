@@ -18,6 +18,14 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
     public static function handleRecordRequest(\ActiveRecord $Project, $action = false)
     {
         switch ($action ? $action : $action = static::shiftPath()) {
+            case 'add-role':
+                return static::handleAddRoleRequest($Project);
+            case 'modify-role':
+                return static::handleModifyRoleRequest($Project);
+            case 'remove-role':
+                return static::handleRemoveRoleRequest($Project);
+            case 'add-application':
+                return static::handleAddRoleApplicationRequest($Project);
             case 'add-member':
                 return static::handleAddMemberRequest($Project);
             case 'remove-member':
@@ -84,6 +92,104 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
 
+    public static function handleAddRoleRequest(Project $Project)
+    {
+        $GLOBALS['Session']->requireAuthentication();
+
+        $Person = User::getByUsername($_POST['username']);
+
+        $recordData = [
+            'ProjectID' => $Project->ID,
+            'PersonID' => (!$Person)?null:$Person->ID
+        ];
+
+        $ProjectRole = ProjectRole::create($recordData);
+
+        if (!empty($_POST['role'])) {
+            $ProjectRole->Role = $_POST['role'];
+        }
+        
+        if (!empty($_POST['description'])) {
+            $ProjectRole->Description = $_POST['description'];
+        }
+
+        $ProjectRole->save();
+
+        return static::respond('roleAdded', [
+            'data' => $ProjectRole,
+            'Project' => $Project,
+            'Member' => $Person
+        ]);
+    }
+    
+    public static function handleModifyRoleRequest(Project $Project)
+    {
+        $GLOBALS['Session']->requireAuthentication();
+
+        $Person = User::getByUsername($_POST['username']);
+
+        $recordData = [
+            'ProjectID' => $Project->ID,
+            'PersonID' => (!$Person)?null:$Person->ID
+        ];
+
+        $ProjectRole = ProjectRole::create($recordData);
+
+        if (!empty($_POST['role'])) {
+            $ProjectRole->Role = $_POST['role'];
+        }
+        
+        if (!empty($_POST['description'])) {
+            $ProjectRole->Description = $_POST['description'];
+        }
+
+        $ProjectRole->save();
+
+        return static::respond('roleModified', [
+            'data' => $ProjectRole,
+            'Project' => $Project,
+            'Member' => $Person
+        ]);
+    }
+    
+    public static function handleAddRoleApplicationRequest(Project $Project){
+        $GLOBALS['Session']->requireAuthentication();
+        
+    }
+    
+    public static function handleRemoveRoleRequest(Project $Project)
+    {
+        $GLOBALS['Session']->requireAuthentication();
+
+        if (empty($_REQUEST['role_id'])) {
+            return static::throwError(_('Parameter "role_id" required'));
+        }
+        
+        $ProjectRole = ProjectRole::getByWhere([
+            'ProjectID' => $Project->ID,
+            'ID' => $_REQUEST['role_id']
+        ]);
+
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            return static::respond('confirm', [
+                'question' => sprintf(
+                    _('Are you sure you want to remove %s from %s?'),
+                    htmlspecialchars($Role->Role),
+                    htmlspecialchars($Project->Title)
+                )
+            ]);
+        }
+
+        if ($ProjectRole) {
+            $ProjectRole->destroy();
+        }
+
+        return static::respond('roleRemoved', [
+            'data' => $ProjectRole,
+            'Project' => $Project
+        ]);
+    }
+    
     public static function handleAddMemberRequest(Project $Project)
     {
         $GLOBALS['Session']->requireAuthentication();

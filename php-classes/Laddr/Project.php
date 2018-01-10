@@ -85,6 +85,27 @@ class Project extends \VersionedRecord
             'linkForeign' => 'MemberID',
             'indexField' => 'ID'
         ],
+        'Roles' => [
+            'type' => 'one-many',
+            'class' => ProjectRole::class,
+            'foreign' => 'ProjectID'
+        ],
+        'OpenRoles' => [
+            'type' => 'one-many',
+            'class' => ProjectRole::class,
+            'foreign' => 'ProjectID',
+            'conditions' => [
+                'PersonID IS NULL'
+            ]
+        ],
+        'FilledRoles' => [
+            'type' => 'one-many',
+            'class' => ProjectRole::class,
+            'foreign' => 'ProjectID',
+            'conditions' => [
+                'PersonID IS NOT NULL'
+            ]
+        ],
         'Memberships' => [
             'type' => 'one-many',
             'class' => ProjectMember::class,
@@ -143,6 +164,7 @@ class Project extends \VersionedRecord
     public static $dynamicFields = [
         'Maintainer',
         'Members',
+        'Roles',
         'Memberships',
         'Tags',
         'TopicTags',
@@ -193,9 +215,9 @@ class Project extends \VersionedRecord
         parent::save($deep);
 
         if (!$this->Members) {
-            ProjectMember::create([
+            ProjectRole::create([
                 'ProjectID' => $this->ID,
-                'MemberID' => $this->Maintainer->ID,
+                'PersonID' => $this->Maintainer->ID,
                 'Role' => 'Founder' // _("Founder") -- placeholder to make this string translatable, actual translation is done during rendering though
             ], true);
         }

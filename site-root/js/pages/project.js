@@ -33,3 +33,24 @@
         });
     });
 })();
+
+$( "#open_role_table" ).on( "click", "a[title^='Apply']", function( event ) {
+    $('#add-application').modal({show: 'true'});
+    $("#inputRoleId").val($( this ).attr( "data-role_id"));
+});
+
+$( "#open_role_table" ).on( "click", "a[title^='Edit Role']", function( event ){
+    $('#modify-role').modal({show: 'true'});
+    $("#inputRoleId").val($( this ).attr( "data-role_id"));
+    $("#inputRole").val($( this ).attr( "data-role_name"));
+    $("#inputRoleDescription").val($( this ).attr( "data-role_description"));
+    $("#inputUsername").val($( this ).attr( "data-role_person"));
+});
+
+$( "#role_table" ).on( "click", "a[title^='Edit Role']", function( event ) {
+    $('#modify-role').modal({show: 'true'});
+    $("#inputRoleId").val($( this ).attr( "data-role_id"));
+    $("#inputRole").val($( this ).attr( "data-role_name"));
+    $("#inputRoleDescription").val($( this ).attr( "data-role_description"));
+    $("#inputUsername").val($( this ).attr( "data-role_person"));
+});
