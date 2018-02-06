@@ -47,9 +47,23 @@ legend {
  * + Components
  */
 
+/* card */
+
+.card img {
+   max-width: 100%;
+}
+.card .btn {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 /* - Badges */
 
-h1 .badge {
+h1 .badge, h2 .badge, h3 badge, h4 .badge, h5 .badge {
+    font-size: 0.5em;
+    margin-top: -0.5em;
     vertical-align: middle;
 }
 
@@ -79,7 +93,10 @@ h1 .badge {
 }
 
 @media (max-width: 479px) {
-
+    .media {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
     .jumbotron-caption {
         text-align: center;
     }
@@ -127,6 +144,24 @@ h1 .badge {
     border-bottom: 1px solid #eee;
 }
 
+@media (max-width:1024px) {
+    .navbar .container {
+        position: relative;
+        padding-right: 56px;
+    }
+    .navbar .site-search { display: none; }
+    .navbar .site-search + .pull-right { float: none; }
+    .navbar .site-search + .pull-right .nav-link { color: white; }
+    .navbar-toggler {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .navbar-dark .navbar-brand {
+        flex-grow: 1;
+    }
+}
+
 /* - Menus - */
 @media (min-width: 1024px) {
     /* Active submenu on hover, but only in desktop mode */
@@ -134,4 +169,8 @@ h1 .badge {
     .dropdown-menu:hover {
         display: block;
     }
+}
+
+.dropdown-menu {
+  margin-top: -2px;
 }
