@@ -18,7 +18,7 @@
                 <a href="/register" class="btn btn-danger">{glyph "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
             {/if}
         </div>
-        <h1>{_ "Civic Projects Directory"} <span class="badge">{$projectsTotal|number_format}</span></h1>
+        <h1>{_ "Civic Projects Directory"} <span class="badge badge-pill badge-secondary">{$projectsTotal|number_format}</span></h1>
     </header>
 
     {contentBlock "projects-browse-introduction"}
@@ -33,27 +33,27 @@
             </div>
 
             {template tagLink tagData rootUrl linkCls=""}
-                <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
+                <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge badge-pill badge-secondary pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
             {/template}
 
-            <div class="tags list-group byTopic">
+            <div class="tags list-group byTopic mb-4">
                 {foreach item=tag from=$projectsTags.byTopic}
-                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
+                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item list-group-item-action"}
                 {/foreach}
             </div>
-            <div class="tags list-group byTech" style="display: none">
+            <div class="tags list-group byTech mb-4" style="display: none">
                 {foreach item=tag from=$projectsTags.byTech}
-                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
+                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item list-group-item-action"}
                 {/foreach}
             </div>
-            <div class="tags list-group byEvent" style="display: none">
+            <div class="tags list-group byEvent mb-4" style="display: none">
                 {foreach item=tag from=$projectsTags.byEvent}
                     {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
                 {/foreach}
             </div>
-            <div class="tags list-group byStage" style="display: none">
+            <div class="tags list-group byStage mb-4" style="display: none">
                 {foreach item=stage from=$projectsStages}
-                    <a class="list-group-item" href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a>
+                    <a class="list-group-item" href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge badge-pill badge-secondary pull-right">{$stage.itemsCount|number_format}</span></a>
                 {/foreach}
             </div>
         </div>

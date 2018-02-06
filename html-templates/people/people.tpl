@@ -11,7 +11,7 @@
     {load_templates "subtemplates/paging.tpl"}
 
     <div class="page-header">
-        <h1>{_ "Registered Members"} <span class="badge">{$membersTotal|number_format}</span></h1>
+        <h1>{_ "Registered Members"} <span class="badge badge-secondary badge-pill">{$membersTotal|number_format}</span></h1>
     </div>
 
     {contentBlock "members-browse-introduction"}
@@ -25,18 +25,18 @@
                 </div>
 
                 {template tagLink tagData rootUrl linkCls=""}
-                    <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
+                    <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge badge-pill badge-secondary pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
                 {/template}
 
-                <div class="tags list-group byTech">
+                <div class="tags list-group byTech mb-4">
                     {foreach item=tag from=$membersTags.byTech}
-                        {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item"}
+                        {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item list-group-item-action"}
                     {/foreach}
                 </div>
 
                 <div class="tags list-group byTopic" style="display: none">
                     {foreach item=tag from=$membersTags.byTopic}
-                        {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item"}
+                        {tagLink tagData=$tag rootUrl="/people" linkCls="list-group-item list-group-item-action"}
                     {/foreach}
                 </div>
             </div>
@@ -45,7 +45,7 @@
         <div class="col-sm-8 col-md-9">
             <div class="row row-wrap">
             {foreach item=Person from=$data}
-                <div class="col-sm-4 col-md-2">
+                <div class="col-sm-6 col-md-4">
                     {personLink $Person photo=yes photoSize=150 linkCls="thumbnail text-center"}
                 </div>
             {/foreach}

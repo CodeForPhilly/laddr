@@ -33,7 +33,7 @@
             {if $Project->Stage}
                 <h2>{_ "Stage"}</h2>
                 {if $Project->Stage == null}
-                <span class="badge bage-info" data-toggle="tooltip" data-placement="bottom" title="{Laddr\Project::getStageDescription($Project->Stage)}">{$Project->Stage}</span>
+                <span class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="{Laddr\Project::getStageDescription($Project->Stage)}">{$Project->Stage}</span>
                 {/if}
                 {if $Project->Stage == Commenting}
                 <div class="progress">
