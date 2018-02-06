@@ -11,7 +11,7 @@
                 </form>
             {/if}
         </div>
-        <h1>{_ "Events"} <span class="badge">{$total|number_format}</span></h1>
+        <h1>{_ "Events"} <span class="badge badge-secondary badge-pill">{$total|number_format}</span></h1>
     </header>
 
     <div class="row">
