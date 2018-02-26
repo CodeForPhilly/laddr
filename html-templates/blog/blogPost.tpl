@@ -90,7 +90,7 @@
                 <h1 class="header-title"><a href="{$Post->getURL()}">{$Post->Title|escape}</a></h1>
 
                 <div class="article-meta">
-                    by {personLink $Post->Author photo=yes photoSize=36 pixelRatio=2}
+                    by {personLink $Post->Author photo=yes photoSize=36 pixelRatio=2 summary=no}
                     on <a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
                 </div>
 
