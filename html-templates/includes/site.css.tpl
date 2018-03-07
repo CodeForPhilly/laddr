@@ -1,10 +1,9 @@
 {*
     Compresses all CSS files into a single request.
     Add ?cssdebug=1 to any URL to load separate uncompressed files
-    #! TODO: this is pulled out into 4 files so that I can debug more easily for now. CCC
 *}
 {cssmin array(
-    'bootstrap/bootstrap4.css',
+    'bootstrap/bootstrap.css',
     'plugins/*',
     'laddr/*',
     'branding/*'
