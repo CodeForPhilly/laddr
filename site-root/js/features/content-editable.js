@@ -1,5 +1,5 @@
 $(function() {
-	var currentEditingEl = null
+    var currentEditingEl = null
 		,currentInitialValue = null;
 
 	//create element
@@ -79,10 +79,11 @@ $(function() {
 	});
 	
 	// wire click handler
-	$(document).click(function(e) {
-		var editableEl = $(e.target).closest('.content-editable');
-		
-		if (!editableEl.length || e.target.tagName === 'A') {
+	$(document).delegate('.content-editable', 'click', function(e) {
+		var editableEl = $(this);
+
+		// don't process clicks on links
+		if (e.target.tagName === 'A') {
 			return;
 		}
 
@@ -227,7 +228,7 @@ $(function() {
 		_syncEditorPosition();
 		
 		// sync position again after any images load
-		currentEditingEl.find('img').load(_syncEditorPosition);
+		currentEditingEl.find('img').on('load', _syncEditorPosition);
 	}
 	
 	function _syncEditorPosition() {
