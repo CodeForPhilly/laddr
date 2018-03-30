@@ -2,8 +2,7 @@
 <nav class="navbar navbar-toggleable-md fixed-top navbar-dark bg-dark navbar-expand-lg" role="navigation">
     <div class="container">
 
-        <a class="navbar-brand" href="/"> {include includes/site.brand.tpl}</a>
-
+        <a class="navbar-brand" href="/">{include includes/site.brand.tpl}</a>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="laddr-site-navbar">
