@@ -3,15 +3,15 @@
     Add ?jsdebug=1 to any URL to load separate uncompressed files
 *}
 {jsmin array(
-    'jquery.js',
-    'popper.js',
-    'bootstrap.js',
-    'typeahead.bundle.js',
-    'bootstrap-combobox.js',
-    'bootstrap-tagsinput.js',
-    'features/site-search.js',
-    'features/site-search-renderers/*',
-    'features/tooltips.js'
+    "jquery.js",
+    "popper.js",
+    "bootstrap.js",
+    "typeahead.bundle.js",
+    "bootstrap-combobox.js",
+    "bootstrap-tagsinput.js",
+    "features/site-search.js",
+    "features/site-search-renderers/*",
+    "features/tooltips.js"
 )}
 
 {if $.User->hasAccountLevel('Staff')}
