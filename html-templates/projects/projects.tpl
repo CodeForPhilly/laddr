@@ -12,10 +12,10 @@
         <div class="btn-toolbar pull-right">
             {if $.User}
                 <form action="/projects/create">
-                    <button class="btn btn-success" type="submit">{glyph "plus"}&nbsp;{_ "Add Project&hellip;"}</button>
+                    <button class="btn btn-success" type="submit">{icon "plus"}&nbsp;{_ "Add Project&hellip;"}</button>
                 </form>
             {else}
-                <a href="/register" class="btn btn-danger">{glyph "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
+                <a href="/register" class="btn btn-danger">{icon "fire"}&nbsp;{_ "Register with the Brigade!"}</a>
             {/if}
         </div>
         <h1>{_ "Civic Projects Directory"} <span class="badge badge-pill badge-secondary">{$projectsTotal|number_format}</span></h1>
@@ -96,8 +96,8 @@
                             </ul>
                         {/if}
                         <div class="btn-group post-link-group" role="group">
-                            {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{glyph "link"}&nbsp;Public Site</a>{/if}
-                            {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{glyph "link"}&nbsp;Developers</a>{/if}
+                            {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{icon "link"}&nbsp;Public Site</a>{/if}
+                            {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{icon "link"}&nbsp;Developers</a>{/if}
                         </div>
                     </div>
                 </article>

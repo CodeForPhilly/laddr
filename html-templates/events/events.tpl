@@ -7,7 +7,7 @@
         <div class="btn-toolbar pull-right">
             {if $.User}
                 <form action="/events/create">
-                    <button class="btn btn-success" type="submit">{glyph "plus"}&nbsp;{_ "Add Event&hellip;"}</button>
+                    <button class="btn btn-success" type="submit">{icon "plus"}&nbsp;{_ "Add Event&hellip;"}</button>
                 </form>
             {/if}
         </div>

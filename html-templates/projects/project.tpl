@@ -136,20 +136,20 @@
             <div role="group" aria-label="...">
                 {if $Project->UsersUrl}
                     <a class="btn btn-primary btn-block" role="button" href="{$Project->UsersUrl|escape}">
-                        {glyph "user"}&nbsp;Users' Site
+                        {icon "user"}&nbsp;Users' Site
                         <div class="small">{$Project->UsersUrl|escape}</div>
                     </a>
                 {/if}
                 {if $Project->DevelopersUrl}
                     <a class="btn btn-success btn-block" role="button" href="{$Project->DevelopersUrl|escape}">
-                        {glyph "cog"}&nbsp;Developers' Site
+                        {icon "cog"}&nbsp;Developers' Site
                         <div class="small">{$Project->DevelopersUrl|escape}</div>
                     </a>
                 {/if}
                 {if $Project->ChatChannel}
                     {if Laddr::$chatLinker}
                         <a class="btn btn-success btn-block" role="button" href="{call_user_func(Laddr::$chatLinker, $Project->ChatChannel)|escape}" target="_blank">
-                            {glyph "comment"}&nbsp;Chat Channel
+                            {icon "comment"}&nbsp;Chat Channel
                             <div class="small">#{$Project->ChatChannel|escape}</div>
                         </a>
                     {else}

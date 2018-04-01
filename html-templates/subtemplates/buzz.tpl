@@ -1,5 +1,5 @@
 {load_templates subtemplates/personName.tpl}
-{load_templates subtemplates/glyphicons.tpl}
+{load_templates subtemplates/icon.tpl}
 {load_templates subtemplates/timestamp.tpl}
 {load_templates subtemplates/people.tpl}
 
@@ -11,7 +11,7 @@
                     <{$headingLevel} class="post-title">
                         <a class="pull-right" href="{$Buzz->Creator->getURL()}" title="{personName $Buzz->Creator}" data-toggle="tooltip">{avatar $Buzz->Creator size=64}</a>
                         <a href="{$Buzz->Project->getURL()}">{$Buzz->Project->Title|escape}</a>
-                        <small class="text-muted">{glyph "flash"} Buzz</small>
+                        <small class="text-muted">{icon "flash"} Buzz</small>
                     </{$headingLevel}>
                 {/if}
                 <p class="post-subtitle"><a href="{$Buzz->getURL()}">{$Buzz->Headline|escape}</a></p>
@@ -28,13 +28,13 @@
             <small class="text-muted">{_ "Published"} {timestamp $Buzz->Published}</small>
         </div>
         <footer class="post-footer card-footer">
-            {capture assign=timestampCreated}{glyph "time"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>{/capture}
-            {capture assign=creatorLink}{glyph "user"}&nbsp;{personLink $Buzz->Creator}{/capture}
+            {capture assign=timestampCreated}{icon "time"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>{/capture}
+            {capture assign=creatorLink}{icon "user"}&nbsp;{personLink $Buzz->Creator}{/capture}
 
             {if Laddr\ProjectBuzzRequestHandler::checkWriteAccess($Buzz)}
                 <div class="btn-group pull-right">
-                    <a href="{$Buzz->getURL()}/edit" class="btn btn-sm btn-secondary">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
-                    <a href="{$Buzz->getURL()}/delete" class="btn btn-sm btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
+                    <a href="{$Buzz->getURL()}/edit" class="btn btn-sm btn-secondary">{icon "pencil"} <span class="sr-only">{_ Edit}</span></a>
+                    <a href="{$Buzz->getURL()}/delete" class="btn btn-sm btn-danger">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
             {/if}
 
