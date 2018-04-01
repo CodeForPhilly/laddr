@@ -15,7 +15,7 @@
         <div class="btn-toolbar pull-right">
             {if $.User}
                 <form action="{$Event->getUrl(edit)}">
-                    <button class="btn btn-success" type="submit">{glyph "pencil"}&nbsp;{_ "Edit Event&hellip;"}</button>
+                    <button class="btn btn-success" type="submit">{icon "pencil"}&nbsp;{_ "Edit Event&hellip;"}</button>
                 </form>
             {/if}
         </div>

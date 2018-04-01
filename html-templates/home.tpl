@@ -18,11 +18,11 @@
                         <p class="media-heading">{Laddr::$siteSlogan|escape}</p>
                         <ul class="list-inline">
                             {if $.User}
-                                <li class="list-inline-item"><p><a href="/chat" class="btn btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
+                                <li class="list-inline-item"><p><a href="/chat" class="btn btn-success">{icon "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
                             {else}
-                                <li class="list-inline-item"><p><a href="/register" class="btn btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></p></li>
+                                <li class="list-inline-item"><p><a href="/register" class="btn btn-success">{icon "heart"}&nbsp;{_ "Join Us!"}</a></p></li>
                             {/if}
-                            <li class="list-inline-item"><p><a href="/projects" class="btn btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></p></li>
+                            <li class="list-inline-item"><p><a href="/projects" class="btn btn-primary">{icon "book"}&nbsp;{_ "Browse Projects"}</a></p></li>
                         </ul>
                     </div>
                 </div>
@@ -98,9 +98,9 @@
                 <h2>{_ "Latest Project Activity"}</h2>
 
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a href="/project-updates" class="btn btn-link">{glyph "asterisk"} {_ "Browse all project updates"}</a></li>
-                    <li class="list-inline-item"><a href="/project-buzz" class="btn btn-link">{glyph "flash"} {_ "Browse all project buzz"}</a></li>
-                    <li class="list-inline-item"><a href="/blog" class="btn btn-link">{glyph "file"} {_ "Browse all blog posts"}</a></li>
+                    <li class="list-inline-item"><a href="/project-updates" class="btn btn-link">{icon "asterisk"} {_ "Browse all project updates"}</a></li>
+                    <li class="list-inline-item"><a href="/project-buzz" class="btn btn-link">{icon "flash"} {_ "Browse all project buzz"}</a></li>
+                    <li class="list-inline-item"><a href="/blog" class="btn btn-link">{icon "file"} {_ "Browse all blog posts"}</a></li>
                 </ul>
 
 {*
@@ -108,7 +108,7 @@
                     <div class="card-block">
                         <header class="post-header">
                             <h3 class="post-title">
-                                <a href="#">Code for Philly Hack Night</a><small class="text-muted margin-left">{glyph "console"}</small>
+                                <a href="#">Code for Philly Hack Night</a><small class="text-muted margin-left">{icon "console"}</small>
                             </h3>
                         </header>
                         <div class="update-body">
