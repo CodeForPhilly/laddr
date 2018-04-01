@@ -3,6 +3,7 @@
 namespace Laddr;
 
 use DB;
+use TableNotFoundException;
 use HandleBehavior;
 use Tag, TagItem;
 use Comment;
