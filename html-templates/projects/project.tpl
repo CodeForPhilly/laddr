@@ -324,9 +324,6 @@
         </div>
     {/if}
 
-{/block}
-
-{block js-bottom}
-    {jsmin "epiceditor.js"}
+    {jsmin "lib/epiceditor.js"}
     {jsmin "pages/project.js"}
 {/block}

@@ -3,7 +3,7 @@
     Add ?cssdebug=1 to any URL to load separate uncompressed files
 *}
 {cssmin array(
-    'bootstrap.css',
+    'lib/bootstrap.css',
     'plugins/*',
     'laddr/*',
     'branding/*'
