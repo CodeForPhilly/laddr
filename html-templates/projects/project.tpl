@@ -11,16 +11,16 @@
                 <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">{_ "Edit Project"}</a>
                 {if $.User}
                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#add-member" data-toggle="modal">{_ "Add Member"}</a></li>
-                        <li><a href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a></li>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#add-member" data-toggle="modal">{_ "Add Member"}</a>
+                        <a class="dropdown-item" href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a>
                         {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
-                            <li><a href="#post-update" data-toggle="modal">{_ "Post Update"}</a></li>
+                            <a class="dropdown-item" href="#post-update" data-toggle="modal">{_ "Post Update"}</a>
                         {/if}
                         {if $.Session->hasAccountLevel('Staff')}
-                            <li><a href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a></li>
+                            <a class="dropdown-item" href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a>
                         {/if}
-                    </ul>
+                    </div>
                 {/if}
             </div>
         </div>
