@@ -4,7 +4,7 @@
 
 {block js-bottom}
     {$dwoo.parent}
-    {jsmin "epiceditor.js"}
+    {jsmin "lib/epiceditor.js"}
     {jsmin "pages/project-edit.js"}
     {jsmin "features/tag-fields.js"}
 {/block}

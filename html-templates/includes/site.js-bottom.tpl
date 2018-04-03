@@ -3,17 +3,17 @@
     Add ?jsdebug=1 to any URL to load separate uncompressed files
 *}
 {jsmin array(
-    "jquery.js",
-    "popper.js",
-    "bootstrap.js",
-    "typeahead.bundle.js",
-    "bootstrap-combobox.js",
-    "bootstrap-tagsinput.js",
+    "lib/jquery.js",
+    "lib/popper.js",
+    "lib/bootstrap.js",
+    "lib/typeahead.bundle.js",
+    "lib/bootstrap-combobox.js",
+    "lib/bootstrap-tagsinput.js",
     "features/site-search.js",
     "features/site-search-renderers/*",
     "features/tooltips.js"
 )}
 
 {if $.User->hasAccountLevel('Staff')}
-    {jsmin "jquery.filedrop.js+markdown.js+features/content-editable.js"}
+    {jsmin "lib/jquery.filedrop.js+lib/markdown.js+features/content-editable.js"}
 {/if}

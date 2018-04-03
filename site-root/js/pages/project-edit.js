@@ -13,7 +13,7 @@
     readmeEditor = new EpicEditor({
         container: $readmeEditorCt.get(0),
         autogrow: true,
-        basePath: '/lib/epiceditor',
+        basePath: '/css/lib/epiceditor',
         theme: {
             preview: '/themes/preview/cfa.css'
         }

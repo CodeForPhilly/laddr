@@ -13,7 +13,7 @@
     aboutEditor = new EpicEditor({
         container: $aboutEditorCt.get(0),
         autogrow: true,
-        basePath: '/lib/epiceditor',
+        basePath: '/css/lib/epiceditor',
         theme: {
             preview: '/themes/preview/cfa.css'
         }
