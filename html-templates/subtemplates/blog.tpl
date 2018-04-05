@@ -45,11 +45,12 @@
                        data-confirm-success-message="Blog post deleted">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
                 {/if}
-
-                {capture assign=timestampCreated}{icon "time"}&nbsp;<a href="{$Post->getURL()}">{timestamp $Post->Published}</a>{/capture}
-                {capture assign=creatorLink}{icon "user"}&nbsp;{personLink $Post->Author}{/capture}
     
-                <small class="text-muted">{sprintf(_("%s &emsp; %s"), $creatorLink, $timestampCreated)}</small>
+                <small class="text-muted">
+                    {icon "user"}&nbsp;{personLink $Post->Author}
+                    &emsp;
+                    {icon "clock-o"}&nbsp;<a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
+                </small>
                 
                 &emsp;
     

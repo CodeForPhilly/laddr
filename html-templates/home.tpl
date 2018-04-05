@@ -143,7 +143,7 @@
                         </div>
                     </div>
                     <footer class="post-footer card-footer clearfix">
-                        <small class="text-muted"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;<a href="/blog/lorem_ipsum_dolor_sit_amet"><time datetime="2016-10-05T19:21:00-04:00" title="Wed 05 Oct 2016 07:21:00 PM EDT">5 Oct 2016</time></a></small>
+                        <small class="text-muted">{icon "clock-o"}&nbsp;<a href="/blog/lorem_ipsum_dolor_sit_amet"><time datetime="2016-10-05T19:21:00-04:00" title="Wed 05 Oct 2016 07:21:00 PM EDT">5 Oct 2016</time></a></small>
                     </footer>
                 </article>
 *}
