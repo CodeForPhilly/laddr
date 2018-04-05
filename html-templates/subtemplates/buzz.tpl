@@ -28,9 +28,6 @@
             <small class="text-muted">{_ "Published"} {timestamp $Buzz->Published}</small>
         </div>
         <footer class="post-footer card-footer">
-            {capture assign=timestampCreated}{icon "time"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>{/capture}
-            {capture assign=creatorLink}{icon "user"}&nbsp;{personLink $Buzz->Creator}{/capture}
-
             {if Laddr\ProjectBuzzRequestHandler::checkWriteAccess($Buzz)}
                 <div class="btn-group pull-right">
                     <a href="{$Buzz->getURL()}/edit" class="btn btn-sm btn-secondary">{icon "pencil"} <span class="sr-only">{_ Edit}</span></a>
@@ -38,7 +35,11 @@
                 </div>
             {/if}
 
-            <small class="text-muted">{sprintf(_("%s &emsp; %s"), $creatorLink, $timestampCreated)}</small>
+            <small class="text-muted">
+                {icon "user"}&nbsp;{personLink $Buzz->Creator}
+                &emsp;
+                {icon "clock-o"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>
+            </small>
         </footer>
     </article>
 {/template}

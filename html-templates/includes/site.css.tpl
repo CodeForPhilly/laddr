@@ -8,6 +8,7 @@
     'laddr/*',
     'branding/*'
 )}
+{cssmin "fonts/font-awesome.css"}
 
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
