@@ -79,6 +79,15 @@ body {
     color: #555;
 }
 
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: #FAFAD2;
+}
+
+.dropdown-item:active {
+  color: #16181b;
+  background-color: #EEE8AA;
+}
+
 .dropdown-results .empty-text,
 .dropdown-results .muted {
     color: #777;
