@@ -2,9 +2,8 @@
 
 Git::$repositories['laddr'] = [
     'remote' => 'https://github.com/CfABrigadePhiladelphia/laddr.git',
-    'originBranch' => 'releases/v2',
-    'workingBranch' => 'releases/v2',
-    'localOnly' => true,
+    'originBranch' => 'develop',
+    'workingBranch' => 'develop',
     'trees' => [
         'event-handlers',
         'html-templates' => [
