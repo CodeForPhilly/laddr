@@ -174,3 +174,11 @@ h1 .badge, h2 .badge, h3 badge, h4 .badge, h5 .badge {
 .dropdown-menu {
   margin-top: -2px;
 }
+.dropdown-menu .dropdown-item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-search .dropdown-menu .dropdown-item {
+  white-space: normal;
+}
