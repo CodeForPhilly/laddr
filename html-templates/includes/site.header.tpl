@@ -10,9 +10,9 @@
                 {include includes/site.nav-sitelinks.tpl}
             </ul>
 
-            <form class="inline-form pull-right dropdown dropdown-results site-search" role="search" action="/search">
+            <form class="inline-form pull-right dropdown dropdown-results site-search js-site-search" role="search" action="/search">
                 <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Search" name="q">
+                    <input type="search" class="form-control" placeholder="Search" name="q" autocomplete="off">
                 </div>
 
                 {*
