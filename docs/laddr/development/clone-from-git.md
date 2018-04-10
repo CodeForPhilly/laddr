@@ -47,14 +47,18 @@ Optionally, edit the `remote` option to point at your own fork, and switch it to
 
 ## Step 4: Initialize git repository
 
-Visit <kbd>/site-admin/sources</kbd> to view initialize the configured git repository. If you are
-cloning via HTTPS you will need to SSH into the server and use the git CLI to push changes. If you switch the remote to an SSH git URL before initializing, a deploy key will be generated for you that you can install on GitHub before continueing to enable web-based read/write access.
+Visit <kbd>/site-admin/sources</kbd> to initialize the configured git repository. If you switch the remote to an SSH git URL before initializing, a deploy key will be generated for you that you can install on GitHub before continueing to enable web-based read/write access. Otherwise, if you are
+cloning via HTTPS, you will need to SSH into the server and use the git CLI to push changes after initializing the repository.
 
 ## Step 5: Pull code from git
 
 Visit <kbd>/site-admin/sources/laddr</kbd> and click **Pull** if needed to pull the latest commits from github into your
 git working copy. Then click the **Sync** -> **Update emergence VFS** button to import the git working tree copy into your
 emergence instance.
+
+## Next steps
+
+If you run into any trouble, need to reconfigure the repository, or execute any advanced maneuvers, use `emergence-git-shell my-instance-name laddr` on your host machine to drop into a properly-configured git shell where you can make full use of the git CLI client without any permissions issues.
 
 [emergence-install]: https://emergenceplatform.gitbook.io/emergence-book/server-setup/installation/ubuntu-16.04
 [git-config]: https://github.com/CodeForPhilly/laddr/blob/develop/php-config/Git.config.d/laddr.php
