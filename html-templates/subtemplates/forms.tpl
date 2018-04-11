@@ -37,21 +37,24 @@
 {/template}
 
 {template checkbox inputName value label='' error='' hint='' attribs='' default=null class=null unsetValue=null}
-    <div class="form-group">
-        {capture assign=html}
+    <div class="checkbox">
+        {if $unsetValue !== null}
+            <input type="hidden" name="{$inputName|escape}" value="{$unsetValue|escape}">
+        {/if}
+        
+        <label>
             <input type="checkbox"
-                class="field-control form-control {$class}"
+                class="{$class}"
                 name="{$inputName|escape}"
                 value="{$value|escape}"
                 {$attribs}
                 {refill field=$inputName default=$default checked=$value}>
-        {/capture}
-    
-        {if $unsetValue !== null}
-            <input type="hidden" name="{$inputName|escape}" value="{$unsetValue|escape}">
-        {/if}
-    
-        {labeledField html=$html type=checkbox label=$label error=$error hint=$hint required=$required}
+
+            {$label}
+        </label>
+
+        {if $error}<p class="error-text">{$error}</p>{/if}
+        {if $hint}<p class="hint help-block">{$hint}</p>{/if}
     </div>
 {/template}
 
