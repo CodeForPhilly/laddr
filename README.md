@@ -47,6 +47,7 @@ Join Code for Philly's Slack channel for Laddr, you can self-register via codefo
 - [Code for Cary](http://www.codeforcary.org/)
 - [Code for Durham](http://codefordurham.com/)
 - [Code for Raleigh](http://www.codeforraleigh.com/)
+- [Open Charlotte Brigade](https://brigade.opencharlotte.org/)
 
 ## Requirements
 Laddr is built on the Emergence PHP framework and deployement engine, and requires an Emergence server to host it.
@@ -56,7 +57,7 @@ it will configure services on the machine as-needed to host an instance of the a
 sites, clones, or child sites. The guides for Ubuntu and Gentoo are most up-to-date: http://emr.ge/docs/setup
 
 ## Installation via Emergence (linked child)
--  Create an emergence site that extends v1.laddr.io (access key: MaPG1YxorgU6ew64)
+-  Create an emergence site that extends v2.laddr.us
 
 ## Installation from Git
 -  Create an emergence site that extends skeleton.emr.ge (access key: 8U6kydil36bl3vlJ)
