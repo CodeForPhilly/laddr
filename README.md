@@ -41,7 +41,6 @@ Join Code for Philly's Slack channel for Laddr, you can self-register via codefo
 ## Brigades using Laddr
 - [Code for Philly](http://codeforphilly.org)
 - [Code for Dayton](http://codefordayton.org)
-- [Code for Miami](http://codefor.miami/)
 - [Code for Croatia](http://codeforcroatia.org)
 - [Creative Commons Korea](http://labs.cckorea.org/)
 - [Code for Cary](http://www.codeforcary.org/)
