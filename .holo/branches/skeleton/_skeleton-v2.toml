@@ -1,0 +1,5 @@
+[holomapping]
+files = [
+    "**",
+    "!site-root/sass/**"
+]
