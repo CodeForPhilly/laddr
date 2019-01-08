@@ -3,12 +3,13 @@
 namespace Laddr;
 
 use DB;
+use TableNotFoundException;
 use HandleBehavior;
-use Tag, TagItem;
+use Tag;
+use TagItem;
 use Comment;
 use Emergence\People\Person;
 use Emergence\People\IPerson;
-
 
 class Project extends \VersionedRecord
 {
