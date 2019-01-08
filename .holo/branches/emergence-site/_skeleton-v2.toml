@@ -1,7 +1,2 @@
 [holomapping]
-files = [
-    "*/**",
-    "!site-root/sass/**",
-    "!site-root/css/**",
-    "!.holo/lenses/sass.toml"
-]
+files = "*/**"
