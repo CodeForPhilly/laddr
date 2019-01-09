@@ -1,0 +1,3 @@
+[holosource]
+url = "https://github.com/google/recaptcha"
+ref = "refs/heads/master"
