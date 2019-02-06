@@ -1,3 +1,4 @@
 [holobranch]
+# This skeleton holobranch is a variant of the site holobranch with lensing turned off
 extend = "emergence-site"
 lens = false
