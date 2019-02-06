@@ -24,37 +24,83 @@
     {contentBlock "projects-browse-introduction"}
 
     <div class="row">
-        <div class="col-sm-4 col-md-3 tags-ct">
-            <div class="btn-group btn-group-justified btn-group-xs margin-bottom" role="group">
-                <a href="#projects-by-topic" class="active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
-                <a href="#projects-by-tech" class="btn btn-default" role="button" data-group="byTech">{_ "tech"}</a>
-                <a href="#projects-by-event" class="btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
-                <a href="#projects-by-event" class="btn btn-default" role="button" data-group="byStage">{_ "stages"}</a>
-            </div>
+        <div class="col-sm-4 col-md-3">
+            
+            <form id="add-application" class="" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-application" method="POST">
+                <div class="radio list-group">
+                    <label>
+                        <input type="checkbox" name="stage[]" value="Commenting" checked>
+                        <b>{_ Commenting}</b>: {Laddr\Project::getStageDescription(Commenting)}
+                    </label>
+                </div>
+                <div class="radio list-group">
+                    <label>
+                        <input type="checkbox" name="stage[]" value="Bootstrapping" checked>
+                        <b>{_ Bootstrapping}</b>: {Laddr\Project::getStageDescription(Bootstrapping)}
+                    </label>
+                </div>
+                <div class="radio list-group">
+                    <label>
+                        <input type="checkbox" name="stage[]" value="Prototyping" checked>
+                        <b>{_ Prototyping}</b>: {Laddr\Project::getStageDescription(Prototyping)}
+                    </label>
+                </div>
+                <div class="radio list-group">
+                    <label>
+                        <input type="checkbox" name="stage[]" value="Testing" checked>
+                        <b>{_ Testing}</b>: {Laddr\Project::getStageDescription(Testing)}
+                    </label>
+                </div>
+                <div class="radio list-group">
+                    <label>
+                        <input type="checkbox" name="stage[]" value="Maintaining" checked>
+                        <b>{_ Maintaining}</b>: {Laddr\Project::getStageDescription(Maintaining)}
+                    </label>
+                </div>
+                <div class="radio list-group">
+                    <label>
+                        <input type="checkbox" name="stage[]" value="Drifting" checked>
+                        <b>{_ Drifting}</b>: {Laddr\Project::getStageDescription(Drifting)}
+                    </label>
+                </div>
+                <div class="radio list-group">
+                    <label>
+                        <input type="checkbox" name="stage[]" value="Hibernating">
+                        <b>{_ Hibernating}</b>: {Laddr\Project::getStageDescription(Hibernating)}
+                    </label>
+                </div>
+                <div class="">
+                        <button class="btn btn-primary">{_ "Apply"}</button>
+                </div>
+            </form>
 
-            {template tagLink tagData rootUrl linkCls=""}
-                <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
-            {/template}
-
-            <div class="tags list-group byTopic">
-                {foreach item=tag from=$projectsTags.byTopic}
-                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
-                {/foreach}
-            </div>
-            <div class="tags list-group byTech" style="display: none">
-                {foreach item=tag from=$projectsTags.byTech}
-                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
-                {/foreach}
-            </div>
-            <div class="tags list-group byEvent" style="display: none">
-                {foreach item=tag from=$projectsTags.byEvent}
-                    {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
-                {/foreach}
-            </div>
-            <div class="tags list-group byStage" style="display: none">
-                {foreach item=stage from=$projectsStages}
-                    <a class="list-group-item" href="/projects?stage={$stage.Stage}">{$stage.Stage} <span class="badge pull-right">{$stage.itemsCount|number_format}</span></a>
-                {/foreach}
+        
+            <div class="tags-ct">
+                <div class="btn-group btn-group-justified btn-group-xs margin-bottom" role="group">
+                    <a href="#projects-by-topic" class="active btn btn-default" role="button" data-group="byTopic">{_ "topics"}</a>
+                    <a href="#projects-by-tech" class="btn btn-default" role="button" data-group="byTech">{_ "tech"}</a>
+                    <a href="#projects-by-event" class="btn btn-default" role="button" data-group="byEvent">{_ "events"}</a>
+                </div>
+    
+                {template tagLink tagData rootUrl linkCls=""}
+                    <a class="{$linkCls}" href="{$rootUrl}?tag={$tagData.Handle}">{$tagData.Title}{if $tagData.itemsCount} <span class="badge pull-right">{$tagData.itemsCount|number_format}</span>{/if}</a>
+                {/template}
+    
+                <div class="tags list-group byTopic">
+                    {foreach item=tag from=$projectsTags.byTopic}
+                        {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
+                    {/foreach}
+                </div>
+                <div class="tags list-group byTech" style="display: none">
+                    {foreach item=tag from=$projectsTags.byTech}
+                        {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
+                    {/foreach}
+                </div>
+                <div class="tags list-group byEvent" style="display: none">
+                    {foreach item=tag from=$projectsTags.byEvent}
+                        {tagLink tagData=$tag rootUrl="/projects" linkCls="list-group-item"}
+                    {/foreach}
+                </div>
             </div>
         </div>
         <div class="col-sm-8 col-md-9">

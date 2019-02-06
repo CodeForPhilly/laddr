@@ -56,7 +56,10 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
         // apply stage filter
         if (!empty($_REQUEST['stage'])) {
-            $conditions['Stage'] = $_REQUEST['stage'];
+            $conditions['Stage'] = [
+                'operator' => 'in',
+                'values' => is_array($_REQUEST['stage']) ? $_REQUEST['stage'] : explode(',', $_REQUEST['stage'])
+            ];
         }
 
         $responseData['projectsTotal'] = Project::getCount();
@@ -155,6 +158,31 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
     public static function handleAddRoleApplicationRequest(Project $Project){
         $GLOBALS['Session']->requireAuthentication();
         
+        $Person = User::getByUsername($_POST['username']);
+
+        $recordData = [
+            'ProjectID' => $Project->ID,
+            'PersonID' => (!$Person)?null:$Person->ID,
+            'Status' => 'Pending'
+        ];
+
+        $RoleApplication = RoleApplication::create($recordData);
+
+        if (!empty($_POST['role'])) {
+            $RoleApplication->RoleID = $_POST['role'];
+        }
+        
+        if (!empty($_POST['application'])) {
+            $RoleApplication->Application = $_POST['application'];
+        }
+
+        $RoleApplication->save();
+
+        return static::respond('roleAdded', [
+            'data' => $RoleApplication,
+            'Project' => $Project,
+            'Member' => $Person
+        ]);
     }
     
     public static function handleRemoveRoleRequest(Project $Project)
@@ -174,7 +202,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             return static::respond('confirm', [
                 'question' => sprintf(
                     _('Are you sure you want to remove %s from %s?'),
-                    htmlspecialchars($Role->Role),
+                    htmlspecialchars($ProjectRole->Role),
                     htmlspecialchars($Project->Title)
                 )
             ]);

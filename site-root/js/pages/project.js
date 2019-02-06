@@ -36,6 +36,7 @@
 
 $( "#open_role_table" ).on( "click", "a[title^='Apply']", function( event ) {
     $('#add-application').modal({show: 'true'});
+    $("#add-application-title").text($( this ).attr( "data-role_name"));
     $("#inputRoleId").val($( this ).attr( "data-role_id"));
 });
 

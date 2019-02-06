@@ -45,6 +45,34 @@
         </div>
     </form>
     
+    <form id="add-application" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-application" method="POST">
+        <div class="modal-dialog">    
+            <div class="modal-content">    
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h2 id="add-application-title" class="modal-title"></h2>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="display: none;">
+                        <label for="inputRoleId" class="col-sm-2 control-label">{_ "Role"}</label>
+                        <div class="col-sm-10">
+                            <input type="text" id="inputRoleId" class="form-control" name="role_id" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputApplication" class="col-sm-2 control-label">{_ "Application"}</label>
+                        <div class="col-sm-10">
+                            <textarea rows="4" cols="50" id="inputApplication" class="form-control" name="application" placeholder="{_ 'optional'}"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">{_ "Apply"}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    
     <div class="page-header">
         <div class="btn-toolbar pull-right">
             <div class="btn-group">
@@ -233,7 +261,7 @@
                                             <span class="glyphicon glyphicon-transfer"></span>
                                         </a>
                                     {/if}
-                                    <a href="role" data-toggle="modal" data-role_id="{$Role->ID}" data-role_name="{$Role->Role}"  data-role_description="{$Role->Description}" data-role_person="{$Person->Username}" title="Edit Role" style="margin-left: 4px">
+                                    <a href="role" data-toggle="modal" data-role_id="{$Role->ID}" data-role_name="{$Role->Role}" data-role_description="{$Role->Description}" data-role_person="{$Person->Username}" title="Edit Role" style="margin-left: 4px">
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </a>
                                     <a href="/projects/{$Project->Handle}/remove-role?role_id={$Role->ID|escape:url}" data-toggle="modal" title="Trash" style="margin-left: 4px">
@@ -267,11 +295,11 @@
                                 {$Role->Role}
                             </td>
                             <td style="text-align:right">
-                                <a href="role_application" data-toggle="modal" data-role="{$Role->ID}" data-role_title="{$Project->Title} -- {$Role->Role}" title="Apply" style="margin-left: 4px">
+                                <a href="role_application" data-toggle="modal" data-role="{$Role->ID}" data-role_name="{$Role->Role}" data-role_title="{$Project->Title} -- {$Role->Role}" title="Apply" style="margin-left: 4px">
                                     <span class="glyphicon glyphicon-ok"></span>
                                 </a>
                                 {if $.Session->hasAccountLevel('Staff')}
-                                    <a href="role" data-toggle="modal" data-role_id="{$Role->ID}" data-role_name="{$Role->Role}"  data-role_description="{$Role->Description}" data-role_person="{$Person->Username}" title="Edit Role" style="margin-left: 4px">
+                                    <a href="role" data-toggle="modal" data-role_id="{$Role->ID}" data-role_name="{$Role->Role}" data-role_description="{$Role->Description}" data-role_person="{$Person->Username}" title="Edit Role" style="margin-left: 4px">
                                         <span class="glyphicon glyphicon-edit"></span>
                                     </a>
                                     <a href="/projects/{$Project->Handle}/remove-role?role_id={$Role->ID|escape:url}" data-toggle="modal" title="Trash" style="margin-left: 4px">
@@ -405,34 +433,6 @@
         </div>
     </form>
     
-    <form id="add-application" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-application" method="POST">
-        <div class="modal-dialog">    
-            <div class="modal-content">    
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h2 id="add-application-title" class="modal-title"></h2>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group" style="display: none;">
-                        <label for="inputRoleId" class="col-sm-2 control-label">{_ "Role"}</label>
-                        <div class="col-sm-10">
-                            <input type="text" id="inputRoleId" class="form-control" name="role_id" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputApplication" class="col-sm-2 control-label">{_ "Application"}</label>
-                        <div class="col-sm-10">
-                            <textarea rows="4" cols="50" id="inputApplication" class="form-control" name="application" placeholder="{_ 'optional'}"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary">{_ "Apply"}</button>
-                </div>
-            </div>
-        </div>
-    </form>
-    
     <form id="add-member" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-member" method="POST">
         <div class="modal-dialog">    
             <div class="modal-content">    
@@ -517,7 +517,7 @@
                                                     <span class="glyphicon glyphicon-transfer"></span>
                                                 </a>
                                             {/if}
-                                            <a href="/projects/{$Project->Handle}/remove-role?role_id={$Role->ID|escape:url}"  title="Trash" style="margin-left: 4px">
+                                            <a href="/projects/{$Project->Handle}/remove-role?role_id={$Role->ID|escape:url}" title="Trash" style="margin-left: 4px">
                                                 <span class="glyphicon glyphicon-trash"></span>
                                             </a>
                                         </td>
