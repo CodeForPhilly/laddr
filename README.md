@@ -10,13 +10,39 @@ There are three ways to get started with Laddr:
 - [Clone laddr](#clone-laddr) to work on and contribute to its core, shared functionality
 - [Extend laddr](#extend-laddr) to create a workspace for customizing a copy of laddr for your brigade without forking the whole thing
 
+### Dependencies
+
+Install recent versions of [Habitat](http://habitat.sh) and [Docker](https://www.docker.com/) on your Linux, Mac, or Windows workstation.
+
 ### Clone Laddr
 
-*TODO: document me*
+```bash
+cd ~/Repositories/laddr # or wherever you cloned this rep
+
+# expose port 7080 from any Docker container started by Habitat
+export HAB_DOCKER_OPTS="-p 7080:7080"
+
+# launch and enter a Habitat studio
+hab studio enter
+
+# once the studio has finished loading, start all services with a local database
+start-all-local
+
+# build and load the site, then wait for file changes
+watch-site
+```
+
+At that point you should be able to see an instance at http://localhost:7080 and any edits should be reflected live
 
 ### Extend Laddr
 
-*TODO: document me*
+*TODO: Extending project docs*
+
+```bash
+# build the codeforphilly example extending project instead
+export EMERGENCE_HOLOBRANCH=example-codeforphilly
+watch-site
+```
 
 ## Support
 
