@@ -67,6 +67,16 @@ h1 .badge, h2 .badge, h3 badge, h4 .badge, h5 .badge {
     vertical-align: middle;
 }
 
+/* - Cards */
+
+.meetups .event.card .card-body {
+    padding: 0.75rem;
+}
+
+.meetups .event.card .card-body p:last-child {
+    margin-bottom: 0;
+}
+
 /* - Jumbotron */
 
 .jumbotron {
