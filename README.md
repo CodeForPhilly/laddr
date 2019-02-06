@@ -1,16 +1,36 @@
 # laddr
 
-Laddr -- pronounced "ladder" and named after the essential tool for fire brigades -- is a web application designed to create an online home-base for [Code for America brigades](http://brigade.codeforamerica.org).
+Laddr -- pronounced "ladder" and named after the essential tool for fire brigades -- is an online homebase for your local [Code for America Brigade](http://brigade.codeforamerica.org). It is designed to be cheap-to-host and easy-to-hack platform for civic hacking groups to maintain an online precense and automate support for their real-world operations.
 
-## Hosting
-Code for Philly hosts and maintains instances for free for other brigades on our multi-tenant infrastructure. Make a post to the [Hosting Requests](http://forum.laddr.us/c/hosting-requests) category of Laddr's support forum to get started with a sandbox instance.
+## Getting started
 
-## Help / Support / Questions / Chat
-Guides and support are available at our Discourse foreum at [forum.laddr.us](http://forum.laddr.us/)
+There are three ways to get started with Laddr:
 
-Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org: [codeforphilly.org/chat/laddr](https://codeforphilly.org/chat/laddr)
+- [Request free hosting of a copy for your brigade](http://forum.laddr.us/c/hosting-requests), courtesy of Code for Philly
+- [Clone laddr](#clone-laddr) to work on and contribute to its core, shared functionality
+- [Extend laddr](#extend-laddr) to create a workspace for customizing a copy of laddr for your brigade without forking the whole thing
+
+### Clone Laddr
+
+*TODO: document me*
+
+### Extend Laddr
+
+*TODO: document me*
+
+## Support
+
+- [Laddr forum/wiki](http://forum.laddr.us/)
+- [#laddr channel in Code for Philly's Slack](https://codeforphilly.org/chat/laddr)
+- #laddr channel in Code for America's Slack
+- [laddr issues on GitHub](https://github.com/CodeForPhilly/laddr/issues)
+
+Guides and support are available at our Discourse forum at
+
+Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org:
 
 ## Features
+
 - [Projects Directory]
   - Each project can have a users URL, developers URL, markdown README
   - Projects can be tagged by topic, tech, and event
@@ -39,7 +59,9 @@ Join Code for Philly's Slack channel for Laddr, you can self-register via codefo
   - Croatian and Korean translations in progress
 
 ## Brigades using Laddr
+
 - [Code for Philly](http://codeforphilly.org)
+  - [Extending repository](https://github.com/CodeForPhilly/codeforphilly.org)
 - [Code for Dayton](http://codefordayton.org)
 - [Code for Croatia](http://codeforcroatia.org)
 - [Creative Commons Korea](http://labs.cckorea.org/)
@@ -47,21 +69,6 @@ Join Code for Philly's Slack channel for Laddr, you can self-register via codefo
 - [Code for Durham](http://codefordurham.com/)
 - [Code for Raleigh](http://www.codeforraleigh.com/)
 - [Open Charlotte Brigade](https://brigade.opencharlotte.org/)
-
-## Requirements
-Laddr is built on the Emergence PHP framework and deployement engine, and requires an Emergence server to host it.
-
-Emergence takes just a few minutes to setup on a Linux VM, and is designed to have a fresh system to itself. Once launched
-it will configure services on the machine as-needed to host an instance of the application along with any other
-sites, clones, or child sites. The guides for Ubuntu and Gentoo are most up-to-date: http://emr.ge/docs/setup
-
-## Installation via Emergence (linked child)
--  Create an emergence site that extends v2.laddr.us
-
-## Installation from Git
--  Create an emergence site that extends skeleton.emr.ge (access key: 8U6kydil36bl3vlJ)
--  Upload contents of git repository using WebDAV client (CyberDuck is the best open-source option)
-
 
 [Projects Directory]: http://codeforphilly.org/projects
 [Projects list available via dynamic CSV]: http://codeforphilly.org/projects.csv
