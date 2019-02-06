@@ -1,6 +1,0 @@
-[holomapping]
-holosource = "recaptcha"
-root = "src/ReCaptcha"
-files = "**/*.php"
-after = "skeleton-v2"
-before = "laddr"
