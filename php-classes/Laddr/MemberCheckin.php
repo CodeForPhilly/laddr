@@ -2,6 +2,9 @@
 
 namespace Laddr;
 
+use Emergence\People\Person;
+
+
 class MemberCheckin extends \ActiveRecord
 {
     // ActiveRecord configuration
@@ -16,18 +19,18 @@ class MemberCheckin extends \ActiveRecord
         'MemberID' => 'uint',
         'ProjectID' => [
             'type' => 'uint',
-            'notnull' => false
+            'default' => null
         ],
         'MeetupID' => [
             'type' => 'string',
-            'notnull' => false
+            'default' => null
         ]
     ];
 
     public static $relationships = [
         'Member' => [
             'type' => 'one-one',
-            'class' => \Emergence\People\Person::class
+            'class' => \Person::class
         ],
         'Project' => [
             'type' => 'one-one',

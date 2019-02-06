@@ -3,6 +3,8 @@
 namespace Laddr;
 
 use HandleBehavior;
+use Media;
+
 
 class ProjectBuzz extends \ActiveRecord
 {
@@ -29,11 +31,11 @@ class ProjectBuzz extends \ActiveRecord
         'Published' => 'timestamp',
         'ImageID' => [
             'type' => 'uint',
-            'notnull' => false
+            'default' => null
         ],
         'Summary' => [
             'type' => 'clob',
-            'notnull' => false
+            'default' => null
         ]
     ];
 
@@ -44,7 +46,7 @@ class ProjectBuzz extends \ActiveRecord
         ],
         'Image' => [
             'type' => 'one-one',
-            'class' => \Media::class
+            'class' => Media::class
         ]
     ];
 

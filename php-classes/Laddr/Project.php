@@ -2,7 +2,14 @@
 
 namespace Laddr;
 
+use DB;
+use TableNotFoundException;
 use HandleBehavior;
+use Tag;
+use TagItem;
+use Comment;
+use Emergence\People\Person;
+use Emergence\People\IPerson;
 
 class Project extends \VersionedRecord
 {
@@ -28,19 +35,19 @@ class Project extends \VersionedRecord
         ],
         'MaintainerID' => [
             'type' => 'uint',
-            'notnull' => false
+            'default' => null
         ],
         'UsersUrl' => [
             'type' => 'string',
-            'notnull' => false
+            'default' => null
         ],
         'DevelopersUrl' => [
             'type' => 'string',
-            'notnull' => false
+            'default' => null
         ],
         'README' => [
             'type' => 'clob',
-            'notnull' => false
+            'default' => null
         ],
         'NextUpdate' => [
             'type' => 'uint',
@@ -68,11 +75,11 @@ class Project extends \VersionedRecord
     public static $relationships = [
         'Maintainer' => [
             'type' => 'one-one',
-            'class' => \Emergence\People\Person::class
+            'class' => Person::class
         ],
         'Members' => [
             'type' => 'many-many',
-            'class' => \Emergence\People\Person::class,
+            'class' => Person::class,
             'linkClass' => ProjectMember::class,
             'linkLocal' => 'ProjectID',
             'linkForeign' => 'MemberID',
@@ -91,20 +98,20 @@ class Project extends \VersionedRecord
         ],
         'Comments' => [
             'type' => 'context-children',
-            'class' => \Comment::class,
+            'class' => Comment::class,
             'order' => ['ID' => 'DESC']
         ],
         'Tags' => [
             'type' => 'many-many',
-            'class' => \Tag::class,
-            'linkClass' => \TagItem::class,
+            'class' => Tag::class,
+            'linkClass' => TagItem::class,
             'linkLocal' => 'ContextID',
             'conditions' => ['Link.ContextClass = "Laddr\\\\Project"']
         ],
         'TopicTags' => [
             'type' => 'many-many',
-            'class' => \Tag::class,
-            'linkClass' => \TagItem::class,
+            'class' => Tag::class,
+            'linkClass' => TagItem::class,
             'linkLocal' => 'ContextID',
             'conditions' => [
                 'Link.ContextClass = "Laddr\\\\Project"',
@@ -113,8 +120,8 @@ class Project extends \VersionedRecord
         ],
         'TechTags' => [
             'type' => 'many-many',
-            'class' => \Tag::class,
-            'linkClass' => \TagItem::class,
+            'class' => Tag::class,
+            'linkClass' => TagItem::class,
             'linkLocal' => 'ContextID',
             'conditions' => [
                 'Link.ContextClass = "Laddr\\\\Project"',
@@ -123,8 +130,8 @@ class Project extends \VersionedRecord
         ],
         'EventTags' => [
             'type' => 'many-many',
-            'class' => \Tag::class,
-            'linkClass' => \TagItem::class,
+            'class' => Tag::class,
+            'linkClass' => TagItem::class,
             'linkLocal' => 'ContextID',
             'conditions' => [
                 'Link.ContextClass = "Laddr\\\\Project"',
@@ -194,7 +201,7 @@ class Project extends \VersionedRecord
         }
     }
 
-    public function hasMember(\Emergence\People\IPerson $Person)
+    public function hasMember(IPerson $Person)
     {
         foreach ($this->Members AS $Member) {
             if ($Member->ID == $Person->ID) {
@@ -211,7 +218,7 @@ class Project extends \VersionedRecord
 
         // retrieve updates and buzz metadata from database
         try {
-            $updates = \DB::allRecords(
+            $updates = DB::allRecords(
                 'SELECT ID, Class, UNIX_TIMESTAMP(Created) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s',
                 [
                     ProjectUpdate::$tableName,
@@ -219,12 +226,12 @@ class Project extends \VersionedRecord
                     $limitSql
                 ]
             );
-        } catch (\TableNotFoundException $e) {
+        } catch (TableNotFoundException $e) {
             $updates = [];
         }
 
         try {
-            $buzz = \DB::allRecords(
+            $buzz = DB::allRecords(
                 'SELECT ID, Class, UNIX_TIMESTAMP(Published) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s',
                 [
                     ProjectBuzz::$tableName,
@@ -232,7 +239,7 @@ class Project extends \VersionedRecord
                     $limitSql
                 ]
             );
-        } catch (\TableNotFoundException $e) {
+        } catch (TableNotFoundException $e) {
             $buzz = [];
         }
 
@@ -262,13 +269,13 @@ class Project extends \VersionedRecord
     public static function getStagesSummary()
     {
         try {
-            $stages = \DB::allRecords(
+            $stages = DB::allRecords(
                 'SELECT Stage, COUNT(*) AS itemsCount FROM `%s` GROUP BY Stage ORDER BY itemsCount DESC',
                 [
                     static::$tableName
                 ]
             );
-        } catch (\TableNotFoundException $e) {
+        } catch (TableNotFoundException $e) {
             $stages = [];
         }
 

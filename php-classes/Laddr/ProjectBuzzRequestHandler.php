@@ -44,7 +44,7 @@ class ProjectBuzzRequestHandler extends \RecordsRequestHandler
         $Buzz->save();
     }
 
-    public static function checkWriteAccess(ActiveRecord $ProjectUpdate, $suppressLogin = false)
+    public static function checkWriteAccess(ActiveRecord $ProjectUpdate = null, $suppressLogin = false)
     {
         // only allow creating, editing your own, and staff editing
         if (!$ProjectUpdate->isPhantom && ($ProjectUpdate->CreatorID != $GLOBALS['Session']->PersonID) && !$GLOBALS['Session']->hasAccountLevel('Staff')) {
