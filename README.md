@@ -50,6 +50,7 @@ watch-site
 - [#laddr channel in Code for Philly's Slack](https://codeforphilly.org/chat/laddr)
 - #laddr channel in Code for America's Slack
 - [laddr issues on GitHub](https://github.com/CodeForPhilly/laddr/issues)
+- [Emergence forum/wiki](http://forum.emr.ge)
 
 ## Features
 
