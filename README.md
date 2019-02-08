@@ -51,10 +51,6 @@ watch-site
 - #laddr channel in Code for America's Slack
 - [laddr issues on GitHub](https://github.com/CodeForPhilly/laddr/issues)
 
-Guides and support are available at our Discourse forum at
-
-Join Code for Philly's Slack channel for Laddr, you can self-register via codeforphilly.org:
-
 ## Features
 
 - [Projects Directory]
