@@ -295,9 +295,11 @@
                                 {$Role->Role}
                             </td>
                             <td style="text-align:right">
-                                <a href="role_application" data-toggle="modal" data-role="{$Role->ID}" data-role_name="{$Role->Role}" data-role_title="{$Project->Title} -- {$Role->Role}" title="Apply" style="margin-left: 4px">
-                                    <span class="glyphicon glyphicon-ok"></span>
-                                </a>
+                                {if $.User}
+                                    <a href="role_application" data-toggle="modal" data-role="{$Role->ID}" data-role_name="{$Role->Role}" data-role_title="{$Project->Title} -- {$Role->Role}" title="Apply" style="margin-left: 4px">
+                                        <span class="glyphicon glyphicon-ok"></span>
+                                    </a>
+                                {/if}
                                 {if $.Session->hasAccountLevel('Staff')}
                                     <a href="role" data-toggle="modal" data-role_id="{$Role->ID}" data-role_name="{$Role->Role}" data-role_description="{$Role->Description}" data-role_person="{$Person->Username}" title="Edit Role" style="margin-left: 4px">
                                         <span class="glyphicon glyphicon-edit"></span>
