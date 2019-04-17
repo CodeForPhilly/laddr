@@ -1,5 +1,5 @@
 [holomapping]
-root = "css"
+root = "dist/css"
 files = [
     "select2.css"
 ]

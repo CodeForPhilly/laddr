@@ -9,6 +9,7 @@
     "lib/typeahead.bundle.js",
     "lib/bootstrap-combobox.js",
     "lib/bootstrap-tagsinput.js",
+    "lib/select2.js",
     "features/site-search.js",
     "features/site-search-renderers/*",
     "features/tooltips.js"

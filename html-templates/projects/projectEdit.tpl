@@ -55,6 +55,13 @@
                         <label for="field-chat-channel">{_ "Chat Channel/Hashtag"}:</label>
                         <input name="ChatChannel" id="field-chat-channel" class="form-control" placeholder="train_schedule_analyzer" value="{refill field=ChatChannel default=$Project->ChatChannel}" pattern="[A-Za-z0-9_-]+" title="Hash tag containing only letters, numbers, dashes or underscores without leading #"/>
                     </div>
+
+<!--                     <select class="form-control select2-tags" multiple="multiple">
+                      <option selected="selected">orange</option>
+                      <option>white</option>
+                      <option>purple</option>
+                    </select> -->
+
                     <div class="form-group">
                         <label for="topicTagsInput">{_ 'Topic Tags'}:</label>
                         <input type="tags" data-tag-prefix="topic" id="topicTagsInput" class="form-control" name="tags[topic]" placeholder="{_ 'Education, Mapping, Crime'}" value="{refill field=tags.topic default=Tag::getTagsString($Project->Tags, topic)}"/>

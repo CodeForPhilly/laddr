@@ -1,6 +1,6 @@
 [holomapping]
-root = "js"
+root = "dist/js"
 files = [
     "select2.js"
 ]
-after = [ "skeleton-v2" ] 
+after = [ "skeleton-v2" ]

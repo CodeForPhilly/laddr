@@ -4,6 +4,7 @@
 *}
 {cssmin array(
     'lib/bootstrap.css',
+    'lib/select2.css',
     'plugins/*',
     'laddr/*',
     'branding/*'
