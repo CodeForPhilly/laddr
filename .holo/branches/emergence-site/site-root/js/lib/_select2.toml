@@ -1,0 +1,6 @@
+[holomapping]
+root = "js"
+files = [
+    "select2.js"
+]
+after = [ "skeleton-v2" ] 

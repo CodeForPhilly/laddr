@@ -1,0 +1,6 @@
+[holomapping]
+root = "css"
+files = [
+    "select2.css"
+]
+after = [ "skeleton-v2" ]
