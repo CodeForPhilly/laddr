@@ -56,11 +56,11 @@
                         <input name="ChatChannel" id="field-chat-channel" class="form-control" placeholder="train_schedule_analyzer" value="{refill field=ChatChannel default=$Project->ChatChannel}" pattern="[A-Za-z0-9_-]+" title="Hash tag containing only letters, numbers, dashes or underscores without leading #"/>
                     </div>
 
-<!--                     <select class="form-control select2-tags" multiple="multiple">
-                      <option selected="selected">orange</option>
-                      <option>white</option>
-                      <option>purple</option>
-                    </select> -->
+                    <select class="form-control select2-tags" multiple="multiple">
+                        {foreach item=Topic from=Tag::getTagsString($Project->Tags, topic)}
+                            <option>{$Topic}</option>
+                        {/foreach}
+                    </select>
 
                     <div class="form-group">
                         <label for="topicTagsInput">{_ 'Topic Tags'}:</label>
