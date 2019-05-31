@@ -11,16 +11,16 @@
                 <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">{_ "Edit Project"}</a>
                 {if $.User}
                     <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#add-member" data-toggle="modal">{_ "Add Member"}</a></li>
-                        <li><a href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a></li>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#add-member" data-toggle="modal">{_ "Add Member"}</a>
+                        <a class="dropdown-item" href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a>
                         {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
-                            <li><a href="#post-update" data-toggle="modal">{_ "Post Update"}</a></li>
+                            <a class="dropdown-item" href="#post-update" data-toggle="modal">{_ "Post Update"}</a>
                         {/if}
                         {if $.Session->hasAccountLevel('Staff')}
-                            <li><a href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a></li>
+                            <a class="dropdown-item" href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a>
                         {/if}
-                    </ul>
+                    </div>
                 {/if}
             </div>
         </div>
@@ -33,7 +33,7 @@
             {if $Project->Stage}
                 <h2>{_ "Stage"}</h2>
                 {if $Project->Stage == null}
-                <span class="label label-info" data-toggle="tooltip" data-placement="bottom" title="{Laddr\Project::getStageDescription($Project->Stage)}">{$Project->Stage}</span>
+                <span class="badge badge-info" data-toggle="tooltip" data-placement="bottom" title="{Laddr\Project::getStageDescription($Project->Stage)}">{$Project->Stage}</span>
                 {/if}
                 {if $Project->Stage == Commenting}
                 <div class="progress">
@@ -136,20 +136,20 @@
             <div role="group" aria-label="...">
                 {if $Project->UsersUrl}
                     <a class="btn btn-primary btn-block" role="button" href="{$Project->UsersUrl|escape}">
-                        {glyph "user"}&nbsp;Users' Site
+                        {icon "user"}&nbsp;Users' Site
                         <div class="small">{$Project->UsersUrl|escape}</div>
                     </a>
                 {/if}
                 {if $Project->DevelopersUrl}
                     <a class="btn btn-success btn-block" role="button" href="{$Project->DevelopersUrl|escape}">
-                        {glyph "cog"}&nbsp;Developers' Site
+                        {icon "cog"}&nbsp;Developers' Site
                         <div class="small">{$Project->DevelopersUrl|escape}</div>
                     </a>
                 {/if}
                 {if $Project->ChatChannel}
                     {if Laddr::$chatLinker}
                         <a class="btn btn-success btn-block" role="button" href="{call_user_func(Laddr::$chatLinker, $Project->ChatChannel)|escape}" target="_blank">
-                            {glyph "comment"}&nbsp;Chat Channel
+                            {icon "comment"}&nbsp;Chat Channel
                             <div class="small">#{$Project->ChatChannel|escape}</div>
                         </a>
                     {else}
@@ -165,7 +165,7 @@
                 <ul class="list-inline people-list">
                 {foreach item=Membership from=$Project->Memberships}
                     {$Member = $Membership->Member}
-                    <li class="people-list-person {tif $Project->MaintainerID == $Member->ID ? maintainer}">
+                    <li class="list-inline-item people-list-person {tif $Project->MaintainerID == $Member->ID ? maintainer}">
                         <a
                             href="/members/{$Member->Username}"
                             class="member-thumbnail"
@@ -181,7 +181,7 @@
                         </a>
                     </li>
                 {foreachelse}
-                    <li class="muted">{_ "No registered members"}</li>
+                    <li class="muted list-inline-item">{_ "No registered members"}</li>
                 {/foreach}
                 </ul>
                 <a class="btn btn-success add-person" href="#add-member" data-toggle="modal">+ {_ "Add"}</a>
@@ -304,11 +304,11 @@
                                         <td>{projectMemberTitle $Membership}</td>
                                         <td>
                                             {if $Membership->MemberID != $Project->MaintainerID}
-                                                <a href="/projects/{$Project->Handle}/change-maintainer?username={$Membership->Member->Username|escape:url}" class="btn btn-xs btn-primary">{_ "Make Maintainer"}</a>
+                                                <a href="/projects/{$Project->Handle}/change-maintainer?username={$Membership->Member->Username|escape:url}" class="btn btn-sm btn-primary">{_ "Make Maintainer"}</a>
                                             {/if}
                                         </td>
                                         <td>
-                                            <a href="/projects/{$Project->Handle}/remove-member?username={$Membership->Member->Username|escape:url}" class="btn btn-xs btn-danger">{_ "Remove"}</a>
+                                            <a href="/projects/{$Project->Handle}/remove-member?username={$Membership->Member->Username|escape:url}" class="btn btn-sm btn-danger">{_ "Remove"}</a>
                                         </td>
                                     </tr>
                                 {foreachelse}
@@ -324,9 +324,6 @@
         </div>
     {/if}
 
-{/block}
-
-{block js-bottom}
-    {jsmin "epiceditor.js"}
+    {jsmin "lib/epiceditor.js"}
     {jsmin "pages/project.js"}
 {/block}

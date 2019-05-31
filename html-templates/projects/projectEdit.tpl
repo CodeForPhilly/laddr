@@ -4,7 +4,7 @@
 
 {block js-bottom}
     {$dwoo.parent}
-    {jsmin "epiceditor.js"}
+    {jsmin "lib/epiceditor.js"}
     {jsmin "pages/project-edit.js"}
     {jsmin "features/tag-fields.js"}
 {/block}
@@ -57,15 +57,34 @@
                     </div>
                     <div class="form-group">
                         <label for="topicTagsInput">{_ 'Topic Tags'}:</label>
-                        <input type="tags" data-tag-prefix="topic" id="topicTagsInput" class="form-control" name="tags[topic]" placeholder="{_ 'Education, Mapping, Crime'}" value="{refill field=tags.topic default=Tag::getTagsString($Project->Tags, topic)}"/>
+                        <select id="topicTagsInput" class="form-control select2-tags" multiple="multiple" name="tags[topic]">
+                            {foreach item=Topic from=Tag::getTagsString($Project->Tags, topic)}
+                                <option value="{$Topic}" selected="selected">{$Topic}</option>
+                            {/foreach}
+                                <option value="Education">Education</option>
+                                <option value="Mapping">Mapping</option>
+                                <option value="Crime">Crime</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="techTagsInput">{_ 'Technology Tags'}:</label>
-                        <input type="tags" data-tag-prefix="tech" id="techTagsInput" class="form-control" name="tags[tech]" placeholder="{_ 'PHP, Bootstrap, JavaScript'}" value="{refill field=tags.tech default=Tag::getTagsString($Project->Tags, tech)}"/>
+                        <select id="techTagsInput" class="form-control select2-tags" multiple="multiple" name="tags[tech]">
+                            {foreach item=Topic from=Tag::getTagsString($Project->Tags, tech)}
+                                <option value="{$Topic}" selected="selected">{$Topic}</option>
+                            {/foreach}
+                                <option value="Python">Python</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="Bootstrap">Bootstrap</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="eventTagsInput">{_ 'Event Tags'}:</label>
-                        <input type="tags" data-tag-prefix="event" id="eventTagsInput" class="form-control" name="tags[event]" placeholder="{_ 'Education Hackathon 2014'}" value="{refill field=tags.event default=Tag::getTagsString($Project->Tags, event)}"/>
+                        <select id="eventTagsInput" class="form-control select2-tags" multiple="multiple" name="tags[event]">
+                            {foreach item=Topic from=Tag::getTagsString($Project->Tags, event)}
+                                <option value="{$Topic}" selected="selected">{$Topic}</option>
+                            {/foreach}
+                                <option value="Education Hackathon 2014">Education Hackathon 2014</option>
+                        </select>
                     </div>
                     <p id="project-stage"><b>{_ 'Stage'}:</b></p>
                     <div aria-labelledby="project-stage">

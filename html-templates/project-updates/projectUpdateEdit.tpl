@@ -32,7 +32,7 @@
             <div class="controls">
                 <textarea name="Body" class="input-block-level" rows="10" id="UpdateBody">{refill field=Body default=$Update->Body}</textarea>
                 <br/><br/>
-                <input type="submit" class="btn-sm btn btn-default" value="{tif $Update->isPhantom ? 'Post Update' : 'Save Changes'}"/>
+                <input type="submit" class="btn-sm btn btn-secondary" value="{tif $Update->isPhantom ? 'Post Update' : 'Save Changes'}"/>
             </div>
         </div>
     </form>
@@ -40,6 +40,6 @@
 
 {block js-bottom}
     {$dwoo.parent}
-    {jsmin "epiceditor.js"}
+    {jsmin "lib/epiceditor.js"}
     {jsmin "pages/update-edit.js"}
 {/block}

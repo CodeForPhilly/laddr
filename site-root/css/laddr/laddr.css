@@ -18,6 +18,8 @@
  * + CSS 
  */
 
+html { font-size: 16px; }
+
 body {
     font-family: 'Source Sans Pro', sans-serif;
     padding-top: 50px; /* Padding at top of screen for fixed navbar as recommended in bootstrap docs */
@@ -69,12 +71,21 @@ body {
 
 .dropdown-results .dropdown-menu {
     right: 15px;
-    width: 240px;
+    width: 300px;
 }
 
 .dropdown-results .dropdown-header {
     background-color: #ddd;
     color: #555;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background-color: #FAFAD2;
+}
+
+.dropdown-item:active {
+  color: #16181b;
+  background-color: #EEE8AA;
 }
 
 .dropdown-results .empty-text,
@@ -117,6 +128,10 @@ body {
 
 .well > .event-description > *:first-child {
     margin-top: 0;
+}
+
+.fa-meetup {
+    color: #dd3333;
 }
 
 

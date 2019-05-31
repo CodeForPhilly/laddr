@@ -12,7 +12,7 @@
     {if $urlOnly}
         {$src}
     {else}
-        <img height={$size} alt="{personName $Person}" src="{$src}" class="avatar{if $imgCls} {$imgCls}{/if}">
+        <img width={$size} height={$size} alt="{personName $Person}" src="{$src}" class="avatar{if $imgCls} {$imgCls}{/if}">
     {/if}
 {/strip}{/template}
 
@@ -28,8 +28,8 @@
             {else}
                 {capture assign=src}//www.gravatar.com/avatar/{$Person->Email|strtolower|md5}?size={$pixels}&rating=g&default={Laddr::$gravatarDefault}{/capture}
             {/if}
-            <img src="{$src}" class="avatar {if $imgCls}{$imgCls}{/if}" width="{$photoSize}" height="{$photoSize}" />
+            <div><img src="{$src}" class="avatar {if $imgCls}{$imgCls}{/if}" width="{$photoSize}" height="{$photoSize}" /></div>
         {/if}
-        <span class="name {$imgCls}">{personName $Person summary=$summary}</span>
+        <div class="name {$imgCls} mb-4">{personName $Person summary=$summary}</div>
     </a>
 {/strip}{/template}

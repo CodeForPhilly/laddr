@@ -1,3 +1,3 @@
-<li><a href="{$.User->getURL()}">{_ "View My Profile"}</a></li>
-<li><a href="/profile">{_ "Edit My Profile"}</a></li>
-<li><a href="/logout">{_ "Logout"}</a></li>
+<a class="dropdown-item" href="{$.User->getURL()}">{_ "View My Profile"}</a>
+<a class="dropdown-item" href="/profile">{_ "Edit My Profile"}</a>
+<a class="dropdown-item" href="/logout">{_ "Logout"}</a>

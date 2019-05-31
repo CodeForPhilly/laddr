@@ -25,7 +25,7 @@ Our programs change how we participate in government by:
 
     {_($aboutMarkdown)|markdown}
 
-        <iframe width="560" height="315" src="//www.youtube.com/embed/kDFhzNfd-bg?rel=0" frameborder="0" allowfullscreen></iframe>
+        <iframe style="width:100%; height: 315px" src="//www.youtube.com/embed/kDFhzNfd-bg?rel=0" frameborder="0" allowfullscreen></iframe>
 
     </div>
 </div>

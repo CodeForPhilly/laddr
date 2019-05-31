@@ -18,11 +18,11 @@
                         <p class="media-heading">{Laddr::$siteSlogan|escape}</p>
                         <ul class="list-inline">
                             {if $.User}
-                                <li><p><a href="/chat" class="btn btn-lg btn-success">{glyph "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
+                                <li class="list-inline-item"><p><a href="/chat" class="btn btn-success">{icon "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
                             {else}
-                                <li><p><a href="/register" class="btn btn-lg btn-success">{glyph "heart"}&nbsp;{_ "Join Us!"}</a></p></li>
+                                <li class="list-inline-item"><p><a href="/register" class="btn btn-success">{icon "heart"}&nbsp;{_ "Join Us!"}</a></p></li>
                             {/if}
-                            <li><p><a href="/projects" class="btn btn-lg btn-primary">{glyph "book"}&nbsp;{_ "Browse Projects"}</a></p></li>
+                            <li class="list-inline-item"><p><a href="/projects" class="btn btn-primary">{icon "book"}&nbsp;{_ "Browse Projects"}</a></p></li>
                         </ul>
                     </div>
                 </div>
@@ -41,11 +41,11 @@
 
                 {if $currentMeetup}
                     <h2>{_ "Current Meetup"}</h2>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             {meetup $currentMeetup showRsvp=false}
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <form class="checkin" action="/checkin" method="POST">
                                 <div class="form-group">
                                     <input type="hidden" name="MeetupID" value="{$currentMeetup.id}">
@@ -98,17 +98,17 @@
                 <h2>{_ "Latest Project Activity"}</h2>
 
                 <ul class="list-inline">
-                    <li><a href="/project-updates" class="btn btn-link">{glyph "asterisk"} {_ "Browse all project updates"}</a></li>
-                    <li><a href="/project-buzz" class="btn btn-link">{glyph "flash"} {_ "Browse all project buzz"}</a></li>
-                    <li><a href="/blog" class="btn btn-link">{glyph "file"} {_ "Browse all blog posts"}</a></li>
+                    <li class="list-inline-item"><a href="/project-updates" class="btn btn-link">{icon "asterisk"} {_ "Browse all project updates"}</a></li>
+                    <li class="list-inline-item"><a href="/project-buzz" class="btn btn-link">{icon "flash"} {_ "Browse all project buzz"}</a></li>
+                    <li class="list-inline-item"><a href="/blog" class="btn btn-link">{icon "file"} {_ "Browse all blog posts"}</a></li>
                 </ul>
 
 {*
-                <article class="post panel panel-default ">
-                    <div class="panel-body">
+                <article class="post card">
+                    <div class="card-block">
                         <header class="post-header">
                             <h3 class="post-title">
-                                <a href="#">Code for Philly Hack Night</a><small class="text-muted margin-left">{glyph "console"}</small>
+                                <a href="#">Code for Philly Hack Night</a><small class="text-muted margin-left">{icon "console"}</small>
                             </h3>
                         </header>
                         <div class="update-body">
@@ -142,8 +142,8 @@
 
                         </div>
                     </div>
-                    <footer class="post-footer panel-footer clearfix">
-                        <small class="text-muted"><span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;<a href="/blog/lorem_ipsum_dolor_sit_amet"><time datetime="2016-10-05T19:21:00-04:00" title="Wed 05 Oct 2016 07:21:00 PM EDT">5 Oct 2016</time></a></small>
+                    <footer class="post-footer card-footer clearfix">
+                        <small class="text-muted">{icon "clock-o"}&nbsp;<a href="/blog/lorem_ipsum_dolor_sit_amet"><time datetime="2016-10-05T19:21:00-04:00" title="Wed 05 Oct 2016 07:21:00 PM EDT">5 Oct 2016</time></a></small>
                     </footer>
                 </article>
 *}

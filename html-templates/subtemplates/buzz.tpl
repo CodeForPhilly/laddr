@@ -1,17 +1,17 @@
 {load_templates subtemplates/personName.tpl}
-{load_templates subtemplates/glyphicons.tpl}
+{load_templates subtemplates/icon.tpl}
 {load_templates subtemplates/timestamp.tpl}
 {load_templates subtemplates/people.tpl}
 
 {template projectBuzz Buzz headingLevel=h2 showHeading=true showProject=true articleClass=""}
-    <article class="post post-buzz panel panel-default {$articleClass}">
-        <div class="panel-body">
+    <article class="post post-buzz card mb-4 {$articleClass}">
+        <div class="card-body">
             <header class="post-header">
                 {if $showHeading && $showProject}
                     <{$headingLevel} class="post-title">
                         <a class="pull-right" href="{$Buzz->Creator->getURL()}" title="{personName $Buzz->Creator}" data-toggle="tooltip">{avatar $Buzz->Creator size=64}</a>
                         <a href="{$Buzz->Project->getURL()}">{$Buzz->Project->Title|escape}</a>
-                        <small class="text-muted">{glyph "flash"} Buzz</small>
+                        <small class="text-muted">{icon "flash"} Buzz</small>
                     </{$headingLevel}>
                 {/if}
                 <p class="post-subtitle"><a href="{$Buzz->getURL()}">{$Buzz->Headline|escape}</a></p>
@@ -27,18 +27,19 @@
             &ensp;
             <small class="text-muted">{_ "Published"} {timestamp $Buzz->Published}</small>
         </div>
-        <footer class="post-footer panel-footer">
-            {capture assign=timestampCreated}{glyph "time"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>{/capture}
-            {capture assign=creatorLink}{glyph "user"}&nbsp;{personLink $Buzz->Creator}{/capture}
-
+        <footer class="post-footer card-footer">
             {if Laddr\ProjectBuzzRequestHandler::checkWriteAccess($Buzz)}
                 <div class="btn-group pull-right">
-                    <a href="{$Buzz->getURL()}/edit" class="btn btn-xs btn-default">{glyph "pencil"} <span class="sr-only">{_ Edit}</span></a>
-                    <a href="{$Buzz->getURL()}/delete" class="btn btn-xs btn-danger">{glyph "trash"} <span class="sr-only">{_ Delete}</span></a>
+                    <a href="{$Buzz->getURL()}/edit" class="btn btn-sm btn-secondary">{icon "pencil"} <span class="sr-only">{_ Edit}</span></a>
+                    <a href="{$Buzz->getURL()}/delete" class="btn btn-sm btn-danger">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
             {/if}
 
-            <small class="text-muted">{sprintf(_("%s &emsp; %s"), $creatorLink, $timestampCreated)}</small>
+            <small class="text-muted">
+                {icon "user"}&nbsp;{personLink $Buzz->Creator}
+                &emsp;
+                {icon "clock-o"}&nbsp;<a href="{$Buzz->getURL()}">{timestamp $Buzz->Created}</a>
+            </small>
         </footer>
     </article>
 {/template}
