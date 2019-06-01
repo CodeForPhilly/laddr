@@ -1,2 +1,5 @@
 [holomapping]
-files = "*/**"
+files = [
+    "*/**",
+    "!php-config/Git.config.d/"
+]
