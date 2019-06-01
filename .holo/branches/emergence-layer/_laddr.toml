@@ -1,2 +1,6 @@
 [holomapping]
-files = "*/**"
+files = [
+    "*/**",
+    "!.vscode/",
+    "!docs/"
+]

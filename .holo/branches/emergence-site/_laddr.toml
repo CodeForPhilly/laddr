@@ -1,3 +1,7 @@
 [holomapping]
-files = "*/**"
+files = [
+    "*/**",
+    "!.vscode/",
+    "!docs/"
+]
 after = "skeleton-v2"
