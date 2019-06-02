@@ -32,7 +32,7 @@
     <div class="container">
         <h1 class="sr-only">Code for [My Town]</h1>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8 home-column-main">
                 {include includes/home.announcements.tpl}
 
                 {load_templates subtemplates/meetups.tpl}
@@ -154,10 +154,13 @@
                     <i>{_ "No project updates have been posted on this site yet."}</i>
                 {/foreach}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 home-column-side">
                 <aside class="meetups" role="complementary">
                     {include includes/home.meetups.tpl}
                 </aside>
+                <footer class="footer" role="complementary">
+                    {contentBlock "home-footer-side"}
+                </footer>
             </div>
         </div>
     </div>
