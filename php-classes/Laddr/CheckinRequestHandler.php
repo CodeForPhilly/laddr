@@ -70,11 +70,18 @@ class CheckinRequestHandler extends RequestHandler
     {
         return static::respond('topMembers', [
             'data' => array_map(
-                function($result) {
+                function ($result) {
                     $result['Member'] = Person::getByID($result['Member']);
                     return $result;
-                }
-                ,DB::allRecords('SELECT MemberID AS Member, COUNT(MeetupID) AS Checkins FROM `member_checkins` GROUP BY MemberID HAVING Checkins > 1 ORDER BY Checkins DESC')
+                },
+                DB::allRecords('
+                    SELECT MemberID AS Member,
+                           COUNT(MeetupID) AS Checkins
+                      FROM member_checkins
+                     GROUP BY MemberID
+                    HAVING Checkins > 1
+                     ORDER BY Checkins DESC
+                ')
             )
         ]);
     }
@@ -82,7 +89,15 @@ class CheckinRequestHandler extends RequestHandler
     public static function handleLatestEventsRequest()
     {
         return static::respond('latestEvents', [
-            'data' => DB::allRecords('SELECT MeetupID, MIN(Created) AS First, MAX(Created) AS Last, COUNT(MeetupID) AS Checkins FROM `member_checkins` GROUP BY MeetupID ORDER BY First DESC')
+            'data' => DB::allRecords('
+                SELECT MeetupID,
+                       MIN(Created) AS First,
+                       MAX(Created) AS Last,
+                       COUNT(MeetupID) AS Checkins
+                  FROM member_checkins
+                 GROUP BY MeetupID
+                 ORDER BY First DESC
+            ')
         ]);
     }
 }

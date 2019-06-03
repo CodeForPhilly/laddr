@@ -203,7 +203,7 @@ class Project extends \VersionedRecord
 
     public function hasMember(IPerson $Person)
     {
-        foreach ($this->Members AS $Member) {
+        foreach ($this->Members as $Member) {
             if ($Member->ID == $Person->ID) {
                 return true;
             }
@@ -219,7 +219,15 @@ class Project extends \VersionedRecord
         // retrieve updates and buzz metadata from database
         try {
             $updates = DB::allRecords(
-                'SELECT ID, Class, UNIX_TIMESTAMP(Created) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s',
+                '
+                    SELECT ID,
+                           Class,
+                           UNIX_TIMESTAMP(Created) AS Timestamp
+                      FROM `%s`
+                     WHERE ProjectID = %u
+                     ORDER BY Timestamp DESC
+                        %s
+                ',
                 [
                     ProjectUpdate::$tableName,
                     $this->ID,
@@ -232,7 +240,15 @@ class Project extends \VersionedRecord
 
         try {
             $buzz = DB::allRecords(
-                'SELECT ID, Class, UNIX_TIMESTAMP(Published) AS Timestamp FROM `%s` WHERE ProjectID = %u ORDER BY Timestamp DESC %s',
+                '
+                    SELECT ID,
+                           Class,
+                           UNIX_TIMESTAMP(Published) AS Timestamp
+                      FROM `%s`
+                     WHERE ProjectID = %u
+                     ORDER BY Timestamp DESC
+                        %s
+                ',
                 [
                     ProjectBuzz::$tableName,
                     $this->ID,
@@ -246,7 +262,7 @@ class Project extends \VersionedRecord
         // merge, sort, and limit
         $activity = array_merge($updates, $buzz);
 
-        usort($activity, function($a, $b) {
+        usort($activity, function ($a, $b) {
             if ($a['Timestamp'] == $b['Timestamp']) {
                 return 0;
             }
@@ -259,7 +275,7 @@ class Project extends \VersionedRecord
 
         // convert to instances
         return array_map(
-            function($result) {
+            function ($result) {
                 return $result['Class']::getByID($result['ID']);
             },
             $activity
@@ -270,7 +286,13 @@ class Project extends \VersionedRecord
     {
         try {
             $stages = DB::allRecords(
-                'SELECT Stage, COUNT(*) AS itemsCount FROM `%s` GROUP BY Stage ORDER BY itemsCount DESC',
+                '
+                    SELECT Stage,
+                           COUNT(*) AS itemsCount
+                      FROM `%s`
+                     GROUP BY Stage
+                     ORDER BY itemsCount DESC
+                ',
                 [
                     static::$tableName
                 ]

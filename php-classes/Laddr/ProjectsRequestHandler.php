@@ -2,11 +2,11 @@
 
 namespace Laddr;
 
+use DB;
 use ActiveRecord;
 use Emergence\People\User;
 use Tag;
 use TagItem;
-use Comment;
 
 class ProjectsRequestHandler extends \RecordsRequestHandler
 {
@@ -15,7 +15,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
     public static $accountLevelWrite = 'User';
     public static $browseOrder = ['ID' => 'DESC'];
 
-    public static function handleRecordRequest(\ActiveRecord $Project, $action = false)
+    public static function handleRecordRequest(ActiveRecord $Project, $action = false)
     {
         switch ($action ? $action : $action = static::shiftPath()) {
             case 'add-member':
@@ -43,7 +43,18 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
                 return static::throwNotFoundError('Tag not found');
             }
 
-            $conditions[] = 'ID IN (SELECT ContextID FROM tag_items WHERE TagID = '.$Tag->ID.' AND ContextClass = "Laddr\\\\Project")';
+            $conditions[] = sprintf(
+                '
+                    ID IN (
+                        SELECT ContextID
+                          FROM tag_items
+                         WHERE TagID = %u
+                           AND ContextClass = "%s"
+                    )
+                ',
+                $Tag->ID,
+                DB::escape(Project::class)
+            );
         }
 
         // apply stage filter
@@ -52,32 +63,31 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         }
 
         $responseData['projectsTotal'] = Project::getCount();
-        $responseData['projectsTags']['byTech'] = TagItem::getTagsSummary(array(
-            'tagConditions' => array(
+        $responseData['projectsTags']['byTech'] = TagItem::getTagsSummary([
+            'tagConditions' => [
                 'Handle LIKE "tech.%"'
-            )
-            ,'itemConditions' => array(
+            ],
+            'itemConditions' => [
                 'ContextClass' => Project::getStaticRootClass()
-            )
-            ,'limit' => 10
-        ));
-        $responseData['projectsTags']['byTopic'] = TagItem::getTagsSummary(array(
-            'tagConditions' => array(
+            ],
+            'limit' => 10
+        ]);
+        $responseData['projectsTags']['byTopic'] = TagItem::getTagsSummary([
+            'tagConditions' => [
                 'Handle LIKE "topic.%"'
-            )
-            ,'itemConditions' => array(
+            ],
+            'itemConditions' => [
                 'ContextClass' => Project::getStaticRootClass()
-            )
-            ,'limit' => 10
-        ));
-        $responseData['projectsTags']['byEvent'] = TagItem::getTagsSummary(array(
-            'tagConditions' => array(
+            ],'limit' => 10
+        ]);
+        $responseData['projectsTags']['byEvent'] = TagItem::getTagsSummary([
+            'tagConditions' => [
                 'Handle LIKE "event.%"'
-            )
-            ,'itemConditions' => array(
+            ],
+            'itemConditions' => [
                 'ContextClass' => Project::getStaticRootClass()
-            )
-        ));
+            ]
+        ]);
         $responseData['projectsStages'] = Project::getStagesSummary();
 
 
@@ -241,7 +251,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
     {
         // assign tags
         if (isset($requestData['tags']) && is_array($requestData['tags'])) {
-            foreach ($requestData['tags'] AS $prefix => $tags) {
+            foreach ($requestData['tags'] as $prefix => $tags) {
                 Tag::setTags($Project, $tags, true, $prefix);
             }
         }

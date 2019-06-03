@@ -14,7 +14,10 @@ class ProjectBuzzRequestHandler extends \RecordsRequestHandler
 
     public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
-        if (!empty($_GET['ProjectID']) && ctype_digit($_GET['ProjectID']) && ($Project = Project::getByID($_GET['ProjectID']))) {
+        if (!empty($_GET['ProjectID'])
+            && ctype_digit($_GET['ProjectID'])
+            && ($Project = Project::getByID($_GET['ProjectID']))
+        ) {
             $conditions['ProjectID'] = $Project->ID;
             $responseData['Project'] = $Project;
         }
@@ -47,7 +50,10 @@ class ProjectBuzzRequestHandler extends \RecordsRequestHandler
     public static function checkWriteAccess(ActiveRecord $ProjectUpdate = null, $suppressLogin = false)
     {
         // only allow creating, editing your own, and staff editing
-        if (!$ProjectUpdate->isPhantom && ($ProjectUpdate->CreatorID != $GLOBALS['Session']->PersonID) && !$GLOBALS['Session']->hasAccountLevel('Staff')) {
+        if (!$ProjectUpdate->isPhantom
+            && $ProjectUpdate->CreatorID != $GLOBALS['Session']->PersonID
+            && !$GLOBALS['Session']->hasAccountLevel('Staff')
+        ) {
             return false;
         }
 

@@ -4,7 +4,6 @@ namespace Laddr;
 
 use Emergence\People\Person;
 
-
 class ProjectMember extends \ActiveRecord
 {
     // ActiveRecord configuration
