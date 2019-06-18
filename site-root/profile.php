@@ -1,0 +1,3 @@
+<?php
+
+Laddr\ProfileRequestHandler::handleRequest();
