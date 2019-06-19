@@ -15,7 +15,7 @@
                         <img src="{versioned_url img/logo.png}" class="media-object" height="140" alt="{Laddr::$siteName|escape}">
                     </div>
                     <div class="media-body">
-                        <p class="media-heading">{Laddr::$siteSlogan|escape}</p>
+                        <p class="media-heading">{Laddr::$siteSlogan|escape|markdown}</p>
                         <ul class="list-inline">
                             {if $.User}
                                 <li class="list-inline-item"><p><a href="/chat" class="btn btn-success">{icon "comment"}&nbsp;{_ "Chat with us on Slack"}</a></p></li>
