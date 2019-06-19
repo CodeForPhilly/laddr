@@ -1,7 +1,0 @@
-[holomapping]
-files = [
-    "*/**",
-    "!php-config/Git.config.d/"
-]
-after = "skeleton-v2"
-before = "laddr"

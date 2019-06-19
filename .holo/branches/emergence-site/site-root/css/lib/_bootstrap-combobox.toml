@@ -1,6 +1,0 @@
-[holomapping]
-root = "css"
-files = [
-    "bootstrap-combobox.css"
-]
-after = [ "skeleton-v2" ]

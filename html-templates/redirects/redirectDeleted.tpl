@@ -1,0 +1,3 @@
+<?php
+Site::redirect('/redirects');
+?>

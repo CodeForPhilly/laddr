@@ -1,0 +1,193 @@
+$theme-name: 'default';
+
+// Windows Classic gray
+//$base-color: #D4D0C8;
+
+@import 'compass';
+@import 'ext4/default/all';
+
+
+
+// editor styles
+.x-btn-icon.refresh {
+    background-image: url(/img/icons/silk/arrow_refresh.png);
+}
+
+.x-grid-row.status-Deleted .x-grid-cell {
+    background-color: #FAA;
+}
+
+.activity-feed {
+	border-top: 1px solid white;
+	display: table;
+	font-size: 13px;
+}
+
+.activity-feed a {
+	color: black;
+	text-decoration: none;
+}
+
+.feed-item {
+	display: table-row;
+}
+
+.feed-item:nth-child(even) {
+	background: hsla(212, 25%, 90%, .5);
+}
+
+.feed-item:hover {
+	background: hsl(212, 25%, 50%);
+	background: -webkit-linear-gradient(
+		hsl(212, 25%, 50%),
+		hsl(212, 25%, 40%)
+	);
+	color: white;
+}
+
+.feed-item:hover .action,
+.feed-item:hover a {
+	color: white;
+}
+
+.feed-item a:hover {
+	text-decoration: underline;
+}
+
+.feed-item:hover .path {
+	color: rgba(255,255,255,.5);
+}
+
+.user,
+.action,
+.file,
+.timestamp {
+	border-bottom: 1px solid white;
+	display: table-cell;
+	padding: .5em;
+	white-space: nowrap;
+}
+
+.user {
+	font-weight: bold;
+}
+
+.user img {
+	background-position: center center;
+	background-repeat: no-repeat;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	margin: -7px;
+	margin-right: .5em;
+	vertical-align: -3px;
+}
+
+.user figcaption {
+	display: inline;
+}
+
+.user,
+.action,
+.compare,
+.revisions,
+.timestamp {
+	font-size: smaller;
+	text-transform: uppercase;
+}
+
+.action.deleted { color: hsl(0, 80%, 35%); }
+.action.edited  { color: hsl(212, 80%, 35%); }
+.action.created { color: hsl(105, 100%, 25%); }
+
+.path,
+.filename {
+	font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Droid Sans Mono', 'Courier New', monospace
+}
+
+.path {
+	color: rgba(0,0,0,.5);
+}
+
+.revisions {
+	float: right;
+	margin-left: 1em;
+	padding: .25em 0;
+}
+
+.compare {
+	border: 1px solid rgba(255,255,255,.5);
+	border-radius: 1em;
+	color: white;
+	margin-left: 1em;
+	padding: 1px 5px;
+	visibility: hidden;
+}
+
+.feed-item:hover .compare {
+	text-decoration: none;
+	visibility: visible;
+}
+
+.compare:hover {
+	border-color: white;
+}
+
+.compare:active {
+	background: rgba(255,255,255,.25);
+}
+
+.timestamp {
+	color: rgba(0,0,0,.5);
+	width: 100%;
+}
+
+.feed-item:hover .timestamp {
+	color: rgba(255,255,255,.5);
+}
+
+
+
+// diff viewer
+.ux-codeViewer-line {
+    height: 16px;
+    padding-left: 35px;
+    position: relative;
+}
+
+.ux-codeViewer-lineNumber {
+    color: blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 29px;
+    height: 16px;
+    border-right: 1px solid blue;
+    background-color: #c0c0ff;
+}
+
+.ux-codeViewer-inserted {
+    background-color: #ccffcc;
+}
+
+.ux-codeViewer-deleted {
+    background-color: #ffcccc;
+}
+
+.ux-codeViewer-modified {
+    background-color: #ffffcc;
+}
+
+.ux-codeViewer-empty {
+    background-color: #cccccc;
+}
+
+.ux-codeEditor {
+    border: 0;
+}
+
+.ux-codeViewer-token-string { color: #036a07; }
+.ux-codeViewer-token-number { color: #2f88de; }
+.ux-codeViewer-token-operator { color: #aaa; }
+.ux-codeViewer-token-keyword { color: #0000ff; }
+.ux-codeViewer-token-function { color: #0000a2; }

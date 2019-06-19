@@ -1,6 +1,0 @@
-[holomapping]
-root = "dist/css"
-files = [
-    "select2.css"
-]
-after = [ "skeleton-v2" ]
