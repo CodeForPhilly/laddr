@@ -18,6 +18,11 @@
             {if $.request.return}
                 <li><a href="{$.request.return|escape}">{"Continue back to %s"|_|sprintf:$.request.return|escape}</a></li>
             {/if}
+
+            {if Laddr::$chatLinker}
+                <li><a href="/chat">{_ "Join the community chatrooms"}</a></li>
+            {/if}
+
             <li><a href="/profile">{_ "Fill out your profile and upload a photo"}</a></li>
         </ul>
     </p>
