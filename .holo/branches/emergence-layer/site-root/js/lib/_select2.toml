@@ -1,0 +1,5 @@
+[holomapping]
+root = "dist/js"
+files = [
+    "select2.js"
+]

@@ -8,7 +8,7 @@ class Laddr
     public static $chatLinker;
     public static $gravatarDefault = 'mm';
 
-    static function __classLoaded()
+    public static function __classLoaded()
     {
         if (empty(static::$siteName)) {
             static::$siteName = Site::getConfig('label');

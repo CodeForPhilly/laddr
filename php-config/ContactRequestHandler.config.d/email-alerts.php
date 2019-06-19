@@ -1,3 +1,3 @@
 <?php
 
-ContactRequestHandler::$emailTo = 'Chris Alfano <calfano@codeforamerica.org>';
+ContactRequestHandler::$emailTo = 'brigade-info@codeforamerica.org';

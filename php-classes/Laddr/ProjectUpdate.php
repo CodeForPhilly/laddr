@@ -31,7 +31,7 @@ class ProjectUpdate extends \VersionedRecord
             'class' => Project::class
         ]
     ];
-    
+
     public static $validators = [
         'Body' => [
             'errorMessage' => 'Update body is required'

@@ -1,0 +1,5 @@
+[holomapping]
+root = "js"
+files = [
+    "bootstrap-combobox.js"
+]

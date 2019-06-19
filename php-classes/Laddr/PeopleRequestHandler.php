@@ -2,6 +2,7 @@
 
 namespace Laddr;
 
+use DB;
 use Emergence\People\Person;
 use Tag;
 use TagItem;
@@ -22,29 +23,40 @@ class PeopleRequestHandler extends \PeopleRequestHandler
                 return static::throwNotFoundError('Tag not found');
             }
 
-            $conditions[] = 'ID IN (SELECT ContextID FROM tag_items WHERE TagID = '.$Tag->ID.' AND ContextClass = "'.\DB::escape(Person::getStaticRootClass()).'")';
+            $conditions[] = sprintf(
+                '
+                    ID IN (
+                        SELECT ContextID
+                        FROM tag_items
+                        WHERE TagID = %u
+                        AND ContextClass = "%s"
+                    )
+                ',
+                $Tag->ID,
+                DB::escape(Person::getStaticRootClass())
+            );
         }
 
 
         $responseData['membersTotal'] = Person::getCount();
-        $responseData['membersTags']['byTech'] = TagItem::getTagsSummary(array(
-            'tagConditions' => array(
+        $responseData['membersTags']['byTech'] = TagItem::getTagsSummary([
+            'tagConditions' => [
                 'Handle LIKE "tech.%"'
-            )
-            ,'itemConditions' => array(
+            ],
+            'itemConditions' => [
                 'ContextClass' => Person::getStaticRootClass()
-            )
-            ,'limit' => 10
-        ));
-        $responseData['membersTags']['byTopic'] = TagItem::getTagsSummary(array(
-            'tagConditions' => array(
+            ],
+            'limit' => 10
+        ]);
+        $responseData['membersTags']['byTopic'] = TagItem::getTagsSummary([
+            'tagConditions' => [
                 'Handle LIKE "topic.%"'
-            )
-            ,'itemConditions' => array(
+            ],
+            'itemConditions' => [
                 'ContextClass' => Person::getStaticRootClass()
-            )
-            ,'limit' => 10
-        ));
+            ],
+            'limit' => 10
+        ]);
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }

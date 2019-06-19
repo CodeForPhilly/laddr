@@ -1,0 +1,5 @@
+[holomapping]
+root = "dist/css"
+files = [
+    "select2.css"
+]

@@ -5,7 +5,6 @@ namespace Laddr;
 use HandleBehavior;
 use Media;
 
-
 class ProjectBuzz extends \ActiveRecord
 {
     // ActiveRecord configuration

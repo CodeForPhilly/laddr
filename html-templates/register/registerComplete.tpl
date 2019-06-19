@@ -5,9 +5,9 @@
 {block "content"}
     {$User = $data}
 
-    <div class="page-header">
-        <h1>{_ "Registration complete"}</h1>
-    </div>
+    <header class="page-header">
+        <h2>{_ "Registration complete"}</h2>
+    </header>
 
     {capture assign=personLink}<a href="{$User->getUrl()|escape}">{$User->Username|escape}</a>{/capture}
     <p class="lead">{"Your username for %s is: %s"|_|sprintf:Laddr::$siteName:$personLink}</p>
@@ -18,6 +18,11 @@
             {if $.request.return}
                 <li><a href="{$.request.return|escape}">{"Continue back to %s"|_|sprintf:$.request.return|escape}</a></li>
             {/if}
+
+            {if Laddr::$chatLinker}
+                <li><a href="/chat">{_ "Join the community chatrooms"}</a></li>
+            {/if}
+
             <li><a href="/profile">{_ "Fill out your profile and upload a photo"}</a></li>
         </ul>
     </p>
