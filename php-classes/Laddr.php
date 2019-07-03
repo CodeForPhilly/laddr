@@ -11,7 +11,7 @@ class Laddr
     public static function __classLoaded()
     {
         if (empty(static::$siteName)) {
-            static::$siteName = Site::getConfig('label');
+            static::$siteName = Site::getConfig('label') ?: 'Brigade';
         }
 
         if (empty(static::$siteAbbr)) {

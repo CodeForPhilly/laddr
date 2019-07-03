@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-sm-4 col-md-3">
             <div class="tags-ct">
-                <div class="btn-group btn-group-justified btn-group-xs margin-bottom" role="group">
+                <div class="btn-group btn-group-justified btn-group-sm margin-bottom" role="group">
                     <a href="#members-by-tech" class="tagFilter active btn btn-secondary" role="button" data-group="byTech">{_ "skills"}</a>
                     <a href="#members-by-project" class="tagFilter btn btn-secondary" role="button" data-group="byTopic">{_ "topics"}</a>
                 </div>

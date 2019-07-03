@@ -25,7 +25,7 @@
 
     <div class="row">
         <div class="col-sm-4 col-md-3 tags-ct">
-            <div class="btn-group btn-group-justified btn-group-xs margin-bottom" role="group">
+            <div class="btn-group btn-group-justified btn-group-sm margin-bottom" role="group">
                 <a href="#projects-by-topic" class="active btn btn-secondary" role="button" data-group="byTopic">{_ "topics"}</a>
                 <a href="#projects-by-tech" class="btn btn-secondary" role="button" data-group="byTech">{_ "tech"}</a>
                 <a href="#projects-by-event" class="btn btn-secondary" role="button" data-group="byEvent">{_ "events"}</a>
