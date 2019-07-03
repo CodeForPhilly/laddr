@@ -22,9 +22,9 @@
         </div>
         <footer class="post-footer card-footer clearfix">
             {if Laddr\ProjectUpdatesRequestHandler::checkWriteAccess($Update)}
-                <div class="btn-group pull-right">
-                    <a href="{$Update->getURL()}/edit" class="btn btn-sm btn-secondary">{icon "pencil"} <span class="sr-only">{_ Edit}</span></a>
-                    <a href="{$Update->getURL()}/delete" class="btn btn-sm btn-danger">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
+                <div class="btn-group-sm pull-right">
+                    <a href="{$Update->getURL()}/edit" class="btn btn-secondary">{icon "pencil"} <span class="sr-only">{_ Edit}</span></a>
+                    <a href="{$Update->getURL()}/delete" class="btn btn-danger">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
             {/if}
 

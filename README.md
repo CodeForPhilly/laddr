@@ -39,13 +39,11 @@ At that point you should be able to see an instance at http://localhost:7080 and
 
 ### Extend Laddr
 
-*TODO: Extending project docs*
+For a permanent instance of laddr, you might want to consider deploying an *extending* project rather than laddr itself. [CodeForPhilly.org](https://codeforphilly.org) for example, is deployed from [a repository](https://github.com/CodeForPhilly/codeforphilly.org) that only contains a layer of customization that gets applied on top of laddr's repository. This gives you a place to change things like your brigade's logo or add new features without forking your own whole version of laddr.
 
-```bash
-# build the codeforphilly example extending project instead
-export EMERGENCE_HOLOBRANCH=example-codeforphilly
-watch-site
-```
+To start a new extending project, initialize a new repository and copy the [`.holo/`](https://github.com/CodeForPhilly/codeforphilly.org/tree/develop/.holo) tree from the codeforphilly repository as a starting point. Replace `codeforphilly` with an identifier of your choice for your own project (maybe the repository name) in `.holo/config.toml` and rename `.holo/branches/emergence-site/_codeforphilly.toml` to match.
+
+Then follow the same steps above to launch the project inside a container.
 
 ## Support
 
