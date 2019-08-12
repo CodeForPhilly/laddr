@@ -1,4 +1,4 @@
-/*jslint browser: true, undef: true *//*global Ext*/
+/* jslint browser: true, undef: true *//* global Ext*/
 Ext.define('Emergence.cms.view.composer.Markdown', {
     extend: 'Emergence.cms.view.composer.Abstract',
     alias: 'emergence-cms-composer.markdown',
@@ -29,7 +29,7 @@ Ext.define('Emergence.cms.view.composer.Markdown', {
 
     items: {
         xtype: 'textarea'
-//        grow: true // temporarily disabled due to ExtJS bug that causes the page to scroll to top on grow
+        //        grow: true // temporarily disabled due to ExtJS bug that causes the page to scroll to top on grow
     },
 
     initComponent: function() {
@@ -53,7 +53,7 @@ Ext.define('Emergence.cms.view.composer.Markdown', {
             _doRender();
         } else {
             Ext.Loader.loadScripts({
-                url: '/js/lib/markdown.js',
+                url: '/js/markdown.js',
                 cache: true,
                 onLoad: _doRender
             });

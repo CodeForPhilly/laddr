@@ -1,4 +1,3 @@
-/*jslint browser: true, undef: true *//*global Ext,Emergence*/
 /**
  * TODO: Move UI->model workflows out of change events and into syncContentRecord method
  * TODO: make component load correctly when contentRecord is set before render without afterrender deferment hack
@@ -6,7 +5,7 @@
 Ext.define('Emergence.cms.view.Editor', {
     extend: 'Ext.dashboard.Dashboard',
     xtype: 'emergence-cms-editor',
-    requires:[
+    requires: [
         'Ext.form.field.Text',
         'Ext.container.ButtonGroup',
 
@@ -69,7 +68,7 @@ Ext.define('Emergence.cms.view.Editor', {
                 hideLabel: true
             }
         ]
-    },{
+    }, {
         dock: 'top',
 
         xtype: 'toolbar',
@@ -79,7 +78,7 @@ Ext.define('Emergence.cms.view.Editor', {
             {
                 xtype: 'tbtext',
                 text: '<i class="fa fa-lg fa-tags"></i> Tags'
-            },{
+            }, {
                 reference: 'tagsField',
                 flex: 1,
 
@@ -99,11 +98,13 @@ Ext.define('Emergence.cms.view.Editor', {
                 minChars: 2,
                 filterPickList: true,
                 typeAhead: true,
-//                emptyText: 'Biology, Homepage', // Temporarily disabled due to bug EXTJS-13378: http://www.sencha.com/forum/showthread.php?285390-emptyText-breaks-the-new-Ext.form.field.Tag-component
+                //                emptyText: 'Biology, Homepage', // Temporarily disabled due to bug EXTJS-13378: http://www.sencha.com/forum/showthread.php?285390-emptyText-breaks-the-new-Ext.form.field.Tag-component
                 store: {
                     autoLoad: true,
                     fields: [
-                        {name: 'ID', type: 'int', useNull: true},
+                        { name: 'ID',
+                            type: 'int',
+                            useNull: true },
                         'Title'
                     ],
                     proxy: {
@@ -113,7 +114,7 @@ Ext.define('Emergence.cms.view.Editor', {
                 }
             }
         ]
-    },{
+    }, {
         dock: 'top',
 
         xtype: 'emergence-cms-toolbar',
@@ -121,7 +122,7 @@ Ext.define('Emergence.cms.view.Editor', {
         layout: {
             overflowHandler: 'menu'
         }
-    },{
+    }, {
         reference: 'inserterCt',
 
         xtype: 'buttongroup',
@@ -156,7 +157,7 @@ Ext.define('Emergence.cms.view.Editor', {
     },
 
     applyContentRecord: function(contentRecord) {
-        if (Ext.isObject(contentRecord) && !contentRecord.isModel){
+        if (Ext.isObject(contentRecord) && !contentRecord.isModel) {
             contentRecord = Ext.create('Emergence.cms.model.Content', contentRecord);
         }
 

@@ -1,4 +1,4 @@
-/*jslint browser: true, undef: true *//*global Ext*/
+/* jslint browser: true, undef: true *//* global Ext*/
 Ext.define('Emergence.cms.view.composer.Html', {
     extend: 'Emergence.cms.view.composer.Abstract',
     alias: 'emergence-cms-composer.html',
@@ -37,13 +37,13 @@ Ext.define('Emergence.cms.view.composer.Html', {
 
         me.down('htmleditor').setValue(editorValue).on('change', 'onEditorChange', me);
 
-//        me.on({
-//            scope: me,
-//            dragstart: 'backupEditor',
-//            siblingdragstart: 'backupEditor',
-//            dropped: 'repairEditor',
-//            siblingdrop: 'repairEditor'
-//        });
+        //        me.on({
+        //            scope: me,
+        //            dragstart: 'backupEditor',
+        //            siblingdragstart: 'backupEditor',
+        //            dropped: 'repairEditor',
+        //            siblingdrop: 'repairEditor'
+        //        });
     },
 
     onEditorChange: function(htmleditor, html) {

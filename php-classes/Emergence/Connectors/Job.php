@@ -5,12 +5,10 @@ namespace Emergence\Connectors;
 use ActiveRecord;
 use HandleBehavior;
 use Psr\Log\LogLevel;
-use Psr\Log\LoggerInterface;
 use Emergence\Logger;
 
-class Job extends ActiveRecord implements LoggerInterface
+class Job extends ActiveRecord implements IJob
 {
-
     use \Psr\Log\LoggerTrait;
 
     public $logEntries;
@@ -131,6 +129,13 @@ class Job extends ActiveRecord implements LoggerInterface
             if (is_callable($valueRenderers[$field])) {
                 $from = call_user_func($valueRenderers[$field], $from, $logEntry, $field, 'from');
                 $to = call_user_func($valueRenderers[$field], $to, $logEntry, $field, 'to');
+            } elseif ($fieldConfig = $Record->getFieldOptions($field)) {
+                switch ($fieldConfig['type']) {
+                    case 'timestamp':
+                        $from = date('Y-m-d H:i:s', $from);
+                        $to = date('Y-m-d H:i:s', $to);
+                        break;
+                }
             }
 
             $logEntry['changes'][$fieldLabel] = array(

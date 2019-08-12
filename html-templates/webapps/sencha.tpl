@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{block "before-all"}{/block}
 <html>
     <head>
         {block "meta"}
@@ -20,12 +21,7 @@
         {block "body"}{/block}
 
         {block "js-data"}
-            <script type="text/javascript">
-                var SiteEnvironment = SiteEnvironment || { };
-                SiteEnvironment.user = {JSON::translateObjects($.User)|json_encode};
-                SiteEnvironment.appName = {$app->getName()|json_encode};
-                SiteEnvironment.appBaseUrl = {$app->getUrl()|json_encode};
-            </script>
+            {$app->buildDataMarkup()}
         {/block}
 
         {block "js-app"}

@@ -1,4 +1,4 @@
-/*jslint browser: true, undef: true *//*global Ext,Emergence*/
+/* jslint browser: true, undef: true *//* global Ext,Emergence*/
 Ext.define('Emergence.cms.view.composer.Multimedia', {
     extend: 'Emergence.cms.view.composer.Abstract',
     alias: 'emergence-cms-composer.multimedia',
@@ -25,12 +25,14 @@ Ext.define('Emergence.cms.view.composer.Multimedia', {
 
     previewTpl: [
         '<tpl for="Data">',
-            '<a class="media-link" title="{Caption:htmlEncode}" href="/media/{MediaID}" target="_blank">',
-                '<figure>',
-                    '<img src="/thumbnail/{MediaID}/1000x1000" alt="{Caption:htmlEncode}">',
-                    '<tpl if="caption"><figcaption>{Caption:htmlEncode}</figcaption></tpl>',
-                '</figure>',
-            '</a>',
+        '   <a class="media-link" title="{Caption:htmlEncode}" href="/media/{MediaID}" target="_blank">',
+        '       <figure>',
+        '           <img src="/thumbnail/{MediaID}/1000x1000" alt="{Caption:htmlEncode}">',
+        '           <tpl if="caption">',
+        '               <figcaption>{Caption:htmlEncode}</figcaption>',
+        '           </tpl>',
+        '       </figure>',
+        '   </a>',
         '</tpl>'
     ],
 
@@ -43,7 +45,7 @@ Ext.define('Emergence.cms.view.composer.Multimedia', {
     items: [{
         xtype: 'jarvus-uploadbox',
         connection: 'Emergence.util.API'
-    },{
+    }, {
         xtype: 'textfield',
         emptyText: 'Optional caption'
     }],

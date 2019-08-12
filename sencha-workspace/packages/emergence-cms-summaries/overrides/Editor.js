@@ -1,5 +1,4 @@
-/*jslint browser: true, undef: true *//*global Ext*/
-Ext.define('Emergence.cmssummaries.overrides.Editor', {
+Ext.define('Emergence.overrides.cmssummaries.Editor', {
     override: 'Emergence.cms.view.Editor',
     requires: [
         'Emergence.cmssummaries.field.Summary'

@@ -1,4 +1,3 @@
-/*jslint browser: true, undef: true *//*global Ext*/
 Ext.define('Emergence.cms.view.EditorController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.emergence-cms-editor',
@@ -153,7 +152,7 @@ Ext.define('Emergence.cms.view.EditorController', {
             composers = me.composers,
             composersLength = composers.length, composersIndex, composer, composerItemClass,
             composersColumn = editorView.items.getAt(0),
-//            openBtn = me.lookupReference('openBtn'),
+            //            openBtn = me.lookupReference('openBtn'),
             publishedTimeBtn = me.lookupReference('publishedTimeBtn'),
             tagsField = me.lookupReference('tagsField'),
             tagsStore = tagsField.getStore(),
@@ -193,18 +192,16 @@ Ext.define('Emergence.cms.view.EditorController', {
                 contentItemData = contentItems[contentItemsIndex];
                 contentItemClass = contentItemData.Class;
 
-                availableComposers:for (composersIndex = 0; composersIndex < composersLength; composersIndex++) {
+                for (composersIndex = 0; composersIndex < composersLength; composersIndex++) {
                     composer = composers[composersIndex];
                     composerItemClass = composer.contentItemClass;
 
                     if (
-                        (
-                             Ext.isArray(composerItemClass) &&
-                             Ext.Array.contains(composerItemClass, contentItemClass)
-                        ) ||
-                        (
-                            composerItemClass == contentItemClass
-                        )
+
+                        Ext.isArray(composerItemClass)
+                             && Ext.Array.contains(composerItemClass, contentItemClass)
+                         || composerItemClass == contentItemClass
+
                     ) {
                         editorView.addView(composer.create({
                             contentItem: contentItemData
@@ -216,7 +213,7 @@ Ext.define('Emergence.cms.view.EditorController', {
                 editorView.addView(Ext.create('Emergence.cms.view.composer.Unknown', {
                     contentItem: contentItemData
                 }));
-             }
+            }
 
             me.fireViewEvent('syncfromrecord', editorView, contentRecord);
         });

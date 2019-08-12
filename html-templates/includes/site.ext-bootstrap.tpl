@@ -11,7 +11,7 @@
     <script src="{Sencha::getVersionedFrameworkPath('ext', 'build/ext-all-debug.js', $frameworkVersion)}"></script>
     {sencha_bootstrap
         frameworkVersion=$frameworkVersion
-        classPaths=array('sencha-workspace/pages/src', 'ext-library/Jarvus/ext/patch', 'ext-library/Jarvus/ext/override')
+        classPaths=array('sencha-workspace/pages/src')
         packageRequirers=array('sencha-workspace/pages/src/Common.js')
     }
 {else}

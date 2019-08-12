@@ -9,6 +9,7 @@
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
+
 namespace Gitonomy\Git\Diff;
 
 use Gitonomy\Git\Parser\DiffParser;
@@ -96,15 +97,15 @@ class Diff
      */
     public function toArray()
     {
-        return array(
+        return [
             'rawDiff' => $this->rawDiff,
-            'files' => array_map(
+            'files'   => array_map(
                 function (File $file) {
                     return $file->toArray();
                 },
                 $this->files
             ),
-        );
+        ];
     }
 
     /**

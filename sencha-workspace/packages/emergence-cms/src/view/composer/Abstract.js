@@ -1,16 +1,17 @@
-/*jslint browser: true, undef: true *//*global Ext*/
+/* jslint browser: true, undef: true *//* global Ext*/
 Ext.define('Emergence.cms.view.composer.Abstract', {
     extend: 'Ext.dashboard.Panel',
     xtype: 'emergence-cms-composer',
     componentCls: 'emergence-cms-composer',
 
     config: {
+
         /**
          * @cfg Object containing data for initially loaded content item
          */
         contentItem: null
     },
-    
+
     inheritableStatics: {
         contentCls: null
     },
@@ -21,7 +22,7 @@ Ext.define('Emergence.cms.view.composer.Abstract', {
     getContentItemId: function() {
         var me = this,
             contentItem = me.getContentItem();
-            
+
         if (contentItem && contentItem.ID) {
             return contentItem.ID;
         }
@@ -49,7 +50,7 @@ Ext.define('Emergence.cms.view.composer.Abstract', {
 
         return data;
     },
-    
+
     firePreviewChange: function(html) {
         var me = this;
 

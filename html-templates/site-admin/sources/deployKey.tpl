@@ -25,13 +25,13 @@
         </p>
 
         <div class="form-group">
-            <label for="inputPrivateKey" class="control-label">Private Key</label>
-            <textarea name="privateKey" class="form-control" id="inputPrivateKey" rows="30" placeholder="-----BEGIN RSA PRIVATE KEY-----&#10;&hellip;&#10;-----END RSA PRIVATE KEY-----">{tif $deployKey ? $deployKey->getPrivateKey()|escape}</textarea>
+            <label for="inputPublicKey">Public Key</label>
+            <textarea name="publicKey" class="form-control" id="inputPublicKey" rows="7" placeholder="ssh-rsa &hellip;">{tif $deployKey ? $deployKey->getPublicKey()|escape}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="inputPublicKey">Public Key</label>
-            <textarea name="publicKey" class="form-control" id="inputPublicKey" rows="7" placeholder="ssh-rsa &hellip;">{tif $deployKey ? $deployKey->getPublicKey()|escape}</textarea>
+            <label for="inputPrivateKey" class="control-label">Private Key</label>
+            <textarea name="privateKey" class="form-control" id="inputPrivateKey" rows="30" placeholder="-----BEGIN RSA PRIVATE KEY-----&#10;&hellip;&#10;-----END RSA PRIVATE KEY-----">{tif $deployKey ? $deployKey->getPrivateKey()|escape}</textarea>
         </div>
 
         <div class="form-group">

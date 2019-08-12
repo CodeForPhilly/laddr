@@ -1,8 +1,7 @@
-/*jslint browser: true, undef: true *//*global Ext*/
 Ext.define('Emergence.cms.model.Media', {
     extend: 'Ext.data.Model',
     requires: [
-        'Emergence.ext.proxy.Records'
+        'Emergence.proxy.Records'
     ],
 
 
@@ -11,58 +10,58 @@ Ext.define('Emergence.cms.model.Media', {
 
     fields: [
         {
-            name: "ID",
-            type: "int",
+            name: 'ID',
+            type: 'int',
             useNull: true
         },
         {
-            name: "Class",
-            type: "string",
-            defaultValue: "Media"
+            name: 'Class',
+            type: 'string',
+            defaultValue: 'Media'
         },
         {
-            name: "Created",
-            type: "date",
-            dateFormat: "timestamp",
+            name: 'Created',
+            type: 'date',
+            dateFormat: 'timestamp',
             useNull: true
         },
         {
-            name: "CreatorID",
-            type: "int",
+            name: 'CreatorID',
+            type: 'int',
             useNull: true
         },
         {
-            name: "ContextClass",
-            type: "string",
+            name: 'ContextClass',
+            type: 'string',
             useNull: true
         },
         {
-            name: "ContextID",
-            type: "int",
+            name: 'ContextID',
+            type: 'int',
             useNull: true
         },
         {
-            name: "MIMEType",
-            type: "string"
+            name: 'MIMEType',
+            type: 'string'
         },
         {
-            name: "Width",
-            type: "int",
+            name: 'Width',
+            type: 'int',
             useNull: true
         },
         {
-            name: "Height",
-            type: "int",
+            name: 'Height',
+            type: 'int',
             useNull: true
         },
         {
-            name: "Duration",
-            type: "float",
+            name: 'Duration',
+            type: 'float',
             useNull: true
         },
         {
-            name: "Caption",
-            type: "string",
+            name: 'Caption',
+            type: 'string',
             useNull: true
         }
     ],

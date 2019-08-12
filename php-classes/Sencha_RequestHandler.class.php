@@ -48,11 +48,6 @@ class Sencha_RequestHandler extends RequestHandler
             return static::handlePackagesRequest();
         }
 
-        // check if appName is 'x'
-        if ($appName == 'x') {
-            return static::handleLibraryRequest();
-        }
-
         // get app
         $App = new Sencha_App($appName);
         $nextPath = static::peekPath();
@@ -128,18 +123,6 @@ class Sencha_RequestHandler extends RequestHandler
             $fileNode->outputAsResponse();
         } else {
             return static::throwNotFoundError('Packages asset not found');
-        }
-    }
-
-    public static function handleLibraryRequest()
-    {
-        $filePath = static::getPath();
-        array_unshift($filePath, 'ext-library');
-
-        if ($fileNode = Site::resolvePath($filePath)) {
-            $fileNode->outputAsResponse();
-        } else {
-            return static::throwNotFoundError('Library asset not found');
         }
     }
 

@@ -90,17 +90,7 @@ function Dwoo_Plugin_sencha_bootstrap(Dwoo_Core $dwoo, $App = null, $classPaths 
     // build list of all source trees, resolving CMD variables and children
     $sources = [];
     foreach ($classPaths AS $classPath) {
-        if (strpos($classPath, '${workspace.dir}/x/') === 0) {
-            $classPath = substr($classPath, 19);
-            $manifest[str_replace('/', '.', $classPath)] = '/app/x/'.$classPath;
-
-            $classPath = 'ext-library/'.$classPath;
-        } elseif (strpos($classPath, 'ext-library/') === 0) {
-            $classPath = substr($classPath, 12);
-            $manifest[str_replace('/', '.', $classPath)] = '/app/x/'.$classPath;
-
-            $classPath = 'ext-library/'.$classPath;
-        } elseif (strpos($classPath, '${app.dir}/') === 0) {
+        if (strpos($classPath, '${app.dir}/') === 0) {
             $classPath = $appPath.substr($classPath, 10);
         } elseif (strpos($classPath, '${ext.dir}/') === 0) {
             $classPath = $frameworkPath.substr($classPath, 10);
@@ -131,8 +121,6 @@ function Dwoo_Plugin_sencha_bootstrap(Dwoo_Core $dwoo, $App = null, $classPaths 
                 $autoLoad = true;
                 $addToManifest = false;
             }
-        } elseif (strpos($path, 'ext-library/') === 0) {
-            $webPath = '/app/x'.substr($path, 11);
         } elseif (strpos($path, 'sencha-workspace/packages/') === 0) {
             $webPath = '/app/'.substr($path, 17);
 

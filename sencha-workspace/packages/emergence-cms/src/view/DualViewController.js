@@ -1,4 +1,3 @@
-/*jslint browser: true, undef: true *//*global Ext*/
 Ext.define('Emergence.cms.view.DualViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.emergence-cms-dualview',
@@ -23,7 +22,7 @@ Ext.define('Emergence.cms.view.DualViewController', {
             change: 'onPublishTimeChange'
         },
         'emergence-cms-editor dashboard-column': {
-//            add: 'onComposerAdd', // TODO: uncomment when this is fixed: http://www.sencha.com/forum/showthread.php?288314-Having-an-add-event-listener-in-a-ViewController-prevents-menu-item-events...
+            //            add: 'onComposerAdd', // TODO: uncomment when this is fixed: http://www.sencha.com/forum/showthread.php?288314-Having-an-add-event-listener-in-a-ViewController-prevents-menu-item-events...
             move: 'onComposerMove',
             remove: 'onComposerRemove'
         },
@@ -39,7 +38,7 @@ Ext.define('Emergence.cms.view.DualViewController', {
 
     // TODO: delete this method and uncomment the identical listener in the control config above after upgrading to ext 5.0.1
     init: function() {
-        this.control('emergence-cms-editor dashboard-column', {add: 'onComposerAdd'});
+        this.control('emergence-cms-editor dashboard-column', { add: 'onComposerAdd' });
     },
 
 
@@ -47,16 +46,16 @@ Ext.define('Emergence.cms.view.DualViewController', {
     onContentRecordChange: function(editor, contentRecord) {
         var view = this.getView(),
             previewCmp = view.rendered && view.lookupReference('preview'),
-            author = contentRecord.phantom ? (window.SiteEnvironment && window.SiteEnvironment.user) : contentRecord.get('Author'),
+            author = contentRecord.phantom ? window.SiteEnvironment && window.SiteEnvironment.user : contentRecord.get('Author'),
             context = contentRecord.get('Context');
 
         if (previewCmp) {
             if (author) {
-                previewCmp.authorLink.set({href: '/people/' + (author.Username || author.ID)}).update(author.FirstName + ' ' + author.LastName);
+                previewCmp.authorLink.set({ href: '/people/' + (author.Username || author.ID) }).update(author.FirstName + ' ' + author.LastName);
                 previewCmp.authorWrapper.show();
             }
             if (context) {
-                previewCmp.contextLink.set({href: context.recordURL}).update(context.recordTitle);
+                previewCmp.contextLink.set({ href: context.recordURL }).update(context.recordTitle);
                 previewCmp.contextWrapper.show();
             }
             if (author || context) {
@@ -70,7 +69,7 @@ Ext.define('Emergence.cms.view.DualViewController', {
             contentRecord = this.lookupReference('editor').getContentRecord(),
             href = contentRecord && !contentRecord.phantom && contentRecord.toUrl();
 
-        previewCmp.titleLink.set({href: href || '#'}).update(value);
+        previewCmp.titleLink.set({ href: href || '#' }).update(value);
     },
 
     onTagsChange: function(tagsField) {
@@ -95,7 +94,7 @@ Ext.define('Emergence.cms.view.DualViewController', {
             previewCmp = this.lookupReference('preview'),
             date = editorView.lookupReference('publishedTimeBtn').down('menucheckitem').checked ? new Date() : editorView.getSelectedDateTime();
 
-        previewCmp.timeEl.set({datetime: Ext.Date.format(date, 'c')}).update(Ext.Date.format(date, 'l, F n, Y \\a\\t g:i a'));
+        previewCmp.timeEl.set({ datetime: Ext.Date.format(date, 'c') }).update(Ext.Date.format(date, 'l, F n, Y \\a\\t g:i a'));
         previewCmp.timeWrapper.show();
         previewCmp.infoWrapper.show();
     }, 50),

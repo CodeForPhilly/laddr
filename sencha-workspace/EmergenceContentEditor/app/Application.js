@@ -5,15 +5,59 @@
  */
 Ext.define('EmergenceContentEditor.Application', {
     extend: 'Ext.app.Application',
-    
+    requires: [
+        'Ext.container.Viewport',
+
+        /* global Emergence */
+        'Emergence.util.API',
+        'Emergence.cms.view.DualView'
+    ],
+
     name: 'EmergenceContentEditor',
 
-    stores: [
-        // TODO: add global / shared stores here
-    ],
-    
+    quickTips: false,
+    platformConfig: {
+        desktop: {
+            quickTips: true
+        }
+    },
+
     launch: function () {
-        // TODO - Launch the application
+        var siteEnv = window.SiteEnvironment || {},
+            viewportEl = Ext.get('app-viewport'),
+            editorConfig = {},
+            mainView;
+
+        // configure editor
+        if (siteEnv.cmsComposers) {
+            editorConfig.composers = siteEnv.cmsComposers;
+        }
+
+        if (siteEnv.cmsContent) {
+            editorConfig.contentRecord = siteEnv.cmsContent;
+        }
+
+        // instantiate editor
+        mainView = Ext.create('Emergence.cms.view.DualView', {
+            editorConfig: editorConfig
+        });
+
+        // load DualView UI into viewport element or created viewport container
+        if (viewportEl) {
+            viewportEl.empty();
+            mainView.render(viewportEl);
+
+            viewportEl.on('resize', function(el, info) {
+                mainView.setWidth(info.contentWidth);
+            });
+        } else {
+            Ext.create('Ext.container.Viewport', {
+                layout: 'fit',
+                items: mainView
+            });
+        }
+
+        this.callParent();
     },
 
     onAppUpdate: function () {

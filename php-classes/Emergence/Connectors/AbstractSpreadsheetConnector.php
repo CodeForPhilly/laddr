@@ -70,28 +70,52 @@ class AbstractSpreadsheetConnector extends \Emergence\Connectors\AbstractConnect
     {
         $output = array();
 
-        foreach ($columnsMap as $externalKey => $internalKey) {
-            if (array_key_exists($externalKey, $row)) {
-                if ($internalKey) {
-                    if (substr($internalKey, -2) == '[]') {
-                        $internalKey = substr($internalKey, 0, -2);
+        // extract columns via alias mappings
+        foreach ($columnsMap as $alias => $key) {
+            // a falsey-value indicates a disabled mapping
+            if (!$key) {
+                continue;
+            }
 
-                        if (!array_key_exists($internalKey, $output)) {
-                            $output[$internalKey] = [$row[$externalKey]];
-                        } elseif (is_array($output[$internalKey])) {
-                            $output[$internalKey][] = $row[$externalKey];
-                        } else {
-                            $output[$internalKey] = [$output[$internalKey], $row[$externalKey]];
-                        }
-                    } else {
-                        $output[$internalKey] = $row[$externalKey];
-                    }
+            // a suffix of [] indicates a value that should be read into an array
+            if (substr($key, -2) == '[]') {
+                $key = substr($key, 0, -2);
+                $arrayValue = true;
+            } else {
+                $arrayValue = false;
+            }
+
+            // read under alias, then native key
+            foreach ([$alias, $key] as $column) {
+                if (array_key_exists($column, $row)) {
+                    $value = $row[$column];
+                    unset($row[$column]);
+                } else {
+                    continue;
                 }
 
-                unset($row[$externalKey]);
+                if ($arrayValue) {
+                    if (!array_key_exists($key, $output)) {
+                        $output[$key] = is_array($value) ? $value : [$value];
+                    } elseif (is_array($output[$key])) {
+                        if (is_array($value)) {
+                            $output[$key] = array_merge($output[$key], $value);
+                        } else {
+                            $output[$key][] = $value;
+                        }
+                    } else {
+                        $output[$key] = array_merge(
+                            is_array($output[$key]) ? $output[$key] : [ $output[$key] ],
+                            is_array($value) ? $value : [ $value ]
+                        );
+                    }
+                } else {
+                    $output[$key] = $value;
+                }
             }
         }
 
+        // filter out any empty cells in multi-value arrays
         foreach ($output as $key => &$value) {
             if (is_array($value)) {
                 $value = array_filter($value);
@@ -103,7 +127,7 @@ class AbstractSpreadsheetConnector extends \Emergence\Connectors\AbstractConnect
         return $output;
     }
 
-    protected static function _logRow(Job $Job, $noun, $rowNumber, array $row)
+    protected static function _logRow(IJob $Job, $noun, $rowNumber, array $row)
     {
         $nonEmptyColumns = array_filter($row);
         unset($nonEmptyColumns['_rest']);
@@ -121,7 +145,7 @@ class AbstractSpreadsheetConnector extends \Emergence\Connectors\AbstractConnect
         );
     }
 
-    protected static function _validateRecord(Job $Job, ActiveRecord $Record, array &$results)
+    protected static function _validateRecord(IJob $Job, ActiveRecord $Record, array &$results)
     {
         // call configurable hook
         if (is_callable(static::$onBeforeValidateRecord)) {
@@ -151,7 +175,7 @@ class AbstractSpreadsheetConnector extends \Emergence\Connectors\AbstractConnect
         return $isValid;
     }
 
-    protected static function _saveRecord(Job $Job, ActiveRecord $Record, $pretend, array &$results, $logOptions = array())
+    protected static function _saveRecord(IJob $Job, ActiveRecord $Record, $pretend, array &$results, $logOptions = array())
     {
         // call configurable hook
         if (is_callable(static::$onBeforeSaveRecord)) {

@@ -1,7 +1,6 @@
-/*jslint browser: true, undef: true *//*global Ext*/
 Ext.define('Emergence.cmssummaries.field.Summary', {
     extend: 'Ext.form.field.TextArea',
-    xtype: 'emergence-cms-summaryfield',
+    xtype: 'emergence-cmssummaries-field',
 
     emptyText: 'Post summary',
     grow: true

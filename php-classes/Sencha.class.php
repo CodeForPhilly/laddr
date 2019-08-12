@@ -127,24 +127,6 @@ class Sencha
         }
     }
 
-    public static function getVersionedLibraryPath($filePath)
-    {
-        if (is_string($filePath)) {
-            $filePath = Site::splitPath($filePath);
-        }
-
-        $assetPath = Sencha_RequestHandler::$externalRoot.'/x/'.implode('/', $filePath);
-
-        array_unshift($filePath, 'ext-library');
-        $Asset = Site::resolvePath($filePath);
-
-        if ($Asset) {
-            return $assetPath.'?_sha1='.$Asset->SHA1;
-        } else {
-            return $assetPath;
-        }
-    }
-
     public static function crawlRequiredPackages($packages, $framework = null, $frameworkVersion = null)
     {
         // cache results

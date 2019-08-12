@@ -1,30 +1,29 @@
-/*jslint browser: true, undef: true *//*global Ext*/
 Ext.define('Emergence.cms.view.Toolbar', {
     extend: 'Ext.toolbar.Toolbar',
     xtype: 'emergence-cms-toolbar',
-    requires:[
-//      'Ext.tab.Panel',
-//      'Ext.layout.container.Border',
+    requires: [
+        //      'Ext.tab.Panel',
+        //      'Ext.layout.container.Border',
         'Ext.form.field.Checkbox',
         'Ext.form.field.Date',
         'Ext.form.field.Time',
         'Emergence.ext.proxy.Records'
-//         'ExtUx.form.field.BoxSelect',
-//         'ExtUx.DateTimeField'
+        //         'ExtUx.form.field.BoxSelect',
+        //         'ExtUx.DateTimeField'
     ],
 
     padding: '8 0 8 8',
-    
-    items:[
+
+    items: [
         {
             reference: 'statusBtn',
-    
+
             xtype: 'button',
             text: 'Set status',
             menu: {
-//                plain: true,
+                //                plain: true,
                 items: [
-                   '<div class="menu-title">Publish status</div>',
+                    '<div class="menu-title">Publish status</div>',
                     {
                         xtype: 'menucheckitem',
                         group: 'status',
@@ -40,18 +39,18 @@ Ext.define('Emergence.cms.view.Toolbar', {
                         value: 'Published',
                         glyph: 0xf046+'@FontAwesome', // fa-check-square-o
                         tooltip: 'Anyone online can find or view this content'
-        
+
                     }
                 ]
             }
         },
         {
             reference: 'visibilityBtn',
-    
+
             xtype: 'button',
             text: 'Set visibility',
             menu: {
-//                plain: true,
+                //                plain: true,
                 items: [
                     '<div class="menu-title">Visibility</div>',
                     {
@@ -76,7 +75,7 @@ Ext.define('Emergence.cms.view.Toolbar', {
         '->',
         {
             reference: 'publishedTimeBtn',
-    
+
             xtype: 'button',
             text: 'Publication time',
             glyph: 0xf017+'@FontAwesome', // fa-clock-o
@@ -97,7 +96,7 @@ Ext.define('Emergence.cms.view.Toolbar', {
                         padding: '6 6 0',
                         items: [{
                             xtype: 'datefield'
-                        },{
+                        }, {
                             xtype: 'timefield',
                             submitFormat: 'H:i'
                         }]

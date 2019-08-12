@@ -1,13 +1,26 @@
 {
-    /**
-     * The application's namespace.
-     */
     "name": "EmergenceContentEditor",
+    "namespace": "EmergenceContentEditor",
+    "version": "1.0.0.0",
+    "framework": "ext",
+    "toolkit": "classic",
+    "theme": "emr-skeleton-theme",
 
     /**
-     * The version of the application.
+     * The list of required packages (with optional versions; default is "latest").
+     *
+     * For example,
+     *
+     *      "requires": [
+     *          "charts"
+     *      ]
      */
-    "version": "1.0.0.0",
+    "requires": [
+        "font-awesome",
+        "jarvus-hotfixes",
+        "emergence-cms",
+        "emergence-cms-summaries"
+    ],
 
     /**
      * The relative path to the application's markup file (html, jsp, asp, etc.).
@@ -36,43 +49,10 @@
     ],
 
     /**
-     * The Sencha Framework for this application: "ext" or "touch".
-     */
-    "framework": "ext",
-
-
-    /**
-     * The toolkit to use. Select either "classic" or "modern".
-     */
-    "toolkit": "classic",
-
-
-
-    /**
-     * The name of the theme for this application.
-     */
-
-    "theme": "theme-triton",
-
-
-    /**
-     * The list of required packages (with optional versions; default is "latest").
-     *
-     * For example,
-     *
-     *      "requires": [
-     *          "charts"
-     *      ]
-     */
-    "requires": [
-        "emergence-cms",
-        "emergence-cms-summaries"
-    ],
-
-    /**
      * Fashion build configuration properties.
      */
     "fashion": {
+        "missingParameters": "error",
         "inliner": {
             /**
              * Disable resource inliner. Production builds enable this by default.
@@ -114,7 +94,6 @@
             "var": "sass/save.scss",
             "src": "sass/save"
         },
-
 
         /**
          * Comma-separated list of files or folders containing extra Sass. These
@@ -233,10 +212,12 @@
         {
             "path": "app.js",
             "bundle": true
+        },
+        {
+            "path": "markdown.js",
+            "includeInBundle": true
         }
     ],
-
-
 
     /**
      * List of all CSS assets in the right inclusion order.
@@ -301,7 +282,7 @@
     "production": {
         "output": {
             "appCache": {
-                "enable": false,
+                "enable": true,
                 "path": "cache.appcache"
             }
         },
@@ -309,7 +290,7 @@
             "cache": "${build.timestamp}"
         },
         "cache": {
-            "enable": false
+            "enable": true
         },
         "compressor": {
             "type": "yui"
@@ -341,7 +322,7 @@
      * form:
      *
      *      "bootstrap": {
-     *          "base": "${app.dir},
+     *          "base": "${app.dir}",
      *          "manifest": "bootstrap.json",
      *          "microloader": "bootstrap.js",
      *          "css": "bootstrap.css"
@@ -380,7 +361,12 @@
      *              "enable": false
      *          },
      *          "css": "${app.output.resources}/${app.name}-all.css",
-     *          "js": "app.js",
+     *          "js": {
+     *              "path": "app.js",
+     *              // This setting constrols the output language level.  Set to 'ES6' to
+     *              // disable the transpiler
+     *              "version": "ES5"
+     *          },
      *          "microloader": {
      *              "path": "microloader.js",
      *              "embed": true,
@@ -413,7 +399,6 @@
         }
     },
 
-
     /**
     * Controls for localStorage caching
     *   "cache": {
@@ -434,7 +419,6 @@
         "enable": false,
         "deltas": true
     },
-
 
     /**
      * Used to automatically generate cache.manifest (HTML 5 application cache manifest)
@@ -478,28 +462,10 @@
 
     "archivePath": "archive",
 
-
-
     /**
      * Additional resources used during theme slicing operations
      */
-    "slicer": {
-        "js": [
-            {
-                "path": "sass/example/custom.js",
-                "isWidgetManifest": true
-            }
-        ],
-        "output": {
-            "appCache": {
-                "enable": false
-            }
-        },
-        "cache": {
-            "enable": false
-        }
-    },
-
+    "slicer": null,
 
     /**
      * Build Profiles. This object's properties are each a "build profile". You can
@@ -509,7 +475,6 @@
      * names.
      *
      */
-
 
     /**
      * File / directory name patttern to ignore when copying to the builds. Must be a
@@ -523,5 +488,5 @@
      * Uniquely generated id for this application, used as prefix for localStorage keys.
      * Normally you should never change this value.
      */
-    "id": "bc7c4014-584e-4ec1-81c6-da3b2a97aaa3"
+    "id": "466328ad-bdad-4f40-9b68-915b43d427c3"
 }

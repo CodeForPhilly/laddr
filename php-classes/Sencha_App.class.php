@@ -101,10 +101,7 @@ class Sencha_App
         $framework = $this->getFramework();
         $frameworkVersion = $this->getFrameworkVersion();
 
-        if ($filePath[0] == 'x') {
-            array_shift($filePath);
-            array_unshift($filePath, 'ext-library');
-        } elseif ($filePath[0] == 'sdk' || $filePath[0] == $framework) {
+        if ($filePath[0] == 'sdk' || $filePath[0] == $framework) {
             array_shift($filePath);
             array_unshift($filePath, 'sencha-workspace', "$framework-$frameworkVersion");
         } elseif ($filePath[0] == 'packages') {
@@ -113,7 +110,7 @@ class Sencha_App
         } elseif ($filePath[0] == 'microloaders') {
             array_shift($filePath);
             array_unshift($filePath, 'sencha-workspace', 'microloaders', $framework);
-        } elseif($filePath[0] == 'resources') {
+        } elseif ($filePath[0] == 'resources') {
             array_unshift($filePath, 'sencha-build', $appName, 'production');
         } elseif ($filePath[0] == 'build') {
             if ($filePath[1] == 'sdk' || $filePath[1] == $framework) {

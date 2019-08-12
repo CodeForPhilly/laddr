@@ -14,9 +14,7 @@ function Dwoo_Plugin_sencha_preloader(Dwoo_Core $dwoo, $classes = "app", $App = 
 
     $srcCollections = array();
     foreach ($classPaths AS $classPath) {
-        if (strpos($classPath, '${workspace.dir}/x/') === 0) {
-            $classPath = 'ext-library/'.substr($classPath, 19);
-        } elseif (substr($classPath, 0, 11) == '${app.dir}/') {
+        if (substr($classPath, 0, 11) == '${app.dir}/') {
             $classPath = $appPath.substr($classPath, 10);
         } else {
             continue;
@@ -94,32 +92,30 @@ function Dwoo_Plugin_sencha_preloader(Dwoo_Core $dwoo, $classes = "app", $App = 
     foreach ($sources AS $source) {
         if (strpos($source['Path'], "$appPath/") === 0) {
             $manifest[substr($source['Path'], strlen($appPath) + 1)] = $source['SHA1'];
-        } elseif (strpos($source['Path'], 'ext-library/') === 0) {
-            $manifest["/app/$appName/x".substr($source['Path'], 11)] = $source['SHA1'];
         } elseif (strpos($source['Path'], 'sencha-workspace/packages/') === 0) {
             $manifest['../'.substr($source['Path'], 17)] = $source['SHA1'];
         }
     }
 
 #	$srcMasterHash = sha1(join(PHP_EOL, $srcHashes));
-#	
+#
 #	Benchmark::mark("found ".count($srcHashes)." files");
-#	
+#
 #	// try to get src from cache
 #	$cacheKey = "app-cache/$srcMasterHash";
-#	
+#
 #	if(!Cache::exists($cacheKey)) {
 #		$src = '';
-#		
-#		foreach($srcHashes AS $fileId => $sha1) {		
+#
+#		foreach($srcHashes AS $fileId => $sha1) {
 #			$src .= JSMin::minify(file_get_contents(SiteFile::getRealPathByID($fileId)));
 #		}
-#		
+#
 #		Cache::store($cacheKey, $src);
 #	}
-#	
+#
 #	Benchmark::mark("compiled: ".strlen($src)." bytes");
-#	
+#
     //getRealPathByID
     return
         '<script type="text/javascript">(function(){'

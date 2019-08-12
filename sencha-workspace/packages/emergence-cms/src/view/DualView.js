@@ -1,4 +1,3 @@
-/*jslint browser: true, undef: true *//*global Ext,Emergence*/
 Ext.define('Emergence.cms.view.DualView', {
     extend: 'Ext.Container',
     xtype: 'emergence-cms-dualview',
@@ -21,14 +20,14 @@ Ext.define('Emergence.cms.view.DualView', {
                 reference: 'preview',
                 cls: 'emergence-cms-preview',
                 flex: 1,
-        
+
                 xtype: 'emergence-cms-preview'
             }, me.previewConfig),
             Ext.apply({
                 reference: 'editor',
                 cls: 'emergence-cms-editor',
                 flex: 1,
-        
+
                 xtype: 'emergence-cms-editor'
             }, me.editorConfig)
         ];

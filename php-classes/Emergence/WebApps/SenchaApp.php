@@ -6,11 +6,12 @@ use Exception;
 
 use Site;
 use Cache;
+use JSON;
 use Emergence\Site\Response;
-
 
 class SenchaApp extends App
 {
+    public static $jsSiteEnvironment = [];
     public static $plugins = [];
 
 
@@ -21,7 +22,7 @@ class SenchaApp extends App
     {
         $cacheKey = "sencha-app/{$name}";
 
-        if (!$manifest = Cache::fetch($cacheKey)) {
+        // if (!$manifest = Cache::fetch($cacheKey)) {
             // TODO: create cache clear event
             $manifestNode = Site::resolvePath([static::$buildsRoot, $name, 'app.json']);
 
@@ -31,8 +32,8 @@ class SenchaApp extends App
 
             $manifest = json_decode(file_get_contents($manifestNode->RealPath), true);
 
-            Cache::store($cacheKey, $manifest);
-        }
+        //     Cache::store($cacheKey, $manifest);
+        // }
 
         return new static($name, $manifest);
     }
@@ -70,10 +71,33 @@ class SenchaApp extends App
         return implode(PHP_EOL, $html);
     }
 
+    public function buildJsSiteEnvironment()
+    {
+        global $Session;
+
+        $jsSiteEnvironment = static::$jsSiteEnvironment;
+
+        $jsSiteEnvironment['user'] = $Session ? JSON::translateObjects($Session->Person) : null;
+        $jsSiteEnvironment['appName'] = $this->getName();
+        $jsSiteEnvironment['appBaseUrl'] = $this->getUrl();
+
+        return $jsSiteEnvironment;
+    }
+
+    public function buildDataMarkup()
+    {
+        $html = [];
+
+        $html[] = '<script type="text/javascript">';
+        $html[] = 'window.SiteEnvironment = window.SiteEnvironment || {}';
+        $html[] = 'Object.assign(window.SiteEnvironment, '.json_encode($this->buildJsSiteEnvironment()).');';
+        $html[] = '</script>';
+
+        return implode(PHP_EOL, $html);
+    }
+
     public function buildJsMarkup()
     {
-        $baseUrl = $this->getUrl();
-
         $html = [];
 
         foreach ($this->manifest['js'] as $js) {
@@ -82,6 +106,9 @@ class SenchaApp extends App
 
         // patch manifest paths
         $html[] = '<script type="text/javascript">';
+        $html[] = 'window.Ext = window.Ext || {}';
+        $html[] = 'Ext.manifest = Ext.manifest || {}';
+        $html[] = 'Ext.manifest.resources = Ext.manifest.resources || {}';
         $html[] = 'Ext.manifest.resources.path = '.json_encode($this->getUrl().'/resources');
         $html[] = '</script>';
 

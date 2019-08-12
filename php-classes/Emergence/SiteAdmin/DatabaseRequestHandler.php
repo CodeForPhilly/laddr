@@ -95,6 +95,7 @@ class DatabaseRequestHandler extends \RequestHandler
         );
 
         // output dump
+        set_time_limit(0);
         header('Content-Type: application/sql');
         $dumper->start('php://output');
     }

@@ -1,4 +1,4 @@
-/*jslint browser: true, undef: true *//*global Ext*/
+/* jslint browser: true, undef: true *//* global Ext*/
 Ext.define('Emergence.cms.view.composer.Embed', {
     extend: 'Emergence.cms.view.composer.Abstract',
     alias: 'emergence-cms-composer.embed',

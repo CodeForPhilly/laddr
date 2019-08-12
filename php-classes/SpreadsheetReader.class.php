@@ -6,6 +6,7 @@ class SpreadsheetReader
         'parseHeader' => true
         ,'autoTrim' => true
         ,'packedColumn' => false // set to an integer index to pack extra columns into given column by comma
+        ,'arrayValues' => false
     );
     protected $_fh;
     protected $_columnNames;
@@ -80,7 +81,27 @@ class SpreadsheetReader
                 $row[$this->_options['packedColumn']] .= ','.join(',', array_splice($row, $this->_options['packedColumn'] + 1, $rowCount - $columnCount));
             }
 
-            return array_combine($this->_columnNames, $row);
+            if ($this->_options['arrayValues']) {
+                $columns = array_values($this->_columnNames);
+                $values = array_values($row);
+                $row = [];
+
+                foreach ($columns as $i => $key) {
+                    if (array_key_exists($key, $row)) {
+                        if (is_array($row[$key])) {
+                            $row[$key][] = $values[$i];
+                        } else {
+                            $row[$key] = [ $row[$key], $values[$i] ];
+                        }
+                    } else {
+                        $row[$key] = $values[$i];
+                    }
+                }
+
+                return $row;
+            } else {
+                return array_combine($this->_columnNames, $row);
+            }
         }
 
         return $row;

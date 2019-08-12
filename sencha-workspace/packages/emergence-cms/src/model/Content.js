@@ -1,8 +1,7 @@
-/*jslint browser: true, undef: true *//*global Ext*/
 Ext.define('Emergence.cms.model.Content', {
     extend: 'Ext.data.Model',
-    requires:[
-        'Emergence.ext.proxy.Records',
+    requires: [
+        'Emergence.proxy.Records',
         'Ext.data.identifier.Negative'
     ],
 
@@ -17,20 +16,35 @@ Ext.define('Emergence.cms.model.Content', {
     identifier: 'negative',
     idProperty: 'ID',
     fields: [
-        {name: 'ID', type: 'int'},
-        {name: 'Class'},
-        {name: 'ContextClass', type: 'string', useNull: true},
-        {name: 'ContextID', type: 'int', useNull: true},
-        {name: 'Handle', type: 'string'},
-        {name: 'Created', type: 'date', dateFormat: 'timestamp'},
-        {name: 'Published', type: 'date', dateFormat: 'timestamp'},
-        {name: 'AuthorID', type: 'int'},
-        {name: 'CreatorID', type: 'int'},
-        {name: 'Title', type: 'string'},
-        {name: 'Status', type: 'string'},
-        {name: 'Visibility', type: 'string'},
-        {name: 'tags'},
-        {name: 'items'}
+        { name: 'ID',
+            type: 'int' },
+        { name: 'Class' },
+        { name: 'ContextClass',
+            type: 'string',
+            useNull: true },
+        { name: 'ContextID',
+            type: 'int',
+            useNull: true },
+        { name: 'Handle',
+            type: 'string' },
+        { name: 'Created',
+            type: 'date',
+            dateFormat: 'timestamp' },
+        { name: 'Published',
+            type: 'date',
+            dateFormat: 'timestamp' },
+        { name: 'AuthorID',
+            type: 'int' },
+        { name: 'CreatorID',
+            type: 'int' },
+        { name: 'Title',
+            type: 'string' },
+        { name: 'Status',
+            type: 'string' },
+        { name: 'Visibility',
+            type: 'string' },
+        { name: 'tags' },
+        { name: 'items' }
     ],
 
     proxy: {
@@ -59,8 +73,8 @@ Ext.define('Emergence.cms.model.Content', {
 
     load: function(options) {
         var me = this;
-        
-        if (!options.url) { 
+
+        if (!options.url) {
             options.url = me.toUrl();
         }
 
@@ -69,6 +83,7 @@ Ext.define('Emergence.cms.model.Content', {
 
     save: function(options) {
         var me = this;
+
         options.url = me.getClassRoute() + '/save';
         return me.callParent([options]);
     }

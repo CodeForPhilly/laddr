@@ -4,5 +4,5 @@ namespace Emergence\Connectors;
 
 interface ISynchronize
 {
-    public static function synchronize(Job $Job, $pretend = true);
+    public static function synchronize(IJob $Job, $pretend = true);
 }

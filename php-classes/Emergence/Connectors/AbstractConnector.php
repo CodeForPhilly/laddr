@@ -116,10 +116,7 @@ abstract class AbstractConnector extends \RequestHandler implements IConnector
                 $GLOBALS['Session']->requireAccountLevel(static::$synchronizeRequiredAccountLevel);
             }
 
-            $Job = Job::create(array(
-                'Connector' => get_called_class()
-                ,'Config' => static::_getJobConfig($_REQUEST)
-            ));
+            $Job = static::_createJob(static::_getJobConfig($_REQUEST));
 
             if (!empty($_REQUEST['createTemplate'])) {
                 if ($pretend) {
@@ -211,6 +208,14 @@ abstract class AbstractConnector extends \RequestHandler implements IConnector
     protected static function _getConnectorBaseUrl($external = false)
     {
         return static::getBaseUrl($external);
+    }
+
+    protected static function _createJob(array $config = [])
+    {
+        return Job::create([
+            'Connector' => get_called_class(),
+            'Config' => $config
+        ]);
     }
 
     protected static function _getJobConfig(array $requestData)
