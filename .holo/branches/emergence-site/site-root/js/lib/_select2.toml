@@ -3,4 +3,3 @@ root = "dist/js"
 files = [
     "select2.js"
 ]
-after = [ "skeleton-v2" ]
