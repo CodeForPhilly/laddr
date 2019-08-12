@@ -3,4 +3,3 @@ root = "js"
 files = [
     "bootstrap-combobox.js"
 ]
-after = [ "skeleton-v2" ]
