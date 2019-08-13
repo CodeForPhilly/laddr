@@ -31,7 +31,7 @@
         </ol>
         <div class="btn-toolbar pull-right">
             {if $.User}
-                <a class="btn btn-success" href="{$Segment->getUrl(edit)}">{glyph "pencil"}&nbsp;{_ "Edit Segment"}</a>
+                <a class="btn btn-success" href="{$Segment->getUrl(edit)}">{icon "pencil"}&nbsp;{_ "Edit Segment"}</a>
             {/if}
         </div>
         <h1>{$Segment->Title|escape}</h1>
