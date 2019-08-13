@@ -39,7 +39,6 @@
 
 {block content}
     {$Event = $data}
-    {load_templates "subtemplates.tpl"}
 
     <div class="page-header">
         <ol class="breadcrumb">

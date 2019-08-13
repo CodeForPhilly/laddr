@@ -8,3 +8,4 @@
 {load_templates subtemplates/projects.tpl}
 {load_templates subtemplates/buzz.tpl}
 {load_templates subtemplates/updates.tpl}
+{load_templates subtemplates/events.tpl}

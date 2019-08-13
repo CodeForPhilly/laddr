@@ -22,7 +22,6 @@
 {block content}
     {$Segment = $data}
     {$Event = $Segment->Event}
-    {load_templates "subtemplates.tpl"}
 
     <div class="page-header">
         <ol class="breadcrumb">
@@ -44,7 +43,7 @@
                 <div class="content-markdown event-segment-description well">{$Segment->Description|escape|markdown}</div>
             {/if}
         </div>
-        
+
         <dl class="event-segment-details col-md-3">
             <dt>Starts</dt>
             <dd>{timestamp $Segment->StartTime time='auto'}</dd>
