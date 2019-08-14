@@ -2306,7 +2306,9 @@ class ActiveRecord
             case 'datetime':
             case 'timestamp':
             {
-                if (is_numeric($value)) {
+                if (!$value) {
+                    $value = null;
+                } elseif (is_numeric($value)) {
                     $value = date('Y-m-d H:i:s', $value);
                 } elseif (is_string($value)) {
                     // trim any extra crap, or leave as-is if it doesn't fit the pattern

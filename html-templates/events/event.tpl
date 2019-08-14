@@ -1,107 +1,153 @@
 {extends "designs/site.tpl"}
 
-{block title}{_ 'Event'} &mdash; {$dwoo.parent}{/block}
+{block title}{$data->Title|escape} &mdash; {$dwoo.parent}{/block}
+
+{block css}
+    {$dwoo.parent}
+
+    <style>
+        .event-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .event-details dt {
+            font-size: 130%;
+        }
+        .event-details dd {
+            margin-bottom: 1em;
+        }
+
+        .event-segments h4 {
+            margin-top: 0;
+        }
+        .event-segments dl {
+            margin-bottom: 0;
+        }
+        .event-segments dd {
+            margin-bottom: 0.5em;
+        }
+        .event-segments .event-location {
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        .event-segments .event-location dt {
+            font-size: 200%;
+        }
+    </style>
+{/block}
 
 {block content}
     {$Event = $data}
 
     <div class="page-header">
-        {*
         <ol class="breadcrumb">
             <li><a href="/events">{_ "Events"}</a></li>
-            <li><a href="{$Event->getUrl()}">{$Event->Title|escape}</a></li>
+            <li>{tif $Event->EndTime > $.now ? 'Upcoming' : 'Past'}</li>
         </ol>
-        *}
         <div class="btn-toolbar pull-right">
             {if $.User}
-                <form action="{$Event->getUrl(edit)}">
-                    <button class="btn btn-success" type="submit">{icon "pencil"}&nbsp;{_ "Edit Event&hellip;"}</button>
-                </form>
+                <a class="btn btn-success" href="{$Event->getUrl(edit)}">{icon "pencil"}&nbsp;{_ "Edit Event"}</a>
+                <a class="btn btn-success" href="{$Event->getUrl('segments/*create')}">{icon "plus"}&nbsp;{_ "Add Segment"}</a>
             {/if}
         </div>
         <h1>{$Event->Title|escape}</h1>
     </div>
+
     <div class="row">
-        <div class="col-md-3">
-            <ul class="row list-unstyled">
-                {if $Event->Status != 'published'}
-                    <li class="col-sm-3 col-md-12">
-                        <p>
-                            <b>Status</b><br/>
-                            {$Event->Status}
-                        </p>
-                    </li>
-                {/if}
-
-                <li class="col-sm-3 col-md-12">
-                    <p>
-                        <b>Start time</b><br/>
-                        {timestamp $Event->StartTime time=yes}
-                    </p>
-                </li>
-
-                {if $Event->EndTime}
-                <li class="col-sm-3 col-md-12">
-                    <p>
-                        <b>End time</b><br/>
-                        {timestamp $Event->EndTime time=yes}
-                    </p>
-                </li>
-                {/if}
-
-                {if $Event->Location}
-                <li class="col-sm-3 col-md-12">
-                    <p>
-                        <b>Location</b><br/>
-                        <a href="https://www.google.com/maps?q={$Event->Location|escape:url}">{$Event->Location|escape}</a>
-                    </p>
-                </li>
-                {/if}
-            </ul>
-        </div>
-
         <div class="col-md-9">
             {if $Event->Description}
-                <div class="well">
-                    <div class="content-markdown event-description">{$Event->Description|truncate:600|escape|markdown}</div>
+                <div
+                    class="content-markdown event-description well content-editable"
+                    {if $.User->hasAccountLevel('Staff')}
+                        data-content-endpoint="/events"
+                        data-content-id="{$Event->Handle}"
+                        data-content-field="Description"
+                        data-content-value="{$Event->Description|escape}"
+                        data-content-renderer="markdown"
+                    {/if}
+                >
+                    {$Event->Description|escape|markdown}
                 </div>
             {/if}
 
             {if $Event->Segments}
-                <h2>Segments</h2>
+                <section class="event-segments">
+                    <h2>Schedule</h2>
 
-                {$lastDate = null}
+                    {$lastDate = null}
+                    {$lastLocationName = null}
+                    {$lastLocationAddress = null}
 
-                {foreach item=Segment from=$Event->Segments}
-                    {$thisDate = date("l, F jS", $Segment->StartTime)}
+                    {foreach item=Segment from=$Event->Segments}
+                        {$thisDate = date("l, F jS", $Segment->StartTime)}
 
-                    {if $lastDate != $thisDate}
-                        {if $lastDate}
-                            </dl>
+                        {if $lastDate != $thisDate}
+                            {if $lastDate}
+                                </dl>
+                            {/if}
+                            <h3>{$thisDate}</h3>
+                            <dl class="dl-horizontal">
+                            {$lastDate = $thisDate}
+                            {$lastLocationName = null}
+                            {$lastLocationAddress = null}
                         {/if}
-                        <h3>{$thisDate}</h3>
-                        <dl class="dl-horizontal">
-                        {$lastDate = $thisDate}
-                    {/if}
-                            <dt>{time_range $Segment->StartTime $Segment->EndTime}</dt>
-                            <dd>
-                                <a href="{$Event->getUrl("segments/$Segment->Handle")}">{$Segment->Title|escape}</a>
-                                {if $Segment->LocationName || $Segment->LocationAddress}
-                                    <p>
-                                        <strong>Location</strong>
-                                        <a target="_blank" href="https://maps.google.com?q={implode(', ', array_filter(array($Segment->LocationName, $Segment->LocationAddress)))|escape:url}">
-                                            {if $Segment->LocationName && $Segment->LocationAddress}
-                                                {$Segment->LocationName|escape} ({$Segment->LocationAddress|escape})
-                                            {else}
-                                                {$Segment->LocationName|default:$Segment->LocationAddress|escape}
-                                            {/if}
-                                        </a>
-                                    </p>
+                                {if
+                                    (
+                                        $Segment->LocationName != $lastLocationName
+                                        || $Segment->LocationAddress != $lastLocationAddress
+                                    )
+                                    && ($Segment->LocationName || $Segment->LocationAddress)
+                                }
+                                    <div class="event-location">
+                                        <dt>{icon "map-marker"}</dt>
+                                        <dd>{eventLocation name=$Segment->LocationName address=$Segment->LocationAddress}</dd>
+                                    </div>
                                 {/if}
-                                <div class="content-markdown event-segment-description">{$Segment->Description|escape|markdown}</div>
-                            </dd>
-                {/foreach}
+                                <dt>{time_range $Segment->StartTime $Segment->EndTime}</dt>
+                                <dd>
+                                    <h4><a href="{$Segment->getUrl()}">{$Segment->Title|escape}</a></h4>
+                                    {if $Segment->Description}
+                                        <div
+                                            class="content-markdown event-segment-description content-editable"
+                                            {if $.User->hasAccountLevel('Staff')}
+                                                data-content-endpoint="{$Event->getUrl(segments)}"
+                                                data-content-id="{$Segment->Handle}"
+                                                data-content-field="Description"
+                                                data-content-value="{$Segment->Description|escape}"
+                                                data-content-renderer="markdown"
+                                            {/if}
+                                        >
+                                            {$Segment->Description|escape|markdown}
+                                        </div>
+                                    {/if}
+                                </dd>
+
+                        {$lastLocationName = $Segment->LocationName}
+                        {$lastLocationAddress = $Segment->LocationAddress}
+                    {/foreach}
+                </foreach>
             {/if}
         </div>
+
+        <dl class="event-details col-md-3">
+            {if $Event->Status != 'published'}
+                <dt>Status</dt>
+                <dd>{$Event->Status}</dd>
+            {/if}
+
+            <dt>Starts</dt>
+            <dd>{timestamp $Event->StartTime time='auto'}</dd>
+
+            {if $Event->EndTime}
+                <dt>Ends</dt>
+                <dd>{timestamp $Event->EndTime time='auto'}</dd>
+            {/if}
+
+            {if $Event->LocationName || $Event->LocationAddress}
+                <dt>Location</dt>
+                <dd>{eventLocation name=$Event->LocationName address=$Event->LocationAddress}</dd>
+            {/if}
+        </dl>
     </div>
 {/block}

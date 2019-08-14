@@ -8,7 +8,7 @@
 Ext.define('Jarvus.hotfixes.data.ModelProxyTemplates', {
     override: 'Ext.data.Model',
 
-    statics: {
+    inheritableStatics: {
         getProxy: function() {
             var me = this,
                 proxy = me.proxy,
@@ -46,4 +46,13 @@ Ext.define('Jarvus.hotfixes.data.ModelProxyTemplates', {
             return proxy;
         }
     }
+}, function(Model) {
+    // patch TreeModel too with it's already-copied static
+    Ext.define(null, {
+        override: 'Ext.data.TreeModel'
+    }, function(TreeModel) {
+        TreeModel.addInheritableStatics({
+            getProxy: Model.getProxy
+        });
+    });
 });

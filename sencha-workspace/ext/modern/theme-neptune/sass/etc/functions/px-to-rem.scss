@@ -1,5 +1,0 @@
-require('px-to-em');
-
-@function px-to-rem($px, $divisor) {
-    @return pxToEmHelper($px, $divisor, rem);
-}

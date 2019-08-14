@@ -4,7 +4,7 @@
 
 {block js-bottom}
     {$dwoo.parent}
-    {jsmin "epiceditor.js"}
+    {jsmin "lib/epiceditor.js"}
     {jsmin "pages/event-edit.js"}
 {/block}
 
@@ -54,16 +54,20 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="field-time-start">{_ "StartTime"}:</label>
-                        <input type="date" name="StartTime" id="field-time-start" class="form-control" value="{refill field=StartTime default=$Event->StartTime}"/>
+                        <label for="field-time-start">{_ "Start time"}:</label>
+                        <input type="datetime-local" name="StartTime" id="field-time-start" class="form-control" value="{refill field=StartTime default=tif($Event->StartTime, date('Y-m-d\TH:i', $Event->StartTime))}"/>
                     </div>
                     <div class="form-group">
-                        <label for="field-time-end">{_ "EndTime"}:</label>
-                        <input type="date" name="EndTime" id="field-time-end" class="form-control" value="{refill field=EndTime default=$Event->EndTime}"/>
+                        <label for="field-time-end">{_ "End time"}:</label>
+                        <input type="datetime-local" name="EndTime" id="field-time-end" class="form-control" value="{refill field=EndTime default=tif($Event->EndTime, date('Y-m-d\TH:i', $Event->EndTime))}"/>
                     </div>
                     <div class="form-group">
-                        <label for="field-location">{_ "Location"}:</label>
-                        <input type="text" name="Location" id="field-location" class="form-control" placeholder="908 N 3rd St, Philadelphia PA" value="{refill field=Location default=$Event->Location}"/>
+                        <label for="field-location-name">{_ "Location name"}:</label>
+                        <input type="text" name="LocationName" id="field-location-name" class="form-control" placeholder="Localhost" value="{refill field=LocationName default=$Event->LocationName}"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="field-location-address">{_ "Location address"}:</label>
+                        <input type="text" name="LocationAddress" id="field-location-address" class="form-control" placeholder="908 N 3rd St, Philadelphia PA" value="{refill field=LocationAddress default=$Event->LocationAddress}"/>
                     </div>
 
                     <div class="form-group">
