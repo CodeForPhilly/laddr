@@ -25,7 +25,7 @@ function Dwoo_Plugin_time_range(Dwoo_Core $dwoo, $start, $end, $showDate = false
         $string .= ':'.$startMinute;
     }
 
-    if ($start != $end) { // check that there is actually a range
+    if ($end && $start != $end) { // check that there is actually a range
         if ($startAmPm != $endAmPm) {
             $string .= $startAmPm;
         }

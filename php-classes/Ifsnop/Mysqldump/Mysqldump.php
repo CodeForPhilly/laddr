@@ -38,6 +38,7 @@ class Mysqldump
     const GZIP  = 'Gzip';
     const BZIP2 = 'Bzip2';
     const NONE  = 'None';
+    const GZIPSTREAM = 'Gzipstream';
 
     // List of available connection strings.
     const UTF8    = 'utf8';
@@ -451,8 +452,8 @@ class Mysqldump
         $this->exportTables();
         $this->exportTriggers();
         $this->exportFunctions();
-        $this->exportViews();
         $this->exportProcedures();
+        $this->exportViews();
         $this->exportEvents();
 
         // Restore saved parameters.
@@ -1180,7 +1181,7 @@ class Mysqldump
             $this->dbHandler->exec($this->typeAdapter->start_transaction());
         }
 
-        if ($this->dumpSettings['lock-tables']) {
+        if ($this->dumpSettings['lock-tables'] && !$this->dumpSettings['single-transaction']) {
             $this->typeAdapter->lock_table($tableName);
         }
 
@@ -1232,7 +1233,7 @@ class Mysqldump
             $this->dbHandler->exec($this->typeAdapter->commit_transaction());
         }
 
-        if ($this->dumpSettings['lock-tables']) {
+        if ($this->dumpSettings['lock-tables'] && !$this->dumpSettings['single-transaction']) {
             $this->typeAdapter->unlock_table($tableName);
         }
 
@@ -1313,6 +1314,7 @@ abstract class CompressMethod
         Mysqldump::NONE,
         Mysqldump::GZIP,
         Mysqldump::BZIP2,
+        Mysqldump::GZIPSTREAM,
     );
 
     /**
@@ -1370,7 +1372,8 @@ class CompressBzip2 extends CompressManagerFactory
 
     public function write($str)
     {
-        if (false === ($bytesWritten = bzwrite($this->fileHandler, $str))) {
+        $bytesWritten = bzwrite($this->fileHandler, $str);
+        if (false === $bytesWritten) {
             throw new Exception("Writting to file failed! Probably, there is no more free space left?");
         }
         return $bytesWritten;
@@ -1408,7 +1411,8 @@ class CompressGzip extends CompressManagerFactory
 
     public function write($str)
     {
-        if (false === ($bytesWritten = gzwrite($this->fileHandler, $str))) {
+        $bytesWritten = gzwrite($this->fileHandler, $str);
+        if (false === $bytesWritten) {
             throw new Exception("Writting to file failed! Probably, there is no more free space left?");
         }
         return $bytesWritten;
@@ -1439,7 +1443,8 @@ class CompressNone extends CompressManagerFactory
 
     public function write($str)
     {
-        if (false === ($bytesWritten = fwrite($this->fileHandler, $str))) {
+        $bytesWritten = fwrite($this->fileHandler, $str);
+        if (false === $bytesWritten) {
             throw new Exception("Writting to file failed! Probably, there is no more free space left?");
         }
         return $bytesWritten;
@@ -1449,6 +1454,43 @@ class CompressNone extends CompressManagerFactory
     {
         return fclose($this->fileHandler);
     }
+}
+
+class CompressGzipstream extends CompressManagerFactory
+{
+  private $fileHandler = null;
+
+  private $compressContext;
+
+  /**
+   * @param string $filename
+   */
+  public function open($filename)
+  {
+    $this->fileHandler = fopen($filename, "wb");
+    if (false === $this->fileHandler) {
+      throw new Exception("Output file is not writable");
+    }
+
+    $this->compressContext = deflate_init(ZLIB_ENCODING_GZIP, array('level' => 9));
+    return true;
+  }
+
+  public function write($str)
+  {
+
+    $bytesWritten = fwrite($this->fileHandler, deflate_add($this->compressContext, $str, ZLIB_NO_FLUSH));
+    if (false === $bytesWritten) {
+      throw new Exception("Writting to file failed! Probably, there is no more free space left?");
+    }
+    return $bytesWritten;
+  }
+
+  public function close()
+  {
+    fwrite($this->fileHandler, deflate_add($this->compressContext, '', ZLIB_FINISH));
+    return fclose($this->fileHandler);
+  }
 }
 
 /**
@@ -1900,6 +1942,16 @@ class TypeAdapterMysql extends TypeAdapterFactory
                 "Please check 'https://bugs.mysql.com/bug.php?id=14564'");
         }
         $procedureStmt = $row['Create Procedure'];
+        if ( $this->dumpSettings['skip-definer'] ) {
+            if ($procedureStmtReplaced = preg_replace(
+                '/^(CREATE)\s+('.self::DEFINER_RE.')?\s+(PROCEDURE\s.*)$/s',
+                '\1 \3',
+                $procedureStmt,
+                1
+            )) {
+                $procedureStmt = $procedureStmtReplaced;
+            }
+        }
 
         $ret .= "/*!50003 DROP PROCEDURE IF EXISTS `".
             $row['Procedure']."` */;".PHP_EOL.
@@ -1921,6 +1973,16 @@ class TypeAdapterMysql extends TypeAdapterFactory
                 "Please check 'https://bugs.mysql.com/bug.php?id=14564'");
         }
         $functionStmt = $row['Create Function'];
+        if ( $this->dumpSettings['skip-definer'] ) {
+            if ($functionStmtReplaced = preg_replace(
+                '/^(CREATE)\s+('.self::DEFINER_RE.')?\s+(FUNCTION\s.*)$/s',
+                '\1 \3',
+                $functionStmt,
+                1
+            )) {
+                $functionStmt = $functionStmtReplaced;
+            }
+        }
 
         $ret .= "/*!50003 DROP FUNCTION IF EXISTS `".
             $row['Function']."` */;".PHP_EOL.
@@ -2054,8 +2116,10 @@ class TypeAdapterMysql extends TypeAdapterFactory
 
     public function start_transaction()
     {
-        return "START TRANSACTION";
+        return "START TRANSACTION " .
+            "/*!40100 WITH CONSISTENT SNAPSHOT */";
     }
+
 
     public function commit_transaction()
     {
