@@ -20,10 +20,10 @@ class EventSegment extends \VersionedRecord
         'Title',
         'Handle',
         'StartTime' => [
-            'type' => 'timestamp'
+            'type' => 'datetime'
         ],
         'EndTime' => [
-            'type' => 'timestamp'
+            'type' => 'datetime'
         ],
         'LocationName' => [
             'type' => 'string',
@@ -48,7 +48,7 @@ class EventSegment extends \VersionedRecord
 
     public static $relationships = [
         'Event' => [
-            'type' => 'one-many',
+            'type' => 'one-one',
             'class' => Event::class
         ]
     ];
@@ -83,5 +83,28 @@ class EventSegment extends \VersionedRecord
 
         // call parent
         parent::save();
+    }
+
+    public function getURL($suffix = '/', $params = [])
+    {
+        $url = $this->Event->getURL();
+
+        if (!$url) {
+            return null;
+        }
+
+        $url .= '/segments/'.$this->getHandle();
+
+        $suffix = ltrim($suffix, '/');
+
+        if ($suffix) {
+            $url .= '/'.$suffix;
+        }
+
+        if (!empty($params)) {
+            $url .= '?'.http_build_query($params);
+        }
+
+        return $url;
     }
 }

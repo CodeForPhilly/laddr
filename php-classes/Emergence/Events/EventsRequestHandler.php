@@ -57,4 +57,34 @@ class EventsRequestHandler extends \RecordsRequestHandler
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
+
+    public static function handleRecordRequest(\ActiveRecord $Event, $action = false)
+    {
+        switch ($action ?: $action = static::shiftPath()) {
+            case 'segments':
+                return static::handleSegmentsRequest($Event);
+            default:
+                return parent::handleRecordRequest($Event, $action);
+        }
+    }
+
+    public static function handleSegmentsRequest(Event $Event)
+    {
+        if (!$segmentHandle = static::shiftPath()) {
+            return static::respond('eventSegments', [
+                'data' => $Event->Segments,
+                'total' => count($Event->Segments)
+            ]);
+        }
+        
+        if ($segmentHandle == '*create') {
+            return EventSegmentsRequestHandler::handleCreateRequest(EventSegment::create(['Event' => $Event]));
+        }
+
+        if (!$Segment = $Event->getSegmentByHandle($segmentHandle)) {
+            return EventSegmentsRequestHandler::throwNotFoundError('Segment not found');
+        }
+
+        return EventSegmentsRequestHandler::handleRecordRequest($Segment);
+    }
 }
