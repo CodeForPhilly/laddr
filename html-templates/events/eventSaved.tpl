@@ -8,7 +8,7 @@
     {capture assign=eventLink}<a href="{$Event->getUrl()|escape}">{$Event->getTitle()|escape}</a>{/capture}
 
     <div class="page-header">
-        <h1>Event Created</h1>
+        <h1>Event Saved</h1>
     </div>
     {if $Event->isNew}
         <p>{_("Your event has been created: %s")|sprintf:$eventLink}</p>
