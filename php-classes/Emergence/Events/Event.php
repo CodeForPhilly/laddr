@@ -27,10 +27,10 @@ class Event extends \VersionedRecord
             'default' => 'published'
         ],
         'StartTime' => [
-            'type' => 'timestamp'
+            'type' => 'datetime'
         ],
         'EndTime' => [
-            'type' => 'timestamp',
+            'type' => 'datetime',
             'default' => null
         ],
         'LocationName' => [
@@ -98,6 +98,15 @@ class Event extends \VersionedRecord
         ]
         // TODO: validate that EndTime > StartTime if set
     ];
+
+
+    public function getSegmentByHandle($handle)
+    {
+        return EventSegment::getByWhere([
+            'EventID' => $this->ID,
+            'Handle' => $handle
+        ]);
+    }
 
     public function getIsAllDay()
     {
