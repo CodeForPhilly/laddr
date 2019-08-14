@@ -56,7 +56,7 @@ class Event extends \VersionedRecord
         'Segments' => [
             'type' => 'one-many',
             'class' => EventSegment::class,
-            'order' => 'StartTime'
+            'order' => 'StartTime, EndTime IS NOT NULL, EndTime DESC'
         ]
     ];
 

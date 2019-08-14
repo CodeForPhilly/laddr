@@ -57,7 +57,18 @@
     <div class="row">
         <div class="col-md-9">
             {if $Event->Description}
-                <div class="content-markdown event-description well">{$Event->Description|escape|markdown}</div>
+                <div
+                    class="content-markdown event-description well content-editable"
+                    {if $.User->hasAccountLevel('Staff')}
+                        data-content-endpoint="/events"
+                        data-content-id="{$Event->Handle}"
+                        data-content-field="Description"
+                        data-content-value="{$Event->Description|escape}"
+                        data-content-renderer="markdown"
+                    {/if}
+                >
+                    {$Event->Description|escape|markdown}
+                </div>
             {/if}
 
             {if $Event->Segments}
@@ -96,7 +107,20 @@
                                 <dt>{time_range $Segment->StartTime $Segment->EndTime}</dt>
                                 <dd>
                                     <h4><a href="{$Segment->getUrl()}">{$Segment->Title|escape}</a></h4>
-                                    <div class="content-markdown event-segment-description">{$Segment->Description|escape|markdown}</div>
+                                    {if $Segment->Description}
+                                        <div
+                                            class="content-markdown event-segment-description content-editable"
+                                            {if $.User->hasAccountLevel('Staff')}
+                                                data-content-endpoint="{$Event->getUrl(segments)}"
+                                                data-content-id="{$Segment->Handle}"
+                                                data-content-field="Description"
+                                                data-content-value="{$Segment->Description|escape}"
+                                                data-content-renderer="markdown"
+                                            {/if}
+                                        >
+                                            {$Segment->Description|escape|markdown}
+                                        </div>
+                                    {/if}
                                 </dd>
 
                         {$lastLocationName = $Segment->LocationName}
