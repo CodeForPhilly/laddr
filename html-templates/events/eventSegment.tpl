@@ -25,23 +25,49 @@
 
     <div class="page-header">
         <ol class="breadcrumb">
-            <li><a href="/events">{_ "Events"}</a></li>
-            <li><a href="{$Event->getUrl()}">{$Event->Title|escape}</a></li>
-            <li>Schedule</li>
+            <li class="breadcrumb-item"><a href="/events">{_ "Events"}</a></li>
+            <li class="breadcrumb-item"><a href="{$Event->getUrl()}">{$Event->Title|escape}</a></li>
+            <li class="breadcrumb-item active">Schedule</li>
         </ol>
         <div class="btn-toolbar pull-right">
             {if $.User}
-                <a class="btn btn-success" href="{$Segment->getUrl(edit)}">{icon "pencil"}&nbsp;{_ "Edit Segment"}</a>
+                <a class="btn btn-secondary" href="{$Segment->getUrl(edit)}">{icon "pencil"}&nbsp;{_ "Edit Segment"}</a>
             {/if}
         </div>
         <h1>{$Segment->Title|escape}</h1>
     </div>
 
     <div class="row">
-        <div class="col-md-9">
+        <dl class="event-segment-details col-md-4 order-md-last">
+            <dt>Starts</dt>
+                <dd class="d-flex my-2 align-items-baseline">
+                    <div class="mr-2">{icon "clock-o" fa-fw}</div>
+                    <div class="flex-fill">{timestamp $Segment->StartTime time='auto'}</div>
+                </dd>
+
+            {if $Segment->EndTime}
+                <dt>Ends</dt>
+                <dd class="d-flex my-2 align-items-baseline">
+                    <div class="mr-2">{icon "clock-o" fa-fw}</div>
+                    <div class="flex-fill">{timestamp $Segment->EndTime time='auto'}</div>
+                </dd>
+            {/if}
+
+            {if $Segment->LocationName || $Segment->LocationAddress}
+                <dt>Location</dt>
+                <dd class="d-flex my-2 align-items-baseline">
+                    <div class="text-danger mr-2">{icon "map-marker" fa-fw}</div>
+                    <div class="flex-fill">{eventLocation name=$Segment->LocationName
+                        address=$Segment->LocationAddress}
+                    </div>
+                </dd>
+            {/if}
+        </dl>
+
+        <div class="col-md-8">
             {if $Segment->Description}
                 <div
-                    class="content-markdown event-segment-description well content-editable"
+                    class="content-markdown event-segment-description content-editable"
                     {if $.User->hasAccountLevel('Staff')}
                         data-content-endpoint="{$Event->getUrl(segments)}"
                         data-content-id="{$Segment->Handle}"
@@ -54,20 +80,5 @@
                 </div>
             {/if}
         </div>
-
-        <dl class="event-segment-details col-md-3">
-            <dt>Starts</dt>
-            <dd>{timestamp $Segment->StartTime time='auto'}</dd>
-
-            {if $Segment->EndTime}
-                <dt>Ends</dt>
-                <dd>{timestamp $Segment->EndTime time='auto'}</dd>
-            {/if}
-
-            {if $Segment->LocationName || $Segment->LocationAddress}
-                <dt>Location</dt>
-                <dd>{eventLocation name=$Segment->LocationName address=$Segment->LocationAddress}</dd>
-            {/if}
-        </dl>
     </div>
 {/block}

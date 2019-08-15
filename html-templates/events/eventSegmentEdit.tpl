@@ -10,20 +10,28 @@
 
 {block content}
     {$Segment = $data}
+    {$Event = $Segment->Event}
 
     <div class="container">
+        <div class="page-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/events">{_ "Events"}</a></li>
+                <li class="breadcrumb-item"><a href="{$Event->getUrl()}">{$Event->Title|escape}</a></li>
+                <li class="breadcrumb-item"><a href="{$Segment->getUrl()}">{$Segment->Title|escape}</a></li>
+                <li class="breadcrumb-item active">Edit</li>
+            </ol>
+
+            <h1>
+                {if $Segment->isPhantom}
+                    {_ "Create new event segment"}
+                {else}
+                    {_("Edit event segment")} <strong>{$Segment->Title|escape}</strong>
+                {/if}
+            </h1>
+        </div>
+
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <div class="page-header">
-                    <h1>
-                        {if $Segment->isPhantom}
-                            {_ "Create new event segment"}
-                        {else}
-                            {_("Edit event segment %s")|sprintf:$Segment->Title|escape}
-                        {/if}
-                    </h1>
-                </div>
-
                 {if !$Segment->isValid}
                     <div class="error well">
                         <strong>{_ "There were problems with your entry:"}</strong>
@@ -46,20 +54,26 @@
                     </div>
                     <div class="form-group">
                         <label for="field-title">{_ "Title"}:</label>
-                        <input name="Title" id="field-title" class="form-control" placeholder="{_ 'Opening Remarks'}" value="{refill field=Title default=$Segment->Title}" />
+                        <input name="Title" id="field-title" class="form-control form-control-lg" placeholder="{_ 'Opening Remarks'}" value="{refill field=Title default=$Segment->Title}" />
                     </div>
                     <div class="form-group">
                         <label for="field-handle">{_ "Handle"} ({_ "optional"}):</label>
                         <input name="Handle" id="field-handle" class="form-control" placeholder="{_ 'opening-remarks'}" value="{refill field=Handle default=$Segment->Handle}" />
-                        <p class="help-block">Must be unique &mdash; leave blank to auto-generate</p>
+                        <small class="form-text text-muted">Must be unique &mdash; leave blank to auto-generate</small>
                     </div>
-                    <div class="form-group">
-                        <label for="field-time-start">{_ "Start time"}:</label>
-                        <input type="datetime-local" name="StartTime" id="field-time-start" class="form-control" value="{refill field=StartTime default=tif($Segment->StartTime, date('Y-m-d\TH:i', $Segment->StartTime))}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="field-time-end">{_ "End time"}:</label>
-                        <input type="datetime-local" name="EndTime" id="field-time-end" class="form-control" value="{refill field=EndTime default=tif($Segment->EndTime, date('Y-m-d\TH:i', $Segment->EndTime))}"/>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-time-start">{_ "Start time"}:</label>
+                                <input type="datetime-local" name="StartTime" id="field-time-start" class="form-control" value="{refill field=StartTime default=tif($Segment->StartTime, date('Y-m-d\TH:i', $Segment->StartTime))}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-time-end">{_ "End time"}:</label>
+                                <input type="datetime-local" name="EndTime" id="field-time-end" class="form-control" value="{refill field=EndTime default=tif($Segment->EndTime, date('Y-m-d\TH:i', $Segment->EndTime))}"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="field-location-name">{_ "Location name"}:</label>
@@ -73,7 +87,7 @@
                     <div class="form-group">
                         <label for="field-description">{_ 'Description(.md)'}</label>
                         <div class="controls">
-                            <textarea name="Description" class="input-block-level" rows="10">{refill field=Description default=$Segment->Description}</textarea>
+                            <textarea name="Description" class="form-control" rows="10">{refill field=Description default=$Segment->Description}</textarea>
                         </div>
                     </div>
 
