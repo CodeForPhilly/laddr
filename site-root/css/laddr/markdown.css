@@ -24,6 +24,10 @@
 }
 
 /* Images */
+.content-markdown img {
+    max-width: 100%;
+}
+
 .content-markdown img.pull-right {
     margin: 0 0 1em 1em;
 }
