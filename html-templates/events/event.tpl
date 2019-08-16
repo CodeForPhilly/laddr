@@ -142,12 +142,11 @@
 
                     <ol class="list-unstyled">
                         {foreach item=Segment from=$Event->Segments}
-                            <li class="event-segment my-3" id="{$Segment->StartTime}">
+                            <li class="event-segment my-3" id="{unique_dom_id}{$Segment->Handle}{/unique_dom_id}">
                                 {$thisDate = date("l, F jS", $Segment->StartTime)}
 
                                 {if $lastDate != $thisDate}
-                                    {* TODO: use friendlier but html compliant date ID *}
-                                    <h3 class="h5 font-weight-normal" id="{$Segment->StartTime}">
+                                    <h3 class="h5 font-weight-normal" id="{date("Y-m-d", $Segment->StartTime)}">
                                         <span class="event-segment__day-of-week">{date("l", $Segment->StartTime)},</span>
                                         {date("F jS", $Segment->StartTime)}
                                     </h3>
