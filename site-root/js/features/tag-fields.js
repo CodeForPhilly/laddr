@@ -1,84 +1,54 @@
 (function() {
-    var cachedTagData = window.localStorage && localStorage.getItem('tags'),
-        now = Date.now(),
-        cacheTTL = 1000 * 60 * 60 * 24; // 1 day in milliseconds
+    $('select[name^="tags["]').filter(function() {
+        return $(this).closest(':disabled').length == 0;
+    }).each(function() {
+        var $select = $(this),
+            tagPrefix = $select.data('tag-prefix'),
+            tagPlaceholder = $select.data('tag-placeholder'),
+            baseConfig = {
+                placeholder: tagPlaceholder,
+                allowClear: tagPlaceholder && !$select.prop('required'),
+                multiple: $select.prop('multiple'),
+            },
+            remoteConfig = {
+                minimumInputLength: 1,
+                ajax: {
+                    url: '/tags',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        var q = params.term;
 
+                        if (tagPrefix) {
+                            q += ' prefix:'+tagPrefix
+                        }
 
-    // try to load tag data from localStorage cache
-    if (cachedTagData) {
-        cachedTagData = JSON.parse(cachedTagData);
-
-        if (cachedTagData.timestamp && cachedTagData.timestamp + cacheTTL > now) {
-            _initializeTagFields(cachedTagData);
-            return;
-        }
-    }
-
-
-    // load tag data from server
-    $.ajax({
-        url: '/tags',
-        headers: {
-            Accept: 'application/json'
-        },
-        data: {
-            summary: true
-        }
-    })
-        .done(function(data) {
-            data.timestamp = now;
-    
-            // store to localstorage
-            if (window.localStorage) {
-                localStorage.setItem('tags', JSON.stringify(data));
-            }
-    
-            _initializeTagFields(data);
-        });
-
-
-    // called after tag data is available
-    function _initializeTagFields(tagData) {
-        $('input[type=tags]').each(function() {
-            var $input = $(this),
-                tagPrefix = $input.data('tag-prefix'),
-                prefixTags = $.grep(tagData.data, function(tag) {
-                    return tag.Handle.indexOf(tagPrefix + '.') === 0;
-                }),
-                tagsInput;
-
-            // initialize taginput UI
-            tagsInput = $input.tagsinput({
-                confirmKeys: [13, 44, 188],
-                tagClass: tagPrefix ? 'label label-info tag-' + tagPrefix : undefined,
-                typeaheadjs: {
-                    name: tagPrefix,
-                    local: prefixTags,
-                    displayKey: 'Title',
-                    valueKey: 'Title',
-                    source: function(query, callback) {
-                        var substringRegex = new RegExp(query, 'i');
-
-                        callback($.grep(prefixTags, function(tag) {
-                            return substringRegex.test(tag.Title);
-                        }));
+                        return {
+                            q: q,
+                            format: 'json',
+                            summary: true
+                        };
+                    },
+                    processResults: function (data, params) {
+                        return {
+                            results: $.map(data.data, function (data) {
+                                data.id = data.id || data.Handle || data.ID;
+                                data.text = data.text || data.Title;
+                                return data;
+                            }),
+                            pagination: {
+                                more: params.total < params.offset + params.limit
+                            }
+                        };
                     }
                 }
-            })[0];
-            
-            
-            $input.closest('form').submit(function(event) {
-                var unconfirmedTag = tagsInput.$input.val();
-        
-                // add any unconfirmed tags in case user didn't hit enter after last one
-                if (unconfirmedTag) {
-                    tagsInput.add(unconfirmedTag);
-                    tagsInput.$input.val('');
-                }
-            });
-        });
-    }
-})();
+            };
 
-//        tagsInput.$input.attr('placeholder', tagsInput.$element.attr('placeholder')).attr('size', 20);
-//    }
+        // initialize remote selection
+        $select.select2($.extend(
+            {},
+            typeof $select.data('limited') == 'string' ? {} : remoteConfig,
+            baseConfig
+        ));
+    });
+})();

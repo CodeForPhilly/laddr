@@ -21,22 +21,26 @@ class TagsRequestHandler extends RecordsRequestHandler
             }
         }
     }
-    
+
     public static function handleBrowseRequest($options = array(), $conditions = array(), $responseID = NULL, $responseData = array())
     {
         if (!empty($_REQUEST['q']) && $_REQUEST['valuesqry'] == 'true') {
             $handles = explode('|', $_REQUEST['q']);
             $conditions = 'Handle IN ("'.join('","',DB::escape($handles)).'")';
-            
+
             return static::respond('tags', array(
                 'success' => true
                 ,'data' => Tag::getAllByWhere($conditions)
             ));
         }
 
+        if (!empty($_GET['prefix'])) {
+            $conditions[] = sprintf('Handle LIKE "%s.%%"', DB::escape($_GET['prefix']));
+        }
+
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
-    
+
     public static function handleRecordRequest(ActiveRecord $Tag, $action = false)
     {
         switch ($action ? $action : $action = static::shiftPath()) {
@@ -67,7 +71,7 @@ class TagsRequestHandler extends RecordsRequestHandler
             ,'data' => TagItem::getAllByWhere($conditions)
         ));
     }
-    
+
     public static function handleMultiAssignRequest()
     {
         if (static::$accountLevelAssign) {

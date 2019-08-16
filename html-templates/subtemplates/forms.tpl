@@ -41,7 +41,7 @@
         {if $unsetValue !== null}
             <input type="hidden" name="{$inputName|escape}" value="{$unsetValue|escape}">
         {/if}
-        
+
         <label>
             <input type="checkbox"
                 class="{$class}"
@@ -69,10 +69,59 @@
                 {$attribs}
             >{refill field=$inputName default=$default}</textarea>
         {/capture}
-    
+
         {labeledField html=$html type=textarea label=$label error=$error hint=$hint required=$required}
     </div>
 {/template}
 
 {template loginField}{field inputName=_LOGIN[username] label=Username required=true attribs='autofocus autocapitalize="none" autocorrect="off"' hint='You can also log in with your email address.'}{/template}
 {template passwordField}{field inputName=_LOGIN[password] label=Password hint='<a href="/register/recover">Forgot?</a>' required=true refill=false type=password}{/template}
+
+{template selectField inputName label='' options=null useKeyAsValue=yes default=null multiple=no error='' hint='' required=false attribs='' class=null fieldClass=null blankOption='Select' blankValue=''}
+    <div class="form-group">
+        {capture assign=html}
+            <select
+                class="form-control {$class}"
+                name="{$inputName}"
+                {if $required}required aria-required="true"{/if}
+                {if $multiple}multiple{/if}
+                {$attribs}
+            >
+                {if $blankOption && !$multiple}
+                    <option value="{$blankValue|escape}">{$blankOption|escape}</option>
+                {/if}
+
+                {foreach key=value item=text from=$options}
+                    {$value = tif($useKeyAsValue, $value, tif(is_a($text, 'ActiveRecord'), $text->ID, $text))}
+                    {$text = tif(is_a($text, 'ActiveRecord'), $text->getTitle(), $text)}
+                    <option {refill field=$inputName default=$default selected=$value} value="{$value|escape}">{$text|escape}</option>
+                {/foreach}
+            </select>
+        {/capture}
+
+        {labeledField html=$html type='select' label=$label error=$error hint=$hint required=$required class=$fieldClass}
+    </div>
+{/template}
+
+{template tagsField Record baseName=tags prefix=no label='' blankOption='Select' attribs='' placeholder='' error='' hint='' required=false}
+    {$inputName = tif($prefix, cat($baseName, "[$prefix][]"), $baseName)}
+    {capture assign=attribs}{strip}
+        {$attribs}
+        {if $prefix} data-tag-prefix="{$prefix|escape}"{/if}
+        {if $placeholder} data-tag-placeholder="{$placeholder|escape}"{/if}
+    {/strip}{/capture}
+
+    {selectField
+        inputName=$inputName
+        label=$label
+        blankOption=$blankOption
+        options=Tag::filterTagsByPrefix($Record->Tags, $prefix)
+        default=true
+        multiple=yes
+        useKeyAsValue=no
+        error=$error
+        hint=$hint
+        required=$required
+        attribs=$attribs
+    }
+{/template}

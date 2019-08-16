@@ -14,13 +14,16 @@
         <h1>{_ "Events"} <span class="badge badge-secondary badge-pill">{$total|number_format}</span></h1>
     </header>
 
+    {$starUrl = explode('*', $.server.REQUEST_URI)}
+    {$currentGroup = $starUrl[1]}
+
     <div class="row">
         <div class="col-sm-4 col-md-3">
-            <ul>
-                <li><a href="/events/*past">Past Events</a></li>
-                <li><a href="/events/*upcoming">Upcoming Events</a></li>
-                <li><a href="/events/*all">All Events</a></li>
-            </ul>
+            <div class="list-group">
+                <a class="list-group-item list-group-item-action {tif $currentGroup=='past' ? active}" href="/events/*past">Past Events</a>
+                <a class="list-group-item list-group-item-action {tif $currentGroup=='upcoming' || $currentGroup=='' ? active}" href="/events/*upcoming">Upcoming Events</a>
+                <a class="list-group-item list-group-item-action {tif $currentGroup=='all' ? active}" href="/events/*all">All Events</a>
+            </div>
         </div>
         <div class="col-sm-8 col-md-9">
             {foreach item=Event from=$data}

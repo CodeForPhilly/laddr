@@ -49,12 +49,8 @@
                             <form class="checkin" action="/checkin" method="POST">
                                 <div class="form-group">
                                     <input type="hidden" name="MeetupID" value="{$currentMeetup.id}">
-                                    <select name="ProjectID" class="project-picker form-control">
-                                        <option value="">Current Project (if any)</option>
-                                        {foreach item=Project from=Laddr\Project::getAll()}
-                                            <option value="{$Project->ID}">{$Project->Title|escape}</option>
-                                        {/foreach}
-                                    </select>
+
+                                    {selectField inputName=ProjectID blankOption='Current Project (if any)' options=Laddr\Project::getAll() useKeyAsValue=no default=$Buzz->ProjectID}
                                 </div>
                                 <input type="submit" value="Check In" class="btn btn-success">
                             </form>
