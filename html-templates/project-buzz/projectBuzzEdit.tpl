@@ -30,12 +30,7 @@
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="field-project" class="control-label">Project:</label>
-                    <select name="ProjectID" class="project-picker form-control" id="field-project" aria-required="true" required>
-                        <option value="">Select Project</option>
-                        {foreach item=Project from=Laddr\Project::getAll()}
-                            <option value="{$Project->ID}" {refill field=ProjectID default=$Buzz->ProjectID selected=$Project->ID}>{$Project->Title|escape}</option>
-                        {/foreach}
-                    </select>
+                    {selectField inputName=ProjectID blankOption='Select Project' options=Laddr\Project::getAll() useKeyAsValue=no default=$Buzz->ProjectID required=yes}
                 </div>
                 <div class="form-group">
                     <label for="field-headline" class="control-label">Headline:</label>

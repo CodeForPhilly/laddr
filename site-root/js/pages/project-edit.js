@@ -3,7 +3,6 @@
         markdownStr = $textarea.text(),
         $readmeEditorCt = $('<div class="markdown-editor readme"></div>'),
         $hiddenInput = $('<input type="hidden" name="README">'),
-        $select2TagsInput = $('.select2-tags'),
         readmeEditor;
 
     // replace textarea with container div and hidden input
@@ -26,9 +25,5 @@
 
     $hiddenInput.closest('form').submit(function(event) {
         $hiddenInput.val(readmeEditor.exportFile());
-    });
-
-    $select2TagsInput.select2({
-        tags: true
     });
 })();

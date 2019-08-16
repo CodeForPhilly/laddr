@@ -55,37 +55,11 @@
                         <label for="field-chat-channel">{_ "Chat Channel/Hashtag"}:</label>
                         <input name="ChatChannel" id="field-chat-channel" class="form-control" placeholder="train_schedule_analyzer" value="{refill field=ChatChannel default=$Project->ChatChannel}" pattern="[A-Za-z0-9_-]+" title="Hash tag containing only letters, numbers, dashes or underscores without leading #"/>
                     </div>
-                    <div class="form-group">
-                        <label for="topicTagsInput">{_ 'Topic Tags'}:</label>
-                        <select id="topicTagsInput" class="form-control select2-tags" multiple="multiple" name="tags[topic]">
-                            {foreach item=Topic from=Tag::getTagsString($Project->Tags, topic)}
-                                <option value="{$Topic}" selected="selected">{$Topic}</option>
-                            {/foreach}
-                                <option value="Education">Education</option>
-                                <option value="Mapping">Mapping</option>
-                                <option value="Crime">Crime</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="techTagsInput">{_ 'Technology Tags'}:</label>
-                        <select id="techTagsInput" class="form-control select2-tags" multiple="multiple" name="tags[tech]">
-                            {foreach item=Topic from=Tag::getTagsString($Project->Tags, tech)}
-                                <option value="{$Topic}" selected="selected">{$Topic}</option>
-                            {/foreach}
-                                <option value="Python">Python</option>
-                                <option value="JavaScript">JavaScript</option>
-                                <option value="Bootstrap">Bootstrap</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="eventTagsInput">{_ 'Event Tags'}:</label>
-                        <select id="eventTagsInput" class="form-control select2-tags" multiple="multiple" name="tags[event]">
-                            {foreach item=Topic from=Tag::getTagsString($Project->Tags, event)}
-                                <option value="{$Topic}" selected="selected">{$Topic}</option>
-                            {/foreach}
-                                <option value="Education Hackathon 2014">Education Hackathon 2014</option>
-                        </select>
-                    </div>
+
+                    {tagsField Record=$Project prefix=topic label=_("Topic tags") placeholder=_("Education, Mapping, Crime")}
+                    {tagsField Record=$Project prefix=tech label=_("Technology tags") placeholder=_("PHP, Bootstrap, JavaScript")}
+                    {tagsField Record=$Project prefix=event label=_("Connected events") placeholder=_("Education Hackathon 2014")}
+
                     <p id="project-stage"><b>{_ 'Stage'}:</b></p>
                     <div aria-labelledby="project-stage">
                         <div class="radio">

@@ -1,5 +1,5 @@
 $(function() {
 
-    $('#field-project').combobox();
+    $('select[name=ProjectID]').select2();
 
 });

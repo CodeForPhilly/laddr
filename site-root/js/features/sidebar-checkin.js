@@ -1,5 +1,5 @@
 $(function() {
 
-    $('.checkin .project-picker').combobox();
+    $('select[name=ProjectID]').select2();
 
 });
