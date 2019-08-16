@@ -65,8 +65,6 @@
                 {field inputName="Location" label=_("Location") default=$User->Location}
                 {textarea inputName="About" label=_("About Me") default=$User->About hint=markdown(_("Use [Markdown](http://daringfireball.net/projects/markdown) to give your text some style"))}
 
-                {load_templates subtemplates/tagsField.tpl}
-
                 {tagsField Record=$User prefix=topic label=_("Topics of interest") placeholder=_("Education, Mapping, Crime")}
                 {tagsField Record=$User prefix=tech label=_("Technologies of interest") placeholder=_("PHP, Bootstrap, JavaScript")}
 
