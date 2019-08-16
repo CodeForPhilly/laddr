@@ -42,7 +42,7 @@ class Tag extends ActiveRecord
         'Prefix' => array(
             'qualifiers' => array('prefix')
             ,'points' => 2
-            ,'sql' => 'Handle LIKE "%%%s%%.%"'
+            ,'sql' => 'Handle LIKE "%1$s.%%"'
         ),
         'Title' => array(
             'qualifiers' => ['any', 'title'],

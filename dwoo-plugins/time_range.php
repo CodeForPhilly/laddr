@@ -6,12 +6,12 @@ function Dwoo_Plugin_time_range(Dwoo_Core $dwoo, $start, $end, $showDate = false
 
     $startDate = strftime('%b %e', $start);
     $startHour = (int)strftime('%l', $start);
-    $startMinute = (int)strftime('%M', $start);
+    $startMinute = strftime('%M', $start);
     $startAmPm = strftime('%P', $start);
 
     $endDate = strftime('%b %e', $end);
     $endHour = (int)strftime('%l', $end);
-    $endMinute = (int)strftime('%M', $end);
+    $endMinute = strftime('%M', $end);
     $endAmPm = strftime('%P', $end);
 
     // start time
@@ -21,7 +21,7 @@ function Dwoo_Plugin_time_range(Dwoo_Core $dwoo, $start, $end, $showDate = false
 
     $string .= $startHour;
 
-    if ($startMinute) {
+    if ($startMinute && $startMinute != '00') {
         $string .= ':'.$startMinute;
     }
 
@@ -40,7 +40,7 @@ function Dwoo_Plugin_time_range(Dwoo_Core $dwoo, $start, $end, $showDate = false
 
         $string .= $endHour;
 
-        if ($endMinute) {
+        if ($endMinute && $endMinute != '00') {
             $string .= ':'.$endMinute;
         }
 

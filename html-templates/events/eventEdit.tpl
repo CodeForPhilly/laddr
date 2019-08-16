@@ -12,17 +12,24 @@
     {$Event = $data}
 
     <div class="container">
+        <div class="page-header">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/events">{_ "Events"}</a></li>
+                <li class="breadcrumb-item"><a href="{$Event->getUrl()}">{$Event->Title|escape}</a></li>
+                <li class="breadcrumb-item active">Edit</li>
+            </ol>
+
+            <h1>
+                {if $Event->isPhantom}
+                    {_ "Create new event"}
+                {else}
+                    {_("Edit event")} <strong>{$Event->Title|escape}</strong>
+                {/if}
+            </h1>
+        </div>
+
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                <div class="page-header">
-                    <h1>
-                        {if $Event->isPhantom}
-                            {_ "Create new event"}
-                        {else}
-                            {_("Edit event %s")|sprintf:$Event->Title|escape}
-                        {/if}
-                    </h1>
-                </div>
 
                 {if !$Event->isValid}
                     <div class="error well">
@@ -38,12 +45,12 @@
                 <form method="POST">
                     <div class="form-group">
                         <label for="field-title">{_ "Title"}:</label>
-                        <input name="Title" id="field-title" class="form-control" placeholder="{_ 'Workshop #125'}" value="{refill field=Title default=$Event->Title}" />
+                        <input name="Title" id="field-title" class="form-control form-control-lg" placeholder="{_ 'Workshop #125'}" value="{refill field=Title default=$Event->Title}" />
                     </div>
                     <div class="form-group">
                         <label for="field-handle">{_ "Handle"} ({_ "optional"}):</label>
                         <input name="Handle" id="field-handle" class="form-control" placeholder="{_ 'workshop-125'}" value="{refill field=Handle default=$Event->Handle}" />
-                        <p class="help-block">Must be unique &mdash; leave blank to auto-generate</p>
+                        <small class="form-text text-muted">Must be unique &mdash; leave blank to auto-generate</small>
                     </div>
                     <div class="form-group">
                         <label for="field-status">{_ "Status"}:</label>
@@ -53,13 +60,19 @@
                             {/foreach}
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="field-time-start">{_ "Start time"}:</label>
-                        <input type="datetime-local" name="StartTime" id="field-time-start" class="form-control" value="{refill field=StartTime default=tif($Event->StartTime, date('Y-m-d\TH:i', $Event->StartTime))}"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="field-time-end">{_ "End time"}:</label>
-                        <input type="datetime-local" name="EndTime" id="field-time-end" class="form-control" value="{refill field=EndTime default=tif($Event->EndTime, date('Y-m-d\TH:i', $Event->EndTime))}"/>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-time-start">{_ "Start time"}:</label>
+                                <input type="datetime-local" name="StartTime" id="field-time-start" class="form-control" value="{refill field=StartTime default=tif($Event->StartTime, date('Y-m-d\TH:i', $Event->StartTime))}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="field-time-end">{_ "End time"}:</label>
+                                <input type="datetime-local" name="EndTime" id="field-time-end" class="form-control" value="{refill field=EndTime default=tif($Event->EndTime, date('Y-m-d\TH:i', $Event->EndTime))}"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="field-location-name">{_ "Location name"}:</label>
@@ -73,7 +86,7 @@
                     <div class="form-group">
                         <label for="field-description">{_ 'Description(.md)'}</label>
                         <div class="controls">
-                            <textarea name="Description" class="input-block-level" rows="10">{refill field=Description default=$Event->Description}</textarea>
+                            <textarea name="Description" class="form-control" rows="10">{refill field=Description default=$Event->Description}</textarea>
                         </div>
                     </div>
 
