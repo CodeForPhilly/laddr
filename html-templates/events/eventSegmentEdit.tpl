@@ -85,6 +85,15 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="field-summary">{_ 'Summary(.md)'}</label>
+                        <div class="controls">
+                            <textarea name="Summary" class="form-control" rows="10">{refill field=Summary default=$Event->Summary}</textarea>
+                            <small class="form-text text-muted">
+                                If provided, a summary will be shown directly under this event segment in the full schedule. Keep it short and sweet!
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="field-description">{_ 'Description(.md)'}</label>
                         <div class="controls">
                             <textarea name="Description" class="form-control" rows="10">{refill field=Description default=$Segment->Description}</textarea>

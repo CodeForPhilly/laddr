@@ -33,6 +33,10 @@ class EventSegment extends \VersionedRecord
             'type' => 'string',
             'default' => null
         ],
+        'Summary' => [
+            'type' => 'clob',
+            'default' => null
+        ],
         'Description' => [
             'type' => 'clob',
             'default' => null
