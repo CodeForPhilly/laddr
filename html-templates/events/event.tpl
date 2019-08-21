@@ -95,21 +95,6 @@
                     </dd>
                 </div>
             {/if}
-
-            {*if $Event->Segments}
-                <dt>Schedule</dt>
-                <dd>
-                    <ol class="list-unstyled">
-                        {foreach item=Segment from=$Event->Segments}
-                            {$thisDate = date("l, M j", $Segment->StartTime)}
-                            {if $lastDate != $thisDate}
-                                <li><a href="#{$Segment->StartTime}">{$thisDate}</a></li>
-                                {$lastDate = $thisDate}
-                            {/if}
-                        {/foreach}
-                    </ol>
-                </dd>
-            {/if*}
         </dl>
     </div>
 
