@@ -34,7 +34,7 @@
                 </div>
                 <div class="form-group">
                     <label for="field-headline" class="control-label">Headline:</label>
-                    <input name="Headline" id="field-headline" placeholder="City Times headline on Budget Project" value="{refill field=Headline default=$Buzz->Headline}" class="form-control" aria-required="true" required>
+                    <input name="Headline" id="field-headline" placeholder="City Times headline on Budget Project" value="{refill field=Headline default=$Buzz->Headline}" class="form-control" aria-required="true" required autofocus>
                 </div>
                 <div class="form-group">
                     <label for="field-url" class="control-label">URL:</label>
