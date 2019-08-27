@@ -14,6 +14,9 @@
                                 // you can also omit this line and import only the modules you need
                                 // e.g. @import 'base/modules/buttons';
 
+@import 'theme/common';             // a placeholder for themes to override
+@import 'theme/modules';            // a placeholder for themes to override
+
 @import 'site/common';          // for site-specific overrides or additions that are common across your site
 @import 'site/modules';         // put your site-specific style rules and overrides (other than variables) in here
                                 // variables should go in 'site/variables' above

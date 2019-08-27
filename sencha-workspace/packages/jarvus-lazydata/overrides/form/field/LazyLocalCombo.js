@@ -36,6 +36,11 @@ Ext.define('Jarvus.override.form.field.LazyLocalCombo', {
             store = me.getStore(),
             onLoad;
 
+        // target source store if there is one
+        if (typeof store.getSource == 'function') {
+            store = store.getSource() || store;
+        }
+
         // do nothing if there's nothing to do
         if (me.queryMode != 'local' || !me.lazyAutoLoad || store.isLoaded()) {
             Ext.callback(callback);

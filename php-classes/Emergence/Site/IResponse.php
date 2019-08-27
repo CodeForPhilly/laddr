@@ -12,6 +12,6 @@ interface IResponse
     public function setPayload(array $payload);
     public function setPayloadKey($key, $value);
 
-    public function getMode();
-    public function setMode($mode);
+    public function getRenderer();
+    public function setRenderer(IRenderer $renderer);
 }

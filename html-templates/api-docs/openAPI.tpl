@@ -72,7 +72,7 @@
     <div class="split-view">
         <div class="nav-view">
             <ul class="docs-toc">
-                <li><a href="/">&larr; {Site::getConfig(label)}</a></li>
+                <li><a href="/">&larr; {$.Site.title|escape}</a></li>
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#keys">API Keys</a></li>
                 {if count($paths)}

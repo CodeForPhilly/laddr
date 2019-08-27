@@ -99,7 +99,10 @@ Ext.define('Emergence.store.ChainedTree', {
             load: 'onSourceLoad',
             update: 'onSourceUpdate',
             add: 'onSourceAdd',
-            remove: 'onSourceRemove'
+            remove: 'onSourceRemove',
+            beginupdate: 'onSourceBeginUpdate',
+            endupdate: 'onSourceEndUpdate',
+            datachanged: 'onSourceDataChanged'
         });
 
         var Model = sourceStore.getModel(),
@@ -130,9 +133,11 @@ Ext.define('Emergence.store.ChainedTree', {
     },
 
     onSourceUpdate: function (sourceStore, sourceRecord, operation, modifiedFieldNames) {
-        var record = this.getById(sourceRecord.getId()),
+        var record = this.getNodeById(sourceRecord.getId()),
             fieldsLength, i = 0, fieldName,
-            commit = false;
+            commit = false,
+            dirty = false,
+            set = {};
 
         switch (operation) {
             case Ext.data.Model.COMMIT:
@@ -147,12 +152,16 @@ Ext.define('Emergence.store.ChainedTree', {
 
                 for (; i < fieldsLength; i++) {
                     fieldName = modifiedFieldNames[i];
-                    record.set(fieldName, sourceRecord.get(fieldName));
+                    set[fieldName] = sourceRecord.get(fieldName);
+                    dirty = true;
                 }
 
-                if (commit) {
+                if (dirty) {
+                    record.set(set, { commit: commit });
+                } else if (commit) {
                     record.commit();
                 }
+
                 break;
             case Ext.data.Model.REJECT:
                 if (record) {
@@ -170,7 +179,7 @@ Ext.define('Emergence.store.ChainedTree', {
         for (; recordIndex < recordsLength; recordIndex++) {
             record = records[recordIndex];
 
-            if (!me.getById(record.getId())) {
+            if (!me.getNodeById(record.getId())) {
                 toAdd.push(me.cloneTreeRecord(record));
             }
         }
@@ -184,7 +193,7 @@ Ext.define('Emergence.store.ChainedTree', {
         const toRemove = [];
 
         for (const record of records) {
-            const treeRecord = this.getById(record.getId());
+            const treeRecord = this.getNodeById(record.getId());
 
             if (treeRecord) {
                 toRemove.push(treeRecord);
@@ -194,11 +203,25 @@ Ext.define('Emergence.store.ChainedTree', {
         this.remove(toRemove);
     },
 
+    onSourceBeginUpdate: function() {
+        this.beginUpdate();
+    },
+
+    onSourceEndUpdate: function() {
+        this.endUpdate();
+    },
+
+    onSourceDataChanged: function() {
+        this.data.sortItems();
+    },
+
     onUpdate: function(record, operation, modifiedFieldNames) {
         var sourceRecord = this.getSource().getById(record.getId()),
-            fieldsLen, i = 0, fieldName,
+            fieldsLength, i = 0, fieldName,
             fieldsMap,
-            commit = false;
+            commit = false,
+            dirty = false,
+            set = {};
 
         switch (operation) {
             case Ext.data.Model.COMMIT:
@@ -209,19 +232,23 @@ Ext.define('Emergence.store.ChainedTree', {
                     break;
                 }
 
-                fieldsLen = modifiedFieldNames.length;
+                fieldsLength = modifiedFieldNames.length;
                 fieldsMap = sourceRecord.getFieldsMap();
 
-                for (; i < fieldsLen; i++) {
+                for (; i < fieldsLength; i++) {
                     fieldName = modifiedFieldNames[i];
                     if (fieldsMap[fieldName]) {
-                        sourceRecord.set(fieldName, record.get(fieldName));
+                        set[fieldName] = record.get(fieldName);
+                        dirty = true;
                     }
                 }
 
-                if (commit) {
+                if (dirty) {
+                    sourceRecord.set(set, { commit: commit });
+                } else if (commit) {
                     sourceRecord.commit();
                 }
+
                 break;
             case Ext.data.Model.REJECT:
                 if (sourceRecord) {
@@ -263,6 +290,7 @@ Ext.define('Emergence.store.ChainedTree', {
             i = 0, record, parentId, parent;
 
         me.beginUpdate();
+        me.ignoreCollectionAdd = true;
 
         rootNode.removeAll();
 
@@ -278,8 +306,12 @@ Ext.define('Emergence.store.ChainedTree', {
             }
         };
 
+        me.data.sortItems();
         rootNode.expand();
 
+        me.ignoreCollectionAdd = false;
+        me.fireEvent('datachanged', me);
+        me.fireEvent('refresh', me);
         me.endUpdate();
     },
 

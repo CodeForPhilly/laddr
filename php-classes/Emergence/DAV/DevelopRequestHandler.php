@@ -70,7 +70,7 @@ class DevelopRequestHandler extends \Emergence\Site\RequestHandler
 
         // handle /develop request
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && static::getResponseMode() == 'html' && !static::peekPath()) {
-            return static::sendResponse(SenchaApp::load('EmergenceEditor')->render(), 'webapps');
+            return static::sendResponse(SenchaApp::load('EmergenceEditor')->render());
         }
 
         // initial and configure SabreDAV

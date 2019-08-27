@@ -100,10 +100,12 @@ class NestingBehavior extends RecordBehavior
         $tableName = $className::$tableName;
 
         // check for orphan collections first
-        $orphanCollections = DB::allValues('ID', 'SELECT c1.ID FROM _e_file_collections c1 LEFT JOIN _e_file_collections c2 ON c2.ID = c1.ParentID WHERE c1.ParentID IS NOT NULL AND c2.ID IS NULL');
+        if ($tableName == '_e_file_collections') {
+            $orphanCollections = DB::allValues('ID', 'SELECT c1.ID FROM _e_file_collections c1 LEFT JOIN _e_file_collections c2 ON c2.ID = c1.ParentID WHERE c1.ParentID IS NOT NULL AND c2.ID IS NULL');
 
-        if (count($orphanCollections)) {
-            throw new Exception('Cannot renest table, orphan collections found: '.implode(',', $orphanCollections));
+            if (count($orphanCollections)) {
+                throw new Exception('Cannot renest table, orphan collections found: '.implode(',', $orphanCollections));
+            }
         }
 
         // compile map
