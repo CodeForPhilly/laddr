@@ -21,7 +21,19 @@ abstract class App implements IApp
 
     final public static function get($name)
     {
-        foreach (static::$types as $type) {
+        // check if there's a keyed type for this app
+        if (!empty(static::$types[$name])) {
+            $type = static::$types[$name];
+            return $type::load($name);
+        }
+
+        // check if any unkeyed type can load the named app
+        foreach (static::$types as $key => $type) {
+            // skip any keyed types
+            if (is_string($key)) {
+                continue;
+            }
+
             if (!is_a($type, IApp::class, true)) {
                 throw new Exception("app type $type does not implement IApp interface");
             }
@@ -64,6 +76,10 @@ abstract class App implements IApp
     protected function getAssetUrl($path)
     {
         $node = $this->getAsset($path);
+
+        if (!is_string($path)) {
+            $path = implode('/', $path);
+        }
 
         if (!$node) {
             throw new Exception('asset not found: '.$path);

@@ -56,7 +56,8 @@
         </ol>
         {if $.User}
             <div class="btn-toolbar pull-right mt-1">
-                    <a class="btn btn-secondary" href="{$Event->getUrl(edit)}">{icon "pencil"}&nbsp;{_ "Edit Event"}</a>
+                <a class="btn btn-secondary mr-2" href="{$Event->getUrl(edit)}">{icon "pencil"}&nbsp;{_ "Edit Event"}</a>
+                <a class="btn btn-secondary" href="{$Event->getUrl(segments/!create)}">{icon "plus-square-o"}&nbsp;{_ "Add Segment"}</a>
             </div>
         {/if}
 
@@ -94,21 +95,6 @@
                     </dd>
                 </div>
             {/if}
-
-            {*if $Event->Segments}
-                <dt>Schedule</dt>
-                <dd>
-                    <ol class="list-unstyled">
-                        {foreach item=Segment from=$Event->Segments}
-                            {$thisDate = date("l, M j", $Segment->StartTime)}
-                            {if $lastDate != $thisDate}
-                                <li><a href="#{$Segment->StartTime}">{$thisDate}</a></li>
-                                {$lastDate = $thisDate}
-                            {/if}
-                        {/foreach}
-                    </ol>
-                </dd>
-            {/if*}
         </dl>
     </div>
 

@@ -76,8 +76,8 @@ class EventsRequestHandler extends \RecordsRequestHandler
                 'total' => count($Event->Segments)
             ]);
         }
-        
-        if ($segmentHandle == '*create') {
+
+        if ($segmentHandle == '!create') {
             return EventSegmentsRequestHandler::handleCreateRequest(EventSegment::create(['Event' => $Event]));
         }
 

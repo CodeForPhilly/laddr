@@ -6,13 +6,16 @@ return [
     'icon' => 'eraser',
     'handler' => function () {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $templateDir = Emergence\Dwoo\Engine::$pathCompile.'/'.Site::getConfig('handle');
+            $templatesDeleted = 0;
+            $templatesDir = Emergence\Dwoo\Engine::getInstance()->getCompileDir().Site::getConfig('handle');
 
-            $filesDeleted = intval(exec("find $templateDir -name \"*.d*.php\" -type f -delete -print | wc -l"));
+            foreach (glob("{$templatesDir}/*.php") as $templatePath) {
+                $templatesDeleted += unlink($templatePath);
+            }
 
             return static::respond('message', [
                 'title' => 'Templates cleared',
-                'message' => "Erased $filesDeleted compiled templates"
+                'message' => "Erased $templatesDeleted compiled templates"
             ]);
         }
 

@@ -8,10 +8,13 @@ use Site;
 use Cache;
 use JSON;
 use Emergence\Site\Response;
+use Emergence\Site\Renderers\DwooTemplate;
 
 class SenchaApp extends App
 {
     public static $jsSiteEnvironment = [];
+    public static $responseId = 'sencha';
+    public static $pluginBuildsRoot = 'webapp-plugin-builds';
     public static $plugins = [];
 
 
@@ -53,9 +56,31 @@ class SenchaApp extends App
 
     public function render()
     {
-        return new Response('sencha', [
+        $renderer = DwooTemplate::fromTreeContext('sencha.tpl', ['webapps', $this->name]);
+
+        return new Response(static::$responseId, [
             'app' => $this
-        ]);
+        ], $renderer);
+    }
+
+    protected function getAsset($path)
+    {
+        if (is_string($path)) {
+            $path = Site::splitPath($path);
+        }
+
+        if ($path[0] && $path[0][0] == '~') {
+            $pluginName = substr(array_shift($path), 1);
+
+            if (!in_array($pluginName, $this->getPlugins())) {
+                throw new Exception('no plugin registered under name: '.$pluginName);
+            }
+
+            array_unshift($path, static::$pluginBuildsRoot, $pluginName);
+            return Site::resolvePath($path);
+        }
+
+        return parent::getAsset($path);
     }
 
     public function buildCssMarkup()
@@ -112,20 +137,14 @@ class SenchaApp extends App
         $html[] = 'Ext.manifest.resources.path = '.json_encode($this->getUrl().'/resources');
         $html[] = '</script>';
 
-        // TODO: migrate away from /app request handler
+        // load plugins
         foreach ($this->getPlugins() as $packageName) {
-            $jsNode = Site::resolvePath(['sencha-workspace', 'packages', $packageName, 'build', "{$packageName}.js"]);
+            $html[] = '<script type="text/javascript" src="'.$this->getAssetUrl("~${packageName}/{$packageName}.js").'"></script>';
 
-            if (!$jsNode) {
-                throw new Exception("build for sencha plugin {$packageName} not found");
-            }
-
-            $html[] = "<script type=\"text/javascript\" src=\"/app/packages/{$packageName}/build/{$jsNode->Handle}?_sha1={$jsNode->SHA1}\"></script>";
-
-            $cssNode = Site::resolvePath(['sencha-workspace', 'packages', $packageName, 'build', 'resources', "{$packageName}-all.css"]);
-
-            if ($cssNode) {
-                $html[] = "<link rel=\"stylesheet\" type=\"text/css\" href=\"/app/packages/{$packageName}/build/resources/{$cssNode->Handle}?_sha1={$cssNode->SHA1}\">";
+            try {
+                $html[] = '<link rel="stylesheet" type="text/css" href="'.$this->getAssetUrl("~${packageName}/resources/{$packageName}-all.css").'">';
+            } catch (Exception $e) {
+                // that's ok, not every plugin has CSS
             }
         }
 

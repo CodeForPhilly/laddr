@@ -64,12 +64,21 @@ class Template extends \Dwoo_Template_String
         return file_get_contents($this->node->RealPath);
     }
 
-    public static function findNode($path, $throwExceptionOnNotFound = true)
+    public static function findNode($path, $throwExceptionOnNotFound = true, $context = null)
     {
         $templateNode = null;
 
-        $path = Site::splitPath($path);
-        $searchStack = array_filter(Site::$requestPath);
+        if (is_string($path)) {
+            $path = Site::splitPath($path);
+        }
+
+        if (is_string($context)) {
+            $context = Site::splitPath($context);
+        } elseif (!$context) {
+            $context = Site::$requestPath;
+        }
+
+        $searchStack = array_filter($context);
         array_unshift($searchStack, 'html-templates');
 
         if ($searchScriptname = array_pop($searchStack)) {
