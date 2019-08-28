@@ -41,7 +41,7 @@
 
                 {if $currentMeetup}
                     <h2>{_ "Current Meetup"}</h2>
-                    <div class="card">
+                    <div class="card mb-4">
                         <div class="card-header">
                             {meetup $currentMeetup showRsvp=false}
                         </div>
