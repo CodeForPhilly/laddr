@@ -3,7 +3,7 @@
 namespace Emergence\Meetup;
 
 use Cache;
-use om\IcalParser;
+use om\Emergence\IcalParser;
 
 class Connector extends \Emergence\Connectors\AbstractConnector
 {
