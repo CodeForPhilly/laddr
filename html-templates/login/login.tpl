@@ -11,7 +11,7 @@
             </div>
 
             <form method="POST" id="login">
-                
+
                 {if $authException || $error}
                     <div class="well well-sm">
                         <h2>{_ "There were problems with your submission:"}</h2>
@@ -29,7 +29,7 @@
                 {strip}
                     <div class="form-group">
                         <label for="_LOGIN[username]" class="control-label">{_ "Username"}</label>
-                        <input type="text" class="form-control" placeholder="{_ 'Username or email address'}" name="_LOGIN[username]" value="{refill field=_LOGIN.username}" autocorrect="off" autocapitalize="off">
+                        <input type="text" class="form-control" placeholder="{_ 'Username or email address'}" name="_LOGIN[username]" value="{refill field=_LOGIN.username}" autocorrect="off" autocapitalize="off" autofocus>
                     </div>
 
                     <div class="form-group">
@@ -46,7 +46,7 @@
 
                     <p>{sprintf(_('You can %s, or %s now.'), $recoverLink, $registerLink)}</p>
                 {/strip}
-                
+
                 {foreach item=value key=name from=$postVars}
                     {if is_array($value)}
                         {foreach item=subvalue key=subkey from=$value}
