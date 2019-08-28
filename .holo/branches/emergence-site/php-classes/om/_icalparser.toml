@@ -1,0 +1,3 @@
+[holomapping]
+root = "src"
+files = "*.php"
