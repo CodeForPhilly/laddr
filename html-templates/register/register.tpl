@@ -36,7 +36,7 @@
 
                     <div class="form-group">
                         <label class="control-label" for="FirstName">{_ "First Name"}</label>
-                        <input type="text" class="form-control" id="FirstName" name="FirstName" value="{refill field=FirstName}" placeholder="{_ 'Jill'}">
+                        <input type="text" class="form-control" id="FirstName" name="FirstName" value="{refill field=FirstName}" placeholder="{_ 'Jill'}" autofocus>
                     </div>
 
                     <div class="form-group">
