@@ -6,7 +6,6 @@ Git::$repositories['laddr'] = [
     'workingBranch' => 'emergence/vfs-site/v3',
     'trees' => [
         'api-docs',
-        'content-blocks',
         'data-exporters',
         'dwoo-plugins',
         'event-handlers',
@@ -17,7 +16,6 @@ Git::$repositories['laddr'] = [
         'phpunit-tests',
         'site-root',
         'site-tasks',
-        'webapp-builds',
-        'webapp-plugin-builds'
+        'webapp-builds'
     ]
 ];
