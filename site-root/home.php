@@ -1,31 +1,29 @@
 <?php
 
 // compile home page data
-$now = time() * 1000;
+$now = new DateTime();
 $pageData = array();
 
 
 // meetups
     try {
-        $meetups = RemoteSystems\Meetup::getEvents();
-
+        $meetups = Emergence\Meetup\Connector::getUpcomingEvents();
         $nextMeetup = array_shift($meetups);
-    
+
         // detect if meetup is happening right now
-        if($nextMeetup && $nextMeetup['time'] < $now) {
+        // - use ?next_meetup_now=1 to test feature before any event
+        if(
+            ($nextMeetup && $nextMeetup['time_start'] < $now)
+            || !empty($_GET['next_meetup_now'])
+        ) {
             $currentMeetup = $nextMeetup;
             $nextMeetup = array_shift($meetups);
         }
-    
-        // TODO: delete this!
-        elseif(!empty($_GET['force_current'])) {
-            $currentMeetup = $nextMeetup;
-        }
-    
+
         if($currentMeetup) {
             $currentMeetup['checkins'] = Laddr\MemberCheckin::getAllForMeetupByProject($currentMeetup['id']);
         }
-    
+
         $pageData['currentMeetup'] = $currentMeetup;
         $pageData['nextMeetup'] = $nextMeetup;
         $pageData['futureMeetups'] = $meetups;
@@ -38,7 +36,7 @@ $pageData = array();
     if (!$pageData['activity'] = Cache::fetch('home-activity')) {
         $existingTables = \DB::allValues('table_name', 'SELECT table_name FROM information_schema.TABLES WHERE TABLE_SCHEMA = SCHEMA()');
         $activityQueries = [];
-        
+
         if (in_array(Emergence\CMS\AbstractContent::$tableName, $existingTables)) {
             $activityQueries[] = sprintf(
                 'SELECT'

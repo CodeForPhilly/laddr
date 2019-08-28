@@ -41,7 +41,7 @@
                 <form method="POST">
                     <div class="form-group">
                         <label for="field-title">{_ "Title"}:</label>
-                        <input name="Title" id="field-title" class="form-control" placeholder="{_ 'Train Schedule Analyzer'}" value="{refill field=Title default=$Project->Title}" />
+                        <input name="Title" id="field-title" class="form-control" placeholder="{_ 'Train Schedule Analyzer'}" value="{refill field=Title default=$Project->Title}" autofocus />
                     </div>
                     <div class="form-group">
                         <label for="field-url-users">{_ "URL for Users"}:</label>

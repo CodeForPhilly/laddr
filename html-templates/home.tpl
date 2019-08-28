@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="container">
-        <h1 class="sr-only">Code for [My Town]</h1>
+        <h1 class="sr-only">{Laddr::$siteName|escape}</h1>
         <div class="row">
             <div class="col-md-8 home-column-main">
                 {include includes/home.announcements.tpl}
