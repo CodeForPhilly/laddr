@@ -1,6 +1,6 @@
 {extends "designs/site.tpl"}
 
-{block "title"}Edit Profile &mdash; {$dwoo.parent}{/block}
+{block "title"}{_ 'Edit Profile'} &mdash; {$dwoo.parent}{/block}
 
 {block js-bottom}
     {$dwoo.parent}
@@ -127,7 +127,7 @@
                 {/if}
 
                 <div class="photo-upload form-group">
-                    <label class="sr-only" for="photoFile">Photo Upload</label>
+                    <label class="sr-only" for="photoFile">{_ 'Photo Upload'}</label>
                     <input class="form-control" type="file" id="photoFile" name="photoFile">
                 </div>
 

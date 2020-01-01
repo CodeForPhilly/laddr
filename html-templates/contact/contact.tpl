@@ -1,6 +1,6 @@
 {extends designs/site.tpl}
 
-{block "title"}Contact &mdash; {$dwoo.parent}{/block}
+{block "title"}{_ 'Contact'} &mdash; {$dwoo.parent}{/block}
 
 {block js-top}
     {$dwoo.parent}
@@ -15,7 +15,7 @@
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
             <div class="page-header">
-                <h1>Contact Us</h1>
+                <h1>{_ "Contact Us"}</h1>
             </div>
 
             {contentBlock "contact-introduction"}
@@ -23,7 +23,7 @@
             <form action="/contact" method="POST" class="contact-form">
                 {if $validationErrors}
                     <div class="alert alert-danger">
-                        Please double-check the fields highlighted below.
+                        {_ "Please double-check the fields highlighted below."}
                     </div>
                 {/if}
 
@@ -43,7 +43,7 @@
                     <p class="text-danger">{$validationErrors.ReCaptcha}</p>
                 {/if}
 
-                <button type="submit" class="btn btn-primary">Send</button>
+                <button type="submit" class="btn btn-primary">{_ Send}</button>
             </form>
 
         </div>

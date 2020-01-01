@@ -9,10 +9,10 @@
 
     <table width="600">
         <tr>
-            <th align="left">Meetup ID</th>
-            <th align="left">First Checkin</th>
-            <th align="left">Last Checkin</th>
-            <th align="right">Checkins</th>
+            <th align="left">{_ "Meetup ID"}</th>
+            <th align="left">{_ "First Checkin"}</th>
+            <th align="left">{_ "Last Checkin"}</th>
+            <th align="right">{_ "Checkins"}</th>
         </tr>
         {foreach item=row from=$data}
             <tr>

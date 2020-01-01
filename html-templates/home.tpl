@@ -68,7 +68,7 @@
                                         {if $Checkin->Project}
                                             {projectLink $Checkin->Project}
                                         {else}
-                                            No Current Project
+                                            {_ "No Current Project"}
                                         {/if}
                                         </h4>
 

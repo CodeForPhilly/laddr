@@ -1,7 +1,9 @@
 {extends designs/site.tpl}
 
-{block title}Buzz Saved &mdash; {$dwoo.parent}{/block}
+{block title}{_ 'Buzz Saved'} &mdash; {$dwoo.parent}{/block}
 
 {block content}
-    <p><a href="{$data->getURL()}">{$data->Headline|escape}</a> {tif $data->isNew ? posted : updated} for {projectLink $data->Project}</p>
+    {capture assign=buzzHeadlineLink}<a href="{$data->getURL()}">{$data->Headline|escape}</a> {tif $data->isNew ? {_ posted} : {_ updated}}{/capture}
+    {capture assign=projectNameLink}{projectLink $data->Project}{/capture}
+    <p>{sprintf(_("%s for %s"), $buzzHeadlineLink, $projectNameLink)}</p>
 {/block}

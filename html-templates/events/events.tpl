@@ -35,7 +35,7 @@
                             {if $Event->Status != 'published'}
                                 <li class="col-md-3">
                                     <p>
-                                        <b>Status</b><br/>
+                                        <b>{_ Status}</b><br/>
                                         {$Event->Status}
                                     </p>
                                 </li>
@@ -43,7 +43,7 @@
 
                             <li class="col-md-3">
                                 <p>
-                                    <b>Start time</b><br/>
+                                    <b>{_ "Start time"}</b><br/>
                                     {timestamp $Event->StartTime time=yes}
                                 </p>
                             </li>
@@ -51,7 +51,7 @@
                             {if $Event->EndTime}
                             <li class="col-md-3">
                                 <p>
-                                    <b>End time</b><br/>
+                                    <b>{_ "End time"}</b><br/>
                                     {timestamp $Event->EndTime time=yes}
                                 </p>
                             </li>
@@ -60,7 +60,7 @@
                             {if $Event->Location}
                             <li class="col-md-3">
                                 <p>
-                                    <b>Location</b><br/>
+                                    <b>{_ "Location"}</b><br/>
                                     <a href="https://www.google.com/maps?q={$Event->Location|escape:url}">{$Event->Location|escape}</a>
                                 </p>
                             </li>
@@ -74,7 +74,12 @@
                     </div>
                 </article>
             {foreachelse}
-                <p><em>No events were found, try creating one{if count($conditions)} or <a href="?">browse without any filters</a>{/if}.</em></p>
+                {if count($conditions)}
+                {capture assign=browseLink}<a href="?">{_ "browse without any filters"}</a>{/capture}
+                  <p><em>{sprintf(_('No events were found, try creating one or %s.'), $browseLink)}</em></p>
+                {else}
+                  <p><em>{_ "No events were found, try creating one."}</em></p>
+                {/if}
             {/foreach}
         </div>
     </div>
