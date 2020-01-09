@@ -1,7 +1,8 @@
 {extends designs/site.tpl}
 
-{block title}Project Deleted &mdash; {$dwoo.parent}{/block}
-     	 
+{block title}{_ 'Project Deleted'} &mdash; {$dwoo.parent}{/block}
+
 {block content}
-    <p>Project  {$data->Title|escape} deleted.</p>       
+    {capture assign=projectTitle}{$data->Title|escape}{/capture}
+    <p>{sprintf(_("Project %s deleted."), $projectTitle)}</p>       
 {/block}

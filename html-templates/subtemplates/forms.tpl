@@ -75,7 +75,7 @@
 {/template}
 
 {template loginField}{field inputName=_LOGIN[username] label=Username required=true attribs='autofocus autocapitalize="none" autocorrect="off"' hint='You can also log in with your email address.'}{/template}
-{template passwordField}{field inputName=_LOGIN[password] label=Password hint='<a href="/register/recover">Forgot?</a>' required=true refill=false type=password}{/template}
+{template passwordField}{field inputName=_LOGIN[password] label=Password hint='<a href="/register/recover">{_ "Forgot?"}</a>' required=true refill=false type=password}{/template}
 
 {template selectField inputName label='' options=null useKeyAsValue=yes default=null multiple=no error='' hint='' required=false attribs='' class=null fieldClass=null blankOption='Select' blankValue=''}
     <div class="form-group">

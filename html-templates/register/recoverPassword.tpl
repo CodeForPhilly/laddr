@@ -1,15 +1,15 @@
 {extends "designs/site.tpl"}
 
-{block "title"}Reset Password &mdash; {$dwoo.parent}{/block}
+{block "title"}{_ 'Reset Password'} &mdash; {$dwoo.parent}{/block}
 
 {block "content"}
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
             <div class="page-header">
-                <h1>Reset Your Password</h1>
+                <h1>{_ "Reset Your Password"}</h1>
             </div>
 
-            <p>Enter the username or email address associated with your account below, and you will receive an email with instructions to reset your password.</p>
+            <p>{_ "Enter the username or email address associated with your account below, and you will receive an email with instructions to reset your password."}</p>
 
             {if $error}
                 <div class="well well-sm">

@@ -40,19 +40,19 @@
 
                 <form method="POST">
                     <div class="form-group">
-                        <label for="field-title">{_ "Title"}:</label>
+                        <label for="field-title">{_ "Title:"}</label>
                         <input name="Title" id="field-title" class="form-control" placeholder="{_ 'Train Schedule Analyzer'}" value="{refill field=Title default=$Project->Title}" autofocus />
                     </div>
                     <div class="form-group">
-                        <label for="field-url-users">{_ "URL for Users"}:</label>
+                        <label for="field-url-users">{_ "URL for Users:"}</label>
                         <input type="url" name="UsersUrl" id="field-url-users" class="form-control" placeholder="{_ 'http://mypublicapp.org'}" value="{refill field=UsersUrl default=$Project->UsersUrl}" />
                     </div>
                     <div class="form-group">
-                        <label for="field-url-developers">{_ "URL for Developers"}:</label>
+                        <label for="field-url-developers">{_ "URL for Developers:"}</label>
                         <input type="url" name="DevelopersUrl" id="field-url-developers" class="form-control" placeholder="http://github.com/..." value="{refill field=DevelopersUrl default=$Project->DevelopersUrl}"/>
                     </div>
                     <div class="form-group">
-                        <label for="field-chat-channel">{_ "Chat Channel/Hashtag"}:</label>
+                        <label for="field-chat-channel">{_ "Chat Channel/Hashtag:"}</label>
                         <input name="ChatChannel" id="field-chat-channel" class="form-control" placeholder="train_schedule_analyzer" value="{refill field=ChatChannel default=$Project->ChatChannel}" pattern="[A-Za-z0-9_-]+" title="Hash tag containing only letters, numbers, dashes or underscores without leading #"/>
                     </div>
 
@@ -60,7 +60,7 @@
                     {tagsField Record=$Project prefix=tech label=_("Technology tags") placeholder=_("PHP, Bootstrap, JavaScript")}
                     {tagsField Record=$Project prefix=event label=_("Connected events") placeholder=_("Education Hackathon 2014")}
 
-                    <p id="project-stage"><b>{_ 'Stage'}:</b></p>
+                    <p id="project-stage"><b>{_ 'Stage:'}</b></p>
                     <div aria-labelledby="project-stage">
                         <div class="radio">
                             <label>

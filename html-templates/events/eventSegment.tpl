@@ -27,7 +27,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/events">{_ "Events"}</a></li>
             <li class="breadcrumb-item"><a href="{$Event->getUrl()}">{$Event->Title|escape}</a></li>
-            <li class="breadcrumb-item active">Schedule</li>
+            <li class="breadcrumb-item active">{_ "Schedule"}</li>
         </ol>
         <div class="btn-toolbar pull-right">
             {if $.User}
@@ -39,14 +39,14 @@
 
     <div class="row">
         <dl class="event-segment-details col-md-4 order-md-last">
-            <dt>Starts</dt>
+            <dt>{_ Starts}</dt>
                 <dd class="d-flex my-2 align-items-baseline">
                     <div class="mr-2">{icon "clock-o" fa-fw}</div>
                     <div class="flex-fill">{timestamp $Segment->StartTime time='auto'}</div>
                 </dd>
 
             {if $Segment->EndTime}
-                <dt>Ends</dt>
+                <dt>{_ Ends}</dt>
                 <dd class="d-flex my-2 align-items-baseline">
                     <div class="mr-2">{icon "clock-o" fa-fw}</div>
                     <div class="flex-fill">{timestamp $Segment->EndTime time='auto'}</div>
@@ -54,7 +54,7 @@
             {/if}
 
             {if $Segment->LocationName || $Segment->LocationAddress}
-                <dt>Location</dt>
+                <dt>{_ Location}</dt>
                 <dd class="d-flex my-2 align-items-baseline">
                     <div class="text-danger mr-2">{icon "map-marker" fa-fw}</div>
                     <div class="flex-fill">{eventLocation name=$Segment->LocationName

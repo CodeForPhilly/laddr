@@ -9,8 +9,8 @@
 
     <table width="350">
         <tr>
-            <th align="left">Member</th>
-            <th align="right">Event checkins</th>
+            <th align="left">{_ Member}</th>
+            <th align="right">{_ "Event checkins"}</th>
         </tr>
         {foreach item=row from=$data}
             <tr>

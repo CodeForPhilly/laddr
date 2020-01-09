@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 {/if}
-            {/if}  
+            {/if}
             {if $Project->README}
                 <h2>{_ "README"}</h2>
                 <div class="content-readme content-markdown well">
@@ -107,7 +107,7 @@
 
             {* if ($.User && $Project->hasMember($.User))}
                 <form action="/projects/{$Project->Handle}/json/create-request">
-                    <button class="btn btn-success" type="submit">Need Help?&hellip;</button>
+                    <button class="btn btn-success" type="submit">{_ 'Need Help?'}&hellip;</button>
                 </form>
             {/if *}
 
@@ -127,29 +127,29 @@
                 <em>{_ "This project doesn't have any activity yet, post an update or log some buzz!"}</em>
             {/foreach}
         </div>
-        
-        <!--  PROJECT INFO  -->  
+
+        <!--  PROJECT INFO  -->
         <div class="col-md-4">
-            <h2>{_ "Project Info"}</h2> 
+            <h2>{_ "Project Info"}</h2>
 
             <!--  PROJECT LINKS  -->
             <div role="group" aria-label="...">
                 {if $Project->UsersUrl}
                     <a class="btn btn-primary btn-block" role="button" href="{$Project->UsersUrl|escape}">
-                        {icon "user"}&nbsp;Users' Site
+                        {icon "user"}&nbsp;{_ "Users' Site"}
                         <div class="small">{$Project->UsersUrl|escape}</div>
                     </a>
                 {/if}
                 {if $Project->DevelopersUrl}
                     <a class="btn btn-success btn-block" role="button" href="{$Project->DevelopersUrl|escape}">
-                        {icon "cog"}&nbsp;Developers' Site
+                        {icon "cog"}&nbsp;{_ "Developers' Site"}
                         <div class="small">{$Project->DevelopersUrl|escape}</div>
                     </a>
                 {/if}
                 {if $Project->ChatChannel}
                     {if Laddr::$chatLinker}
                         <a class="btn btn-success btn-block" role="button" href="{call_user_func(Laddr::$chatLinker, $Project->ChatChannel)|escape}" target="_blank">
-                            {icon "comment"}&nbsp;Chat Channel
+                            {icon "comment"}&nbsp;{_ "Chat Channel"}
                             <div class="small">#{$Project->ChatChannel|escape}</div>
                         </a>
                     {else}
@@ -157,10 +157,10 @@
                     {/if}
                 {/if}
             </div>
-                
+
             <!--  MEMBERS BLOCK  -->
             {if $Project->Memberships}
-                <h3>Members</h3>
+                <h3>{_ "Members"}</h3>
 
                 <ul class="list-inline people-list">
                 {foreach item=Membership from=$Project->Memberships}
@@ -206,7 +206,7 @@
                 {/foreach}
                 </ul>
             {/if}
-            
+
             {if $Project->EventTags}
                 {_ "Events"}:
                 <ul>
@@ -230,8 +230,8 @@
     {$dwoo.parent}
 
     <form id="add-member" class="modal fade form-horizontal" tabindex="-1" role="dialog" aria-labelledby="add-member-title" action="/projects/{$Project->Handle}/add-member" method="POST">
-        <div class="modal-dialog">    
-            <div class="modal-content">    
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     <h2 id="add-member-title" class="modal-title">{_ "Add project member"}</h2>
@@ -291,10 +291,10 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>Member</th>
-                                    <th>Role</th>
-                                    <th><span class="sr-only">Make Member a Maintainer</span></th>
-                                    <th><span class="sr-only">Remove Member</span></th>
+                                    <th>{_ Member}</th>
+                                    <th>{_ Role}</th>
+                                    <th><span class="sr-only">{_ "Make Member a Maintainer"}</span></th>
+                                    <th><span class="sr-only">{_ "Remove Member"}</span></th>
                                 </tr>
                             </thead>
                             <tbody>

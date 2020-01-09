@@ -10,9 +10,10 @@
         {if $.User->ID == $Person->ID || (ProfileRequestHandler::$accountLevelEditOthers && $.User->hasAccountLevel(ProfileRequestHandler::$accountLevelEditOthers))}
             <div class="btn-toolbar pull-right margin-bottom margin-left">
                 <div class="btn-group">
-                    <a class="btn btn-primary" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">Edit Profile</a>
+                    <a class="btn btn-primary" href="/profile{tif $.User->ID != $Person->ID ? cat('?person=', $Person->ID)}">{_ "Edit Profile"}</a>
                     {if $.User->hasAccountLevel('Staff')}
-                        <a class="btn btn-danger" href="{$Person->getUrl('/delete')|escape}">Delete {personName $Person}</a>
+                        {capture assign=deletePersonName}{personName $Person}{/capture}
+                        <a class="btn btn-danger" href="{$Person->getUrl('/delete')|escape}">{sprintf(_("Delete %s"), $deletePersonName)}</a>
                     {/if}
                 </div>
             </div>
@@ -48,17 +49,17 @@
                 <h2 class="h3">{_ 'Contact Information'}</h2>
                 <dl class="section">
                     {if $Person->Email}
-                        <dt>Email</dt>
+                        <dt>{_ Email}</dt>
                         <dd><a href="mailto:{$Person->Email}" title="Email {personName $Person}">{$Person->Email}</a></dd>
                     {/if}
 
                     {if $Person->Twitter}
-                        <dt>Twitter</dt>
+                        <dt>{_ Twitter}</dt>
                         <dd><a href="https://twitter.com/{$Person->Twitter|escape}">{$Person->Twitter|escape}</a></dd>
                     {/if}
 
                     {if $Person->Phone}
-                        <dt>Phone</dt>
+                        <dt>{_ Phone}</dt>
                         <dd><a href="tel:{$Person->Phone|escape:url}">{$Person->Phone|phone}</a></dd>
                     {/if}
                 </dl>

@@ -8,7 +8,7 @@
     {capture assign=linkHtml}<a href="{$Segment->getUrl()|escape}">{$Segment->getTitle()|escape}</a>{/capture}
 
     <div class="page-header">
-        <h1>Event Segment Saved</h1>
+        <h1>{_ "Event Segment Saved"}</h1>
     </div>
 
     {if $Segment->isNew}
