@@ -1,0 +1,49 @@
+name: Projections
+
+on:
+  push:
+    tags:
+      - 'v3.*'
+
+
+jobs:
+  holobranch-projections:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 'Update holobranch: emergence/skeleton/v3'
+      uses: JarvusInnovations/hologit@actions/projector/v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        HAB_LICENSE: accept
+      with:
+        ref: releases/v3
+        holobranch: emergence-skeleton
+        commit-to: emergence/skeleton/v3
+    - name: 'Update holobranch: emergence/vfs-site/v3'
+      uses: JarvusInnovations/hologit@actions/projector/v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        HAB_LICENSE: accept
+      with:
+        ref: releases/v3
+        holobranch: emergence-vfs-site
+        commit-to: emergence/vfs-site/v3
+    - name: 'Update v3.laddr.us'
+      env:
+        VFS_DEV_TOKEN: ${{ secrets.VFS_DEV_TOKEN }}
+      run: |
+        # pull latest commit
+        curl -X POST \
+          --silent \
+          -H "Authorization: Token ${VFS_DEV_TOKEN}" \
+          -H "Accept: application/json" \
+          "http://v3.laddr.us/site-admin/sources/laddr/pull?fetch=true" \
+          | jq '.'
+
+        # sync VFS to git
+        curl -X POST \
+          --silent \
+          -H "Authorization: Token ${VFS_DEV_TOKEN}" \
+          -H "Accept: application/json" \
+          "http://v3.laddr.us/site-admin/sources/laddr/sync-to-vfs" \
+          | jq '.'
