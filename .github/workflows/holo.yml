@@ -35,6 +35,8 @@ jobs:
         # pull latest commit
         curl -X POST \
           --silent \
+          --show-error \
+          --fail \
           -H "Authorization: Token ${VFS_DEV_TOKEN}" \
           -H "Accept: application/json" \
           "http://v3.laddr.us/site-admin/sources/laddr/pull?fetch=true" \
@@ -43,6 +45,8 @@ jobs:
         # sync VFS to git
         curl -X POST \
           --silent \
+          --show-error \
+          --fail \
           -H "Authorization: Token ${VFS_DEV_TOKEN}" \
           -H "Accept: application/json" \
           "http://v3.laddr.us/site-admin/sources/laddr/sync-to-vfs" \
