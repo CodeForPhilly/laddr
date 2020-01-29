@@ -2,19 +2,17 @@
 
 use Emergence\People\User;
 
-
 User::$fields['Twitter'] = [
     'notnull' => false,
-    'unique' => true
+    'unique' => true,
 ];
-
 
 User::$relationships['Tags'] = [
     'type' => 'many-many',
     'class' => \Tag::class,
     'linkClass' => \TagItem::class,
     'linkLocal' => 'ContextID',
-    'conditions' => ['Link.ContextClass = "Emergence\\\\People\\\\Person"']
+    'conditions' => ['Link.ContextClass = "Emergence\\\\People\\\\Person"'],
 ];
 User::$dynamicFields[] = 'Tags';
 
@@ -25,8 +23,8 @@ User::$relationships['TopicTags'] = [
     'linkLocal' => 'ContextID',
     'conditions' => [
         'Link.ContextClass = "Emergence\\\\People\\\\Person"',
-        'Related.Handle LIKE "topic.%"'
-    ]
+        'Related.Handle LIKE "topic.%"',
+    ],
 ];
 User::$dynamicFields[] = 'TopicTags';
 
@@ -37,15 +35,14 @@ User::$relationships['TechTags'] = [
     'linkLocal' => 'ContextID',
     'conditions' => [
         'Link.ContextClass = "Emergence\\\\People\\\\Person"',
-        'Related.Handle LIKE "tech.%"'
-    ]
+        'Related.Handle LIKE "tech.%"',
+    ],
 ];
 User::$dynamicFields[] = 'TechTags';
-
 
 User::$relationships['Comments'] = [
     'type' => 'context-children',
     'class' => \Comment::class,
     'contextClass' => __CLASS__,
-    'order' => ['ID' => 'DESC']
+    'order' => ['ID' => 'DESC'],
 ];

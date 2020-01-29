@@ -2,8 +2,8 @@
 
 namespace Laddr;
 
-use DB;
 use ActiveRecord;
+use DB;
 use Emergence\People\User;
 use Tag;
 use TagItem;
@@ -35,7 +35,6 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
     public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
-
         // apply tag filter
         if (!empty($_REQUEST['tag'])) {
             // get tag
@@ -65,31 +64,31 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         $responseData['projectsTotal'] = Project::getCount();
         $responseData['projectsTags']['byTech'] = TagItem::getTagsSummary([
             'tagConditions' => [
-                'Handle LIKE "tech.%"'
+                'Handle LIKE "tech.%"',
             ],
             'itemConditions' => [
-                'ContextClass' => Project::getStaticRootClass()
+                'ContextClass' => Project::getStaticRootClass(),
             ],
-            'limit' => 10
+            'limit' => 10,
         ]);
         $responseData['projectsTags']['byTopic'] = TagItem::getTagsSummary([
             'tagConditions' => [
-                'Handle LIKE "topic.%"'
+                'Handle LIKE "topic.%"',
             ],
             'itemConditions' => [
-                'ContextClass' => Project::getStaticRootClass()
-            ],'limit' => 10
+                'ContextClass' => Project::getStaticRootClass(),
+            ],
+            'limit' => 10,
         ]);
         $responseData['projectsTags']['byEvent'] = TagItem::getTagsSummary([
             'tagConditions' => [
-                'Handle LIKE "event.%"'
+                'Handle LIKE "event.%"',
             ],
             'itemConditions' => [
-                'ContextClass' => Project::getStaticRootClass()
-            ]
+                'ContextClass' => Project::getStaticRootClass(),
+            ],
         ]);
         $responseData['projectsStages'] = Project::getStagesSummary();
-
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
@@ -108,7 +107,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
         $recordData = [
             'ProjectID' => $Project->ID,
-            'MemberID' => $Member->ID
+            'MemberID' => $Member->ID,
         ];
 
         if (ProjectMember::getByWhere($recordData)) {
@@ -126,7 +125,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         return static::respond('memberAdded', [
             'data' => $ProjectMember,
             'Project' => $Project,
-            'Member' => $Member
+            'Member' => $Member,
         ]);
     }
 
@@ -142,19 +141,19 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             return static::throwError(_('User not found'));
         }
 
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ('POST' != $_SERVER['REQUEST_METHOD']) {
             return static::respond('confirm', [
                 'question' => sprintf(
                     _('Are you sure you want to remove %s from %s?'),
                     htmlspecialchars($Member->FullName),
                     htmlspecialchars($Project->Title)
-                )
+                ),
             ]);
         }
 
         $ProjectMember = ProjectMember::getByWhere([
             'ProjectID' => $Project->ID,
-            'MemberID' => $Member->ID
+            'MemberID' => $Member->ID,
         ]);
 
         if ($ProjectMember) {
@@ -164,7 +163,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         return static::respond('memberRemoved', [
             'data' => $ProjectMember,
             'Project' => $Project,
-            'Member' => $Member
+            'Member' => $Member,
         ]);
     }
 
@@ -180,20 +179,20 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             return static::throwError('User not found');
         }
 
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ('POST' != $_SERVER['REQUEST_METHOD']) {
             return static::respond('confirm', [
                 'question' => sprintf(
                     _('Are you sure you want to make %s the maintainer of %s?'),
                     htmlspecialchars($Project->Maintainer->FullName),
                     htmlspecialchars($Project->Title)
-                )
+                ),
             ]);
         }
 
         $Project->save();
 
         return static::respond('maintainerChanged', [
-            'data' => $Project
+            'data' => $Project,
         ]);
     }
 
@@ -202,7 +201,7 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
         if ($updateNumber = static::shiftPath()) {
             $Update = ProjectUpdate::getByWhere([
                 'ProjectID' => $Project->ID,
-                'Number' => $updateNumber
+                'Number' => $updateNumber,
             ]);
 
             if (!$Update) {
@@ -210,11 +209,11 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             }
 
             return static::respond('projectUpdate', [
-                'data' => $Update
+                'data' => $Update,
             ]);
         }
 
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ('POST' == $_SERVER['REQUEST_METHOD']) {
             $GLOBALS['Session']->requireAuthentication();
 
             if (empty($_POST['Body'])) {
@@ -224,27 +223,18 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
             $Update = ProjectUpdate::create([
                 'Project' => $Project,
                 'Number' => $Project->NextUpdate++,
-                'Body' => $_POST['Body']
+                'Body' => $_POST['Body'],
             ], true);
 
             return static::respond('projectUpdateCreated', [
-                'data' => $Update
+                'data' => $Update,
             ]);
         }
 
         return static::respond('projectUpdates', [
             'data' => $Project->Updates,
-            'Project' => $Project
+            'Project' => $Project,
         ]);
-    }
-
-    protected static function applyRecordDelta(ActiveRecord $Project, $requestData)
-    {
-        if (!empty($requestData['ChatChannel']) && $requestData['ChatChannel'][0] == '#') {
-            $requestData['ChatChannel'] = substr($requestData['ChatChannel'], 1);
-        }
-
-        return parent::applyRecordDelta($Project, $requestData);
     }
 
     public static function onRecordSaved(\ActiveRecord $Project, $requestData)
@@ -255,5 +245,14 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
                 Tag::setTags($Project, $tags, true, $prefix);
             }
         }
+    }
+
+    protected static function applyRecordDelta(ActiveRecord $Project, $requestData)
+    {
+        if (!empty($requestData['ChatChannel']) && '#' == $requestData['ChatChannel'][0]) {
+            $requestData['ChatChannel'] = substr($requestData['ChatChannel'], 1);
+        }
+
+        return parent::applyRecordDelta($Project, $requestData);
     }
 }

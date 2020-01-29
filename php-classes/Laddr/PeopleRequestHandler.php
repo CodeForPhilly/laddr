@@ -15,7 +15,6 @@ class PeopleRequestHandler extends \PeopleRequestHandler
 
     public static function handleBrowseRequest($options = [], $conditions = [], $responseID = null, $responseData = [])
     {
-
         // apply tag filter
         if (!empty($_REQUEST['tag'])) {
             // get tag
@@ -37,25 +36,24 @@ class PeopleRequestHandler extends \PeopleRequestHandler
             );
         }
 
-
         $responseData['membersTotal'] = Person::getCount();
         $responseData['membersTags']['byTech'] = TagItem::getTagsSummary([
             'tagConditions' => [
-                'Handle LIKE "tech.%"'
+                'Handle LIKE "tech.%"',
             ],
             'itemConditions' => [
-                'ContextClass' => Person::getStaticRootClass()
+                'ContextClass' => Person::getStaticRootClass(),
             ],
-            'limit' => 10
+            'limit' => 10,
         ]);
         $responseData['membersTags']['byTopic'] = TagItem::getTagsSummary([
             'tagConditions' => [
-                'Handle LIKE "topic.%"'
+                'Handle LIKE "topic.%"',
             ],
             'itemConditions' => [
-                'ContextClass' => Person::getStaticRootClass()
+                'ContextClass' => Person::getStaticRootClass(),
             ],
-            'limit' => 10
+            'limit' => 10,
         ]);
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
