@@ -64,7 +64,7 @@
                         <h2 class="post-title">
                             <a name="{$Project->Handle}" href="{$Project->getURL()}">{$Project->Title|escape}</a>
                             {if $Project->Stage}
-                                <span class="badge badge-info">$Project->Stage</span>
+                                <span class="badge badge-info">{_ "$Project->Stage"}</span>
                             {/if}
                         </h2>
                         <div class="well">
