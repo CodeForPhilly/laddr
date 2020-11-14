@@ -4,11 +4,11 @@ SearchRequestHandler::$searchClasses[Laddr\Project::class] = [
     'fields' => [
         [
             'field' => 'Title',
-            'method' => 'like'
+            'method' => 'like',
         ],
         [
             'field' => 'Handle',
-            'method' => 'like'
-        ]
-    ]
+            'method' => 'like',
+        ],
+    ],
 ];

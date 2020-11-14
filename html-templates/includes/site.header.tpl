@@ -12,7 +12,7 @@
 
             <form class="inline-form pull-right dropdown dropdown-results site-search js-site-search" role="search" action="/search">
                 <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Search" name="q" autocomplete="off">
+                    <input type="search" class="form-control" placeholder="{_ Search}" name="q" autocomplete="off">
                 </div>
 
                 {*
@@ -39,7 +39,7 @@
         </div><!-- /.navbar-collapse -->
         <!-- Brand and toggle get grouped for better mobile display -->
         <button class="navbar-toggler pull-right" type="button" data-toggle="collapse" data-target="#laddr-site-navbar"
-                aria-controls="laddr-site-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="laddr-site-navbar" aria-expanded="false" aria-label="{_ 'Toggle navigation'}">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div><!-- /.container-fluid -->

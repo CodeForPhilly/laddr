@@ -5,7 +5,7 @@ namespace Laddr;
 class ProfileRequestHandler extends \ProfileRequestHandler
 {
     /**
-     * True to enable opting into newsletter
+     * True to enable opting into newsletter.
      */
     public static $enableNewsletterOptIn = false;
 

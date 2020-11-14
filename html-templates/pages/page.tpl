@@ -26,7 +26,7 @@
                                    data-confirm-body="Are you sure you want to delete the page &ldquo;{$Page->Title|escape}?&rdquo;"
                                    data-confirm-destructive="true"
                                    data-confirm-success-target=".cms-page"
-                                   data-confirm-success-message="Page deleted">Delete</a>
+                                   data-confirm-success-message="Page deleted">{_ Delete}</a>
                             </div>
                         </div>
                     {/if}
@@ -34,7 +34,7 @@
                         <a href="{$Page->getURL()}">{$Page->Title}</a>
                     </h1>
                 </header>
-            
+
                 <section class="article-body">
                     {$Page->renderBody()}
                 </section>

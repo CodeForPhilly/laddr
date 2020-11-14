@@ -96,13 +96,18 @@
                             </ul>
                         {/if}
                         <div class="btn-group post-link-group" role="group">
-                            {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{icon "link"}&nbsp;Public Site</a>{/if}
-                            {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{icon "link"}&nbsp;Developers</a>{/if}
+                            {if $Project->UsersUrl}<a class="btn btn-primary" role="button" href="{$Project->UsersUrl|escape}">{icon "link"}&nbsp;{_ 'Public Site'}</a>{/if}
+                            {if $Project->DevelopersUrl}<a class="btn btn-success" role="button" href="{$Project->DevelopersUrl|escape}">{icon "link"}&nbsp;{_ Developers}</a>{/if}
                         </div>
                     </div>
                 </article>
             {foreachelse}
-                <em>No projects were found, try creating one{if count($conditions)} or <a href="?">browse without any filters</a>{/if}.</em>
+                {capture assign=browseText}<a href="?">{_ 'browse without any filters'}</a>{/capture}
+                {if count($conditions)}
+                  <em>{sprintf(_("No projects were found, try creating one or %s."), $browseText)}</em>
+                {else}
+                  <em>{_ "No projects were found, try creating one."}</em>
+                {/if}
             {/foreach}
         </div>
     </div>

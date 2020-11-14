@@ -1,0 +1,39 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    //->exclude('somedir')
+    ->in(__DIR__)
+;
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        /**
+         * Tap the most thoroughly-considered and
+         * widely-adopted presets for minimizing errors
+         */
+        '@PSR1' => true,
+        '@PSR2' => true,
+        // '@PSR12' => true, // not supported yet
+        '@Symfony' => true,
+
+        /**
+         * Apply a consistent order to class members.
+         *
+         * https://mlocati.github.io/php-cs-fixer-configurator/#version:2.16|fixer:ordered_class_elements
+         *
+         * Compatible with @Symfony
+         */
+        'ordered_class_elements' => true,
+
+        /**
+         * Symfony only cares about blank lines before returns,
+         * but phpcsfixer's default includes a few more cases.
+         *
+         * https://mlocati.github.io/php-cs-fixer-configurator/#version:2.16|fixer:blank_line_before_statement
+         *
+         * Compatible with @Symfony
+         */
+        'blank_line_before_statement' => true,
+    ])
+    ->setFinder($finder)
+;

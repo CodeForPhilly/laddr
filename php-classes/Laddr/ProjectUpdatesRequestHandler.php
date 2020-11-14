@@ -41,8 +41,9 @@ class ProjectUpdatesRequestHandler extends \RecordsRequestHandler
 
     public static function respond($responseID, $responseData = [], $responseMode = false)
     {
-        if ($responseID == 'projectUpdates' && $_GET['format'] == 'rss') {
+        if ('projectUpdates' == $responseID && 'rss' == $_GET['format']) {
             header('Content-Type: application/rss+xml');
+
             return \Emergence\Dwoo\Engine::respond('projectUpdates.rss', $responseData);
         }
 

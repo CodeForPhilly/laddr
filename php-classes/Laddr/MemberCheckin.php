@@ -2,8 +2,6 @@
 
 namespace Laddr;
 
-use Emergence\People\Person;
-
 class MemberCheckin extends \ActiveRecord
 {
     // ActiveRecord configuration
@@ -18,35 +16,35 @@ class MemberCheckin extends \ActiveRecord
         'MemberID' => 'uint',
         'ProjectID' => [
             'type' => 'uint',
-            'default' => null
+            'default' => null,
         ],
         'MeetupID' => [
             'type' => 'string',
-            'default' => null
-        ]
+            'default' => null,
+        ],
     ];
 
     public static $relationships = [
         'Member' => [
             'type' => 'one-one',
-            'class' => \Person::class
+            'class' => \Person::class,
         ],
         'Project' => [
             'type' => 'one-one',
-            'class' => Project::class
-        ]
+            'class' => Project::class,
+        ],
     ];
 
     public static $indexes = [
         'MeetupMember' => [
             'fields' => ['MeetupID', 'MemberID'],
-            'unique' => true
-        ]
+            'unique' => true,
+        ],
     ];
 
     public static $dynamicFields = [
         'Member',
-        'Project'
+        'Project',
     ];
 
     public static function getAllForMeetupByProject($meetupID)

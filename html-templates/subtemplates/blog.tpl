@@ -16,7 +16,7 @@
                     </{$headingLevel}>
                 </header>
             {/if}
-    
+
             {if $useSummary && $Post->Summary}
                 <div class="post-summary">
                     <p>{$Post->Summary|escape}</p>
@@ -45,15 +45,15 @@
                        data-confirm-success-message="Blog post deleted">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
                 {/if}
-    
+
                 <small class="text-muted">
                     {icon "user"}&nbsp;{personLink $Post->Author}
                     &emsp;
                     {icon "clock-o"}&nbsp;<a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
                 </small>
-                
+
                 &emsp;
-    
+
                 {if $showCommentsSummary}
                     <small class="post-comments text-muted">
                         {icon "comment"}&nbsp;
@@ -61,7 +61,7 @@
                             {if $Post->Comments}
                                 {count($Post->Comments)} Comment{tif count($Post->Comments) != 1 ? s}
                             {else}
-                                Be the first to comment.
+                                {_ "Be the first to comment."}
                             {/if}
                         {/strip}</a>
                     </small>

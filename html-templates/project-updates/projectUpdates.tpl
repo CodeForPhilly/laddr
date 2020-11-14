@@ -5,14 +5,16 @@
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/project-updates?{if $Project}ProjectID={$Project->ID}&amp;{/if}format=rss">
 {/block}
 
-{block title}Project Updates &mdash; {$dwoo.parent}{/block}
+{block title}{_ 'Project Updates'} &mdash; {$dwoo.parent}{/block}
 {block content}
     <header class="page-header">
         <h2>
-            Project Updates
-            {if $Project}
-                in <a href="{$Project->getURL()}">{$Project->Title|escape}</a>
-            {/if}
+          {capture assign=projectTitleLink}<a href="{$Project->getURL()}">{$Project->Title|escape}</a>{/capture}
+          {if $Project}
+            {sprintf(_("Project Updates in %s"), $projectTitleLink)}
+          {else}
+            {_ "Project Updates"}
+          {/if}
         </h2>
     </header>
 

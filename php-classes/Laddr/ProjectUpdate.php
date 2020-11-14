@@ -19,27 +19,27 @@ class ProjectUpdate extends \VersionedRecord
     public static $fields = [
         'ProjectID' => [
             'type' => 'uint',
-            'index' => true
+            'index' => true,
         ],
         'Number' => 'uint',
-        'Body' => 'clob'
+        'Body' => 'clob',
     ];
 
     public static $relationships = [
         'Project' => [
             'type' => 'one-one',
-            'class' => Project::class
-        ]
+            'class' => Project::class,
+        ],
     ];
 
     public static $validators = [
         'Body' => [
-            'errorMessage' => 'Update body is required'
-        ]
+            'errorMessage' => 'Update body is required',
+        ],
     ];
 
     public static $dynamicFields = [
-        'Project'
+        'Project',
     ];
 
     public function destroy()
@@ -47,7 +47,7 @@ class ProjectUpdate extends \VersionedRecord
         $success = parent::destroy();
 
         if ($success && ($this->Project->NextUpdate - 1 == $this->Number)) {
-            $this->Project->NextUpdate--;
+            --$this->Project->NextUpdate;
             $this->Project->save();
         }
 
