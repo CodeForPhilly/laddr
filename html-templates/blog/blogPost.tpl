@@ -76,13 +76,13 @@
                             <a href="{$Post->getURL()}/edit" class="btn btn-secondary">{*glyph "pencil"*} {_ Edit}</a>
                             <a href="{$Post->getURL()}/delete"
                                class="btn btn-danger confirm"
-                               data-confirm-yes="Delete Post"
-                               data-confirm-no="Don&rsquo;t Delete"
-                               data-confirm-title="Deleting Post"
-                               data-confirm-body="Are you sure you want to delete the post &ldquo;{$Post->Title|escape}?&rdquo;"
+                               data-confirm-yes="{_ Delete Post}"
+                               data-confirm-no="{_ Don&rsquo;t Delete}"
+                               data-confirm-title="{_ Deleting Post}"
+                               data-confirm-body="{_ Are you sure you want to delete the post} &ldquo;{$Post->Title|escape}?&rdquo;"
                                data-confirm-destructive="true"
                                data-confirm-success-target=".blog-post"
-                               data-confirm-success-message="Blog post deleted">{*glyph "trash"*} {_ Delete}</a>
+                               data-confirm-success-message="{_ Blog post deleted}">{*glyph "trash"*} {_ Delete}</a>
                         </div>
                     </div>
                 {/if}
