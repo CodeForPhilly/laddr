@@ -8,7 +8,7 @@ class MailChimp
     public static $defaultTimeout = 10;
 
     public static $apiInstance;
-    
+
     public static function getApi()
     {
         if (!static::$apiInstance) {
@@ -20,6 +20,6 @@ class MailChimp
 
     public static function call($method, $args = [], $timeout = null)
     {
-        return static::getApi()->call($method, $args, $timeout === null ? static::$defaultTimeout : 10);
+        return static::getApi()->call($method, $args, null === $timeout ? static::$defaultTimeout : 10);
     }
 }

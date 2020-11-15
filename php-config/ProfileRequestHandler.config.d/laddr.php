@@ -6,7 +6,7 @@ ProfileRequestHandler::$profileFields[] = 'Twitter';
 
 ProfileRequestHandler::$onBeforeProfileValidated = function ($User, $profileChanges, $requestData) {
     // trim @ from front of twitter username
-    if (isset($profileChanges['Twitter']) && $profileChanges['Twitter'][0] == '@') {
+    if (isset($profileChanges['Twitter']) && '@' == $profileChanges['Twitter'][0]) {
         $User->Twitter = substr($profileChanges['Twitter'], 1);
     }
 };

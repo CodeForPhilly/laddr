@@ -5,15 +5,15 @@ namespace RemoteSystems;
 class Twitter
 {
     public static $siteHandle;
-    public static $defaultTweetIntentParams = array(
-        'related' => 'codeforamerica'
-    );
+    public static $defaultTweetIntentParams = [
+        'related' => 'codeforamerica',
+    ];
 
-    public static function getTweetIntentURL($text, $params = array())
+    public static function getTweetIntentURL($text, $params = [])
     {
-        $params = array_merge(static::$defaultTweetIntentParams, array(
-            'text' => $text
-        ), $params);
+        $params = array_merge(static::$defaultTweetIntentParams, [
+            'text' => $text,
+        ], $params);
 
         if (static::$siteHandle) {
             $params['via'] = static::$siteHandle;

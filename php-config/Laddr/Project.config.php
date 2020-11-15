@@ -7,5 +7,5 @@ Laddr\Project::$stageDescriptions = [
     'Testing' => _('Something has been built and some people are using it'),
     'Maintaining' => _('The project is publicly accessible, useable, and responding to ongoing feedback'),
     'Drifting' => _('The project is still usable but not being actively maintained'),
-    'Hibernating' => _('The project is not currently usable or maintained')
+    'Hibernating' => _('The project is not currently usable or maintained'),
 ];

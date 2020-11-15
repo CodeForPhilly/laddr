@@ -4,19 +4,19 @@ SearchRequestHandler::$searchClasses[Laddr\ProjectBuzz::class] = [
     'fields' => [
         [
             'field' => 'Headline',
-            'method' => 'like'
+            'method' => 'like',
         ],
         [
             'field' => 'Handle',
-            'method' => 'like'
+            'method' => 'like',
         ],
         [
             'field' => 'URL',
-            'method' => 'like'
+            'method' => 'like',
         ],
         [
             'field' => 'Summary',
-            'method' => 'like'
-        ]
-    ]
+            'method' => 'like',
+        ],
+    ],
 ];

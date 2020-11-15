@@ -2,15 +2,15 @@
 
 namespace Laddr;
 
-use RequestHandler;
 use DB;
 use Person;
+use RequestHandler;
 
 class CheckinRequestHandler extends RequestHandler
 {
     public static $userResponseModes = [
-        'application/json' => 'json'
-        ,'text/csv' => 'csv'
+        'application/json' => 'json',
+        'text/csv' => 'csv',
     ];
 
     public static function handleRequest()
@@ -32,7 +32,7 @@ class CheckinRequestHandler extends RequestHandler
     {
         $GLOBALS['Session']->requireAuthentication();
 
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        if ('POST' != $_SERVER['REQUEST_METHOD']) {
             return static::throwError('A checkin can only be performed via HTTP POST');
         }
 
@@ -42,15 +42,15 @@ class CheckinRequestHandler extends RequestHandler
 
         // check for existing checkin for this Member+Meetup
         $Checkin = MemberCheckin::getByWhere([
-            'MemberID' => $GLOBALS['Session']->PersonID
-            ,'MeetupID' => $_POST['MeetupID']
+            'MemberID' => $GLOBALS['Session']->PersonID,
+            'MeetupID' => $_POST['MeetupID'],
         ]);
 
         // create new checkin if there wasn't an existing one
         if (!$Checkin) {
             $Checkin = MemberCheckin::create([
-                'MemberID' => $GLOBALS['Session']->PersonID
-                ,'MeetupID' => $_POST['MeetupID']
+                'MemberID' => $GLOBALS['Session']->PersonID,
+                'MeetupID' => $_POST['MeetupID'],
             ]);
         }
 
@@ -61,8 +61,8 @@ class CheckinRequestHandler extends RequestHandler
         $Checkin->save();
 
         static::respond('checkinComplete', [
-            'data' => $Checkin
-            ,'success' => true
+            'data' => $Checkin,
+            'success' => true,
         ]);
     }
 
@@ -72,6 +72,7 @@ class CheckinRequestHandler extends RequestHandler
             'data' => array_map(
                 function ($result) {
                     $result['Member'] = Person::getByID($result['Member']);
+
                     return $result;
                 },
                 DB::allRecords('
@@ -82,7 +83,7 @@ class CheckinRequestHandler extends RequestHandler
                     HAVING Checkins > 1
                      ORDER BY Checkins DESC
                 ')
-            )
+            ),
         ]);
     }
 
@@ -97,7 +98,7 @@ class CheckinRequestHandler extends RequestHandler
                   FROM member_checkins
                  GROUP BY MeetupID
                  ORDER BY First DESC
-            ')
+            '),
         ]);
     }
 }

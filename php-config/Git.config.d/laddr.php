@@ -16,6 +16,6 @@ Git::$repositories['laddr'] = [
         'phpunit-tests',
         'site-root',
         'site-tasks',
-        'webapp-builds'
-    ]
+        'webapp-builds',
+    ],
 ];
