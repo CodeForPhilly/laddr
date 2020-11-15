@@ -89,9 +89,11 @@
 
                 <h1 class="header-title"><a href="{$Post->getURL()}">{$Post->Title|escape}</a></h1>
 
+               {capture assign=authorData}{personLink $Post->Author photo=yes photoSize=36 pixelRatio=2 summary=no}{/capture}
+               {capture assign=authoredDate}<a href="{$Post->getURL()}">{timestamp $Post->Published}</a>{/capture}
+
                 <div class="article-meta">
-                    by {personLink $Post->Author photo=yes photoSize=36 pixelRatio=2 summary=no}
-                    on <a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
+                    {sprintf(_("on %s by %s"), $authorData, $authoredDate)}
                 </div>
 
                 {if $Post->Summary}
