@@ -22,8 +22,8 @@
                                    class="btn btn-danger confirm"
                                    data-confirm-yes="Delete Page"
                                    data-confirm-no="Don&rsquo;t Delete"
-                                   data-confirm-title="Deleting Post"
-                                   data-confirm-body="Are you sure you want to delete the page &ldquo;{$Page->Title|escape}?&rdquo;"
+                                   data-confirm-title="{_ Deleting Post}"
+                                   data-confirm-body="{_ Are you sure you want to delete the page} &ldquo;{$Page->Title|escape}?&rdquo;"
                                    data-confirm-destructive="true"
                                    data-confirm-success-target=".cms-page"
                                    data-confirm-success-message="Page deleted">{_ Delete}</a>
