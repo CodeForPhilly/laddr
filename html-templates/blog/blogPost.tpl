@@ -76,22 +76,24 @@
                             <a href="{$Post->getURL()}/edit" class="btn btn-secondary">{*glyph "pencil"*} {_ Edit}</a>
                             <a href="{$Post->getURL()}/delete"
                                class="btn btn-danger confirm"
-                               data-confirm-yes="Delete Post"
-                               data-confirm-no="Don&rsquo;t Delete"
-                               data-confirm-title="Deleting Post"
-                               data-confirm-body="Are you sure you want to delete the post &ldquo;{$Post->Title|escape}?&rdquo;"
+                               data-confirm-yes="{_ 'Delete Post'}"
+                               data-confirm-no="{_ 'Don&rsquo;t Delete'}"
+                               data-confirm-title="{_ 'Deleting Post'}"
+                               data-confirm-body="{_ 'Are you sure you want to delete the post'} &ldquo;{$Post->Title|escape}?&rdquo;"
                                data-confirm-destructive="true"
                                data-confirm-success-target=".blog-post"
-                               data-confirm-success-message="Blog post deleted">{*glyph "trash"*} {_ Delete}</a>
+                               data-confirm-success-message="{_ 'Blog post deleted'}">{*glyph "trash"*} {_ Delete}</a>
                         </div>
                     </div>
                 {/if}
 
                 <h1 class="header-title"><a href="{$Post->getURL()}">{$Post->Title|escape}</a></h1>
 
+               {capture assign=authorData}{personLink $Post->Author photo=yes photoSize=36 pixelRatio=2 summary=no}{/capture}
+               {capture assign=authoredDate}<a href="{$Post->getURL()}">{timestamp $Post->Published}</a>{/capture}
+
                 <div class="article-meta">
-                    by {personLink $Post->Author photo=yes photoSize=36 pixelRatio=2 summary=no}
-                    on <a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
+                    {sprintf(_("on %s by %s"), $authorData, $authoredDate)}
                 </div>
 
                 {if $Post->Summary}

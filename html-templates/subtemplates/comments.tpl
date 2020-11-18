@@ -53,13 +53,13 @@
                             {/if}
                             <a href="{$Comment->getURL()}/delete"
                                class="btn btn-sm btn-danger confirm"
-                               data-confirm-yes="Delete Comment"
-                               data-confirm-no="Don&rsquo;t Delete"
-                               data-confirm-title="Deleting Comment"
-                               data-confirm-body="Are you sure you want to delete this comment from {personName $Comment->Creator}?"
+                               data-confirm-yes="{_ 'Delete Comment'}"
+                               data-confirm-no="{_ 'Don&rsquo;t Delete'}"
+                               data-confirm-title="{_ 'Deleting Comment'}"
+                               data-confirm-body="{_ 'Are you sure you want to delete this comment from'} {personName $Comment->Creator}?"
                                data-confirm-destructive="true"
                                data-confirm-success-target=".comment"
-                               data-confirm-success-message="Comment deleted">{_ Delete}</a>
+                               data-confirm-success-message="{_ 'Comment deleted'}">{_ Delete}</a>
                         </div>
                     {/if}
 
