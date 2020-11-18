@@ -1,8 +1,10 @@
 <?php
 
 use Emergence\People\IPerson;
+use Emergence\Interfaces\Image AS IImage;
 
 class ActiveRecord
+    implements IImage
 {
     // configurables
     /**
@@ -421,20 +423,45 @@ class ActiveRecord
         return $url;
     }
 
-    public function getThumbnailURL($width, $height = null, $exactSize = true)
+    /**
+     * @deprecated
+     */
+    public function getThumbnailURL($maxWidth, $maxHeight = null, $exactSize = true)
+    {
+        return $this->getImageUrl($maxWidth, $maxHeight, [
+            'fillColor' => $exactSize && is_string($exactSize) ? $exactSize : null,
+            'cropped' => $exactSize && !is_string($exactSize)
+        ]);
+    }
+
+    // implement Image interface:
+    public function getProxiedImageObject()
     {
         if (
             static::$thumbnailRelationship &&
             static::_relationshipExists(static::$thumbnailRelationship) &&
-            ($ThumbMedia = $this->_getRelationshipValue(static::$thumbnailRelationship)) &&
-            $ThumbMedia->isA('Media')
+            ($ThumbObject = $this->_getRelationshipValue(static::$thumbnailRelationship)) &&
+            $ThumbObject instanceof IImage
         ) {
-            return $ThumbMedia->getThumbnailRequest(
-                $width,
-                $height,
-                $exactSize && is_string($exactSize) ? $exactSize : null,
-                $exactSize && !is_string($exactSize)
-            );
+            return $ThumbObject;
+        }
+
+        return null;
+    }
+
+    public function getImageUrl($maxWidth = null, $maxHeight = null, array $options = [])
+    {
+        if ($proxiedImageObject = $this->getProxiedImageObject()) {
+            return $proxiedImageObject->getImageUrl($maxWidth, $maxHeight, $options);
+        }
+
+        return null;
+    }
+
+    public function getImage(array $options = [])
+    {
+        if ($proxiedImageObject = $this->getProxiedImageObject()) {
+            return $proxiedImageObject->getImage($options);
         }
 
         return null;
@@ -595,7 +622,13 @@ class ActiveRecord
         $validators = static::getStackedConfig('validators');
         if (count(static::getStackedConfig('validators'))) {
             foreach (static::getStackedConfig('validators') AS $validator => $options) {
-                $fieldId = !empty($options['id']) ? $options['id'] : $options['field'];
+                $fieldId = !empty($options['id'])
+                    ? $options['id']
+                    : (
+                        !empty($options['field'])
+                        ? $options['field']
+                        : $validator
+                    );
 
                 if (isset($options['validator']) && $options['validator'] == 'require-relationship') {
                     if (!$this->_getRelationshipValue($options['field'])) {
@@ -2227,6 +2260,7 @@ class ActiveRecord
         // pre-process value
         $forceDirty = false;
         switch ($fieldOptions['type']) {
+            case 'enum':
             case 'clob':
             case 'string':
             {
@@ -2517,8 +2551,7 @@ class ActiveRecord
 
                 $conditions = is_callable($rel['conditions']) ? call_user_func($rel['conditions'], $this, $relationship, $rel) : $rel['conditions'];
 
-                // TODO: support order
-                $query = 'SELECT Related.* FROM `%s` Link JOIN `%s` Related ON (Related.`%s` = Link.%s) WHERE Link.`%s` = %u AND %s';
+                $query = 'SELECT Related.* FROM `%s` Link JOIN `%s` Related ON (Related.`%s` = Link.%s) WHERE Link.`%s` = %u AND %s %s';
                 $params = array(
                     $rel['linkClass']::$tableName
                     ,$rel['class']::$tableName
@@ -2527,6 +2560,7 @@ class ActiveRecord
                     ,$rel['linkLocal']
                     ,$this->_getFieldValue($rel['local'])
                     ,$conditions ? join(' AND ', $conditions) : '1'
+                    ,empty($rel['order']) ? '' : ' ORDER BY ' . join(',', static::_mapFieldOrder($rel['order']))
                 );
 
                 if ($rel['indexField']) {
@@ -2799,7 +2833,7 @@ class ActiveRecord
                 if ($condition === null || ($condition == '' && !empty($fieldOptions['blankisnull']))) {
                     $condition = sprintf('%s IS NULL', $columnName);
                 } elseif (is_array($condition)) {
-                    if ($condition['operator'] == 'BETWEEN') {
+                    if (isset($condition['operator']) && $condition['operator'] == 'BETWEEN') {
                         $condition = sprintf(
                             '%s BETWEEN %s AND %s',
                             $columnName,

@@ -83,7 +83,9 @@ class Mysqldump
     private $pdoSettings = array();
     private $version;
     private $tableColumnTypes = array();
+    private $transformTableRowCallable;
     private $transformColumnValueCallable;
+    private $infoCallable;
 
     /**
      * Database name, parsed from dsn.
@@ -112,6 +114,7 @@ class Mysqldump
     private $tableWheres = array();
     private $tableLimits = array();
 
+
     /**
      * Constructor of Mysqldump. Note that in the case of an SQLite database
      * connection, the filename must be in the $db parameter.
@@ -132,9 +135,11 @@ class Mysqldump
         $dumpSettingsDefault = array(
             'include-tables' => array(),
             'exclude-tables' => array(),
+            'include-views' => array(),
             'compress' => Mysqldump::NONE,
             'init_commands' => array(),
             'no-data' => array(),
+            'if-not-exists' => false,
             'reset-auto-increment' => false,
             'add-drop-database' => false,
             'add-drop-table' => false,
@@ -178,8 +183,8 @@ class Mysqldump
             $pdoSettingsDefault[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = false;
         }
 
-        $this->pdoSettings = self::array_replace_recursive($pdoSettingsDefault, $pdoSettings);
-        $this->dumpSettings = self::array_replace_recursive($dumpSettingsDefault, $dumpSettings);
+        $this->pdoSettings = array_replace_recursive($pdoSettingsDefault, $pdoSettings);
+        $this->dumpSettings = array_replace_recursive($dumpSettingsDefault, $dumpSettings);
         $this->dumpSettings['init_commands'][] = "SET NAMES ".$this->dumpSettings['default-character-set'];
 
         if (false === $this->dumpSettings['skip-tz-utc']) {
@@ -196,8 +201,10 @@ class Mysqldump
             throw new Exception("Include-tables and exclude-tables should be arrays");
         }
 
-        // Dump the same views as tables, mimic mysqldump behaviour
-        $this->dumpSettings['include-views'] = $this->dumpSettings['include-tables'];
+        // If no include-views is passed in, dump the same views as tables, mimic mysqldump behaviour.
+        if (!isset($dumpSettings['include-views'])) {
+            $this->dumpSettings['include-views'] = $this->dumpSettings['include-tables'];
+        }
 
         // Create a new compressManager to manage compressed output
         $this->compressManager = CompressManagerFactory::create($this->dumpSettings['compress']);
@@ -209,31 +216,6 @@ class Mysqldump
     public function __destruct()
     {
         $this->dbHandler = null;
-    }
-
-    /**
-     * Custom array_replace_recursive to be used if PHP < 5.3
-     * Replaces elements from passed arrays into the first array recursively.
-     *
-     * @param array $array1 The array in which elements are replaced
-     * @param array $array2 The array from which elements will be extracted
-     *
-     * @return array Returns an array, or NULL if an error occurs.
-     */
-    public static function array_replace_recursive($array1, $array2)
-    {
-        if (function_exists('array_replace_recursive')) {
-            return array_replace_recursive($array1, $array2);
-        }
-
-        foreach ($array2 as $key => $value) {
-            if (is_array($value)) {
-                $array1[$key] = self::array_replace_recursive($array1[$key], $value);
-            } else {
-                $array1[$key] = $value;
-            }
-        }
-        return $array1;
     }
 
     /**
@@ -281,7 +263,7 @@ class Mysqldump
      */
     public function getTableLimit($tableName)
     {
-        if (empty($this->tableLimits[$tableName])) {
+        if (!isset($this->tableLimits[$tableName])) {
             return false;
         }
 
@@ -723,6 +705,7 @@ class Mysqldump
         foreach ($this->triggers as $trigger) {
             $this->getTriggerStructure($trigger);
         }
+
     }
 
     /**
@@ -1011,12 +994,20 @@ class Mysqldump
      *
      * @return array
      */
-    private function prepareColumnValues($tableName, $row)
+    private function prepareColumnValues($tableName, array $row)
     {
         $ret = array();
         $columnTypes = $this->tableColumnTypes[$tableName];
+
+        if ($this->transformTableRowCallable) {
+            $row = call_user_func($this->transformTableRowCallable, $tableName, $row);
+        }
+
         foreach ($row as $colName => $colValue) {
-            $colValue = $this->hookTransformColumnValue($tableName, $colName, $colValue, $row);
+            if ($this->transformColumnValueCallable) {
+                $colValue = call_user_func($this->transformColumnValueCallable, $tableName, $colName, $colValue, $row);
+            }
+
             $ret[] = $this->escape($colValue, $columnTypes[$colName]);
         }
 
@@ -1049,11 +1040,25 @@ class Mysqldump
     }
 
     /**
-     * Set a callable that will will be used to transform column values.
+     * Set a callable that will be used to transform table rows
      *
      * @param callable $callable
      *
      * @return void
+     */
+    public function setTransformTableRowHook($callable)
+    {
+        $this->transformTableRowCallable = $callable;
+    }
+
+    /**
+     * Set a callable that will be used to transform column values
+     *
+     * @param callable $callable
+     *
+     * @return void
+     *
+     * @deprecated Use setTransformTableRowHook instead for better performance
      */
     public function setTransformColumnValueHook($callable)
     {
@@ -1061,26 +1066,15 @@ class Mysqldump
     }
 
     /**
-     * Give extending classes an opportunity to transform column values
+     * Set a callable that will be used to report dump information
      *
-     * @param string $tableName Name of table which contains rows
-     * @param string $colName Name of the column in question
-     * @param string $colValue Value of the column in question
+     * @param callable $callable
      *
-     * @return string
+     * @return void
      */
-    protected function hookTransformColumnValue($tableName, $colName, $colValue, $row)
+    public function setInfoHook($callable)
     {
-        if (!$this->transformColumnValueCallable) {
-            return $colValue;
-        }
-
-        return call_user_func_array($this->transformColumnValueCallable, array(
-            $tableName,
-            $colName,
-            $colValue,
-            $row
-        ));
+        $this->infoCallable = $callable;
     }
 
     /**
@@ -1115,7 +1109,7 @@ class Mysqldump
 
         $limit = $this->getTableLimit($tableName);
 
-        if ($limit) {
+        if ($limit !== false) {
             $stmt .= " LIMIT {$limit}";
         }
 
@@ -1157,6 +1151,10 @@ class Mysqldump
         }
 
         $this->endListValues($tableName, $count);
+
+        if ($this->infoCallable) {
+            call_user_func($this->infoCallable, 'table', array('name' => $tableName, 'rowCount' => $count));
+        }
     }
 
     /**
@@ -1458,39 +1456,39 @@ class CompressNone extends CompressManagerFactory
 
 class CompressGzipstream extends CompressManagerFactory
 {
-  private $fileHandler = null;
+    private $fileHandler = null;
 
-  private $compressContext;
+    private $compressContext;
 
-  /**
-   * @param string $filename
-   */
-  public function open($filename)
-  {
+    /**
+     * @param string $filename
+     */
+    public function open($filename)
+    {
     $this->fileHandler = fopen($filename, "wb");
     if (false === $this->fileHandler) {
-      throw new Exception("Output file is not writable");
+        throw new Exception("Output file is not writable");
     }
 
     $this->compressContext = deflate_init(ZLIB_ENCODING_GZIP, array('level' => 9));
     return true;
-  }
+    }
 
-  public function write($str)
-  {
+    public function write($str)
+    {
 
     $bytesWritten = fwrite($this->fileHandler, deflate_add($this->compressContext, $str, ZLIB_NO_FLUSH));
     if (false === $bytesWritten) {
-      throw new Exception("Writting to file failed! Probably, there is no more free space left?");
+        throw new Exception("Writting to file failed! Probably, there is no more free space left?");
     }
     return $bytesWritten;
-  }
+    }
 
-  public function close()
-  {
+    public function close()
+    {
     fwrite($this->fileHandler, deflate_add($this->compressContext, '', ZLIB_FINISH));
     return fclose($this->fileHandler);
-  }
+    }
 }
 
 /**
@@ -1876,6 +1874,10 @@ class TypeAdapterMysql extends TypeAdapterFactory
             $replace = "";
             $createTable = preg_replace($match, $replace, $createTable);
         }
+        
+		if ($this->dumpSettings['if-not-exists'] ) {
+			$createTable = preg_replace('/^CREATE TABLE/', 'CREATE TABLE IF NOT EXISTS', $createTable);
+        }        
 
         $ret = "/*!40101 SET @saved_cs_client     = @@character_set_client */;".PHP_EOL.
             "/*!40101 SET character_set_client = ".$this->dumpSettings['default-character-set']." */;".PHP_EOL.
@@ -1942,7 +1944,7 @@ class TypeAdapterMysql extends TypeAdapterFactory
                 "Please check 'https://bugs.mysql.com/bug.php?id=14564'");
         }
         $procedureStmt = $row['Create Procedure'];
-        if ( $this->dumpSettings['skip-definer'] ) {
+        if ($this->dumpSettings['skip-definer']) {
             if ($procedureStmtReplaced = preg_replace(
                 '/^(CREATE)\s+('.self::DEFINER_RE.')?\s+(PROCEDURE\s.*)$/s',
                 '\1 \3',
@@ -1973,6 +1975,9 @@ class TypeAdapterMysql extends TypeAdapterFactory
                 "Please check 'https://bugs.mysql.com/bug.php?id=14564'");
         }
         $functionStmt = $row['Create Function'];
+        $characterSetClient = $row['character_set_client'];
+        $collationConnection = $row['collation_connection'];
+        $sqlMode = $row['sql_mode'];
         if ( $this->dumpSettings['skip-definer'] ) {
             if ($functionStmtReplaced = preg_replace(
                 '/^(CREATE)\s+('.self::DEFINER_RE.')?\s+(FUNCTION\s.*)$/s',
@@ -1987,11 +1992,24 @@ class TypeAdapterMysql extends TypeAdapterFactory
         $ret .= "/*!50003 DROP FUNCTION IF EXISTS `".
             $row['Function']."` */;".PHP_EOL.
             "/*!40101 SET @saved_cs_client     = @@character_set_client */;".PHP_EOL.
-            "/*!40101 SET character_set_client = ".$this->dumpSettings['default-character-set']." */;".PHP_EOL.
+            "/*!50003 SET @saved_cs_results     = @@character_set_results */ ;".PHP_EOL.
+            "/*!50003 SET @saved_col_connection = @@collation_connection */ ;".PHP_EOL.
+            "/*!40101 SET character_set_client = ".$characterSetClient." */;".PHP_EOL.
+            "/*!40101 SET character_set_results = ".$characterSetClient." */;".PHP_EOL.
+            "/*!50003 SET collation_connection  = ".$collationConnection." */ ;".PHP_EOL.
+            "/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;".PHP_EOL.
+            "/*!50003 SET sql_mode              = '".$sqlMode."' */ ;;".PHP_EOL.
+            "/*!50003 SET @saved_time_zone      = @@time_zone */ ;;".PHP_EOL.
+            "/*!50003 SET time_zone             = 'SYSTEM' */ ;;".PHP_EOL.
             "DELIMITER ;;".PHP_EOL.
             $functionStmt." ;;".PHP_EOL.
             "DELIMITER ;".PHP_EOL.
-            "/*!40101 SET character_set_client = @saved_cs_client */;".PHP_EOL.PHP_EOL;
+            "/*!50003 SET sql_mode              = @saved_sql_mode */ ;".PHP_EOL.
+            "/*!50003 SET character_set_client  = @saved_cs_client */ ;".PHP_EOL.
+            "/*!50003 SET character_set_results = @saved_cs_results */ ;".PHP_EOL.
+            "/*!50003 SET collation_connection  = @saved_col_connection */ ;".PHP_EOL.
+            "/*!50106 SET TIME_ZONE= @saved_time_zone */ ;".PHP_EOL.PHP_EOL;
+
 
         return $ret;
     }
@@ -2116,7 +2134,7 @@ class TypeAdapterMysql extends TypeAdapterFactory
 
     public function start_transaction()
     {
-        return "START TRANSACTION " .
+        return "START TRANSACTION ".
             "/*!40100 WITH CONSISTENT SNAPSHOT */";
     }
 
@@ -2256,6 +2274,10 @@ class TypeAdapterMysql extends TypeAdapterFactory
                 "/*!40103 SET TIME_ZONE='+00:00' */;".PHP_EOL;
         }
 
+        if ($this->dumpSettings['no-autocommit']) {
+                $ret .= "/*!40101 SET @OLD_AUTOCOMMIT=@@AUTOCOMMIT */;".PHP_EOL;
+        }
+
         $ret .= "/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;".PHP_EOL.
             "/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;".PHP_EOL.
             "/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;".PHP_EOL.
@@ -2270,6 +2292,10 @@ class TypeAdapterMysql extends TypeAdapterFactory
 
         if (false === $this->dumpSettings['skip-tz-utc']) {
             $ret .= "/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;".PHP_EOL;
+        }
+
+        if ($this->dumpSettings['no-autocommit']) {
+                $ret .= "/*!40101 SET AUTOCOMMIT=@OLD_AUTOCOMMIT */;".PHP_EOL;
         }
 
         $ret .= "/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;".PHP_EOL.

@@ -2,9 +2,9 @@
 
 namespace Emergence\Redirects;
 
+use Cache;
 use DB;
 use Site;
-use Cache;
 use TableNotFoundException;
 
 class Redirect extends \ActiveRecord
@@ -16,14 +16,14 @@ class Redirect extends \ActiveRecord
 
     public static $fields = [
         'From' => [
-            'unique' => true
+            'unique' => true,
         ],
-        'To'
+        'To',
     ];
 
     public static $validators = [
         'From',
-        'To'
+        'To',
     ];
 
     public function validate($deep = true)
@@ -112,13 +112,13 @@ class Redirect extends \ActiveRecord
 
         $redirects = static::getRedirectsTable();
 
-        for ($pathLength = count($path); $pathLength > 0; $pathLength--) {
+        for ($pathLength = count($path); $pathLength > 0; --$pathLength) {
             $pathSegment = implode('/', array_slice($path, 0, $pathLength));
 
             if ($redirects[$pathSegment]) {
                 $carriedSuffix = implode('/', array_slice($path, $pathLength));
 
-                return $redirects[$pathSegment] . ($carriedSuffix ? '/' . $carriedSuffix : '');
+                return $redirects[$pathSegment].($carriedSuffix ? '/'.$carriedSuffix : '');
             }
         }
 

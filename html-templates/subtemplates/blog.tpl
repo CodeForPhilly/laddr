@@ -16,7 +16,7 @@
                     </{$headingLevel}>
                 </header>
             {/if}
-    
+
             {if $useSummary && $Post->Summary}
                 <div class="post-summary">
                     <p>{$Post->Summary|escape}</p>
@@ -36,24 +36,24 @@
                     <a href="{$Post->getURL()}/edit" class="btn btn-sm btn-secondary">{icon "pencil"} <span class="sr-only">{_ Edit}</span></span></a>
                     <a href="{$Post->getURL()}/delete"
                        class="btn btn-sm btn-danger confirm"
-                       data-confirm-yes="Delete Post"
-                       data-confirm-no="Don&rsquo;t Delete"
-                       data-confirm-title="Deleting Post"
-                       data-confirm-body="Are you sure you want to delete the post &ldquo;{$Post->Title|escape}?&rdquo;"
+                       data-confirm-yes="{_ 'Delete Post'}"
+                       data-confirm-no="{_ 'Don&rsquo;t Delete'}"
+                       data-confirm-title="{_ 'Deleting Post'}"
+                       data-confirm-body="{_ 'Are you sure you want to delete the post'} &ldquo;{$Post->Title|escape}?&rdquo;"
                        data-confirm-destructive="true"
                        data-confirm-success-target=".blog-post"
-                       data-confirm-success-message="Blog post deleted">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
+                       data-confirm-success-message="{_ 'Blog post deleted'}">{icon "trash"} <span class="sr-only">{_ Delete}</span></a>
                 </div>
                 {/if}
-    
+
                 <small class="text-muted">
                     {icon "user"}&nbsp;{personLink $Post->Author}
                     &emsp;
                     {icon "clock-o"}&nbsp;<a href="{$Post->getURL()}">{timestamp $Post->Published}</a>
                 </small>
-                
+
                 &emsp;
-    
+
                 {if $showCommentsSummary}
                     <small class="post-comments text-muted">
                         {icon "comment"}&nbsp;
@@ -61,7 +61,7 @@
                             {if $Post->Comments}
                                 {count($Post->Comments)} Comment{tif count($Post->Comments) != 1 ? s}
                             {else}
-                                Be the first to comment.
+                                {_ "Be the first to comment."}
                             {/if}
                         {/strip}</a>
                     </small>
@@ -69,7 +69,7 @@
                 {if $Post->Tags && $showCommentsSummary} &emsp; {/if}
                 {if $Post->Tags}
                     <small class="post-tags text-muted">
-                        {icon "tag"}&nbsp;<span class="sr-only">Tags: </span>{foreach item=Tag from=$Post->Tags implode=', '}<a href="{$Tag->getURL()}">{$Tag->Title|escape}</a>{/foreach}
+                        {icon "tag"}&nbsp;<span class="sr-only">{_ Tags}: </span>{foreach item=Tag from=$Post->Tags implode=', '}<a href="{$Tag->getURL()}">{$Tag->Title|escape}</a>{/foreach}
                     </small>
                 {/if}
             </footer>

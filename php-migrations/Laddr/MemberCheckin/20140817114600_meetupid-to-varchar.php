@@ -8,14 +8,15 @@ $newType = 'varchar(255)';
 // skip conditions
 if (!static::tableExists(MemberCheckin::$tableName)) {
     printf("Skipping migration because table `%s` does not exist yet\n", MemberCheckin::$tableName);
+
     return static::STATUS_SKIPPED;
 }
 
 if (static::getColumnType(MemberCheckin::$tableName, $columnName) == $newType) {
     printf("Column `%s`.`%s` is already type %s\n", MemberCheckin::$tableName, $columnName, $newType);
+
     return static::STATUS_SKIPPED;
 }
-
 
 // migration
 printf("Changing column `%s`.`%s` to type %s\n", MemberCheckin::$tableName, $columnName, $newType);
@@ -24,10 +25,9 @@ DB::nonQuery(
     [
         MemberCheckin::$tableName,
         $columnName,
-        $newType
+        $newType,
     ]
 );
-
 
 // done
 return static::STATUS_EXECUTED;

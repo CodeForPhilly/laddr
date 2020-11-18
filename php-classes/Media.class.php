@@ -1,5 +1,7 @@
 <?php
 
+use Emergence\Site\Storage;
+
 class Media extends ActiveRecord
 {
     public static $useCache = true;
@@ -92,7 +94,6 @@ class Media extends ActiveRecord
     public static $defaultFilenameFormat = 'default.%s.jpg';
     public static $newDirectoryPermissions = 0775;
     public static $newFilePermissions = 0664;
-    public static $magicPath = null;//'/usr/share/misc/magic.mgc';
     public static $useFaceDetection = true;
     public static $faceDetectionTimeLimit = 10;
 
@@ -189,6 +190,9 @@ class Media extends ActiveRecord
         );
     }
 
+    /**
+     * @deprecated
+     */
     public function getThumbnailRequest($width, $height = null, $fillColor = null, $cropped = false)
     {
         return sprintf(
@@ -200,12 +204,21 @@ class Media extends ActiveRecord
         ).($cropped ? '/cropped' : '');
     }
 
-    public function getImage($sourceFile = null)
+    /**
+     * Wrap around original getThumbnailRequest to override new interface getThumbnailRequest
+     */
+    public function getImageUrl($maxWidth = null, $maxHeight = null, array $options = [])
     {
-        if (!isset($sourceFile)) {
-            $sourceFile = $this->FilesystemPath ? $this->FilesystemPath : $this->BlankPath;
-        }
+        return $this->getThumbnailRequest(
+            $maxWidth ?: $maxHeight,
+            $maxHeight ?: $maxWidth,
+            !empty($options['fillColor']) ? $options['fillColor'] : null,
+            !empty($options['cropped'])
+        );
+    }
 
+    public function getImage(array $options = [])
+    {
         switch ($this->MIMEType) {
             case 'application/psd':
             case 'image/tiff':
@@ -218,13 +231,14 @@ class Media extends ActiveRecord
 
             case 'application/pdf':
 
-               return PDFMedia::getImage($sourceFile);
+               return PDFMedia::getImage();
 
             case 'application/postscript':
 
                 return imagecreatefromstring(shell_exec("gs -r150 -dEPSCrop -dNOPAUSE -dBATCH -sDEVICE=png48 -sOutputFile=- -q $this->FilesystemPath"));
 
             default:
+                $sourceFile = $this->FilesystemPath ? $this->FilesystemPath : $this->BlankPath;
 
                 if (!$fileData = @file_get_contents($sourceFile)) {
                     throw new Exception('Could not load media source: '.$sourceFile);
@@ -279,7 +293,7 @@ class Media extends ActiveRecord
             $thumbFormat .= '.cropped';
         }
 
-        $thumbPath = Site::$rootPath.'/site-data/media/'.$thumbFormat.'/'.$this->Filename;
+        $thumbPath = Storage::getLocalStorageRoot().'/media/'.$thumbFormat.'/'.$this->Filename;
 
         // look for cached thumbnail
         if (!file_exists($thumbPath)) {
@@ -343,7 +357,10 @@ class Media extends ActiveRecord
             Cache::delete($cacheKey);
         } else {
             // load source image
-            $srcImage = $this->getImage();
+            if (!$srcImage = $this->getImage()) {
+                throw new OutOfBoundsException("{$this->MIMEType} source not available as an image");
+            }
+
             $srcWidth = imagesx($srcImage);
             $srcHeight = imagesy($srcImage);
 
@@ -525,15 +542,14 @@ class Media extends ActiveRecord
                 ,'recordData' => $Media ? $Media->getData() : null
                 ,'mediaInfo' => $mediaInfo
             ));
-            // fall through to cleanup below
-        }
 
-        // remove photo record
-        if ($Media) {
-            $Media->destroy();
-        }
+            // remove photo record
+            if ($Media) {
+                $Media->destroy();
+            }
 
-        return null;
+            throw $e;
+        }
     }
 
     public function initializeFromAnalysis($mediaInfo)
@@ -555,17 +571,16 @@ class Media extends ActiveRecord
         }
 
         // get mime type
-        $finfo = finfo_open(FILEINFO_MIME_TYPE, static::$magicPath);
-
-        if (!$finfo || !($mimeType = finfo_file($finfo, $filename))) {
-            throw new Exception('Unable to load media file info');
-        }
-
-        finfo_close($finfo);
+        $mimeType = File::getMIMEType($filename);
 
         // dig deeper if only generic mimetype returned
         if ($mimeType == 'application/octet-stream') {
-            $finfo = finfo_open(FILEINFO_NONE, static::$magicPath);
+            // prefer kernel method if available
+            if (is_callable([File::class, 'getFileInfoResource'])) {
+                $finfo = File::getFileInfoResource(FILEINFO_NONE);
+            } else {
+                $finfo = finfo_open(FILEINFO_NONE);
+            }
 
             if (!$finfo || !($fileInfo = finfo_file($finfo, $filename))) {
                 throw new Exception('Unable to load media file info');
@@ -613,9 +628,9 @@ class Media extends ActiveRecord
 
         if ($node = Site::resolvePath($path)) {
             return $node->RealPath;
-        } else {
-            throw new Exception('Could not load '.implode('/',$path));
         }
+
+        return null;
     }
 
     public static function getBlank($contextClass)
@@ -625,7 +640,7 @@ class Media extends ActiveRecord
         $sourceInfo = @getimagesize($sourcePath);
 
         if (!$sourceInfo) {
-            throw new Exception("Unable to load blank image for context '$contextClass' from '$sourcePath'");
+            throw new OutOfBoundsException("Unable to load blank image for context '$contextClass'");
         }
 
         // get mime type
@@ -659,7 +674,7 @@ class Media extends ActiveRecord
             return null;
         }
 
-        return Site::$rootPath.'/site-data/media/'.$variant.'/'.($filename ?: $this->getFilename($variant));
+        return Storage::getLocalStorageRoot().'/media/'.$variant.'/'.($filename ?: $this->getFilename($variant));
     }
 
     public function getFilename($variant = 'original')

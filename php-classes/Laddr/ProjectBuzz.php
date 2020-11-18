@@ -19,57 +19,57 @@ class ProjectBuzz extends \ActiveRecord
     public static $fields = [
         'ProjectID' => [
             'type' => 'uint',
-            'index' => true
+            'index' => true,
         ],
         'Handle' => [
             'type' => 'string',
-            'unique' => true
+            'unique' => true,
         ],
         'Headline' => 'string',
         'URL' => 'string',
         'Published' => 'timestamp',
         'ImageID' => [
             'type' => 'uint',
-            'default' => null
+            'default' => null,
         ],
         'Summary' => [
             'type' => 'clob',
-            'default' => null
-        ]
+            'default' => null,
+        ],
     ];
 
     public static $relationships = [
         'Project' => [
             'type' => 'one-one',
-            'class' => Project::class
+            'class' => Project::class,
         ],
         'Image' => [
             'type' => 'one-one',
-            'class' => Media::class
-        ]
+            'class' => Media::class,
+        ],
     ];
 
     public static $validators = [
         'ProjectID' => [
             'validator' => 'number',
             'min' => 1,
-            'errorMessage' => 'Please select a project'
+            'errorMessage' => 'Please select a project',
         ],
         'Headline' => [
-            'errorMessage' => 'Please enter a headline for the buzz'
+            'errorMessage' => 'Please enter a headline for the buzz',
         ],
         'URL' => [
             'validator' => 'URL',
-            'errorMessage' => 'Please enter the URL for the buzz'
+            'errorMessage' => 'Please enter the URL for the buzz',
         ],
         'Published' => [
             'validator' => 'datetime',
-            'errorMessage' => 'Please enter the date/time that the buzz was originally published'
-        ]
+            'errorMessage' => 'Please enter the date/time that the buzz was originally published',
+        ],
     ];
 
     public static $dynamicFields = [
-        'Project'
+        'Project',
     ];
 
     public function getTitle()
@@ -87,7 +87,7 @@ class ProjectBuzz extends \ActiveRecord
         if ($this->isFieldDirty('URL') && !$this->_validator->hasErrors('URL') && $this->URL && $this->ProjectID) {
             $duplicateConditions = [
                 'ProjectID' => $this->ProjectID,
-                'URL' => $this->URL
+                'URL' => $this->URL,
             ];
 
             if ($this->ID) {

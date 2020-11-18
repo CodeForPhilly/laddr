@@ -9,9 +9,9 @@
                 <header class="page-header">
                     <form action="/pages/create" method="GET" class="pull-right">
                         {* field "Title" "Page Title" *}
-                        <button type="submit" class="btn btn-success">Create New Page</button>
+                        <button type="submit" class="btn btn-success">{_ "Create New Page"}</button>
                     </form>
-                    <h1>Pages Directory</h1>
+                    <h1>{_ "Pages Directory"}</h1>
                 </header>
             {/if}
 

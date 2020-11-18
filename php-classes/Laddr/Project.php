@@ -2,14 +2,14 @@
 
 namespace Laddr;
 
+use Comment;
 use DB;
-use TableNotFoundException;
+use Emergence\People\IPerson;
+use Emergence\People\Person;
 use HandleBehavior;
+use TableNotFoundException;
 use Tag;
 use TagItem;
-use Comment;
-use Emergence\People\Person;
-use Emergence\People\IPerson;
 
 class Project extends \VersionedRecord
 {
@@ -31,27 +31,27 @@ class Project extends \VersionedRecord
         'Title',
         'Handle' => [
             'type' => 'string',
-            'unique' => true
+            'unique' => true,
         ],
         'MaintainerID' => [
             'type' => 'uint',
-            'default' => null
+            'default' => null,
         ],
         'UsersUrl' => [
             'type' => 'string',
-            'default' => null
+            'default' => null,
         ],
         'DevelopersUrl' => [
             'type' => 'string',
-            'default' => null
+            'default' => null,
         ],
         'README' => [
             'type' => 'clob',
-            'default' => null
+            'default' => null,
         ],
         'NextUpdate' => [
             'type' => 'uint',
-            'default' => 1
+            'default' => 1,
         ],
         'Stage' => [
             'type' => 'enum',
@@ -62,20 +62,20 @@ class Project extends \VersionedRecord
                 'Testing',
                 'Maintaining',
                 'Drifting',
-                'Hibernating'
+                'Hibernating',
             ],
-            'default' => 'Commenting'
+            'default' => 'Commenting',
         ],
         'ChatChannel' => [
             'type' => 'string',
-            'default' => null
-        ]
+            'default' => null,
+        ],
     ];
 
     public static $relationships = [
         'Maintainer' => [
             'type' => 'one-one',
-            'class' => Person::class
+            'class' => Person::class,
         ],
         'Members' => [
             'type' => 'many-many',
@@ -83,30 +83,30 @@ class Project extends \VersionedRecord
             'linkClass' => ProjectMember::class,
             'linkLocal' => 'ProjectID',
             'linkForeign' => 'MemberID',
-            'indexField' => 'ID'
+            'indexField' => 'ID',
         ],
         'Memberships' => [
             'type' => 'one-many',
             'class' => ProjectMember::class,
-            'foreign' => 'ProjectID'
+            'foreign' => 'ProjectID',
         ],
         'Updates' => [
             'type' => 'one-many',
             'class' => ProjectUpdate::class,
             'foreign' => 'ProjectID',
-            'order' => ['ID' => 'DESC']
+            'order' => ['ID' => 'DESC'],
         ],
         'Comments' => [
             'type' => 'context-children',
             'class' => Comment::class,
-            'order' => ['ID' => 'DESC']
+            'order' => ['ID' => 'DESC'],
         ],
         'Tags' => [
             'type' => 'many-many',
             'class' => Tag::class,
             'linkClass' => TagItem::class,
             'linkLocal' => 'ContextID',
-            'conditions' => ['Link.ContextClass = "Laddr\\\\Project"']
+            'conditions' => ['Link.ContextClass = "Laddr\\\\Project"'],
         ],
         'TopicTags' => [
             'type' => 'many-many',
@@ -115,8 +115,8 @@ class Project extends \VersionedRecord
             'linkLocal' => 'ContextID',
             'conditions' => [
                 'Link.ContextClass = "Laddr\\\\Project"',
-                'Related.Handle LIKE "topic.%"'
-            ]
+                'Related.Handle LIKE "topic.%"',
+            ],
         ],
         'TechTags' => [
             'type' => 'many-many',
@@ -125,8 +125,8 @@ class Project extends \VersionedRecord
             'linkLocal' => 'ContextID',
             'conditions' => [
                 'Link.ContextClass = "Laddr\\\\Project"',
-                'Related.Handle LIKE "tech.%"'
-            ]
+                'Related.Handle LIKE "tech.%"',
+            ],
         ],
         'EventTags' => [
             'type' => 'many-many',
@@ -135,9 +135,9 @@ class Project extends \VersionedRecord
             'linkLocal' => 'ContextID',
             'conditions' => [
                 'Link.ContextClass = "Laddr\\\\Project"',
-                'Related.Handle LIKE "event.%"'
-            ]
-        ]
+                'Related.Handle LIKE "event.%"',
+            ],
+        ],
     ];
 
     public static $dynamicFields = [
@@ -147,23 +147,23 @@ class Project extends \VersionedRecord
         'Tags',
         'TopicTags',
         'TechTags',
-        'EventTags'
+        'EventTags',
     ];
 
     public static $validators = [
         'Title' => [
-            'errorMessage' => 'Project title is required'
+            'errorMessage' => 'Project title is required',
         ],
         'UsersUrl' => [
             'validator' => 'url',
             'required' => false,
-            'errorMessage' => 'Users\' URL must be blank or a complete and valid URL'
+            'errorMessage' => 'Users\' URL must be blank or a complete and valid URL',
         ],
         'DevelopersUrl' => [
             'validator' => 'url',
             'required' => false,
-            'errorMessage' => 'Developers\' URL must be blank or a complete and valid URL'
-        ]
+            'errorMessage' => 'Developers\' URL must be blank or a complete and valid URL',
+        ],
     ];
 
     public function getValue($name)
@@ -172,11 +172,12 @@ class Project extends \VersionedRecord
             case 'TitlePossessive':
                 $title = $this->Title;
 
-                if (substr($title, -1) == 's') {
+                if ('s' == substr($title, -1)) {
                     return $title . '\'';
                 } else {
                     return $title . '\'s';
                 }
+                // no break
             default:
                 return parent::getValue($name);
         }
@@ -196,7 +197,7 @@ class Project extends \VersionedRecord
             ProjectMember::create([
                 'ProjectID' => $this->ID,
                 'MemberID' => $this->Maintainer->ID,
-                'Role' => 'Founder' // _("Founder") -- placeholder to make this string translatable, actual translation is done during rendering though
+                'Role' => 'Founder', // _("Founder") -- placeholder to make this string translatable, actual translation is done during rendering though
             ], true);
         }
     }
@@ -231,7 +232,7 @@ class Project extends \VersionedRecord
                 [
                     ProjectUpdate::$tableName,
                     $this->ID,
-                    $limitSql
+                    $limitSql,
                 ]
             );
         } catch (TableNotFoundException $e) {
@@ -252,7 +253,7 @@ class Project extends \VersionedRecord
                 [
                     ProjectBuzz::$tableName,
                     $this->ID,
-                    $limitSql
+                    $limitSql,
                 ]
             );
         } catch (TableNotFoundException $e) {
@@ -266,6 +267,7 @@ class Project extends \VersionedRecord
             if ($a['Timestamp'] == $b['Timestamp']) {
                 return 0;
             }
+
             return ($a['Timestamp'] > $b['Timestamp']) ? -1 : 1;
         });
 
@@ -294,7 +296,7 @@ class Project extends \VersionedRecord
                      ORDER BY itemsCount DESC
                 ',
                 [
-                    static::$tableName
+                    static::$tableName,
                 ]
             );
         } catch (TableNotFoundException $e) {

@@ -1,3 +1,3 @@
 <?php
 
-#RemoteSystems\MailChimp::$apiKey = 'YOUR_API_KEY';
+//RemoteSystems\MailChimp::$apiKey = 'YOUR_API_KEY';

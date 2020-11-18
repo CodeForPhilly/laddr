@@ -9,7 +9,9 @@
             <h1>{_ "How to Help"}</h1>
         </div>
 
-        <p><a href="/projects/create" class="btn btn-primary margin-right">Create a project</a> or <a href="/projects">find an existing</a> one to get involved with in our projects directory.</p>
+        {capture assign=createProjectTextLink}<a href="/projects/create" class="btn btn-primary margin-right">{_ "Create a project"}</a>{/capture}
+        {capture assign=findProjectTextLink}<a href="/projects">{_ "find an existing"}</a>{/capture}
+        <p>{sprintf(_("%s or %s one to get involved with in our projects directory."), $createProjectTextLink, $findProjectTextLink)}</p>
     </div>
 </div>
 {/block}
