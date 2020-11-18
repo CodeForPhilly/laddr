@@ -2,7 +2,8 @@
 
 namespace om;
 
-use \DateTime;
+use DateTime;
+use Exception;
 
 /**
  * Class taken from https://github.com/coopTilleuls/intouch-iCalendar.git (Recurrence.php)
@@ -19,6 +20,7 @@ use \DateTime;
  * @license http://creativecommons.org/licenses/by-sa/2.5/dk/deed.en_GB CC-BY-SA-DK
  */
 class Recurrence {
+
 	public $rrule;
 	protected $freq;
 	protected $until;
@@ -41,7 +43,7 @@ class Recurrence {
 	 */
 	protected $listProperties = [
 		'bysecond', 'byminute', 'byhour', 'byday', 'bymonthday',
-		'byyearday', 'byweekno', 'bymonth', 'bysetpos'
+		'byyearday', 'byweekno', 'bymonth', 'bysetpos',
 	];
 
 	/**
@@ -76,26 +78,18 @@ class Recurrence {
 	}
 
 	/**
-	 * Set the $until member
+	 * Returns the frequency - corresponds to FREQ in RFC 2445.
 	 *
-	 * @param mixed timestamp (int) / Valid DateTime format (string)
+	 * @return mixed string if the member has been set, false otherwise
 	 */
-	public function setUntil($ts) {
-		if ($ts instanceof DateTime) {
-			$dt = $ts;
-		} else if (is_int($ts)) {
-			$dt = new DateTime('@' . $ts);
-		} else {
-			$dt = new DateTime($ts);
-		}
-		$this->until = $dt->format('Ymd\THisO');
-		$this->rrule['until'] = $this->until;
+	public function getFreq() {
+		return $this->getMember('freq');
 	}
 
 	/**
 	 * Retrieves the desired member variable and returns it (if it's set)
 	 *
-	 * @param  string $member name of the member variable
+	 * @param string $member name of the member variable
 	 * @return mixed  the variable value (if set), false otherwise
 	 */
 	protected function getMember($member) {
@@ -106,21 +100,30 @@ class Recurrence {
 	}
 
 	/**
-	 * Returns the frequency - corresponds to FREQ in RFC 2445.
-	 *
-	 * @return mixed string if the member has been set, false otherwise
-	 */
-	public function getFreq() {
-		return $this->getMember('freq');
-	}
-
-	/**
 	 * Returns when the event will go until - corresponds to UNTIL in RFC 2445.
 	 *
 	 * @return mixed string if the member has been set, false otherwise
 	 */
 	public function getUntil() {
 		return $this->getMember('until');
+	}
+
+	/**
+	 * Set the $until member
+	 *
+	 * @param mixed timestamp (int) / Valid DateTime format (string)
+	 * @throws Exception
+	 */
+	public function setUntil($ts) {
+		if ($ts instanceof DateTime) {
+			$dt = $ts;
+		} elseif (is_int($ts)) {
+			$dt = new DateTime('@' . $ts);
+		} else {
+			$dt = new DateTime($ts);
+		}
+		$this->until = $dt->format('Ymd\THisO');
+		$this->rrule['until'] = $this->until;
 	}
 
 	/**

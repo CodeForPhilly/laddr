@@ -53,7 +53,7 @@ class MinifiedRequestHandler extends RequestHandler
 
 
         // if URL includes correct hash, response can be cached permenantly by the client
-        if (!empty($_GET['_sha1']) && (!$sourceReport ||$_GET['_sha1'] == $sourceReport['hash'])) {
+        if (!empty($_GET['_sha1']) && (empty($sourceReport) ||$_GET['_sha1'] == $sourceReport['hash'])) {
             $expires = 60*60*24*365;
             header('Cache-Control: public, max-age='.$expires);
             header('Expires: '.gmdate('D, d M Y H:i:s \G\M\T', time()+$expires));
@@ -135,6 +135,17 @@ class MinifiedRequestHandler extends RequestHandler
                 }
 
                 if ($node->Type != $contentType) {
+                    if (
+                        $node->Type != 'application/php'
+                        && count($paths) == 1
+                        && method_exists($node, 'outputAsResponse')
+                    ) {
+                        // if the non-matching file is a static asset and the only path,
+                        // just output it as it might be linked to relatively
+                        $node->outputAsResponse();
+                        exit();
+                    }
+
                     throw new Exception('Source file "'.implode('/', $path).'" does not match requested content type "'.$contentType.'"', self::ERROR_TYPE_MISMATCH);
                 }
 

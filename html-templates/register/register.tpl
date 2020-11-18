@@ -1,6 +1,6 @@
 {extends "designs/site.tpl"}
 
-{block "title"}Register &mdash; {$dwoo.parent}{/block}
+{block "title"}{_ 'Register'} &mdash; {$dwoo.parent}{/block}
 
 {block js-top}
     {$dwoo.parent}
@@ -47,7 +47,7 @@
                     <div class="form-group">
                         <label class="control-label" for="Email">{_ "Email"}</label>
                         <input type="email" class="form-control" id="Email" name="Email" value="{refill field=Email}" placeholder="{_ 'civichacker@example.com'}" aria-describedby="email-help-block">
-                        <p id="email-help-block" class="help-block">Email address <strong>will</strong> be visible to other signed-in members.</p>
+                        <p id="email-help-block" class="help-block">{_ "Email address <strong>will</strong> be visible to other signed-in members."}</p>
                     </div>
 
                     <div class="form-group">

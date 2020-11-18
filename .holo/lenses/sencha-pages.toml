@@ -5,7 +5,6 @@ package = "holo/lens-sencha-pages" # expanded to absolute ident in holospec
 root = "sencha-workspace"
 files = [
     "ext/**",
-    "packages/**",
     "pages/**"
 ]
 

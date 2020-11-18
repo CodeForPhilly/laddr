@@ -66,26 +66,26 @@
         <dl class="event-details row">
             {if $Event->Status != 'published'}
                 <div class="col-md-2">
-                    <dt>Status</dt>
+                    <dt>{_ Status}</dt>
                     <dd>{$Event->Status}</dd>
                 </div>
             {/if}
 
             <div class="col-md-2">
-                <dt>Starts</dt>
+                <dt>{_ Starts}</dt>
                 <dd>{timestamp $Event->StartTime time='auto'}</dd>
             </div>
 
             {if $Event->EndTime}
                 <div class="col-md-2">
-                    <dt>Ends</dt>
+                    <dt>{_ Ends}</dt>
                     <dd>{timestamp $Event->EndTime time='auto'}</dd>
                 </div>
             {/if}
 
             {if $Event->LocationName || $Event->LocationAddress}
                 <div class="col-md-2">
-                    <dt>Location</dt>
+                    <dt>{_ Location}</dt>
                     <dd class="d-flex my-2 align-items-baseline">
                         <div class="text-danger mr-2">{icon "map-marker" fa-fw}</div>
                         <div class="flex-fill event-segment__location">{eventLocation name=$Segment->LocationName
@@ -101,7 +101,7 @@
     <div class="row">
         {if $Event->Description}
             <div class="col-md-7">
-                <a href="#schedule" class="d-inline-block d-md-none mb-3">See the schedule {icon "level-down"}</a>
+                <a href="#schedule" class="d-inline-block d-md-none mb-3">{_ "See the schedule"} {icon "level-down"}</a>
                 <div
                     class="content-markdown event-description content-editable"
                     {if $.User->hasAccountLevel('Staff')}
@@ -120,7 +120,7 @@
         {if $Event->Segments}
             <div id="schedule" class="col-md-5 col-lg-4 offset-lg-1 pt-5 pt-md-0">
                 <section class="event-segments">
-                    <h2 class="h4">Schedule</h2>
+                    <h2 class="h4">{_ Schedule}</h2>
 
                     {$lastDate = null}
                     {$lastLocationName = null}

@@ -37,4 +37,61 @@ Cypress.Commands.add('upload_file', (fileName, fileType = ' ', selector) => {
           el.files = dataTransfer.files
         })
     })
-  })
+  });
+
+// Login command
+Cypress.Commands.add('loginAs', (user) => {
+  cy.visit('/');
+  cy.request({
+      method: 'POST',
+      url: '/login/?format=json',
+      form: true,
+      body: {
+          '_LOGIN[username]': user,
+          '_LOGIN[password]': user,
+          '_LOGIN[returnMethod]': 'POST'
+      }
+  });
+});
+
+// Drop and load database in one step
+Cypress.Commands.add('resetDatabase', () => {
+  cy.dropDatabase();
+  cy.loadDatabase();
+});
+
+// Drops the entire
+Cypress.Commands.add('dropDatabase', () => {
+  cy.exec(`echo 'DROP DATABASE IF EXISTS \`default\`; CREATE DATABASE \`default\`;' | ${_buildHabExec('core/mysql', 'mysql')} -u root -h 127.0.0.1`);
+});
+
+// Reload the original data fixtures
+Cypress.Commands.add('loadDatabase', () => {
+  cy.exec(`cat cypress/fixtures/database/*.sql | ${_buildHabExec('core/mysql', 'mysql')} -u root -h 127.0.0.1 default`);
+});
+
+// Ext command getter
+Cypress.Commands.add('withExt', () => {
+  cy.window().then((win) => {
+    const Ext = win.Ext;
+    return {
+      Ext: win.Ext,
+      extQuerySelector: query => Ext.ComponentQuery.query(query)[0],
+      extQuerySelectorAll: query => Ext.ComponentQuery.query(query)
+    };
+  });
+});
+
+// private method
+function _buildHabExec(pkg, pkgCmd) {
+  const studioContainer = Cypress.env('STUDIO_CONTAINER') || null;
+  const studioSSH = Cypress.env('STUDIO_SSH') || null;
+
+  let cmd = `hab pkg exec ${pkg} ${pkgCmd}`;
+
+  if (studioContainer) {
+    cmd = `${studioSSH ? `ssh ${studioSSH}` : ''} docker exec -i ${studioContainer} ${cmd}`;
+  }
+
+  return cmd;
+}

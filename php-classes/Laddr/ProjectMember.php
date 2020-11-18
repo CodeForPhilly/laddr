@@ -19,30 +19,30 @@ class ProjectMember extends \ActiveRecord
         'MemberID' => 'uint',
         'Role' => [
             'type' => 'string',
-            'default' => null
-        ]
+            'default' => null,
+        ],
     ];
 
     public static $relationships = [
         'Project' => [
             'type' => 'one-one',
-            'class' => Project::class
+            'class' => Project::class,
         ],
         'Member' => [
             'type' => 'one-one',
-            'class' => Person::class
-        ]
+            'class' => Person::class,
+        ],
     ];
 
     public static $indexes = [
         'ProjectMember' => [
             'fields' => ['ProjectID', 'MemberID'],
-            'unique' => true
-        ]
+            'unique' => true,
+        ],
     ];
 
     public static $dynamicFields = [
         'Project',
-        'Member'
+        'Member',
     ];
 }

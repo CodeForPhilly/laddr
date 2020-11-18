@@ -155,7 +155,7 @@ class RegistrationRequestHandler extends \RequestHandler
                     'CreatorID' => $User->ID
                 ), true);
 
-                $Token->sendEmail($User->Email);
+                $Token->sendEmail($User->EmailRecipient);
 
                 return static::respond('recoverPasswordComplete', array(
                     'success' => true

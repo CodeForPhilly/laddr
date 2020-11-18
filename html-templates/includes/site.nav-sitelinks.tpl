@@ -19,8 +19,8 @@
     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{_ "Events"}</a>
     <div class="dropdown-menu">
         <div class="dropdown-header">{_ "Programs"}</div>
-        <a class="dropdown-item" href="/pages/weekly_meetups">Weekly Meetups</a>
-        <a class="dropdown-item" href="/pages/hackathons">Hackathons</a>
+        <a class="dropdown-item" href="/pages/weekly_meetups">{_ "Weekly Meetups"}</a>
+        <a class="dropdown-item" href="/pages/hackathons">{_ "Hackathons"}</a>
     </div>
 </li>
 

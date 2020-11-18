@@ -7,10 +7,16 @@ app = "EmergenceContentEditor"
 [hololens.input]
 root = "sencha-workspace"
 files = [
-    "workspace.json",
-    "ext/**",
-    "packages/**",
     "EmergenceContentEditor/**",
+    "packages/emr-skeleton-theme/**",
+    "packages/emergence-cms/**",
+    "packages/emergence-cms-summaries/**",
+    "packages/emergence-apikit/**",
+    "packages/jarvus-apikit/**",
+    "packages/jarvus-fileupload/**",
+    "packages/jarvus-hotfixes/**",
+    "ext/**",
+    "workspace.json",
 ]
 
 [hololens.output]

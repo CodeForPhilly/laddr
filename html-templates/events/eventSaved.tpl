@@ -1,6 +1,6 @@
 {extends designs/site.tpl}
 
-{block title}Saved {$data->Title|escape} &mdash; Events &mdash; {$dwoo.parent}{/block}
+{block title}Saved {$data->Title|escape} &mdash; {_ 'Events'} &mdash; {$dwoo.parent}{/block}
 
 {block content}
     {$Event = $data}
@@ -8,7 +8,7 @@
     {capture assign=eventLink}<a href="{$Event->getUrl()|escape}">{$Event->getTitle()|escape}</a>{/capture}
 
     <div class="page-header">
-        <h1>Event Saved</h1>
+        <h1>{_ "Event Saved"}</h1>
     </div>
     {if $Event->isNew}
         <p>{_("Your event has been created: %s")|sprintf:$eventLink}</p>

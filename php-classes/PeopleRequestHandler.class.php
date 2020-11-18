@@ -73,7 +73,7 @@ class PeopleRequestHandler extends RecordsRequestHandler
 
     public static function handleBrowseRequest($options = array(), $conditions = array(), $responseID = null, $responseData = array())
     {
-        if ($_REQUEST['q'] != 'all') {
+        if ($_REQUEST['q'] != 'all' && $_REQUEST['status'] != '*') {
             $conditions[] = 'AccountLevel != "Disabled"';
         }
 
@@ -107,6 +107,10 @@ class PeopleRequestHandler extends RecordsRequestHandler
             case 'thumbnail':
                 return static::handleThumbnailRequest($Person);
             default:
+                if ($Person->AccountLevel == 'Disabled') {
+                    return static::throwNotFoundError('profile not found');
+                }
+
                 return parent::handleRecordRequest($Person, $action);
         }
     }
@@ -132,6 +136,14 @@ class PeopleRequestHandler extends RecordsRequestHandler
 
     public static function handleThumbnailRequest(IPerson $Person)
     {
-        return MediaRequestHandler::handleThumbnailRequest($Person->PrimaryPhoto ? $Person->PrimaryPhoto : Media::getBlank('person'));
+        if ($Person->AccountLevel == 'Disabled') {
+            return static::throwNotFoundError('profile not found');
+        }
+
+        try {
+            return MediaRequestHandler::handleThumbnailRequest($Person->PrimaryPhoto ? $Person->PrimaryPhoto : Media::getBlank('Person'));
+        } catch (OutOfBoundsException $e) {
+            return static::throwNotFoundError($e->getMessage());
+        }
     }
 }

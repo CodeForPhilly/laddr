@@ -41,7 +41,7 @@
     <pre>{$Job->Results|print_r:true}</pre>
 
     <h2>Log</h2>
-    <label><input type="checkbox" onchange="Ext.getBody().down('.sync-log').toggleCls('show-debug', this.checked)">Show debug entries</label>
+    <label><input type="checkbox" onchange="document.querySelector('.sync-log').classList.toggle('show-debug', this.checked)">Show debug entries</label>
     <section class="sync-log">
     {foreach item=entry from=$Job->logEntries}
         <article class="level-{$entry.level}">
@@ -50,9 +50,9 @@
             {$changes = default($entry.changes, $entry.context.changes)}
             {if $changes}
                 <dl>
-                    {foreach item=delta key=field from=$changes}
+                    {foreach item=delta key=field from=$changes->getDiff()}
                         <dt>{$field}</dt>
-                        <dd>{$delta.from|escape} -> {$delta.to|escape}</dd>
+                        <dd>{default($delta.old, '∅')|escape} &rarr; {default($delta.new, '∅')|escape}</dd>
                     {/foreach}
                 </dl>
             {/if}

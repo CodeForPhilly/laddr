@@ -20,10 +20,10 @@ class Connector extends \Emergence\Connectors\AbstractConnector
         $cacheKey = "meetup/{$groupSlug}/events";
         $events = Cache::fetch($cacheKey);
 
-        if ($events === null) {
+        if (null === $events) {
             // cached failure
             throw new Exception('meetup feed unavailable');
-        } elseif ($events === false) {
+        } elseif (false === $events) {
             $cal = new IcalParser();
             $cal->parseFile("https://www.meetup.com/{$groupSlug}/events/ical/");
 
@@ -38,11 +38,11 @@ class Connector extends \Emergence\Connectors\AbstractConnector
                     'title' => $event['SUMMARY'],
                     'description' => $event['DESCRIPTION'],
                     'location' => preg_match('/^(?P<name>.+) \((?P<address>.+)\)$/', $event['LOCATION'], $matches)
-                        ? [ 'name' => $matches['name'], 'address' => $matches['address'] ]
-                        : [ 'name' => '', 'address' => $event['LOCATION'] ],
+                        ? ['name' => $matches['name'], 'address' => $matches['address']]
+                        : ['name' => '', 'address' => $event['LOCATION']],
                     'time_start' => $event['DTSTART'],
                     'time_end' => $event['DTEND'],
-                    'ical' => $event
+                    'ical' => $event,
                 ];
             }
 
@@ -65,10 +65,10 @@ class Connector extends \Emergence\Connectors\AbstractConnector
 
         foreach ($xml->entry as $event) {
             $events[] = [
-                'id' => (string)$event->id,
-                'name' => (string)$event->title,
-                'description' => (string)$event->content,
-                'url' => (string)$event->link['href']
+                'id' => (string) $event->id,
+                'name' => (string) $event->title,
+                'description' => (string) $event->content,
+                'url' => (string) $event->link['href'],
             ];
         }
 

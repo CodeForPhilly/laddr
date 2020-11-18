@@ -42,7 +42,7 @@ class SourcesRequestHandler extends \RequestHandler
 
     public static function handleSourceGitRequest(Source $source)
     {
-        return GitHttpBackend::handleRepositoryRequest($source->getRepository());
+        return GitHttpBackend::handleRepositoryRequest($source->getRepository(), static::getPath());
     }
 
     public static function handleSourceRequest(Source $source)
@@ -167,6 +167,10 @@ class SourcesRequestHandler extends \RequestHandler
             return static::respond('confirm', [
                 'question' => 'Are you sure you want to pull all forward commits from the upstream branch?'
             ]);
+        }
+
+        if (!empty($_REQUEST['fetch'])) {
+            $source->fetch();
         }
 
         $result = $source->pull();

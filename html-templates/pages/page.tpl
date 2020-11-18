@@ -17,16 +17,16 @@
                     {if Emergence\CMS\PagesRequestHandler::checkWriteAccess($Page, true)}
                         <div class="btn-toolbar pull-right">
                             <div class="btn-group">
-                                <a href="{$Page->getURL()}/edit" class="btn btn-secondary">Edit</a>&nbsp;
+                                <a href="{$Page->getURL()}/edit" class="btn btn-secondary">{_ Edit}</a>&nbsp;
                                 <a href="{$Page->getURL()}/delete"
                                    class="btn btn-danger confirm"
-                                   data-confirm-yes="Delete Page"
-                                   data-confirm-no="Don&rsquo;t Delete"
-                                   data-confirm-title="Deleting Post"
-                                   data-confirm-body="Are you sure you want to delete the page &ldquo;{$Page->Title|escape}?&rdquo;"
+                                   data-confirm-yes="{_ 'Delete Page'}"
+                                   data-confirm-no="{_ 'Don&rsquo;t Delete'}"
+                                   data-confirm-title="{_ 'Deleting Post'}"
+                                   data-confirm-body="{_ 'Are you sure you want to delete the page'} &ldquo;{$Page->Title|escape}?&rdquo;"
                                    data-confirm-destructive="true"
                                    data-confirm-success-target=".cms-page"
-                                   data-confirm-success-message="Page deleted">Delete</a>
+                                   data-confirm-success-message="{_ 'Page deleted'}">{_ Delete}</a>
                             </div>
                         </div>
                     {/if}
@@ -34,7 +34,7 @@
                         <a href="{$Page->getURL()}">{$Page->Title}</a>
                     </h1>
                 </header>
-            
+
                 <section class="article-body">
                     {$Page->renderBody()}
                 </section>

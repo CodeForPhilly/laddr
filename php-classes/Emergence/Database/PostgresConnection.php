@@ -33,4 +33,9 @@ class PostgresConnection extends AbstractSqlConnection
 
         return parent::createInstance($pdo);
     }
+
+    public function quoteValue($value)
+    {
+        return $value === null ? 'NULL' : $this->pdo->quote($value);
+    }
 }

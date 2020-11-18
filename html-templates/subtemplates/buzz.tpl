@@ -11,7 +11,7 @@
                     <{$headingLevel} class="post-title">
                         <a class="pull-right" href="{$Buzz->Creator->getURL()}" title="{personName $Buzz->Creator}" data-toggle="tooltip">{avatar $Buzz->Creator size=64}</a>
                         <a href="{$Buzz->Project->getURL()}">{$Buzz->Project->Title|escape}</a>
-                        <small class="text-muted">{icon "flash"} Buzz</small>
+                        <small class="text-muted">{icon "flash"} {_ Buzz}</small>
                     </{$headingLevel}>
                 {/if}
                 <p class="post-subtitle"><a href="{$Buzz->getURL()}">{$Buzz->Headline|escape}</a></p>
