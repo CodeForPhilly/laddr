@@ -9,8 +9,8 @@
 {block content}
     <header class="page-header">
         <h2>
-          {capture assign=projectTitleLink}<a href="{$Project->getURL()}">{$Project->Title|escape}</a>{/capture}
           {if $Project}
+            {capture assign=projectTitleLink}<a href="{$Project->getURL()}">{$Project->Title|escape}</a>{/capture}
             {sprintf(_("Project Updates in %s"), $projectTitleLink)}
           {else}
             {_ "Project Updates"}
