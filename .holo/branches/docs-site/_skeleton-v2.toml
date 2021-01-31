@@ -1,0 +1,4 @@
+[holomapping]
+holosource="=>docs-skeleton"
+files = "**"
+before = "*"
