@@ -1,3 +1,20 @@
 #!/bin/bash
-hab pkg install emergence/studio
+
+# install dependent studios
+hab pkg install emergence/studio jarvus/mkdocs-studio
+
+# disable studios printing their own help
+export STUDIO_NOHELP="yes"
+
 source "$(hab pkg path emergence/studio)/studio.sh"
+
+export DOCS_HOLOBRANCH="docs-site"
+source "$(hab pkg path jarvus/mkdocs-studio)/studio.sh"
+
+
+## final init and output
+studio-help
+
+
+# final blank line
+echo

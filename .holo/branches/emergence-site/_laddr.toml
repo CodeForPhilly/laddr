@@ -1,7 +1,10 @@
 [holomapping]
 files = [
     "*/**",
-    "!.vscode/",
-    "!docs/"
+    "!.github/**",
+    "!.vscode/**",
+    "!cypress/**",
+    "!docs/**",
+    "!script/**",
 ]
 after = "*"
