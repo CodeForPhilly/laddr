@@ -76,7 +76,7 @@ class RegistrationRequestHandler extends \RequestHandler
             // additional checks
             if (empty($filteredRequestFields['Password']) || (strlen($filteredRequestFields['Password']) < $User::$minPasswordLength)) {
                 $additionalErrors['Password'] = 'Password must be at least '.$User::$minPasswordLength.' characters long.';
-            } elseif (empty($_REQUEST['PasswordConfirm']) || ($filteredRequestFields['Password'] != $_REQUEST['PasswordConfirm'])) {
+            } elseif (isset($_REQUEST['PasswordConfirm']) && ($filteredRequestFields['Password'] != $_REQUEST['PasswordConfirm'])) {
                 $additionalErrors['PasswordConfirm'] = 'Please enter your password a second time for confirmation.';
             }
 
