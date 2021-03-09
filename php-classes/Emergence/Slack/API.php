@@ -109,7 +109,7 @@ class API
     public static function getChannels($forceRefresh = false)
     {
         if ($forceRefresh || !($channels = Cache::fetch(static::$channelsCacheKey))) {
-            $channelsResponse = static::request('channels.list');
+            $channelsResponse = static::request('conversations.list');
 
             if (empty($channelsResponse['channels'])) {
                 throw new \Exception('Failed to parse channels response from Slack');
