@@ -9,21 +9,21 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/laddr/development/migrations/">
+        <link rel="canonical" href="https://codeforphilly.github.io/laddr/development/getting-started/virtual-multisite/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.4">
     
     
       
-        <title>Developing Migrations - laddr documentation</title>
+        <title>Virtual Multi-site Container - laddr documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.f7f47774.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.f7f47774.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.3f5d1f46.min.css">
         
           
           
@@ -61,7 +61,7 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="orange" data-md-color-accent="red">
   
     
-    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#developing-migrations" class="md-skip">
+        <a href="#virtual-multi-site-container" class="md-skip">
           Skip to content
         </a>
       
@@ -80,7 +80,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="laddr documentation" class="md-header__button md-logo" aria-label="laddr documentation" data-md-component="logo">
+    <a href="../../.." title="laddr documentation" class="md-header__button md-logo" aria-label="laddr documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Developing Migrations
+              Virtual Multi-site Container
             
           </span>
         </div>
@@ -174,7 +174,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
+    <a href="../../.." class="md-tabs__link">
       Welcome
     </a>
   </li>
@@ -196,7 +196,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../getting-started/local-studio/" class="md-tabs__link md-tabs__link--active">
+      <a href="../local-studio/" class="md-tabs__link md-tabs__link--active">
         Development
       </a>
     </li>
@@ -225,7 +225,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="laddr documentation" class="md-nav__button md-logo" aria-label="laddr documentation" data-md-component="logo">
+    <a href="../../.." title="laddr documentation" class="md-nav__button md-logo" aria-label="laddr documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -257,7 +257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Welcome
       </a>
     </li>
@@ -293,12 +293,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" checked>
       
       <label class="md-nav__link" for="__nav_2_1">
         Getting started
@@ -316,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/local-studio/" class="md-nav__link">
+      <a href="../local-studio/" class="md-nav__link">
         Local Studio Container
       </a>
     </li>
@@ -326,11 +328,51 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../getting-started/virtual-multisite/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Virtual Multi-site Container
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Virtual Multi-site Container
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#launch-virtual-multisite-container" class="md-nav__link">
+    Launch virtual multisite container
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -340,7 +382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/content-editor/" class="md-nav__link">
+      <a href="../content-editor/" class="md-nav__link">
         Content Editor webapp
       </a>
     </li>
@@ -379,7 +421,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../testing/e2e/" class="md-nav__link">
+      <a href="../../testing/e2e/" class="md-nav__link">
         End-to-end (E2E) testing
       </a>
     </li>
@@ -397,7 +439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../clone-from-git/" class="md-nav__link">
+      <a href="../../clone-from-git/" class="md-nav__link">
         Clone Laddr from git
       </a>
     </li>
@@ -409,7 +451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../email/" class="md-nav__link">
+      <a href="../../email/" class="md-nav__link">
         Working with Email
       </a>
     </li>
@@ -419,21 +461,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../migrations/" class="md-nav__link">
         Developing Migrations
       </a>
-      
     </li>
   
 
@@ -463,6 +495,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#launch-virtual-multisite-container" class="md-nav__link">
+    Launch virtual multisite container
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -473,31 +520,21 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/CodeForPhilly/laddr/edit/develop/docs/development/migrations.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/CodeForPhilly/laddr/edit/develop/docs/development/getting-started/virtual-multisite.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="developing-migrations">Developing Migrations<a class="headerlink" href="#developing-migrations" title="Permanent link"> ¶</a></h1>
-<p>Within the development studio:</p>
-<ol>
-<li>Create a new file under <code>php-migrations/</code></li>
-<li>
-<p>Load modified working tree into runtime:</p>
-<div class="highlight"><pre><span></span><code>update-site
+                <h1 id="virtual-multi-site-container">Virtual Multi-site Container<a class="headerlink" href="#virtual-multi-site-container" title="Permanent link"> ¶</a></h1>
+<h2 id="launch-virtual-multisite-container">Launch virtual multisite container<a class="headerlink" href="#launch-virtual-multisite-container" title="Permanent link"> ¶</a></h2>
+<div class="highlight"><pre><span></span><code>docker run <span class="se">\</span>
+    --name emergence <span class="se">\</span>
+    -v emergence:/emergence <span class="se">\</span>
+    -p <span class="m">80</span>:80 <span class="se">\</span>
+    -p <span class="m">3306</span>:3306 <span class="se">\</span>
+    -p <span class="m">9083</span>:9083 <span class="se">\</span>
+    jarvus/emergence
 </code></pre></div>
-</li>
-<li>
-<p>Execute all migrations:</p>
-<div class="highlight"><pre><span></span><code>console-run migrations:execute --all
-</code></pre></div>
-</li>
-<li>
-<p>(Re)Execute a specific migration:</p>
-<div class="highlight"><pre><span></span><code>console-run migrations:execute --force <span class="s2">&quot;Emergence/People/20191209_system-user&quot;</span>
-</code></pre></div>
-</li>
-</ol>
                 
               
               
@@ -517,7 +554,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../email/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Working with Email" rel="prev">
+        <a href="../local-studio/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Local Studio Container" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -526,11 +563,26 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Working with Email
+              Local Studio Container
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../content-editor/" class="md-footer__link md-footer__link--next" aria-label="Next: Content Editor webapp" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Content Editor webapp
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
@@ -553,10 +605,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.febc23d1.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.febc23d1.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
