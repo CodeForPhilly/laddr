@@ -1,7 +1,4 @@
 [holomapping]
 holosource="=>emergence-skeleton"
-files = [
-    "*/**",
-    "!php-config/Git.config.d/"
-]
+files = "**"
 before = "*"
