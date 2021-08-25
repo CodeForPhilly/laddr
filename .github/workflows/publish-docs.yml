@@ -1,13 +1,15 @@
-name: Publish Website
+name: Publish Docs
 
 on:
   push:
     branches: [ develop ]
 
 jobs:
-  publish-website:
+
+  publish-docs:
     runs-on: ubuntu-latest
     steps:
+
     - name: 'Update holobranch: gh-pages'
       uses: JarvusInnovations/hologit@actions/projector/v1
       env:
