@@ -1,0 +1,4 @@
+[holomapping]
+holosource="=>fixtures"
+files = "**"
+before = "*"
