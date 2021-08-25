@@ -12,8 +12,8 @@
         </div>
         <p class="confirm">{$question}</p>
         <form method="POST">
-            <button type="button" class="btn btn-secondary margin-right" name="Sure" value="No" onclick="javascript:history.go(-1);">{_ No}</button>
-            <button type="submit" class="btn btn-danger" name="Sure">{_ Yes}</button>
+            <button type="button" class="btn btn-secondary margin-right" name="Sure" value="No" onclick="javascript:history.go(-1);">{_ 'No'}</button>
+            <button type="submit" class="btn btn-danger" name="Sure">{_ 'Yes'}</button>
         </form>
     </div>
 </div>
