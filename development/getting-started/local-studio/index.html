@@ -16,7 +16,7 @@
     
     
       
-        <title>Local Studio Container - laddr documentation</title>
+        <title>Local Studio Container - Laddr Docs</title>
       
     
     
@@ -27,7 +27,7 @@
         
           
           
-          <meta name="theme-color" content="#ffa724">
+          <meta name="theme-color" content="#ef5552">
         
       
     
@@ -58,7 +58,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="orange" data-md-color-accent="red">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="blue">
   
     
     <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -80,7 +80,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="laddr documentation" class="md-header__button md-logo" aria-label="laddr documentation" data-md-component="logo">
+    <a href="../../.." title="Laddr Docs" class="md-header__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -93,7 +93,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            laddr documentation
+            Laddr Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -225,13 +225,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="laddr documentation" class="md-nav__button md-logo" aria-label="laddr documentation" data-md-component="logo">
+    <a href="../../.." title="Laddr Docs" class="md-nav__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    laddr documentation
+    Laddr Docs
   </label>
   
     <div class="md-nav__source">
@@ -582,13 +582,13 @@
 </code></pre></div>
 </li>
 <li>
-<p>Clone <code>emergence-skeleton-v2</code> repository and any submodules:</p>
-<div class="highlight"><pre><span></span><code>git clone --recursive git@github.com:JarvusInnovations/emergence-skeleton-v2.git
+<p>Clone <code>laddr</code> repository and any submodules:</p>
+<div class="highlight"><pre><span></span><code>git clone --recursive git@github.com:CodeForPhilly/laddr.git
 </code></pre></div>
 </li>
 <li>
 <p>Change into cloned directory:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ./emergence-skeleton-v2
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> ./laddr
 </code></pre></div>
 </li>
 <li>
@@ -606,14 +606,14 @@
 <p>Use the studio command <code>start-all</code> to launch the http server (nginx), the application runtime (php-fpm), and a local mysql server:</p>
 <div class="highlight"><pre><span></span><code>start-all
 </code></pre></div>
-<p>At this point, you should be able to open <a href="http://localhost:7180">localhost:7180</a> and see the error message <code>Page not found</code>.</p>
+<p>At this point, you should be able to open <a href="http://localhost:9070">localhost:9070</a> and see the error message <code>Page not found</code>.</p>
 </li>
 <li>
 <p>Build site:</p>
 <p>To build the entire site and load it, use the studio command <code>update-site</code>:</p>
 <div class="highlight"><pre><span></span><code>update-site
 </code></pre></div>
-<p>At this point, <a href="http://localhost:7180">localhost:7180</a> should display the current build of the site</p>
+<p>At this point, <a href="http://localhost:9070">localhost:9070</a> should display the current build of the site</p>
 </li>
 <li>
 <p>Load fixture data into site database (optional):</p>
@@ -676,14 +676,14 @@ mkdir -p php-config/Emergence/People
 <span class="c1"># rebuild environment</span>
 update-site
 </code></pre></div>
-<p>After visiting <a href="http://localhost:7180/register"><code>/register</code></a> and creating a new user account, you can use the studio command <code>promote-user</code> to upgrade the user account you just registered to the highest access level:</p>
+<p>After visiting <a href="http://localhost:9070/register"><code>/register</code></a> and creating a new user account, you can use the studio command <code>promote-user</code> to upgrade the user account you just registered to the highest access level:</p>
 <div class="highlight"><pre><span></span><code>promote-user &lt;myuser&gt;
 </code></pre></div>
 <h2 id="connect-to-local-database">Connect to local database<a class="headerlink" href="#connect-to-local-database" title="Permanent link"> ¶</a></h2>
 <p>The studio container hosts a local MySQL instance that can be connected to at:</p>
 <ul>
 <li><strong>Host</strong>: <code>localhost</code> (or LAN/WAN IP of machine hosting Docker engine)</li>
-<li><strong>Port</strong>: <code>7136</code></li>
+<li><strong>Port</strong>: <code>9076</code></li>
 <li><strong>Username</strong>: <code>admin</code></li>
 <li><strong>Password</strong>: <code>admin</code></li>
 </ul>

@@ -16,7 +16,7 @@
     
     
       
-        <title>Content Editor webapp - laddr documentation</title>
+        <title>Content Editor webapp - Laddr Docs</title>
       
     
     
@@ -27,7 +27,7 @@
         
           
           
-          <meta name="theme-color" content="#ffa724">
+          <meta name="theme-color" content="#ef5552">
         
       
     
@@ -58,7 +58,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="orange" data-md-color-accent="red">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="red" data-md-color-accent="blue">
   
     
     <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
@@ -80,7 +80,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="laddr documentation" class="md-header__button md-logo" aria-label="laddr documentation" data-md-component="logo">
+    <a href="../../.." title="Laddr Docs" class="md-header__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -93,7 +93,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            laddr documentation
+            Laddr Docs
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -225,13 +225,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="laddr documentation" class="md-nav__button md-logo" aria-label="laddr documentation" data-md-component="logo">
+    <a href="../../.." title="Laddr Docs" class="md-nav__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    laddr documentation
+    Laddr Docs
   </label>
   
     <div class="md-nav__source">
@@ -594,8 +594,8 @@
 <p>Then, use the shortcut studio command for building the frontend application:</p>
 <div class="highlight"><pre><span></span><code>build-content-editor
 </code></pre></div>
-<p>Once built, the live-editable version of the app can be accessed via the static web server that the studio runs on port <code>7181</code>. The backend host must be provided to the apps via the <code>?apiHost</code> query parameter. Any remote backend with CORS enabled will work, or you can use the local backend:</p>
-<p><a href="http://localhost:7181/EmergenceContentEditor/?apiHost=localhost:7180"><code>localhost:7181/EmergenceContentEditor/?apiHost=localhost:7180</code></a></p>
+<p>Once built, the live-editable version of the app can be accessed via the static web server that the studio runs on port <code>`. The backend host must be provided to the apps via the</code>?apiHost` query parameter. Any remote backend with CORS enabled will work, or you can use the local backend:</p>
+<p><a href="http://localhost:/EmergenceContentEditor/?apiHost=localhost:9070"><code>localhost:/EmergenceContentEditor/?apiHost=localhost:9070</code></a></p>
 <h2 id="working-with-breakpoints">Working with breakpoints<a class="headerlink" href="#working-with-breakpoints" title="Permanent link"> ¶</a></h2>
 <p>By default, the Sencha framework will automatically append random cache buster values to every loaded <code>.js</code> source. This helps ensures that your latest code always runs, but will also prevent any breakpoints you set from persisting across reloads.</p>
 <p>With the <strong>Disable cache</strong> option of the network inspector activated, you can disable this built-in cache buster by appending <code>&amp;cache=1</code> to the current page&rsquo;s query string.</p>

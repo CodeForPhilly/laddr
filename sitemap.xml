@@ -2,42 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://codeforphilly.github.io/laddr/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/clone-from-git/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/email/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/migrations/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/getting-started/content-editor/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/getting-started/local-studio/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/getting-started/virtual-multisite/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/testing/e2e/</loc>
-         <lastmod>2021-08-17</lastmod>
+         <lastmod>2021-08-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
