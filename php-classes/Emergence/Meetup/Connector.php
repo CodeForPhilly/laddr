@@ -25,7 +25,7 @@ class Connector extends \Emergence\Connectors\AbstractConnector
             throw new Exception('meetup feed unavailable');
         } elseif (false === $events) {
             $cal = new IcalParser();
-            $cal->parseFile("https://www.meetup.com/{$groupSlug}/events/ical/");
+            @$cal->parseFile("https://www.meetup.com/{$groupSlug}/events/ical/");
 
             $events = [];
             foreach ($cal->getSortedEvents() as $event) {
