@@ -6,10 +6,10 @@ SearchRequestHandler::$searchClasses[Emergence\Events\Event::class] = [
         'Description',
         [
             'field' => 'Handle',
-            'method' => 'like'
-        ]
+            'method' => 'like',
+        ],
     ],
     'conditions' => [
-        'Status' => 'published'
-    ]
+        'Status' => 'published',
+    ],
 ];

@@ -2,7 +2,6 @@
 
 namespace Emergence\Events;
 
-
 class EventsRequestHandler extends \RecordsRequestHandler
 {
     // RecordRequestHandler configuration
@@ -30,7 +29,7 @@ class EventsRequestHandler extends \RecordsRequestHandler
     {
         if (!$GLOBALS['Session']->hasAccountLevel('Staff')) {
             $conditions['Status'] = 'published';
-        } elseif (!empty($_GET['status']) && $_GET['status'] != 'any' && in_array($_GET['status'], Event::getFieldOptions('Status', 'values'))) {
+        } elseif (!empty($_GET['status']) && 'any' != $_GET['status'] && in_array($_GET['status'], Event::getFieldOptions('Status', 'values'))) {
             $conditions['Status'] = $_GET['status'];
         }
 
@@ -39,9 +38,11 @@ class EventsRequestHandler extends \RecordsRequestHandler
                 break;
             case 'past':
                 $conditions[] = '(EndTime IS NULL AND StartTime <= CURRENT_TIMESTAMP) OR (EndTime IS NOT NULL AND EndTime <= CURRENT_TIMESTAMP)';
+
                 break;
             case 'upcoming':
                 $conditions[] = '(EndTime IS NULL AND StartTime >= CURRENT_TIMESTAMP) OR (EndTime IS NOT NULL AND EndTime >= CURRENT_TIMESTAMP)';
+
                 break;
             default:
                 if (empty($_GET['startTimeMin'])) {
@@ -51,9 +52,9 @@ class EventsRequestHandler extends \RecordsRequestHandler
                 }
 
                 $conditions[] = 'StartTime >= FROM_UNIXTIME('.$startTimeMin.')';
+
                 break;
         }
-
 
         return parent::handleBrowseRequest($options, $conditions, $responseID, $responseData);
     }
@@ -73,11 +74,11 @@ class EventsRequestHandler extends \RecordsRequestHandler
         if (!$segmentHandle = static::shiftPath()) {
             return static::respond('eventSegments', [
                 'data' => $Event->Segments,
-                'total' => count($Event->Segments)
+                'total' => count($Event->Segments),
             ]);
         }
 
-        if ($segmentHandle == '!create') {
+        if ('!create' == $segmentHandle) {
             return EventSegmentsRequestHandler::handleCreateRequest(EventSegment::create(['Event' => $Event]));
         }
 

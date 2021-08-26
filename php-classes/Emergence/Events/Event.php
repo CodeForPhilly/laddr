@@ -2,9 +2,8 @@
 
 namespace Emergence\Events;
 
-use HandleBehavior;
 use Emergence\Comments\Comment;
-
+use HandleBehavior;
 
 class Event extends \VersionedRecord
 {
@@ -19,92 +18,91 @@ class Event extends \VersionedRecord
     public static $fields = [
         'Title',
         'Handle' => [
-            'unique' => true
+            'unique' => true,
         ],
         'Status' => [
             'type' => 'enum',
             'values' => ['draft', 'published', 'deleted'],
-            'default' => 'published'
+            'default' => 'published',
         ],
         'StartTime' => [
-            'type' => 'datetime'
+            'type' => 'datetime',
         ],
         'EndTime' => [
             'type' => 'datetime',
-            'default' => null
+            'default' => null,
         ],
         'LocationName' => [
             'type' => 'string',
-            'default' => null
+            'default' => null,
         ],
         'LocationAddress' => [
             'type' => 'string',
-            'default' => null
+            'default' => null,
         ],
         'Description' => [
             'type' => 'clob',
-            'default' => null
-        ]
+            'default' => null,
+        ],
     ];
 
     public static $relationships = [
         'Comments' => [
             'type' => 'context-children',
             'class' => Comment::class,
-            'order' => ['ID' => 'DESC']
+            'order' => ['ID' => 'DESC'],
         ],
         'Segments' => [
             'type' => 'one-many',
             'class' => EventSegment::class,
-            'order' => 'StartTime, EndTime IS NOT NULL, EndTime DESC'
-        ]
+            'order' => 'StartTime, EndTime IS NOT NULL, EndTime DESC',
+        ],
     ];
 
     public static $searchConditions = [
         'Title' => [
             'qualifiers' => ['any', 'title'],
             'points' => 3,
-            'sql' => 'Title Like "%%%s%%"'
+            'sql' => 'Title Like "%%%s%%"',
         ],
         'Handle' => [
             'qualifiers' => ['any', 'handle'],
             'points' => 3,
-            'sql' => 'Handle Like "%%%s%%"'
+            'sql' => 'Handle Like "%%%s%%"',
         ],
         'Description' => [
             'qualifiers' => ['any', 'description'],
             'points' => 1,
-            'sql' => 'Description Like "%%%s%%"'
+            'sql' => 'Description Like "%%%s%%"',
         ],
         'Location' => [
             'qualifiers' => ['any', 'location'],
             'points' => 2,
-            'sql' => 'Location Like "%%%s%%"'
-        ]
+            'sql' => 'Location Like "%%%s%%"',
+        ],
     ];
 
     public static $dynamicFields = [
-        'IsAllDay' => [ 'getter' => 'getIsAllDay' ],
-        'IsMultiDay' => [ 'getter' => 'getIsMultiDay' ]
+        'IsAllDay' => ['getter' => 'getIsAllDay'],
+        'IsMultiDay' => ['getter' => 'getIsMultiDay'],
     ];
 
     public static $validators = [
         'Title' => [
-            'errorMessage' => 'Event title is required'
+            'errorMessage' => 'Event title is required',
         ],
         'StartTime' => [
             'validator' => 'datetime',
-            'errorMessage' => 'Event start time is required'
-        ]
+            'errorMessage' => 'Event start time is required',
+        ],
         // TODO: validate that EndTime > StartTime if set
     ];
-
 
     public function getSegmentByHandle($handle)
     {
         return EventSegment::getByWhere([
             'EventID' => $this->ID,
-            'Handle' => $handle
+            'Handle' => $handle,
         ]);
     }
 
@@ -128,7 +126,7 @@ class Event extends \VersionedRecord
 
         $options = array_merge([
             'limit' => is_numeric($options) ? $options : 10,
-            'order' => 'StartTime'
+            'order' => 'StartTime',
         ], is_array($options) ? $options : []);
 
         return static::getAllByWhere($conditions, $options);
@@ -141,7 +139,7 @@ class Event extends \VersionedRecord
         $conditions['Status'] = 'published';
 
         $options = array_merge([
-            'order' => 'StartTime'
+            'order' => 'StartTime',
         ], is_array($options) ? $options : []);
 
         return static::getAllByWhere($conditions, $options);
@@ -171,12 +169,12 @@ class Event extends \VersionedRecord
         $dateFormat = 'Y-m-d';
         $timeFormat = 'Y-m-d H:i:s';
         $dates = [];
-        $oneDay = 3600*24;
+        $oneDay = 3600 * 24;
 
-        foreach ($events AS &$Event) {
+        foreach ($events as &$Event) {
             $daysSpanned = ($Event->EndTime - $Event->StartTime) / $oneDay;
 
-            for ($daysWritten = 0; $daysWritten < $daysSpanned; $daysWritten++) {
+            for ($daysWritten = 0; $daysWritten < $daysSpanned; ++$daysWritten) {
                 if ($daysWritten) {
                     $startTime = strtotime(date($dateFormat, $Event->StartTime + ($daysWritten * $oneDay)));
                 } else {
@@ -190,9 +188,7 @@ class Event extends \VersionedRecord
                 }
 
                 $dates[date($dateFormat, $startTime)][] = [
-                    'start' => $startTime
-                    ,'end' => $endTime
-                    ,'Event' => &$Event
+                    'start' => $startTime, 'end' => $endTime, 'Event' => &$Event,
                 ];
             }
         }

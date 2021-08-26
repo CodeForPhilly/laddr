@@ -2,7 +2,6 @@
 
 namespace Emergence\Events;
 
-
 class EventSegmentsRequestHandler extends \RecordsRequestHandler
 {
     // RecordRequestHandler configuration

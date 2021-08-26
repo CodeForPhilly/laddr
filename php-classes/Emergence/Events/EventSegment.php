@@ -4,7 +4,6 @@ namespace Emergence\Events;
 
 use HandleBehavior;
 
-
 class EventSegment extends \VersionedRecord
 {
     // ActiveRecord configuration
@@ -20,53 +19,53 @@ class EventSegment extends \VersionedRecord
         'Title',
         'Handle',
         'StartTime' => [
-            'type' => 'datetime'
+            'type' => 'datetime',
         ],
         'EndTime' => [
-            'type' => 'datetime'
+            'type' => 'datetime',
         ],
         'LocationName' => [
             'type' => 'string',
-            'default' => null
+            'default' => null,
         ],
         'LocationAddress' => [
             'type' => 'string',
-            'default' => null
+            'default' => null,
         ],
         'Summary' => [
             'type' => 'clob',
-            'default' => null
+            'default' => null,
         ],
         'Description' => [
             'type' => 'clob',
-            'default' => null
-        ]
+            'default' => null,
+        ],
     ];
 
     public static $indexes = [
         'EventHandle' => [
             'fields' => ['EventID', 'Handle'],
-            'unique' => true
-        ]
+            'unique' => true,
+        ],
     ];
 
     public static $relationships = [
         'Event' => [
             'type' => 'one-one',
-            'class' => Event::class
-        ]
+            'class' => Event::class,
+        ],
     ];
 
     public static $dynamicFields = [
-        'Event'
+        'Event',
     ];
 
     public static $validators = [
         'Event' => 'require-relationship',
         'StartTime' => [
             'validator' => 'datetime',
-            'errorMessage' => 'Event start time is required'
-        ]
+            'errorMessage' => 'Event start time is required',
+        ],
         // TODO: validate that EndTime > StartTime if set
     ];
 
