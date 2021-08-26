@@ -21,13 +21,11 @@ jobs:
 
     - name: Configure kubectl
       run: |
-        set -e
         test -e ~/.kube || mkdir ~/.kube
         printf '%s' "$KUBE_CONFIG_DATA" | base64 -d > ~/.kube/config
 
     - name: Delete PR Deployment
       run: |
-        set -e
         kubectl config set-context --current --namespace="${KUBE_NAMESPACE}"
         kubectl delete deployment,replicaset,ingress,all -l "app.kubernetes.io/instance=${RELEASE_NAME}"
         kubectl delete secret "${RELEASE_NAME}-tls"
