@@ -72,6 +72,11 @@ spec:
                 primary_hostname = {{ .Values.site.canonicalHostname | quote }}
               {{- end }}
 
+              [error]
+              {{- if .Values.site.displayErrors }}
+                display = true
+              {{- end }}
+
           - name: HAB_{{ .Values.database.svcName | upper | replace "-" "_"}}
             value: |
               app_username = {{ .Values.database.username | quote }}

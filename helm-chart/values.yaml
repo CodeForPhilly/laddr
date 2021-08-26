@@ -7,6 +7,7 @@ site:
   canonicalHostname: localhost
   timezone: "America/New_York"
   svcName: site
+  displayErrors: false
 
   replicaCount: 1
   strategyType: Recreate

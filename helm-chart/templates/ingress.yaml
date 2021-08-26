@@ -24,7 +24,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ $.Release.Name }}
+          serviceName: {{ $.Release.Name }}-site
           servicePort: 80
   {{- range .Values.ingress.secondaryHostnames }}
   - host: {{ . | quote }}
@@ -32,7 +32,7 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: {{ $.Release.Name }}
+          serviceName: {{ $.Release.Name }}-site
           servicePort: 80
   {{- end }}
 {{- end }}
