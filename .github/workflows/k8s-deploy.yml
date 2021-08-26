@@ -11,7 +11,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   DOCKER_REGISTRY: ghcr.io
-  DOCKER_PACKAGE: laddr-composite
+  DOCKER_PACKAGE: site-composite
 
   KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG_BASE64 }}
   KUBE_NAMESPACE: laddr
