@@ -125,9 +125,9 @@ jobs:
 
     - name: Deploy instance via Helm template
       run: |
-        docker_image="${DOCKER_REGISTRY}/${DOCKER_REPOSITORY}/${DOCKER_PACKAGE}:${RELEASE_NAME}"
         release_hostname="${RELEASE_NAME}.${KUBE_HOSTNAME}"
 
+        echo "Ensuring current context is namespace ${KUBE_NAMESPACE}"
         kubectl config set-context --current --namespace="${KUBE_NAMESPACE}"
 
         echo "Listing pods existing before deploy"
@@ -139,7 +139,7 @@ jobs:
 
         echo "Extracting projected helm-chart to temporary directory"
         temp_dir=$(mktemp -d)
-        git archive --format=tar "${{ steps.site-projection.outputs.tree }}" | ( cd "${temp_dir}" && tar -xf - )
+        git archive --format=tar "${{ steps.helm-projection.outputs.tree }}" | ( cd "${temp_dir}" && tar -xf - )
 
         echo "Using helm upgrade to apply helm-chart to release ${RELEASE_NAME}"
         helm upgrade "${RELEASE_NAME}" "${temp_dir}" \
