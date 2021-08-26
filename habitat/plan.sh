@@ -1,4 +1,4 @@
-pkg_name=laddr
+pkg_name=site
 pkg_origin=codeforphilly
 pkg_maintainer="Code for Philly <hello@codeforphilly.org>"
 pkg_scaffolding=emergence/scaffolding-site
