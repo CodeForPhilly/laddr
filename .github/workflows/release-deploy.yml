@@ -6,6 +6,9 @@ on:
     types: [ closed ]
 
 env:
+  DOCKER_REGISTRY: ghcr.io
+  DOCKER_PACKAGE: site-composite
+
   HAB_LICENSE: accept-no-persist
 
 jobs:
@@ -62,9 +65,9 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ github.actor }}
         password: ${{ env.GITHUB_TOKEN }}
-        registry: ghcr.io
+        registry: ${{ env.DOCKER_REGISTRY }}
         image_name: ${{ env.DOCKER_REPOSITORY }}/${{ env.DOCKER_PACKAGE }}
-        image_tag: ${{ env.RELEASE_NAME }}
+        image_tag: ${{ env.RELEASE_TAG }}
         build_extra_args: |
           --build-arg=SITE_TREE=${{ steps.site-projection.outputs.tree }}
           --build-arg=SITE_VERSION=${{ env.RELEASE_TAG }}
