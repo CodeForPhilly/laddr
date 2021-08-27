@@ -5,6 +5,9 @@ on:
     branches: [ 'releases/v*' ]
     types: [ closed ]
 
+env:
+  HAB_LICENSE: accept-no-persist
+
 jobs:
   release-deploy:
 
@@ -31,6 +34,43 @@ jobs:
         echo 'PR_BODY<<END_OF_PR_BODY' >> $GITHUB_ENV
         echo "${PR_BODY}" >> $GITHUB_ENV
         echo 'END_OF_PR_BODY' >> $GITHUB_ENV
+
+        DOCKER_REPOSITORY="${GITHUB_REPOSITORY,,}"
+        echo "Using DOCKER_REPOSITORY=${DOCKER_REPOSITORY}"
+        echo "DOCKER_REPOSITORY=${DOCKER_REPOSITORY}" >> $GITHUB_ENV
+
+    - name: 'Initialize Chef Habitat environment'
+      uses: JarvusInnovations/habitat-action@action/v1
+      with:
+        deps: |
+          jarvus/hologit
+
+    - uses: actions/checkout@v2
+
+    - id: site-projection
+      name: 'Project holobranch: emergence-site'
+      uses: JarvusInnovations/hologit@actions/projector/v1
+      with:
+        # use HEAD checked out above by checkout action
+        ref: HEAD
+        fetch: false
+        holobranch: emergence-site
+
+    - name: Build & push Docker image
+      uses: whoan/docker-build-with-cache-action@v5
+      with:
+        dockerfile: Dockerfile
+        username: ${{ github.actor }}
+        password: ${{ env.GITHUB_TOKEN }}
+        registry: ghcr.io
+        image_name: ${{ env.DOCKER_REPOSITORY }}/${{ env.DOCKER_PACKAGE }}
+        image_tag: ${{ env.RELEASE_NAME }}
+        build_extra_args: |
+          --build-arg=SITE_TREE=${{ steps.site-projection.outputs.tree }}
+          --build-arg=SITE_VERSION=${{ env.RELEASE_TAG }}
+          --build-arg=SOURCE_COMMIT=${{ github.sha }}
+          --build-arg=SOURCE_TAG=${{ env.RELEASE_TAG }}
+          --build-arg=HAB_LICENSE=${{ env.HAB_LICENSE }}
 
     - name: Create release
       uses: ncipollo/release-action@v1
