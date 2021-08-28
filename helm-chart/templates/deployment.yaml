@@ -48,50 +48,50 @@ spec:
         fsGroup: 42 # hab
 
       containers:
-      - image: {{ .Values.site.image.repository }}:{{ .Values.site.image.tag | default .Chart.AppVersion }}
-        name: {{ .Release.Name }}-site
-        imagePullPolicy: {{ .Values.site.image.pullPolicy }}
+        - image: {{ .Values.site.image.repository }}:{{ .Values.site.image.tag | default .Chart.AppVersion }}
+          name: {{ .Release.Name }}-site
+          imagePullPolicy: {{ .Values.site.image.pullPolicy }}
 
-        env:
-          - name: HAB_LICENSE
-            value: {{ .Values.hab.license }}
+          env:
+            - name: HAB_LICENSE
+              value: {{ .Values.hab.license }}
 
-          - name: HAB_{{ .Values.site.svcName | upper | replace "-" "_"}}_COMPOSITE
-            value: |
-              [services.mysql]
-              pkg_ident = {{ .Values.database.pkg | quote }}
+            - name: HAB_{{ .Values.site.svcName | upper | replace "-" "_"}}_COMPOSITE
+              value: |
+                [services.mysql]
+                pkg_ident = {{ .Values.database.pkg | quote }}
 
-          - name: HAB_{{ .Values.site.svcName | upper | replace "-" "_"}}
-            value: |
-              {{- if .Values.site.timezone }}
-              default_timezone = {{ .Values.site.timezone | quote }}
-              {{- end }}
+            - name: HAB_{{ .Values.site.svcName | upper | replace "-" "_"}}
+              value: |
+                {{- if .Values.site.timezone }}
+                default_timezone = {{ .Values.site.timezone | quote }}
+                {{- end }}
 
-              [sites.default]
-              {{- if .Values.site.canonicalHostname }}
-                primary_hostname = {{ .Values.site.canonicalHostname | quote }}
-              {{- end }}
+                [sites.default]
+                {{- if .Values.site.canonicalHostname }}
+                  primary_hostname = {{ .Values.site.canonicalHostname | quote }}
+                {{- end }}
 
-              [core]
-              {{- if .Values.site.displayErrors }}
-                debug = true
-              {{- end }}
+                [core]
+                {{- if .Values.site.displayErrors }}
+                  debug = true
+                {{- end }}
 
-          - name: HAB_{{ .Values.database.svcName | upper | replace "-" "_"}}
-            value: |
-              app_username = {{ .Values.database.username | quote }}
-              app_password = {{ .Values.database.password | quote }}
-              bind = "0.0.0.0"
+            - name: HAB_{{ .Values.database.svcName | upper | replace "-" "_"}}
+              value: |
+                app_username = {{ .Values.database.username | quote }}
+                app_password = {{ .Values.database.password | quote }}
+                bind = "0.0.0.0"
 
-        ports:
-        - containerPort: 80
-          name: http
-          protocol: TCP
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
 
-        volumeMounts:
-        - name: {{ .Release.Name }}-site
-          mountPath: /hab/svc/{{ .Values.site.svcName }}/data
-          subPath: data
-        - name: {{ .Release.Name }}-database
-          mountPath: /hab/svc/{{ .Values.database.svcName }}/data
-          subPath: data
+          volumeMounts:
+            - name: {{ .Release.Name }}-site
+              mountPath: /hab/svc/{{ .Values.site.svcName }}/data
+              subPath: data
+            - name: {{ .Release.Name }}-database
+              mountPath: /hab/svc/{{ .Values.database.svcName }}/data
+              subPath: data
