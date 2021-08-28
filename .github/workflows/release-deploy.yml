@@ -42,6 +42,10 @@ jobs:
         echo "Using DOCKER_REPOSITORY=${DOCKER_REPOSITORY}"
         echo "DOCKER_REPOSITORY=${DOCKER_REPOSITORY}" >> $GITHUB_ENV
 
+        DOCKER_TAG="${RELEASE_TAG:1}"
+        echo "Using DOCKER_TAG=${DOCKER_TAG}"
+        echo "DOCKER_TAG=${DOCKER_TAG}" >> $GITHUB_ENV
+
     - name: 'Initialize Chef Habitat environment'
       uses: JarvusInnovations/habitat-action@action/v1
       with:
@@ -67,7 +71,7 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ${{ env.DOCKER_REGISTRY }}
         image_name: ${{ env.DOCKER_REPOSITORY }}/${{ env.DOCKER_PACKAGE }}
-        image_tag: ${{ env.RELEASE_TAG }}
+        image_tag: ${{ env.DOCKER_TAG }}
         build_extra_args: |
           --build-arg=SITE_TREE=${{ steps.site-projection.outputs.tree }}
           --build-arg=SITE_VERSION=${{ env.RELEASE_TAG }}
