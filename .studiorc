@@ -3,13 +3,21 @@
 # install dependent studios
 hab pkg install emergence/studio jarvus/mkdocs-studio
 
+
 # disable studios printing their own help
 export STUDIO_NOHELP="yes"
 
+
+# load emergence studio
 source "$(hab pkg path emergence/studio)/studio.sh"
 
+# load mkdocs studio
 export DOCS_HOLOBRANCH="docs-site"
+export DOCS_PARENT_SOURCE="skeleton-v2"
 source "$(hab pkg path jarvus/mkdocs-studio)/studio.sh"
+
+
+# declare shortcuts for this repository's applications
 
 
 ## final init and output
