@@ -1,6 +1,6 @@
 # laddr
 
-Laddr -- pronounced "ladder" and named after the essential tool for fire brigades -- is an online homebase for your local [Code for America Brigade](http://brigade.codeforamerica.org). It is designed to be cheap-to-host and easy-to-hack platform for civic hacking groups to maintain an online precense and automate support for their real-world operations.
+Laddr -- pronounced "ladder" and named after the essential tool for fire brigades -- is an online homebase for your local [Code for America Brigade](http://brigade.codeforamerica.org). It is designed to be cheap-to-host and easy-to-hack platform for civic hacking groups to maintain an online presence and automate support for their real-world operations.
 
 ## Getting started
 
