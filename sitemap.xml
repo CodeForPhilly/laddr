@@ -2,42 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://codeforphilly.github.io/laddr/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <lastmod>2021-09-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/laddr/development/</loc>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/clone-from-git/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/email/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/migrations/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://codeforphilly.github.io/laddr/development/getting-started/content-editor/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <loc>https://codeforphilly.github.io/laddr/development/running-tests/e2e/</loc>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://codeforphilly.github.io/laddr/development/getting-started/local-studio/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <loc>https://codeforphilly.github.io/laddr/development/workspace-setup/content-editor/</loc>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://codeforphilly.github.io/laddr/development/getting-started/virtual-multisite/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <loc>https://codeforphilly.github.io/laddr/development/workspace-setup/local-studio/</loc>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://codeforphilly.github.io/laddr/development/testing/e2e/</loc>
-         <lastmod>2021-08-25</lastmod>
+         <loc>https://codeforphilly.github.io/laddr/development/workspace-setup/virtual-multisite/</loc>
+         <lastmod>2021-09-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/laddr/getting-started/</loc>
+         <lastmod>2021-09-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/laddr/operations/</loc>
+         <lastmod>2021-09-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/laddr/usage/</loc>
+         <lastmod>2021-09-14</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
