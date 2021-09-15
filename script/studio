@@ -42,16 +42,17 @@ if [ "$(docker ps -aq -f name="${STUDIO_NAME}")" ]; then
             echo
             docker attach "${STUDIO_NAME}"
             launch_studio=false
-            break;;
+            ;;
         s|S)
             echo "==> studio: stopping existing container…"
             docker stop "${STUDIO_NAME}" > /dev/null
-            break;;
+            ;;
         n|N)
             echo "==> studio: doing nothing with existing container… an error is likely to occur"
-            break ;;
+            ;;
         *)
-            echo "==> studio: $choice is invalid";;
+            echo "==> studio: $choice is invalid"
+            ;;
         esac
     done
 fi

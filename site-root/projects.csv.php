@@ -5,7 +5,8 @@ RequestHandler::respond('projects', array(
     'data' => array_map(function($Project) {
         preg_match('/^\s*[^*#]\s*\w.*/m', $Project->README, $matches);
         return array(
-            'name' => $Project->Title
+            'name' => $Project->Handle
+            ,'title' => $Project->Title
             ,'description' => trim($matches[0])
             ,'link_url' => $Project->UsersUrl
             ,'code_url' => $Project->DevelopersUrl
