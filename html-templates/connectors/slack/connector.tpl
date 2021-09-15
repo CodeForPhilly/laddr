@@ -71,6 +71,16 @@
             <li>Visit the <strong>Install App</strong> section while managing the application and follow the process to install the app to your team</li>
             <li>Configure <code>Emergence\Slack\API::$accessToken</code> with the provided access token</li>
         </ol>
+
+        <h4>Send test message</h4>
+        <form method="POST" action="/connectors/slack/test">
+            {field inputName="channel" label="Channel" default='bot-debug'}
+            {textarea inputName="message" label="Channel" default=':waving: Hello Slack!'}
+
+            <div class="submit-area">
+                <button class="submit" type="submit">Send Message</button>
+            </div>
+        </form>
     </section>
     {/if}
 
