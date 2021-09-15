@@ -1,15 +1,22 @@
 <?php
 
-$meetups = RemoteSystems\Meetup::getEvents();
+$now = new DateTime();
+$meetups = Emergence\Meetup\Connector::getUpcomingEvents();
 $nextMeetup = array_shift($meetups);
 
+
 // detect if meetup is happening right now
-if($nextMeetup && $nextMeetup['time'] < time() * 1000) {
+// - use ?next_meetup_now=1 to test feature before any event
+if(
+    ($nextMeetup && $nextMeetup['time_start'] < $now)
+    || !empty($_GET['next_meetup_now'])
+) {
     $currentMeetup = $nextMeetup;
-    $checkins = Laddr\MemberCheckin::getAllByField('MeetupID', $currentMeetup['id'], array('order' => 'ID DESC'));
     $nextMeetup = array_shift($meetups);
+    $checkins = Laddr\MemberCheckin::getAllByField('MeetupID', $currentMeetup['id'], array('order' => 'ID DESC'));
 }
-    
+
+
 RequestHandler::respond('bigscreen', array(
     'currentMeetup' => $currentMeetup
     ,'checkins' => $checkins

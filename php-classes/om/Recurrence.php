@@ -3,7 +3,6 @@
 namespace om;
 
 use DateTime;
-use Exception;
 
 /**
  * Class taken from https://github.com/coopTilleuls/intouch-iCalendar.git (Recurrence.php)
@@ -78,12 +77,20 @@ class Recurrence {
 	}
 
 	/**
-	 * Returns the frequency - corresponds to FREQ in RFC 2445.
+	 * Set the $until member
 	 *
-	 * @return mixed string if the member has been set, false otherwise
+	 * @param mixed timestamp (int) / Valid DateTime format (string)
 	 */
-	public function getFreq() {
-		return $this->getMember('freq');
+	public function setUntil($ts) {
+		if ($ts instanceof DateTime) {
+			$dt = $ts;
+		} elseif (is_int($ts)) {
+			$dt = new DateTime('@' . $ts);
+		} else {
+			$dt = new DateTime($ts);
+		}
+		$this->until = $dt->format('Ymd\THisO');
+		$this->rrule['until'] = $this->until;
 	}
 
 	/**
@@ -100,30 +107,21 @@ class Recurrence {
 	}
 
 	/**
+	 * Returns the frequency - corresponds to FREQ in RFC 2445.
+	 *
+	 * @return mixed string if the member has been set, false otherwise
+	 */
+	public function getFreq() {
+		return $this->getMember('freq');
+	}
+
+	/**
 	 * Returns when the event will go until - corresponds to UNTIL in RFC 2445.
 	 *
 	 * @return mixed string if the member has been set, false otherwise
 	 */
 	public function getUntil() {
 		return $this->getMember('until');
-	}
-
-	/**
-	 * Set the $until member
-	 *
-	 * @param mixed timestamp (int) / Valid DateTime format (string)
-	 * @throws Exception
-	 */
-	public function setUntil($ts) {
-		if ($ts instanceof DateTime) {
-			$dt = $ts;
-		} elseif (is_int($ts)) {
-			$dt = new DateTime('@' . $ts);
-		} else {
-			$dt = new DateTime($ts);
-		}
-		$this->until = $dt->format('Ymd\THisO');
-		$this->rrule['until'] = $this->until;
 	}
 
 	/**
