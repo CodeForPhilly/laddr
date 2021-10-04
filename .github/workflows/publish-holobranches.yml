@@ -13,7 +13,7 @@ jobs:
     - name: 'Update holobranch: emergence/skeleton/v3'
       uses: JarvusInnovations/hologit@actions/projector/v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
         HAB_LICENSE: accept
       with:
         holobranch: emergence-skeleton
@@ -22,7 +22,7 @@ jobs:
     - name: 'Update holobranch: emergence/vfs-site/v3'
       uses: JarvusInnovations/hologit@actions/projector/v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
         HAB_LICENSE: accept
       with:
         holobranch: emergence-vfs-site
