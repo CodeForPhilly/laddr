@@ -72,6 +72,10 @@ spec:
                   primary_hostname = {{ .Values.site.canonicalHostname | quote }}
                 {{- end }}
 
+                {{- if .Values.site.title }}
+                  title = {{ .Values.site.title | quote }}
+                {{- end }}
+
                 [core]
                 {{- if .Values.site.displayErrors }}
                   debug = true
