@@ -5,7 +5,7 @@ namespace Emergence\GitHub;
 use Exception;
 use Site;
 use Emergence\EventBus;
-
+use Emergence\Util\Url as UrlUtil;
 
 class Connector extends \Emergence\Connectors\AbstractConnector
 {
@@ -36,7 +36,7 @@ class Connector extends \Emergence\Connectors\AbstractConnector
 
         Site::redirect('https://github.com/login/oauth/authorize', [
             'client_id' => API::$clientId,
-            'redirect_uri' => (Site::getConfig('ssl') ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/connectors/github/oauth/link-user',
+            'redirect_uri' => UrlUtil::buildAbsolute('/connectors/github/oauth/link-user'),
             'scope' => 'user repo',
             'state' => $stateToken
         ]);
