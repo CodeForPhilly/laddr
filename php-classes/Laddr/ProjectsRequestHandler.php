@@ -255,4 +255,12 @@ class ProjectsRequestHandler extends \RecordsRequestHandler
 
         return parent::applyRecordDelta($Project, $requestData);
     }
+
+    protected static function onBeforeRecordDestroyed(ActiveRecord $Project)
+    {
+        // delete project memberships
+        foreach ($Project->Memberships as $ProjectMembership) {
+            $ProjectMembership->destroy();
+        }
+    }
 }
