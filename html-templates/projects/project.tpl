@@ -10,17 +10,22 @@
             <div class="btn-group">
                 <a href="/projects/{$Project->Handle}/edit" class="btn btn-info">{_ "Edit Project"}</a>
                 {if $.User}
-                    <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#add-member" data-toggle="modal">{_ "Add Member"}</a>
-                        <a class="dropdown-item" href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a>
-                        {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
-                            <a class="dropdown-item" href="#post-update" data-toggle="modal">{_ "Post Update"}</a>
-                        {/if}
-                        {if $.Session->hasAccountLevel('Staff')}
-                            <a class="dropdown-item" href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a>
-                        {/if}
+                    <div class="btn-group">
+                        <button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#add-member" data-toggle="modal">{_ "Add Member"}</a>
+                            <a class="dropdown-item" href="/project-buzz/create?ProjectID={$Project->ID}">{_ "Log Buzz"}</a>
+                            {if $.User && ($Project->hasMember($.User) || $.Session->hasAccountLevel('Staff'))}
+                                <a class="dropdown-item" href="#post-update" data-toggle="modal">{_ "Post Update"}</a>
+                            {/if}
+                            {if $.Session->hasAccountLevel('Staff')}
+                                <a class="dropdown-item" href="#manage-members" data-toggle="modal">{_ "Manage Members"}</a>
+                            {/if}
+                        </div>
                     </div>
+                {/if}
+                {if $.User->hasAccountLevel('Staff')}
+                    <a class="btn btn-danger" href="{$Project->getUrl('/delete')|escape}">Delete Project</a>
                 {/if}
             </div>
         </div>

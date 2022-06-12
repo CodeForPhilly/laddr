@@ -351,9 +351,11 @@ class Investigator
 
         if ($ipTable === null) {
             $downloadPath = \Site::$rootPath.'/site-data/ip2location.zip';
-            list ($downloadMD5) = explode(' ', file_get_contents(static::$ipLocationDatabase.'.md5'));
 
-            if (!file_exists($downloadPath) || md5_file($downloadPath) != $downloadMD5) {
+            // .md5 file doesn't seem to get published anymore
+            // list ($downloadMD5) = explode(' ', file_get_contents(static::$ipLocationDatabase.'.md5'));
+
+            if (!file_exists($downloadPath)) { // || md5_file($downloadPath) != $downloadMD5
                 copy(static::$ipLocationDatabase, $downloadPath);
             }
 

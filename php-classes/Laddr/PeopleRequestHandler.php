@@ -68,4 +68,12 @@ class PeopleRequestHandler extends \PeopleRequestHandler
                 return parent::handleRecordRequest($Member, $action);
         }
     }
+
+    protected static function onBeforeRecordDestroyed(\ActiveRecord $Person)
+    {
+        // delete project memberships
+        foreach ($Person->ProjectMemberships as $ProjectMembership) {
+            $ProjectMembership->destroy();
+        }
+    }
 }
