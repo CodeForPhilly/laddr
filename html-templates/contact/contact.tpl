@@ -7,6 +7,11 @@
 
     {if RemoteSystems\ReCaptcha::$siteKey}
         <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script>
+            function onSubmit(token) {
+                document.getElementById('contact-form').submit();
+            }
+        </script>
     {/if}
 {/block}
 
@@ -20,7 +25,7 @@
 
             {contentBlock "contact-introduction"}
 
-            <form action="/contact" method="POST" class="contact-form">
+            <form action="/contact" method="POST" class="contact-form" id="contact-form">
                 {if $validationErrors}
                     <div class="alert alert-danger">
                         {_ "Please double-check the fields highlighted below."}
@@ -35,15 +40,17 @@
 
                 {textarea inputName=Message label=Message error=$validationErrors.Message required=true}
 
-                {if RemoteSystems\ReCaptcha::$siteKey}
-                    <div class="form-group g-recaptcha" data-sitekey="{RemoteSystems\ReCaptcha::$siteKey|escape}"></div>
-                {/if}
-
                 {if $validationErrors.ReCaptcha}
                     <p class="text-danger">{$validationErrors.ReCaptcha}</p>
                 {/if}
 
-                <button type="submit" class="btn btn-primary">{_ Send}</button>
+                {if RemoteSystems\ReCaptcha::$siteKey}
+                    <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="{RemoteSystems\ReCaptcha::$siteKey|escape}" data-callback='onSubmit' data-action='submit'>
+                {else}
+                    <button type="submit" class="btn btn-primary">
+                {/if}
+                    {_ "Send"}
+                </button>
             </form>
 
         </div>
