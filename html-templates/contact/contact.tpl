@@ -31,7 +31,7 @@
 
                 {field inputName=Name  label=Name  error=$validationErrors.Name  required=true attribs='autofocus autocapitalize="words"'}
                 {field inputName=Email label=Email error=$validationErrors.Email type=email required=true}
-                {field inputName=Phone label=Phone error=$validationErrors.Phone type=tel hint='{_ "Optional. Include your area code."}'}
+                {field inputName=Phone label=Phone error=$validationErrors.Phone type=tel hint=_("Optional. Include your area code.")}
 
                 {textarea inputName=Message label=Message error=$validationErrors.Message required=true}
 
