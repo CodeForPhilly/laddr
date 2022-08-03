@@ -7,6 +7,11 @@
 
     {if RemoteSystems\ReCaptcha::$siteKey}
         <script src='https://www.google.com/recaptcha/api.js'></script>
+        <script>
+            function onSubmit(token) {
+                document.getElementById('register').submit();
+            }
+        </script>
     {/if}
 {/block}
 
@@ -65,12 +70,16 @@
                         <input type="password" class="form-control" id="PasswordConfirm" name="PasswordConfirm" value="{refill field=PasswordConfirm}">
                     </div>
 
-                    {if RemoteSystems\ReCaptcha::$siteKey}
-                        <div class="form-group g-recaptcha" data-sitekey="{RemoteSystems\ReCaptcha::$siteKey|escape}"></div>
-                    {/if}
-
                     <div class="form-group">
-                        <p><button type="submit" class="btn btn-primary">{_ "Create Account"}</button></p>
+                        <p>
+                            {if RemoteSystems\ReCaptcha::$siteKey}
+                                <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="{RemoteSystems\ReCaptcha::$siteKey|escape}" data-callback='onSubmit' data-action='submit'>
+                            {else}
+                                <button type="submit" class="btn btn-primary">
+                            {/if}
+                                {_ "Create Account"}
+                            </button>
+                        </p>
                         <p class="help-block">{_ "Already have an account?"} <a href="/login{tif $.request.return ? cat('?return=', escape($.request.return, url))}">{_ "Log in"}</a></p>
                     </div>
                 {/strip}

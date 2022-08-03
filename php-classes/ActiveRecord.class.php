@@ -69,14 +69,17 @@ class ActiveRecord
             'type' => 'enum'
             ,'notnull' => true
             ,'values' => array()
+            ,'description' => 'PHP class responsible for loading/saving this record instance'
         )
         ,'Created' => array(
             'type' => 'timestamp'
             ,'default' => 'CURRENT_TIMESTAMP'
+            ,'description' => 'Timestamp capturing when this record was first saved to the database'
         )
         ,'CreatorID' => array(
             'type' => 'integer'
             ,'notnull' => false
+            ,'description' => 'ID of person who first saved this record to the database'
         )
     );
 
@@ -111,16 +114,20 @@ class ActiveRecord
     public static $dynamicFields = array(
         'Creator',
         'validationErrors' => array(
-            'getter' => 'getValidationErrors'
+            'getter' => 'getValidationErrors',
+            'description' => 'Map of field names to any errors registered in most recent validation'
         ),
         'recordTitle' => array(
-            'getter' => 'getTitle'
+            'getter' => 'getTitle',
+            'description' => 'The self-generated title for the record'
         ),
         'recordURL' => array(
-            'getter' => 'getURL'
+            'getter' => 'getURL',
+            'description' => 'The self-generated canonical URL the record'
         ),
         'availableActions' => array(
-            'getter' => 'getAvailableActions'
+            'getter' => 'getAvailableActions',
+            'description' => 'Map of capabilities to whether they are available to the current user'
         )
     );
 
@@ -194,6 +201,7 @@ class ActiveRecord
                 static::$fields['Modified'] = array(
                     'type' => 'timestamp'
                     ,'notnull' => false
+                    ,'description' => 'Timestamp capturing when changes to this record were last saved to the database'
                 );
             }
 
@@ -201,6 +209,7 @@ class ActiveRecord
                 static::$fields['ModifierID'] = array(
                     'type' => 'uint'
                     ,'notnull' => false
+                    ,'description' => 'ID of person who last saved changes to this record to the database'
                 );
             }
 
@@ -2128,6 +2137,19 @@ class ActiveRecord
                 case 'timestamp':
                 {
                     if (!isset($this->_convertedValues[$field])) {
+                        if ($fieldOptions['type'] == 'timestamp') {
+                            static $timestampSuffix;
+
+                            if ($timestampSuffix === null) {
+                                $timestampSuffix = static::getDatabaseOffsetTimezone();
+                                if (!$timestampSuffix) {
+                                    $timestampSuffix = '';
+                                }
+                            }
+
+                            $value .= $timestampSuffix;
+                        }
+
                         if ($value && $value != '0000-00-00 00:00:00') {
                             $this->_convertedValues[$field] = strtotime($value);
                         } else {
@@ -2343,7 +2365,30 @@ class ActiveRecord
                 if (!$value) {
                     $value = null;
                 } elseif (is_numeric($value)) {
-                    $value = date('Y-m-d H:i:s', $value);
+                    static $offsetTimezone;
+
+                    // when MySQL only supports offset-based timezones, use same offset timezone to render dates without transition-awareness
+                    if ($offsetTimezone === null) {
+                        if (version_compare(PHP_VERSION, '5.6.0') >= 0) {
+                            $offsetTimezone = static::getDatabaseOffsetTimezone();
+
+                            if ($offsetTimezone) {
+                                $offsetTimezone = new DateTimeZone($offsetTimezone);
+                            }
+                        } else {
+                            // PHP <5.6 has various DateTime/DateTimeZone issues, so don't even bother trying to correct issues
+                            $offsetTimezone = false;
+                        }
+                    }
+
+                    if ($offsetTimezone) {
+                        $dateTime = new DateTime();
+                        $dateTime->setTimestamp($value);
+                        $dateTime->setTimezone($offsetTimezone);
+                        $value = $dateTime->format('Y-m-d H:i:s');
+                    } else {
+                        $value = date('Y-m-d H:i:s', $value);
+                    }
                 } elseif (is_string($value)) {
                     // trim any extra crap, or leave as-is if it doesn't fit the pattern
                     $value = preg_replace('/^(\d{4})\D?(\d{2})\D?(\d{2})T?(\d{2})\D?(\d{2})\D?(\d{2})/', '$1-$2-$3 $4:$5:$6', $value);
@@ -3039,5 +3084,36 @@ class ActiveRecord
         }
 
         return $value;
+    }
+
+    /**
+     * Get the currently configured database timezone
+     */
+    public static function getDatabaseTimezone()
+    {
+        static $mysqlStaticTimezone;
+
+        if ($mysqlStaticTimezone === null) {
+            $mysqlStaticTimezone = DB::oneValue('SELECT @@SESSION.time_zone');
+        }
+
+        return $mysqlStaticTimezone;
+    }
+
+    /**
+     * If the database is currently configured with a UTC-offset timezone, return it
+     */
+    public static function getDatabaseOffsetTimezone()
+    {
+        static $mysqlStaticTimezoneOffset;
+
+        if ($mysqlStaticTimezoneOffset === null) {
+            $mysqlStaticTimezoneOffset = static::getDatabaseTimezone();
+            if (!preg_match('/^-?\d+:\d+$/', $mysqlStaticTimezoneOffset)) {
+                $mysqlStaticTimezoneOffset = false;
+            }
+        }
+
+        return $mysqlStaticTimezoneOffset;
     }
 }
