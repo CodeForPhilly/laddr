@@ -22,6 +22,11 @@ class API
     public static $channelsCacheKey = 'slack/channels';
     public static $channelsCacheTime = 60;
 
+    public static function isAvailable()
+    {
+        return isset(static::$accessToken);
+    }
+
     public static function getAccessToken()
     {
         return static::$accessToken;
