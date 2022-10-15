@@ -24,7 +24,7 @@ class API
 
     public static function isAvailable()
     {
-        return isset(static::$accessToken);
+        return !empty(static::$accessToken);
     }
 
     public static function getAccessToken()
