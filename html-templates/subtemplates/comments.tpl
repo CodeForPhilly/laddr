@@ -24,13 +24,13 @@
                       {sprintf(_("You can use %s for formatting."), $markdownTextLink)}
                     </p>
 
-                    <button type="submit" class="btn btn-primary">{tif $Comment ? {_ Edit} : {_ Post}} {_ Comment}</button>
+                    <button type="submit" class="btn btn-primary">{tif $Comment ? _('Edit Comment') : _('Post Comment')}</button>
                 </div>
             </fieldset>
         </form>
     {else}
         {capture assign=loginTextLink}<a class="button primary" href="/login?return={$Context->getURL()|escape:url}">{_ "Log in"}</a>{/capture}
-        <p class="login-hint well">{sprintf(_("$s to post a comment."), $loginTextLink)}</p>
+        <p class="login-hint well">{sprintf(_("%s to post a comment."), $loginTextLink)}</p>
     {/if}
 {/template}
 
