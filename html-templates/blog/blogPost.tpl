@@ -93,7 +93,7 @@
                {capture assign=authoredDate}<a href="{$Post->getURL()}">{timestamp $Post->Published}</a>{/capture}
 
                 <div class="article-meta">
-                    {sprintf(_("on %s by %s"), $authorData, $authoredDate)}
+                    {sprintf(_("by %1$s on %2$s"), $authorData, $authoredDate)}
                 </div>
 
                 {if $Post->Summary}
