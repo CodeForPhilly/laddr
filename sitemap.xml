@@ -2,157 +2,157 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://codeforphilly.github.io/laddr/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/clone-from-git/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/email/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/migrations/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/api-docs/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/console-commands/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/cypress/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/data-exporters/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/docs/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/dwoo-plugins/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/event-handlers/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/fixtures/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/helm-chart/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/html-templates/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/php-classes/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/php-config/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/php-migrations/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/phpunit-tests/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/sencha-workspace/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/site-root/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/filesystem-api/site-tasks/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/running-tests/e2e/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/workspace-setup/content-editor/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/workspace-setup/local-studio/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/development/workspace-setup/virtual-multisite/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/getting-started/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/operations/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/operations/update-saml2-certificate/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/laddr/usage/</loc>
-         <lastmod>2022-10-05</lastmod>
+         <lastmod>2022-10-15</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
