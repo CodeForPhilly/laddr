@@ -17,7 +17,9 @@
 
     <meta property="article:published_time" content="{date($.const.DATE_W3C, $Post->Published)}" />
 
-    <meta property="article:author" content="{absolute_url $Post->Author->getURL()}" />
+    {if $Post->Author}
+        <meta property="article:author" content="{absolute_url $Post->Author->getURL()}" />
+    {/if}
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{$Post->Title|escape}" />
