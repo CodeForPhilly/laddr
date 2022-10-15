@@ -8,9 +8,9 @@
 {load_templates subtemplates/personName.tpl}
 
 
-<channel rdf:about="http://{$.server.HTTP_HOST}{$.server.REQUEST_URI|escape}">
+<channel rdf:about="{$.server.REQUEST_URI|absolute_url|escape}">
     <title>{if $Project}{$Project->Title|escape} &#8212; {/if}{_ 'Project Updates'}</title>
-    <link>http://{Site::getConfig(primary_hostname)}/project-updates{if $Project}?ProjectID={$Project->ID}{/if}</link>
+    <link>{escape(absolute_url(tif($Project, "/project-updates?ProjectID=$Project->ID", "/project-updates")))}</link>
     {capture assign=projectTitleText}{$Project->Title|escape}{/capture}
     {capture assign=siteNameText}{Laddr::$siteName}{/capture}
     {if $Project}
@@ -22,16 +22,16 @@
     <items>
         <rdf:Seq>
             {foreach item=Update from=$data}
-                <rdf:li rdf:resource="http://{Site::getConfig(primary_hostname)}{$Update->getURL()}"/>
+                <rdf:li rdf:resource="{$Update->getURL()|absolute_url|escape}"/>
             {/foreach}
         </rdf:Seq>
     </items>
 </channel>
 
 {foreach item=Update from=$data}
-    <item rdf:about="http://{Site::getConfig(primary_hostname)}{$Update->getURL()}">
+    <item rdf:about="{$Update->getURL()|absolute_url|escape}">
         <title>{$Update->Project->Title|escape} &#8212; {_("Update #%u")|sprintf:$Update->Number}</title>
-        <link>http://{Site::getConfig(primary_hostname)}{$Update->getURL()}</link>
+        <link>{$Update->getURL()|absolute_url|escape}</link>
         <description>{$Update->Body|escape|markdown|escape}</description>
         <dc:creator>{personName $Update->Creator}</dc:creator>
         <dc:date>{date($dwoo.const.DATE_W3C, $Update->Created)}</dc:date>
