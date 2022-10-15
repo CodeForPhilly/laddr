@@ -39,10 +39,3 @@ User::$relationships['TechTags'] = [
     ],
 ];
 User::$dynamicFields[] = 'TechTags';
-
-User::$relationships['Comments'] = [
-    'type' => 'context-children',
-    'class' => \Comment::class,
-    'contextClass' => __CLASS__,
-    'order' => ['ID' => 'DESC'],
-];

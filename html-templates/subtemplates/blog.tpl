@@ -11,7 +11,9 @@
             {if $showHeader}
                 <header class="post-header">
                     <{$headingLevel} class="post-title">
-                        <a class="pull-right" href="{$Post->Author->getURL()}" data-toggle="tooltip" title="{personName $Post->Author}">{avatar $Post->Author size=64}</a>
+                        {if $Post->Author}
+                            <a class="pull-right" href="{$Post->Author->getURL()}" data-toggle="tooltip" title="{personName $Post->Author}">{avatar $Post->Author size=64}</a>
+                        {/if}
                         <a href="{$Post->getURL()}">{$Post->Title|escape}</a>
                     </{$headingLevel}>
                 </header>
