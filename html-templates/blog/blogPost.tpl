@@ -6,7 +6,7 @@
     <meta name="description" content="{$Post->Summary|default:$Post->Title|escape}" />
 
     <meta property="og:site_name" content="{Laddr::$siteName|escape}" />
-    <meta property="og:url" content="http://{Site::getConfig(primary_hostname)}{$Post->getURL()}" />
+    <meta property="og:url" content="{absolute_url $Post->getURL()}" />
     <meta property="og:type" content="article">
     <meta property="og:title" content="{$Post->Title|escape}" />
 
@@ -16,7 +16,8 @@
     {/if}
 
     <meta property="article:published_time" content="{date($.const.DATE_W3C, $Post->Published)}" />
-    <meta property="article:author" content="http://{Site::getConfig(primary_hostname)}{$Post->Author->getURL()}" />
+
+    <meta property="article:author" content="{absolute_url $Post->Author->getURL()}" />
 
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="{$Post->Title|escape}" />
@@ -30,7 +31,7 @@
     {/if}
 
     <?php
-    
+
     // find best media in post
     $imageUrl = null;
 
