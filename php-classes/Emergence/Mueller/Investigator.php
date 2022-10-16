@@ -6,9 +6,8 @@ use DB;
 use Cache;
 use Email;
 use ActiveRecord;
-use User;
-use Bookmark;
 use TableNotFoundException;
+use Emergence\Site\Storage;
 use Emergence\People\IUser;
 use Emergence\Comments\Comment;
 use SMTPValidateEmail\Validator as SmtpEmailValidator;
@@ -356,7 +355,7 @@ class Investigator
         static $ipTable;
 
         if ($ipTable === null) {
-            $downloadPath = \Site::$rootPath.'/site-data/ip2location.zip';
+            $downloadPath = Storage::getLocalStorageRoot().'/ip2location.zip';
 
             // .md5 file doesn't seem to get published anymore
             // list ($downloadMD5) = explode(' ', file_get_contents(static::$ipLocationDatabase.'.md5'));
