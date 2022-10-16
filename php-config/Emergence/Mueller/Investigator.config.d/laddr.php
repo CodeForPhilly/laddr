@@ -8,10 +8,11 @@ use Emergence\Slack\API as SlackAPI;
 
 Investigator::$tests['email-invalid'] = false;
 
-Investigator::$tests['has-about'] = [
+Investigator::$tests['has-long-about'] = [
     'points' => -10,
-    'function' => [Investigator::class, 'testHasUserField'],
-    'userField' => 'About'
+    'function' => function (IUser $User, array &$userCache) {
+        return $User->About && strlen($User->About) > 200;
+    }
 ];
 
 Investigator::$tests['has-comment'] = [
