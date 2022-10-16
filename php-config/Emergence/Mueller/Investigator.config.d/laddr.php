@@ -51,6 +51,25 @@ Investigator::$tests['has-project'] = [
     },
 ];
 
+Investigator::$tests['has-checkin'] = [
+    'points' => 1000,
+    'function' => function (IUser $User) {
+        static $checkinMemberIds;
+
+        if ($checkinMemberIds === null) {
+            $checkinMemberIds = array_map(
+                'intval',
+                DB::allValues(
+                    'MemberID',
+                    'SELECT DISTINCT MemberID FROM `member_checkins`'
+                )
+            );
+        }
+
+        return in_array(strtolower($User->ID), $checkinMemberIds);
+    },
+];
+
 if (SlackAPI::isAvailable()) {
     Investigator::$tests['has-slack-account'] = [
         'points' => 1000,

@@ -147,7 +147,7 @@ class Investigator
 
 
         // collect content tables
-        $creatorColumns = DB::allRecords('SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = SCHEMA() AND COLUMN_NAME = "CreatorID" AND TABLE_NAME NOT LIKE "_e_%" AND TABLE_NAME NOT LIKE "_purged_%" AND TABLE_NAME NOT IN ("people", "history_people")');
+        $creatorColumns = DB::allRecords('SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = SCHEMA() AND COLUMN_NAME = "CreatorID" AND TABLE_NAME NOT LIKE "\\_e\\_%" AND TABLE_NAME NOT LIKE "_purged_%" AND TABLE_NAME NOT IN ("people", "history_people")');
         $contentTables = [];
         foreach ($creatorColumns as $column) {
             $contentTables[$column['TABLE_NAME']] = false;
@@ -247,7 +247,7 @@ class Investigator
 
                         DB::nonQuery('INSERT INTO `%s` SELECT * FROM `%s` WHERE CreatorID = %u', [$purgedTableName, $tableName, $User->ID]);
                         DB::nonQuery('DELETE FROM `%s` WHERE CreatorID = %u', [$tableName, $User->ID]);
-                        $purgings[$tableName] += DB::affectedRows();
+                        $purgings[$tableName] = DB::affectedRows();
                     }
 
                     foreach (['people', 'history_people'] as $tableName) {
