@@ -8,10 +8,10 @@ use Emergence\Slack\API as SlackAPI;
 
 Investigator::$tests['email-invalid'] = false;
 
-Investigator::$tests['has-long-about'] = [
-    'points' => -10,
+Investigator::$tests['has-about-url'] = [
+    'points' => -100,
     'function' => function (IUser $User, array &$userCache) {
-        return $User->About && strlen($User->About) > 200;
+        return $User->About && (stripos($User->About, 'http://') !== false || stripos($User->About, 'https://') !== false);
     }
 ];
 
