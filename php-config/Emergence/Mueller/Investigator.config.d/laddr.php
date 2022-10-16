@@ -15,10 +15,20 @@ Investigator::$tests['has-about-url'] = [
     }
 ];
 
-Investigator::$tests['has-comment'] = [
-    'points' => -10,
+Investigator::$tests['has-comment-url'] = [
+    'points' => -100,
     'function' => function (IUser $User, array &$userCache) {
-        return count(Investigator::getUserComments($User, $userCache)) > 0;
+
+        foreach (Investigator::getUserComments($User, $userCache) as $Comment) {
+            if (
+                stripos($Comment['Message'], 'http://') !== false
+                || stripos($Comment['Message'], 'https://') !== false
+            ) {
+                return true;
+            }
+        }
+
+        return false;
     }
 ];
 
