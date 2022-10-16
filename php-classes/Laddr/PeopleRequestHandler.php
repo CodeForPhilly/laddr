@@ -76,6 +76,11 @@ class PeopleRequestHandler extends \PeopleRequestHandler
             $ProjectMembership->destroy();
         }
 
+        // delete tags
+        foreach ($Person->Tags as $Tag) {
+            $Tag->destroy();
+        }
+
         // delete comments
         foreach ($Person->Comments as $Comment) {
             $Comment->destroy();
