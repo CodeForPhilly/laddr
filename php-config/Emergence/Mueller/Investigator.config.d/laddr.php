@@ -16,6 +16,15 @@ Investigator::$tests['has-about-url'] = [
     }
 ];
 
+Investigator::$tests['has-twitter-url'] = [
+    'points' => -100,
+    'function' => function (IUser $User) {
+        return $User->Twitter
+               && stripos($User->Twitter, 'https://twitter.com/') !== 0
+               && (stripos($User->Twitter, 'http://') !== false || stripos($User->Twitter, 'https://') !== false);
+    }
+];
+
 Investigator::$tests['has-comment-url'] = [
     'points' => -100,
     'function' => function (IUser $User, array &$userCache) {
