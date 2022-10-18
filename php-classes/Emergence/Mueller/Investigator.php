@@ -269,9 +269,7 @@ class Investigator
                     'purgings' => $purgings,
                     'diagnostics' =>
                         $score == 0 && !empty($_REQUEST['show_diagnostics'])
-                        ? array_merge($userCache['diagnostics'], [
-                            'countries' => implode(', ', static::getUserCountries($User, $userCache))
-                        ])
+                        ? $userCache['diagnostics']
                         : null
                 ]);
             }
