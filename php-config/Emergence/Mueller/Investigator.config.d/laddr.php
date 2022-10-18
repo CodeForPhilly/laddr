@@ -8,11 +8,13 @@ use Emergence\Slack\API as SlackAPI;
 
 Investigator::$tests['email-invalid'] = false;
 Investigator::$tests['ip-whitelist'] = false;
+Investigator::$tests['ip-blacklist'] = false;
+Investigator::$tests['session-multiple'] = false;
 
 Investigator::$tests['has-about-url'] = [
     'points' => -100,
     'function' => function (IUser $User, array &$userCache) {
-        return $User->About && (stripos($User->About, 'http://') !== false || stripos($User->About, 'https://') !== false);
+        return $User->About && (stripos($User->About, 'http://') !== false || stripos($User->About, 'https://') !== false || stripos($User->About, 'www.') !== false);
     }
 ];
 
@@ -33,6 +35,7 @@ Investigator::$tests['has-comment-url'] = [
             if (
                 stripos($Comment['Message'], 'http://') !== false
                 || stripos($Comment['Message'], 'https://') !== false
+                || stripos($Comment['Message'], 'www.') !== false
             ) {
                 return true;
             }
