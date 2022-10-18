@@ -8,6 +8,8 @@ use Emergence\Slack\API as SlackAPI;
 
 Investigator::$tests['email-invalid'] = false;
 Investigator::$tests['ip-whitelist'] = false;
+Investigator::$tests['ip-blacklist'] = false;
+Investigator::$tests['session-multiple'] = false;
 
 Investigator::$tests['has-about-url'] = [
     'points' => -100,
