@@ -81,11 +81,24 @@ spec:
                   debug = true
                 {{- end }}
 
+                [limit]
+                  memory = {{ .Values.site.memoryLimit | quote }}
+                  post = {{ .Values.site.postLimit | quote }}
+                  execution_time = {{ .Values.site.executionTimeLimit | quote }}
+
+                [cache]
+                  size = {{ .Values.site.cacheSize | quote }}
+
             - name: HAB_{{ .Values.database.svcName | upper | replace "-" "_"}}
               value: |
                 app_username = {{ .Values.database.username | quote }}
                 app_password = {{ .Values.database.password | quote }}
                 bind = "0.0.0.0"
+
+          {{- if .Values.site.corsOrigins }}
+            - name: CORS_ORIGINS
+              value: "{{join "," .Values.site.corsOrigins }}"
+          {{- end }}
 
           {{ if .Values.site.secrets -}}
           envFrom:
