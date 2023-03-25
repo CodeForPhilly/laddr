@@ -27,3 +27,14 @@ jobs:
         kube-config: ${{ secrets.KUBECONFIG_BASE64 }}
         kube-namespace: laddr
         kube-hostname: laddr.sandbox.k8s.phl.io
+
+    - uses: mxschmitt/action-tmate@v3
+      if: always()
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ENVIRONMENT_NAME: ${{ steps.deploy-site-preview.outputs.environment-name }}
+        ENVIRONMENT_TRANSIENT: ${{ steps.deploy-site-preview.outputs.environment-transient }}
+        IMAGE_NAME_FULL: ${{ steps.deploy-site-preview.outputs.image-name-full }}
+        IMAGE_TAG: ${{ steps.deploy-site-preview.outputs.image-tag }}
+        IMAGE_TAG_FULL: ${{ steps.deploy-site-preview.outputs.image-tag-full }}
+        KUBE_NAMESPACE: ${{ steps.deploy-site-preview.outputs.kube-namespace }}
