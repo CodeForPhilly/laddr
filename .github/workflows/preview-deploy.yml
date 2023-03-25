@@ -1,0 +1,29 @@
+name: 'Preview: Deploy'
+
+on:
+  pull_request:
+    branches: [ develop ]
+    types: [ opened, reopened, synchronize ]
+  push:
+    branches: [ develop ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  preview-deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: EmergencePlatform/php-runtime@github-actions/deploy-site-preview/develop
+      id: deploy-site-preview
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        kube-config: ${{ secrets.KUBECONFIG_BASE64 }}
+        kube-namespace: laddr
+        kube-hostname: laddr.sandbox.k8s.phl.io
