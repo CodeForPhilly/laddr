@@ -1,0 +1,22 @@
+name: 'Container: Publish Image'
+
+on:
+  push:
+    tags: [ 'v*' ]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  container-publish:
+
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: EmergencePlatform/php-runtime@github-actions/build-site-container/v1
+      env:
+        HOLO_SOURCE_MENUNET_NETWORK: https://${{ secrets.BOT_GITHUB_TOKEN }}@github.com/JarvusInnovations/menunet-network.git
+        HOLO_SOURCE_MENUNET_MENU: https://${{ secrets.BOT_GITHUB_TOKEN }}@github.com/JarvusInnovations/menunet-menu.git
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
