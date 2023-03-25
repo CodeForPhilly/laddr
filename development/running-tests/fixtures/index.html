@@ -8,27 +8,27 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/laddr/development/email/">
+        <link rel="canonical" href="https://codeforphilly.github.io/laddr/development/running-tests/fixtures/">
       
       
-        <link rel="prev" href="../clone-from-git/">
+        <link rel="prev" href="../e2e/">
       
       
-        <link rel="next" href="../migrations/">
+        <link rel="next" href="../../clone-from-git/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
     
     
       
-        <title>Working with Email - Laddr Docs</title>
+        <title>Adding fixture data - Laddr Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.240905d7.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -46,7 +46,7 @@
     
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#working-with-email" class="md-skip">
+        <a href="#adding-fixture-data" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Laddr Docs" class="md-header__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
+    <a href="../../.." title="Laddr Docs" class="md-header__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Working with Email
+              Adding fixture data
             
           </span>
         </div>
@@ -179,7 +179,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../.." class="md-tabs__link">
+    <a href="../../.." class="md-tabs__link">
       Welcome
     </a>
   </li>
@@ -194,7 +194,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../getting-started/" class="md-tabs__link">
+      <a href="../../../getting-started/" class="md-tabs__link">
         Getting started
       </a>
     </li>
@@ -210,7 +210,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../usage/" class="md-tabs__link">
+      <a href="../../../usage/" class="md-tabs__link">
         Usage
       </a>
     </li>
@@ -228,7 +228,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link md-tabs__link--active">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
         Development
       </a>
     </li>
@@ -244,7 +244,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../operations/" class="md-tabs__link">
+      <a href="../../../operations/" class="md-tabs__link">
         Operations
       </a>
     </li>
@@ -272,7 +272,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Laddr Docs" class="md-nav__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
+    <a href="../../.." title="Laddr Docs" class="md-nav__button md-logo" aria-label="Laddr Docs" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -303,7 +303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         Welcome
       </a>
     </li>
@@ -345,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/" class="md-nav__link">
+      <a href="../../../getting-started/" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -394,7 +394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../usage/" class="md-nav__link">
+      <a href="../../../usage/" class="md-nav__link">
         Usage
       </a>
     </li>
@@ -445,7 +445,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         Development
       </a>
     </li>
@@ -486,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workspace-setup/local-studio/" class="md-nav__link">
+      <a href="../../workspace-setup/local-studio/" class="md-nav__link">
         Local Studio Container
       </a>
     </li>
@@ -500,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workspace-setup/virtual-multisite/" class="md-nav__link">
+      <a href="../../workspace-setup/virtual-multisite/" class="md-nav__link">
         Virtual Multi-site Container
       </a>
     </li>
@@ -514,7 +514,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workspace-setup/content-editor/" class="md-nav__link">
+      <a href="../../workspace-setup/content-editor/" class="md-nav__link">
         Content Editor webapp
       </a>
     </li>
@@ -533,14 +533,16 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" checked>
       
       
       
@@ -549,7 +551,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4_3">
           <span class="md-nav__icon md-icon"></span>
           Running tests
@@ -562,43 +564,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../running-tests/e2e/" class="md-nav__link">
+      <a href="../e2e/" class="md-nav__link">
         End-to-end (E2E) testing
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../running-tests/fixtures/" class="md-nav__link">
-        Adding fixture data
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../clone-from-git/" class="md-nav__link">
-        Clone Laddr from git
       </a>
     </li>
   
@@ -620,61 +587,17 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Working with Email
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
-        Working with Email
+        Adding fixture data
       </a>
       
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#catching-emails-in-development" class="md-nav__link">
-    Catching emails in development
-  </a>
-  
-    <nav class="md-nav" aria-label="Catching emails in development">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-helo" class="md-nav__link">
-    Using HELO
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sending-a-test-email" class="md-nav__link">
-    Sending a test email
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -686,7 +609,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../migrations/" class="md-nav__link">
+      <a href="../../clone-from-git/" class="md-nav__link">
+        Clone Laddr from git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../email/" class="md-nav__link">
+        Working with Email
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../migrations/" class="md-nav__link">
         Developing Migrations
       </a>
     </li>
@@ -727,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/" class="md-nav__link">
+      <a href="../../filesystem-api/" class="md-nav__link">
         Filesystem API
       </a>
     </li>
@@ -741,7 +692,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/api-docs/" class="md-nav__link">
+      <a href="../../filesystem-api/api-docs/" class="md-nav__link">
         api-docs
       </a>
     </li>
@@ -755,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/console-commands/" class="md-nav__link">
+      <a href="../../filesystem-api/console-commands/" class="md-nav__link">
         console-commands
       </a>
     </li>
@@ -769,7 +720,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/cypress/" class="md-nav__link">
+      <a href="../../filesystem-api/cypress/" class="md-nav__link">
         cypress
       </a>
     </li>
@@ -783,7 +734,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/data-exporters/" class="md-nav__link">
+      <a href="../../filesystem-api/data-exporters/" class="md-nav__link">
         data-exporters
       </a>
     </li>
@@ -797,7 +748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/docs/" class="md-nav__link">
+      <a href="../../filesystem-api/docs/" class="md-nav__link">
         docs
       </a>
     </li>
@@ -811,7 +762,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/dwoo-plugins/" class="md-nav__link">
+      <a href="../../filesystem-api/dwoo-plugins/" class="md-nav__link">
         dwoo-plugins
       </a>
     </li>
@@ -825,7 +776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/event-handlers/" class="md-nav__link">
+      <a href="../../filesystem-api/event-handlers/" class="md-nav__link">
         event-handlers
       </a>
     </li>
@@ -839,7 +790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/fixtures/" class="md-nav__link">
+      <a href="../../filesystem-api/fixtures/" class="md-nav__link">
         Fixtures
       </a>
     </li>
@@ -853,7 +804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/helm-chart/" class="md-nav__link">
+      <a href="../../filesystem-api/helm-chart/" class="md-nav__link">
         Helm chart
       </a>
     </li>
@@ -867,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/html-templates/" class="md-nav__link">
+      <a href="../../filesystem-api/html-templates/" class="md-nav__link">
         Html templates
       </a>
     </li>
@@ -881,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/php-classes/" class="md-nav__link">
+      <a href="../../filesystem-api/php-classes/" class="md-nav__link">
         Php classes
       </a>
     </li>
@@ -895,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/php-config/" class="md-nav__link">
+      <a href="../../filesystem-api/php-config/" class="md-nav__link">
         Php config
       </a>
     </li>
@@ -909,7 +860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/php-migrations/" class="md-nav__link">
+      <a href="../../filesystem-api/php-migrations/" class="md-nav__link">
         Php migrations
       </a>
     </li>
@@ -923,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/phpunit-tests/" class="md-nav__link">
+      <a href="../../filesystem-api/phpunit-tests/" class="md-nav__link">
         Phpunit tests
       </a>
     </li>
@@ -937,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/sencha-workspace/" class="md-nav__link">
+      <a href="../../filesystem-api/sencha-workspace/" class="md-nav__link">
         Sencha workspace
       </a>
     </li>
@@ -951,7 +902,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/site-root/" class="md-nav__link">
+      <a href="../../filesystem-api/site-root/" class="md-nav__link">
         Site root
       </a>
     </li>
@@ -965,7 +916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../filesystem-api/site-tasks/" class="md-nav__link">
+      <a href="../../filesystem-api/site-tasks/" class="md-nav__link">
         Site tasks
       </a>
     </li>
@@ -1021,7 +972,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/" class="md-nav__link">
+      <a href="../../../operations/" class="md-nav__link">
         Operations
       </a>
     </li>
@@ -1035,7 +986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/update-saml2-certificate/" class="md-nav__link">
+      <a href="../../../operations/update-saml2-certificate/" class="md-nav__link">
         Update SAML2 Certificate
       </a>
     </li>
@@ -1069,41 +1020,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#catching-emails-in-development" class="md-nav__link">
-    Catching emails in development
-  </a>
-  
-    <nav class="md-nav" aria-label="Catching emails in development">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#using-helo" class="md-nav__link">
-    Using HELO
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sending-a-test-email" class="md-nav__link">
-    Sending a test email
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1120,79 +1036,13 @@
   
 
 
-<h1 id="working-with-email">Working with Email<a class="headerlink" href="#working-with-email" title="Permanent link"> ¶</a></h1>
-<h2 id="catching-emails-in-development">Catching emails in development<a class="headerlink" href="#catching-emails-in-development" title="Permanent link"> ¶</a></h2>
-<p>In the studio, you can enable relaying email to a specified SMTP endpoint.</p>
-<p><a href="https://usehelo.com/">HELO</a> and <a href="https://mailtrap.io/">mailtrap</a> are easy SMTP endpoints to set up for development that provide UIs for reviewing emails sent to all recipients. When emails are configured to be relayed to these services, they will be trapped for review and never actually delivered to anyone externally, no matter what recipients you use. As opposed to overriding recipient emails to test email features, this approach enables you to verify that personalized bulk emails send the right content to the right recipients.</p>
-<h3 id="using-helo">Using HELO<a class="headerlink" href="#using-helo" title="Permanent link"> ¶</a></h3>
-<ol>
-<li>Download and open the HELO app</li>
-<li>Launch studio, run <code>start-all</code></li>
-<li>
-<p>Install and activate postfix email backend:</p>
-<div class="highlight"><pre><span></span><code>enable-email
-</code></pre></div>
-</li>
-<li>
-<p>Configure postfix email backend to relay to HELO app on Docker host machine:</p>
-<div class="highlight"><pre><span></span><code>enable-email-relay<span class="w"> </span>host.docker.internal<span class="w"> </span><span class="m">2525</span><span class="w"> </span>studio
-</code></pre></div>
-<p>Or, using mailtrap:</p>
-<div class="highlight"><pre><span></span><code>enable-email-relay<span class="w"> </span>smtp.mailtrap.io<span class="w"> </span><span class="m">2525</span><span class="w"> </span>mailtrapusername<span class="w"> </span>mailtrappassword
-</code></pre></div>
-</li>
-</ol>
-<h2 id="sending-a-test-email">Sending a test email<a class="headerlink" href="#sending-a-test-email" title="Permanent link"> ¶</a></h2>
-<p>From the studio:</p>
-<ol>
-<li>
-<p>Install netcat:</p>
-<div class="highlight"><pre><span></span><code>hab<span class="w"> </span>pkg<span class="w"> </span>install<span class="w"> </span>--binlink<span class="w"> </span>core/netcat
-</code></pre></div>
-</li>
-<li>
-<p>Open SMTP connection:</p>
-<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>localhost<span class="w"> </span><span class="m">25</span>
-</code></pre></div>
-</li>
-<li>
-<p>Start SMTP session:</p>
-<div class="highlight"><pre><span></span><code><span class="go">EHLO localhost.localdomain</span>
-</code></pre></div>
-</li>
-<li>
-<p>Set sender:</p>
-<div class="highlight"><pre><span></span><code><span class="go">MAIL FROM: &lt;sender@example.com&gt;</span>
-</code></pre></div>
-</li>
-<li>
-<p>Set recipient:</p>
-<div class="highlight"><pre><span></span><code><span class="go">RCPT TO: &lt;recipient@example.com&gt;</span>
-</code></pre></div>
-</li>
-<li>
-<p>Set message:</p>
-<div class="highlight"><pre><span></span><code><span class="go">DATA</span>
-<span class="go">Subject: Hello world!</span>
-
-<span class="go">This is the body of my email.</span>
-
-<span class="go">Have a good day.</span>
-
-<span class="go">.</span>
-</code></pre></div>
-</li>
-<li>
-<p>Close SMTP session:</p>
-<div class="highlight"><pre><span></span><code><span class="go">QUIT</span>
-</code></pre></div>
-</li>
-<li>
-<p>Review postfix backend log:</p>
-<div class="highlight"><pre><span></span><code><span class="go">less -S /hab/cache/sys.log</span>
-</code></pre></div>
-</li>
-</ol>
+<h1 id="adding-fixture-data">Adding fixture data<a class="headerlink" href="#adding-fixture-data" title="Permanent link"> ¶</a></h1>
+<p>You can use this workflow for identifying and capturing fixture changes:
+- load existing fixture data by running <code>load-fixtures</code> at the studio command prompt
+- Take a complete snapshot of the database <code>dump-sql &gt; .scratch/snapshot.before-changes.sql</code>
+- Create new records using the UI
+- Take a complete snapshot <code>dump-sql &gt; .scratch/snapshot.after-changes.sql</code>
+- Open up the two .sql files in a visual diff viewer and manually transplant the added records over to their appropriate fixture files in the repo</p>
 
 
 
@@ -1230,10 +1080,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.19047be9.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
