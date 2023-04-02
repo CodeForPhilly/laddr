@@ -13,7 +13,7 @@ permissions:
   deployments: write
 
 jobs:
-  preview-deploy:
+  preview-destroy:
     runs-on: ubuntu-latest
     steps:
 
