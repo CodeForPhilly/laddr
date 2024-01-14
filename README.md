@@ -18,6 +18,15 @@ Install recent versions of [Habitat](http://habitat.sh) and [Docker](https://www
 
 ```bash
 cd ~/Repositories/laddr # or wherever you cloned this rep
+HITCLUB đối với những người hâm mộ cá cược thì chắc chắn không còn xa lạ. Bởi HITCLUB được biết là một trong những địa chỉ cá cược có nhiều ưu điểm hàng đầu. Cùng với đó là những tính năng, những chất lượng và dịch vụ hàng đầu. Mang đến cho người chơi một sân chơi cá cược đỉnh cao. Hãy cùng tìm hiểu về hệ thống nhà cái cá cược hàng đầu thị trường này.
+#hitclubgame #hitclub #hitclubgamesite
+Thông tin liên hệ:
+Phone: 0395679924
+Địa chỉ: nhà số 20, ngách49, ngõ 32 Đỗ Đức Dục, Nam Từ Liêm, Hà Nội 
+Gmail: hitclubgamesite@gmail.com
+Website: https://hitclubgame.site/
+12000
+
 
 # expose port 7080 (http) and 3306 (mysql) from any Docker container started by Habitat
 export HAB_DOCKER_OPTS="-p 7080:7080 -p 3306:3306"
