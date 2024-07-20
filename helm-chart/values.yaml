@@ -38,12 +38,6 @@ volumes:
   site: ~
   database: ~
 
-services:
-  http:
-    port: 80
-  # mysql:
-  #   port: 3306
-
 ingress:
   enabled: false
   annotations:
