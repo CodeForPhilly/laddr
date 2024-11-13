@@ -1,2 +1,3 @@
 .emergence
 .php_cs.cache
+.env

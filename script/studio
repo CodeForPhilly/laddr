@@ -22,6 +22,14 @@ if [ -n "${1}" ]; then
 fi
 
 
+# initialize .env
+if [ ! -f .env ]; then
+    echo
+    echo "==> studio: initializing .env"
+    cp .env.example .env
+fi
+
+
 echo
 echo "==> studio: configuring Chef Habitat studio Docker options…"
 STUDIO_NAME="${STUDIO_NAME:-laddr-studio}"
@@ -33,6 +41,7 @@ export HAB_DOCKER_OPTS="
     -v $(cd ~/.ssh; pwd)/known_hosts:/root/.ssh/known_hosts:ro
     --env STUDIO_DEVELOPER_UID=$(id -u)
     --env STUDIO_DEVELOPER_GID=$(id -g)
+    --env-file .env
 "
 echo "${HAB_DOCKER_OPTS}"
 
