@@ -44,7 +44,12 @@ spec:
                   {{- end }}
 
                   # install CLI dependencies
-                  hab pkg install jarvus/restic core/gzip core/curl
+                  hab pkg install core/gzip core/curl
+
+                  if [ ! -f /bin/restic ]; then
+                    hab pkg exec core/curl curl -L https://github.com/restic/restic/releases/download/v0.18.1/restic_0.18.1_linux_amd64.bz2 | bunzip2 > /bin/restic
+                    chmod +x /bin/restic
+                  fi
 
                   # get composite service name
                   composite_svc_name=\"\$(hab svc status | tail -n +2 | awk '{print \$1}' | grep -- "-composite/" | cut -d '/' -f 1,2)\"
@@ -66,7 +71,7 @@ spec:
                       --ignore-table=\"\${database_name}.sessions\" \
                       \"\${database_name}\" \
                     | hab pkg exec core/gzip gzip --rsyncable \
-                    | hab pkg exec jarvus/restic restic backup \
+                    | restic backup \
                       --host '{{ .Release.Name }}' \
                       --stdin \
                       --stdin-filename database.sql.gz
@@ -77,7 +82,7 @@ spec:
 
                   # snapshot data
                   echo 'Snapshotting site data'
-                  hab pkg exec jarvus/restic restic backup \
+                  restic backup \
                     /hab/svc/{{ .Values.site.svcName }}/data \
                     --host '{{ .Release.Name }}' \
                     --exclude='*.log' \
@@ -85,7 +90,7 @@ spec:
 
                   # prune aged snapshots
                   echo 'Pruning snapshots'
-                  hab pkg exec jarvus/restic restic forget \
+                  restic forget \
                     --host '{{ .Release.Name }}' \
                     --keep-last {{ .Values.backups.prune.keepLast }} \
                     --keep-daily {{ .Values.backups.prune.keepDaily }} \

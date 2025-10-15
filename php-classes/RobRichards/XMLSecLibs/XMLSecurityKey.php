@@ -7,7 +7,7 @@ use Exception;
 /**
  * xmlseclibs.php
  *
- * Copyright (c) 2007-2020, Robert Richards <rrichards@cdatazone.org>.
+ * Copyright (c) 2007-2024, Robert Richards <rrichards@cdatazone.org>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@ use Exception;
  * POSSIBILITY OF SUCH DAMAGE.
  *
  * @author    Robert Richards <rrichards@cdatazone.org>
- * @copyright 2007-2020 Robert Richards <rrichards@cdatazone.org>
+ * @copyright 2007-2024 Robert Richards <rrichards@cdatazone.org>
  * @license   http://www.opensource.org/licenses/bsd-license.php  BSD License
  */
 
@@ -384,9 +384,6 @@ class XMLSecurityKey
 
 	            case 'private':
                     $this->key = openssl_get_privatekey($this->key, $this->passphrase);
-                    if ($this->key === false) {
-                        throw new Exception('Unable to extract private key (invalid key or passphrase): ' . openssl_error_string());
-                    }
                     break;
 
                 case'symmetric':
