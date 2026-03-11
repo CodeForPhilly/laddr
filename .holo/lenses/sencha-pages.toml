@@ -1,5 +1,5 @@
 [hololens]
-package = "holo/lens-sencha-pages" # expanded to absolute ident in holospec
+container = "ghcr.io/hologit/lenses/sencha-pages:latest"
 
 [hololens.input]
 root = "sencha-workspace"
