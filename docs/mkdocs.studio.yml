@@ -2,5 +2,6 @@ extra:
   studio:
     name: laddr-studio
     web_port: 9070
+    static_port: 9071
     docs_port: 9078
     mysql_port: 9076
