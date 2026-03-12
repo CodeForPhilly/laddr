@@ -176,16 +176,21 @@ class Investigator
         if (!empty($_REQUEST['id_min'])) {
             $sql .= ' WHERE ID >= %u';
             $params[] = $_REQUEST['id_min'];
+        } elseif (!empty($_REQUEST['id_max'])) {
+            $sql .= ' WHERE ID <= %u';
+            $params[] = $_REQUEST['id_max'];
         } elseif (!empty($_REQUEST['id'])) {
             $sql .= ' WHERE ID = %u';
             $params[] = $_REQUEST['id'];
         }
 
-        $sql .= ' ORDER BY ID';
+        $sql .= ' ORDER BY ID DESC';
 
         if (!empty($_REQUEST['limit'])) {
             $sql .= ' LIMIT %u';
             $params[] = $_REQUEST['limit'];
+        } else {
+            $sql .= ' LIMIT 100';
         }
 
         $usersResult = DB::query($sql, $params);
