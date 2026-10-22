@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1871,8 +1871,8 @@
 <p>To prevent Visual Studio Code from automatically opening this union repository and causing all sorts of mahem, open your user <code>settings.json</code> and add an option to ignore the <code>*.cypress-workspace/merged</code> repository at whatever path your project repository lives at:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">    </span><span class="c1">// ...</span>
-<span class="w">    </span><span class="nt">&quot;git.ignoredRepositories&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">        </span><span class="s2">&quot;/Users/me/Repositories/git@github.com:CodeForPhilly/laddr.git.cypress-workspace/merged&quot;</span>
+<span class="w">    </span><span class="nt">"git.ignoredRepositories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">"/Users/me/Repositories/git@github.com:CodeForPhilly/laddr.git.cypress-workspace/merged"</span>
 <span class="w">    </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1883,18 +1883,18 @@
 <ol>
 <li>
 <p>Set base URL to studo HTTP root reachable from local workstation:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYPRESS_BASE_URL</span><span class="o">=</span><span class="s1">&#39;http://workstation.mydomain:9070&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYPRESS_BASE_URL</span><span class="o">=</span><span class="s1">'http://workstation.mydomain:9070'</span>
 </code></pre></div>
 </li>
 <li>
 <p>Configure the SSH host that the backend studio is running on:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYPRESS_STUDIO_SSH</span><span class="o">=</span><span class="s1">&#39;workstation.mydomain&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYPRESS_STUDIO_SSH</span><span class="o">=</span><span class="s1">'workstation.mydomain'</span>
 </code></pre></div>
 <p>Your local terminal must be set up to connect to it without password.</p>
 </li>
 <li>
 <p>Configure the name of the Docker container running the backend studio:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYPRESS_STUDIO_CONTAINER</span><span class="o">=</span><span class="s1">&#39;laddr-studio&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">CYPRESS_STUDIO_CONTAINER</span><span class="o">=</span><span class="s1">'laddr-studio'</span>
 </code></pre></div>
 </li>
 <li>
@@ -1967,7 +1967,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
