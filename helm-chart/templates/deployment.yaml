@@ -63,6 +63,9 @@ spec:
 
             - name: HAB_{{ .Values.site.svcName | upper | replace "-" "_"}}
               value: |
+                {{- if .Values.site.phpIniSnippet }}
+                snippet = {{ .Values.site.phpIniSnippet | quote }}
+                {{- end }}
                 {{- if .Values.site.timezone }}
                 default_timezone = {{ .Values.site.timezone | quote }}
                 {{- end }}
