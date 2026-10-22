@@ -21,6 +21,12 @@ site:
     tag: latest
     pullPolicy: Always
 
+  # Extra php.ini directives rendered into the site's php.ini via the
+  # emergence-site package's `snippet` config. Default disables
+  # session.upload_progress as the interim mitigation for CVE-2026-109619
+  # (the php5/php7 runtimes receive no upstream fix).
+  phpIniSnippet: "session.upload_progress.enabled = Off"
+
   memoryLimit: 200M
   postLimit: 200M
   executionTimeLimit: 30

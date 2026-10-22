@@ -182,7 +182,14 @@ class Mysqldump
 
         // This drops MYSQL dependency, only use the constant if it's defined.
         if ("mysql" === $this->dbType) {
-            $this->pdoSettingsDefault[PDO::MYSQL_ATTR_USE_BUFFERED_QUERY] = false;
+
+            if (defined('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY')) {
+                $attribute = constant('Pdo\\Mysql::ATTR_USE_BUFFERED_QUERY');
+            } else {
+                $attribute = PDO::MYSQL_ATTR_USE_BUFFERED_QUERY;
+            }
+
+            $this->pdoSettingsDefault[$attribute] = false;
         }
 
         $this->pdoSettings = array_replace_recursive($this->pdoSettingsDefault, $pdoSettings);
@@ -2118,7 +2125,7 @@ class TypeAdapterMysql extends TypeAdapterFactory
         $args = func_get_args();
         return "SELECT TABLE_NAME AS tbl_name ".
             "FROM INFORMATION_SCHEMA.TABLES ".
-            "WHERE TABLE_TYPE='BASE TABLE' AND TABLE_SCHEMA='{$args[0]}' ".
+            "WHERE TABLE_TYPE IN ('BASE TABLE','SYSTEM VERSIONED') AND TABLE_SCHEMA='{$args[0]}' ".
             "ORDER BY TABLE_NAME";
     }
 
